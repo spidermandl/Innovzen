@@ -1,0 +1,46 @@
+<resources>
+
+    <!-- REUSABLE HEADER -->
+    <dimen name="reusable_header_margin_top">5dp</dimen>
+
+    <!-- REUSABLE FOOTER -->
+    <dimen name="reusable_footer_height">100dp</dimen>
+    <dimen name="reusable_footer_padding_bottom">10dp</dimen>
+    <dimen name="reusable_footer_padding_left">10dp</dimen>
+    <dimen name="reusable_footer_padding_right">10dp</dimen>
+    <dimen name="reusable_footer_padding_top">10dp</dimen>
+    <dimen name="reusable_viewpager_title_left_margin">10dp</dimen>
+    <dimen name="reusable_viewpager_subtitle_left_margin">10dp</dimen>
+    <dimen name="reusable_viewpager_content_right_left_margin">10dp</dimen>
+
+    <!-- CHAIR INFO SPECIFICATION TABLE -->
+    <dimen name="table_row_height">50dp</dimen>
+
+    <!-- Chair Info Tour -->
+    <dimen name="seek_bar_thumb_size">30dp</dimen>
+
+    <!-- SUBTITLE -->
+    <dimen name="subtitle_text">25sp</dimen>
+
+    <!-- ANIMATION BEACH -->
+    <item name="animation_beach_shore_height" format="float" type="dimen">0.1328125</item>
+    <item name="animation_beach_sun_width_percentage" format="float" type="dimen">0.6796875</item>
+    <item name="animation_beach_step_progress_bar_width" format="float" type="dimen">0.4125</item>
+    <dimen name="animation_beach_step_progress_bar_text">20sp</dimen>
+
+    <!-- Chair Start Page -->
+    <dimen name="margin_top_waves">30dp</dimen>
+
+    <!-- PAGE HELP -->
+    <dimen name="page_help_main_text">16sp</dimen>
+    <dimen name="page_help_main_text_margin_left">5dp</dimen>
+    <dimen name="page_help_main_text_margin_right">5dp</dimen>
+
+    <!-- FRAG TIMER ADVANCE -->
+    <dimen name="timer_advance_tab_text">18sp</dimen>
+    <dimen name="timer_advance_timer_text">16sp</dimen>
+
+    <!-- FRAG ANIMATION -->
+    <dimen name="animation_countdown_text">150sp</dimen>
+
+</resources>

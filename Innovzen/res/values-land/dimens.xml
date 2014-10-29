@@ -1,0 +1,64 @@
+<resources>
+
+    <!-- REUSABLE HEADER -->
+    <dimen name="reusable_header_margin_top">10dp</dimen>
+    <dimen name="reusable_header_logo_margin_top">15dp</dimen>
+
+    <!-- REUSABLE FOOTER -->
+    <dimen name="reusable_footer_height">120dp</dimen>
+    <dimen name="reusable_footer_padding_bottom">15dp</dimen>
+    <dimen name="reusable_footer_padding_left">15dp</dimen>
+    <dimen name="reusable_footer_padding_right">15dp</dimen>
+    <dimen name="reusable_footer_padding_top">10dp</dimen>
+
+    <!-- VIEWPAGER STUFF -->
+    <dimen name="reusable_viewpager_title_left_margin">10dp</dimen>
+    <dimen name="reusable_viewpager_subtitle_left_margin">10dp</dimen>
+    <dimen name="reusable_viewpager_content_right_left_margin">10dp</dimen>
+
+    <!-- SUBTITLE -->
+    <dimen name="subtitle_text">35sp</dimen>
+
+    <!-- Chair Info Tour -->
+    <dimen name="seek_bar_thumb_size">33dp</dimen>
+
+    <!-- CHAIR INFO SPECIFICATION TABLE -->
+    <dimen name="table_row_height">90dp</dimen>
+    <dimen name="table_row_width">100dp</dimen>
+
+    <!-- CHAIR Info Start -->
+    <dimen name="controle_text_size">28dp</dimen>
+    <dimen name="smartphone_text_size">30dp</dimen>
+
+    <!-- CHAIR Reusable -->
+    <dimen name="page_title_size">30dp</dimen>
+    <dimen name="content_text_size">24dp</dimen>
+
+    <!-- Chair specifications -->
+    <dimen name="table_left_and_right_margins">50sp</dimen>
+    <dimen name="spec_page_title_size">35dp</dimen>
+    <dimen name="table_row_text_size">18sp</dimen>
+    <dimen name="table_row_header_text_size">20sp</dimen>
+
+    <!-- ANIMATION BEACH -->
+    <item name="animation_beach_shore_height" format="float" type="dimen">0.067382</item>
+    <item name="animation_beach_sun_width_percentage" format="float" type="dimen">0.6796875</item>
+    <item name="animation_beach_step_progress_bar_width" format="float" type="dimen">0.201171</item>
+    <dimen name="animation_beach_step_progress_bar_text">25sp</dimen>
+
+    <!-- PAGE HELP -->
+    <dimen name="page_help_main_text">22sp</dimen>
+    <dimen name="page_help_main_text_margin_left">15dp</dimen>
+    <dimen name="page_help_main_text_margin_right">15dp</dimen>
+
+    <!-- FRAG MAIN MENU -->
+    <dimen name="main_menu_title">30sp</dimen>
+
+    <!-- FRAG TIMER -->
+    <dimen name="timer_main_container_padding_bottom">50dp</dimen>
+    <dimen name="timer_main_container_left_right_cell_padding">50dp</dimen>
+
+    <!-- FRAG ANIMATION -->
+    <dimen name="animation_countdown_text">200sp</dimen>
+
+</resources>

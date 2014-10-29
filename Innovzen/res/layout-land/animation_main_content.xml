@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <RelativeLayout
+        android:id="@+id/animation_dummy_white_view_for_fullscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="gone" >
+    </RelativeLayout>
+
+    <!-- HEADER -->
+
+    <include layout="@layout/reusable_header" />
+
+    <!-- HEADER BUTTONS -->
+
+    <RelativeLayout
+        android:id="@+id/animation_header_buttons_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/reusable_footer_padding_bottom" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/reusable_footer_height"
+            android:layout_centerVertical="true"
+            android:paddingBottom="@dimen/reusable_footer_padding_bottom" >
+
+            <ImageView
+                android:id="@+id/animation_pause_btn"
+                android:layout_width="@dimen/reusable_footer_height"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:paddingLeft="@dimen/reusable_footer_padding_left"
+                android:src="@drawable/selector_icon_pause" />
+
+            <ImageView
+                android:id="@+id/animation_open_drawer_btn"
+                android:layout_width="@dimen/reusable_footer_height"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:paddingRight="@dimen/reusable_footer_padding_right"
+                android:src="@drawable/selector_icon_timer" />
+
+            <ImageView
+                android:id="@+id/animation_help_btn"
+                android:layout_width="@dimen/reusable_footer_height"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/animation_open_drawer_btn"
+                android:paddingRight="@dimen/reusable_footer_padding_right"
+                android:src="@drawable/selector_icon_help" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!-- ANIMATION PARENT CONTAINER -->
+
+    <RelativeLayout
+        android:id="@+id/animation_animation_parent_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/animation_footer_container"
+        android:layout_below="@id/animation_header_buttons_container" >
+
+        <!-- ANIMATION CONTAINER -->
+
+        <RelativeLayout
+            android:id="@+id/animation_animation_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white" >
+        </RelativeLayout>
+
+        <!-- ANIMATION TYPE -->
+
+        <TextView
+            android:id="@+id/animation_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/shape_animation_type_bckgnd"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:singleLine="true"
+            android:text="Exercice PERFORMANCE"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/animation_type" />
+
+        <!-- FULL SCREEN BTN -->
+
+        <RelativeLayout
+            android:id="@+id/animation_fullscreen_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp" >
+
+            <ImageView
+                android:id="@+id/animation_fullscreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/selector_icon_fullscreen_in" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!-- COUNTDOWN -->
+
+    <TextView
+        android:id="@+id/animation_countdown"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/animation_footer_container"
+        android:layout_below="@id/animation_header_buttons_container"
+        android:layout_centerInParent="true"
+        android:clickable="false"
+        android:focusable="false"
+        android:gravity="center"
+        android:textColor="@color/animation_countdown_text"
+        android:textSize="@dimen/animation_countdown_text"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <!-- PLAY BUTTON OVERLAY -->
+
+    <RelativeLayout
+        android:id="@+id/animation_play_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/animation_footer_container"
+        android:layout_below="@id/animation_header_buttons_container"
+        android:background="#D2ffffff"
+        android:clickable="true" >
+
+        <ImageView
+            android:id="@+id/animation_play_overlay_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/selector_icon_play_animation" />
+    </RelativeLayout>
+
+    <!-- FOOTER -->
+
+    <include
+        android:id="@+id/animation_footer"
+        android:layout_centerInParent="true"
+        layout="@layout/reusable_footer" />
+
+    <!-- TIMERS -->
+
+    <RelativeLayout
+        android:id="@id/animation_footer_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal" >
+
+            <!-- INHALE TIMER -->
+
+            <LinearLayout
+                android:id="@+id/animation_footer_timer_inhale_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <include
+                        android:id="@+id/animation_footer_timer_inhale"
+                        layout="@layout/reusable_circular_seekbar_small" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/animation_footer_timer_inhale"
+                    android:textColor="@color/animation_footer_timers"
+                    android:textSize="@dimen/animation_footer_timer_text" />
+            </LinearLayout>
+
+            <!-- HOLD INHALE TIMER -->
+
+            <LinearLayout
+                android:id="@+id/animation_footer_timer_hold_inhale_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <include
+                        android:id="@+id/animation_footer_timer_hold_inhale"
+                        layout="@layout/reusable_circular_seekbar_small" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/animation_footer_timer_hold_inhale"
+                    android:textColor="@color/animation_footer_timers"
+                    android:textSize="@dimen/animation_footer_timer_text" />
+            </LinearLayout>
+
+            <!-- EXHALE TIMER -->
+
+            <LinearLayout
+                android:id="@+id/animation_footer_timer_exhale_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <include
+                        android:id="@+id/animation_footer_timer_exhale"
+                        layout="@layout/reusable_circular_seekbar_small" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/animation_footer_timer_exhale"
+                    android:textColor="@color/animation_footer_timers"
+                    android:textSize="@dimen/animation_footer_timer_text" />
+            </LinearLayout>
+
+            <!-- HOLD EXHALE TIMER -->
+
+            <LinearLayout
+                android:id="@+id/animation_footer_timer_hold_exhale_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <include
+                        android:id="@+id/animation_footer_timer_hold_exhale"
+                        layout="@layout/reusable_circular_seekbar_small" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/animation_footer_timer_hold_exhale"
+                    android:textColor="@color/animation_footer_timers"
+                    android:textSize="@dimen/animation_footer_timer_text" />
+            </LinearLayout>
+
+            <!-- EXERCISE DURATION TIMER -->
+
+            <LinearLayout
+                android:id="@+id/animation_footer_timer_exercise_duration_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <include
+                        android:id="@+id/animation_footer_timer_exercise_duration"
+                        layout="@layout/reusable_circular_seekbar_small" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/animation_footer_timer_exercise_duration"
+                    android:textColor="@color/animation_footer_timers"
+                    android:textSize="@dimen/animation_footer_timer_text" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

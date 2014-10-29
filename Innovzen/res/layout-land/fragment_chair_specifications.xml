@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <include layout="@layout/reusable_header" />
+
+    <include layout="@layout/reusable_subheader" />
+
+    <LinearLayout
+        android:id="@+id/viewpager_page_specifications_images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/viewpager_info_table"
+        android:layout_below="@+id/reusable_subheader"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <ImageView
+            android:id="@+id/viewpager_specifications1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/chair_specs04" />
+
+        <ImageView
+            android:id="@+id/viewpager_specifications2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/chair_specs03" />
+
+        <ImageView
+            android:id="@+id/viewpager_specifications3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/chair_specs02" />
+
+        <ImageView
+            android:id="@+id/viewpager_specifications4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:src="@drawable/chair_specs01" />
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@id/viewpager_info_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/viewpager_footer"
+        android:layout_marginLeft="@dimen/table_left_and_right_margins"
+        android:layout_marginRight="@dimen/table_left_and_right_margins"
+        android:stretchColumns="0,1,2,3,4,5,6" >
+
+        <TableRow
+            android:id="@+id/viewpager_info_table_row1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_menu_gray"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/specifications_header_model"
+                android:textColor="@color/white"
+                android:textSize="@dimen/table_row_text_size" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/specifications_header_model_number"
+                android:textColor="@color/white"
+                android:textSize="@dimen/table_row_text_size" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/specifications_header_voltage"
+                android:textColor="@color/white"
+                android:textSize="@dimen/table_row_text_size" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/specifications_header_power"
+                android:textColor="@color/white"
+                android:textSize="@dimen/table_row_text_size" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/specifications_header_frequency"
+                android:textColor="@color/white"
+                android:textSize="@dimen/table_row_text_size" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/specifications_header_safety_design"
+                android:textColor="@color/white"
+                android:textSize="@dimen/table_row_text_size" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@string/specifications_header_weight"
+                android:textColor="@color/white"
+                android:textSize="@dimen/table_row_text_size" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/viewpager_info_table_row2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="@dimen/table_row_height"
+                android:layout_weight="1"
+                android:background="@drawable/table_row_border_right"
+                android:gravity="center"
+                android:text="@string/specifications_header_model_value"
+                android:textColor="@color/main_menu_title_short"
+                android:textSize="@dimen/table_row_header_text_size" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="@dimen/table_row_height"
+                android:layout_weight="1"
+                android:background="@drawable/table_row_border_right"
+                android:gravity="center"
+                android:text="@string/specifications_header_model_number_value"
+                android:textColor="@color/main_menu_title_short"
+                android:textSize="@dimen/table_row_header_text_size" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="@dimen/table_row_height"
+                android:layout_weight="1"
+                android:background="@drawable/table_row_border_right"
+                android:gravity="center"
+                android:text="@string/specifications_header_voltage_value"
+                android:textColor="@color/main_menu_title_short"
+                android:textSize="@dimen/table_row_header_text_size" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="@dimen/table_row_height"
+                android:layout_weight="1"
+                android:background="@drawable/table_row_border_right"
+                android:gravity="center"
+                android:text="@string/specifications_header_power_value"
+                android:textColor="@color/main_menu_title_short"
+                android:textSize="@dimen/table_row_header_text_size" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="@dimen/table_row_height"
+                android:layout_weight="1"
+                android:background="@drawable/table_row_border_right"
+                android:gravity="center"
+                android:text="@string/specifications_header_frequency_value"
+                android:textColor="@color/main_menu_title_short"
+                android:textSize="@dimen/table_row_header_text_size" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="@dimen/table_row_height"
+                android:layout_weight="1"
+                android:background="@drawable/table_row_border_right"
+                android:gravity="center"
+                android:text="@string/specifications_header_safety_design_value"
+                android:textColor="@color/main_menu_title_short"
+                android:textSize="@dimen/table_row_header_text_size" />
+
+            <TextView
+                android:layout_width="0dip"
+                android:layout_height="@dimen/table_row_height"
+                android:layout_weight="1"
+                android:background="@drawable/table_row_border_right"
+                android:gravity="center"
+                android:text="@string/specifications_header_weight_value"
+                android:textColor="@color/main_menu_title_short"
+                android:textSize="@dimen/table_row_header_text_size" />
+        </TableRow>
+    </TableLayout>
+
+    <include
+        android:id="@+id/viewpager_footer"
+        layout="@layout/reusable_footer" />
+
+</RelativeLayout>

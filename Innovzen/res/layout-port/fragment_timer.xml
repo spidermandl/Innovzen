@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <!-- HEADER -->
+
+    <include layout="@layout/reusable_header" />
+
+    <!-- SUBHEADER -->
+
+    <include layout="@layout/reusable_subheader" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/timer_footer"
+        android:layout_below="@+id/reusable_subheader"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="5" >
+
+        <!-- 30 MIN TEXT -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/timer_max_minutes"
+            android:textSize="18sp" />
+
+        <!-- TIMER CONTAINER -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:padding="20dp" >
+
+            <!-- TIMER -->
+
+            <include layout="@layout/reusable_circular_seekbar_large" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- FOOTER -->
+
+    <include
+        android:id="@id/timer_footer"
+        layout="@layout/reusable_footer" />
+
+</RelativeLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- SUBTITLE -->
+    <dimen name="subtitle_text">18sp</dimen>
+
+    <!-- FRAG ANIMATION -->
+    <dimen name="animation_type">16sp</dimen>
+
+    <!-- FRAG ANIMATION PICKER -->
+    <dimen name="animation_picker_cell_padding">15dp</dimen>
+
+    <!-- FRAG SOUND PICKER -->
+    <dimen name="sound_picker_main_container_padding">10dp</dimen>
+    <dimen name="sound_picker_main_text">16sp</dimen>
+    <dimen name="sound_picker_main_padding_between_lists">10dp</dimen>
+
+    <!-- LIST ITEM SOUND PICKER -->
+    <dimen name="list_item_sound_picker_main_padding">3dp</dimen>
+    <dimen name="list_item_sound_picker_main_text">16sp</dimen>
+
+    <!-- FRAG EXERCISE PICKER -->
+    <dimen name="exercise_picker_cell_padding">5dp</dimen>
+    <dimen name="exercise_picker_cell_text">16sp</dimen>
+
+    <!-- DRAWER RIGHT -->
+    <dimen name="drawer_right_text">18sp</dimen>
+    <dimen name="drawer_right_text_margin_top">25dp</dimen>
+    <dimen name="drawer_right_close_btn_dimensions">20dp</dimen>
+    <dimen name="drawer_right_close_btn_margin_bottom">15dp</dimen>
+
+</resources>

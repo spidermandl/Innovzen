@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_item_sound_text"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/list_item_sound_bckgnd"
+    android:padding="@dimen/list_item_sound_picker_main_padding"
+    android:textColor="@color/list_item_sound_text"
+    android:textSize="@dimen/list_item_sound_picker_main_text" />

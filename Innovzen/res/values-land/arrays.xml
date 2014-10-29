@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <array name="chair_full_info_integers_left">
+        <item>0.48125</item>
+        <item>0.775</item>
+        <item>0.8578125</item>
+        <item>0.70625</item>
+        <item>0.2390625</item>
+        <item>0.490625</item>
+        <item>0.3015625</item>
+        <item>0.275</item>
+        <item>0.215625</item>
+    </array>
+    
+    <array name="chair_full_info_integers_top">
+        <item>-0.053333</item>
+        <item>0.088333</item>
+        <item>0.323333</item>
+        <item>0.70625</item>
+        <item>0.956666</item>
+        <item>0.70333</item>
+        <item>0.453333</item>
+        <item>0.2633333</item>
+        <item>-0.00666666</item>
+    </array>
+    
+</resources>

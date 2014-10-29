@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <!-- LEFT REPETABLE BACKGROUND -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/shape_chair_tour_bckgnd_repeat_left" />
+
+    <!-- INNER BACKGROUND -->
+
+    <ImageView
+        android:id="@+id/chair_tour_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:src="@drawable/main_background" />
+
+    <!-- LEFT SPEAKER -->
+
+    <ImageView
+        android:id="@+id/main_menu_speaker_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/speaker_left" />
+
+    <!-- RIGHT SPEAKER -->
+
+    <ImageView
+        android:id="@+id/main_menu_speaker_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/speaker_right" />
+
+    <!-- CHAIR -->
+
+    <ImageView
+        android:id="@id/viewpager_page_large_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/content_description"
+        android:src="@drawable/chair_0" />
+
+    <!-- FOG -->
+
+    <!-- <ImageView
+        android:id="@+id/chair_tour_fog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/chair_tour_fog" />
+ -->
+    <!-- HEADER -->
+
+    <include
+        android:id="@+id/viewpager_header"
+        layout="@layout/reusable_header" />
+
+    <!-- FOOTER -->
+
+    <include
+        android:id="@id/viewpager_footer"
+        layout="@layout/reusable_footer" />
+
+    <!-- SEEK BAR -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/reusable_footer_height"
+        android:layout_alignParentBottom="true" >
+
+        <com.innovzen.customviews.CustomSeekBarWithText
+            android:id="@+id/viewpager_page_chiar_tour_seekbar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/seekbar_background"
+            android:max="360"
+            android:progress="180"
+            android:progressDrawable="@drawable/seekbar_progress"
+            android:thumb="@drawable/seekbar_thumb" />
+    </RelativeLayout>
+
+</RelativeLayout>

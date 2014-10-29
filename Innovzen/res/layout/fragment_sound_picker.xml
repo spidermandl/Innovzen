@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <!-- HEADER -->
+
+    <include layout="@layout/reusable_header" />
+
+    <!-- SUBHEADER -->
+
+    <include layout="@layout/reusable_subheader" />
+
+    <!-- MAIN CONTAINER -->
+
+    <LinearLayout
+        android:id="@+id/sound_picker_main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/sound_footer"
+        android:layout_below="@id/reusable_subheader"
+        android:orientation="vertical"
+        android:padding="@dimen/sound_picker_main_container_padding"
+        android:weightSum="2" >
+
+        <!-- AMBIANCE -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:text="@string/sound_ambiance_title"
+                android:textSize="@dimen/sound_picker_main_text" />
+
+            <ListView
+                android:id="@+id/sound_ambiance_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <!-- VOICES -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/sound_picker_main_padding_between_lists" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:text="@string/sound_voices_title"
+                android:textSize="@dimen/sound_picker_main_text" />
+
+            <ListView
+                android:id="@+id/sound_voices_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- VALIDATE BTN -->
+
+    <TextView
+        android:id="@+id/sound_picker_validate_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sound_picker_main_container"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_btn_validate"
+        android:drawableLeft="@drawable/icon_validate"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:text="@string/sound_validate_btn"
+        android:textColor="@color/validate_btn_text"
+        android:textSize="18sp" />
+
+    <!-- FOOTER -->
+
+    <include
+        android:id="@id/sound_footer"
+        layout="@layout/reusable_footer" />
+
+</RelativeLayout>

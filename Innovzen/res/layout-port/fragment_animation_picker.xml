@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <!-- HEADER -->
+
+    <include layout="@layout/reusable_header" />
+
+    <!-- SUBHEADER -->
+
+    <include layout="@layout/reusable_subheader" />
+
+    <!-- GRID -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/animation_picker_footer"
+        android:layout_below="@+id/reusable_subheader"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:weightSum="2" >
+
+        <!-- FIRST ROW -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+            <ImageView
+                android:id="@+id/animation_picker_gradient_btn"
+                style="@style/animation_picker_grid_cell"
+                android:src="@drawable/selector_icon_animation_picker_gradient" />
+
+            <ImageView
+                android:id="@+id/animation_picker_petals_btn"
+                style="@style/animation_picker_grid_cell"
+                android:src="@drawable/selector_icon_animation_picker_petals" />
+        </LinearLayout>
+
+        <!-- SECOND ROW -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+            <ImageView
+                android:id="@+id/animation_picker_lungs_btn"
+                style="@style/animation_picker_grid_cell"
+                android:src="@drawable/selector_icon_animation_picker_lungs" />
+
+            <ImageView
+                android:id="@+id/animation_picker_beach_btn"
+                style="@style/animation_picker_grid_cell"
+                android:src="@drawable/selector_icon_animation_picker_beach" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- FOOTER -->
+
+    <include
+        android:id="@id/animation_picker_footer"
+        layout="@layout/reusable_footer" />
+
+</RelativeLayout>

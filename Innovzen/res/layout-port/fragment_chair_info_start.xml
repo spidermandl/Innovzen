@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@drawable/main_background" >
+
+    <include android:id="@+id/viewpager_header" layout="@layout/reusable_header" android:layout_above="@+id/viewpager_page_large_image" />
+
+    <ImageView
+        android:id="@+id/viewpager_page_large_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewpager_header"
+        android:layout_above="@+id/viewpager_start_store_buttons"
+        android:src="@drawable/chair_info_start" />
+
+    <ImageView
+            android:id="@+id/viewpager_start_curved_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/viewpager_header"
+            android:paddingTop="@dimen/margin_top_waves"
+            android:paddingRight="40dp"
+            android:src="@drawable/wave" />
+    
+    <LinearLayout
+        android:id="@id/viewpager_start_store_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/viewpager_start_text_layout"
+        android:weightSum="2"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/viewpager_start_applestore_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/selector_icon_applestore"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:id="@+id/viewpager_start_playstore_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/selector_icon_playstore"
+            android:scaleType="fitCenter"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/viewpager_start_text_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/viewpager_footer"
+        android:orientation="vertical"
+        android:gravity="center_horizontal" >
+
+    		<TextView
+        		android:id="@+id/viewpager_start_gray_text"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="@string/controle_par_votre"
+        		android:textAppearance="?android:attr/textAppearanceMedium"
+        		android:textColor="@color/chair_start_gray_text" />
+
+    		<TextView
+        		android:id="@+id/viewpager_start_color_text"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:text="@string/smartphone_tablet"
+        		android:textAppearance="?android:attr/textAppearanceLarge"
+        		android:textColor="@color/main_menu_title_short" />
+    
+   	</LinearLayout>
+
+    <include android:id="@+id/viewpager_footer" layout="@layout/reusable_footer" />
+    
+</RelativeLayout>

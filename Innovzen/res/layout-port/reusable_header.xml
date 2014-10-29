@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/reusable_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <!-- BACK -->
+
+    <ImageView
+        android:id="@+id/reusable_header_arrow_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="@dimen/reusable_header_margin_top"
+        android:src="@drawable/selector_arrow_left"
+        android:visibility="invisible" />
+
+    <!-- FORWARD -->
+
+    <ImageView
+        android:id="@+id/reusable_header_arrow_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="@dimen/reusable_header_margin_top"
+        android:src="@drawable/selector_arrow_right"
+        android:visibility="invisible" />
+
+    <!-- LOGO -->
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_toLeftOf="@id/reusable_header_arrow_right"
+        android:layout_toRightOf="@id/reusable_header_arrow_left"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:src="@drawable/logo" />
+
+</RelativeLayout>

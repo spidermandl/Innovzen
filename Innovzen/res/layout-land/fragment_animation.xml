@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- MAIN CONTENT -->
+
+    <include layout="@layout/animation_main_content" />
+
+    <!-- DRAWER -->
+
+    <include layout="@layout/drawer_right" />
+
+</android.support.v4.widget.DrawerLayout>

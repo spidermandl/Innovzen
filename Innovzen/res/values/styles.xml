@@ -1,0 +1,87 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <!-- DRAWER RIGHT -->
+    <style name="drawer_right_item">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawableLeft">@drawable/icon_drawer_right_option</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:layout_marginTop">@dimen/drawer_right_text_margin_top</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@drawable/selector_drawer_right_options</item>
+        <item name="android:textSize">@dimen/drawer_right_text</item>
+    </style>
+
+    <!-- ANIMATION PICKER -->
+    <style name="animation_picker_grid_cell">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">@dimen/animation_picker_cell_padding</item>
+    </style>
+
+    <!-- TIMER ADVANCE -->
+    <style name="timer_advance_grid_cell_container">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="timer_advance_grid_cell_image">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+    </style>
+
+    <style name="timer_advance_grid_cell_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textSize">@dimen/timer_advance_timer_text</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="timer_advance_grid_cell_info">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/selector_icon_info</item>
+    </style>
+
+    <style name="timer_advance_grid_cell_lin_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+    
+    <style name="history_list_item">
+        <item name="android:textColor">@color/history_list_item_text_color_blue</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    
+    <style name="history_list_header_portrait">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">5dp</item>
+    </style>
+    
+    <style name="history_list_header_landscape">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+</resources>

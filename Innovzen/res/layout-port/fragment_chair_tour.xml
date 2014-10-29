@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@drawable/main_background" >
+
+    <include android:id="@+id/viewpager_header" layout="@layout/reusable_header" />
+
+    <com.innovzen.customviews.CustomSeekBarWithText
+        android:id="@+id/viewpager_page_chiar_tour_seekbar_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/viewpager_footer"
+        android:thumb="@drawable/seekbar_thumb"
+        android:background="@drawable/seekbar_background"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:progress="180"
+        android:progressDrawable="@drawable/seekbar_progress"
+        android:layout_marginBottom="30dp"
+        android:max="360" />
+
+    <ImageView
+        android:id="@+id/viewpager_page_large_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/chair_0"
+        android:layout_above="@id/viewpager_page_chiar_tour_seekbar_text"
+        android:layout_below="@+id/viewpager_header"
+        android:layout_alignParentLeft="true"
+        android:contentDescription="@string/content_description" />
+
+    <include android:id="@+id/viewpager_footer" layout="@layout/reusable_footer" />
+
+</RelativeLayout>

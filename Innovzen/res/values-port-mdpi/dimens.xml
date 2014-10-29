@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- REUSABLE HEADER -->
+    <dimen name="reusable_header_margin_top">5dp</dimen>
+
+    <!-- REUSABLE FOOTER -->
+    <dimen name="reusable_footer_height">80dp</dimen>
+    <dimen name="reusable_footer_padding_bottom">10dp</dimen>
+    <dimen name="reusable_footer_padding_left">10dp</dimen>
+    <dimen name="reusable_footer_padding_right">10dp</dimen>
+    <dimen name="reusable_footer_padding_top">10dp</dimen>
+
+    <!-- SUBTITLE -->
+    <dimen name="subtitle_text">18sp</dimen>
+
+    <!-- FRAG ANIMATION -->
+    <dimen name="animation_footer_timer_text">18sp</dimen>
+
+    <!-- FRAG TIMER ADVANCE -->
+    <dimen name="timer_advance_tab_text">12sp</dimen>
+    <dimen name="timer_advance_timer_text">14sp</dimen>
+
+    <!-- ANIMATION BEACH -->
+    <dimen name="animation_beach_step_progress_bar_text">18sp</dimen>
+
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ANIMATION BEACH -->
+    <item name="animation_beach_global_time_progress_bar_height" format="float" type="dimen">0.2877697</item>
+
+    <dimen name="animation_beach_step_progress_bar_height">10dp</dimen>
+    <dimen name="animation_beach_step_progress_bar_padding_bottom">10dp</dimen>
+    <dimen name="animation_beach_step_progress_bar_padding_right">10dp</dimen>
+
+    <!-- FRAG ANIMATION -->
+    <dimen name="animation_footer_timer_text">20sp</dimen>
+    <dimen name="animation_type">18sp</dimen>
+
+    <!-- FRAG ANIMATION PICKER -->
+    <dimen name="animation_picker_cell_padding">20dp</dimen>
+
+    <!-- FRAG SOUND PICKER -->
+    <dimen name="sound_picker_main_container_padding">20dp</dimen>
+    <dimen name="sound_picker_main_text">18sp</dimen>
+    <dimen name="sound_picker_main_padding_between_lists">20dp</dimen>
+
+    <!-- LIST ITEM SOUND PICKER -->
+    <dimen name="list_item_sound_picker_main_padding">10dp</dimen>
+    <dimen name="list_item_sound_picker_main_text">18sp</dimen>
+
+    <!-- FRAG EXERCISE PICKER -->
+    <dimen name="exercise_picker_cell_padding">15dp</dimen>
+    <dimen name="exercise_picker_cell_text">18sp</dimen>
+
+    <!-- DRAWER RIGHT -->
+    <dimen name="drawer_right_text">20sp</dimen>
+    <dimen name="drawer_right_text_margin_top">40dp</dimen>
+    <dimen name="drawer_right_close_btn_dimensions">30dp</dimen>
+    <dimen name="drawer_right_close_btn_margin_bottom">25dp</dimen>
+
+</resources>

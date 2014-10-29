@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="dummy_text_to_quickly_determine_language_type">eng</string>
+    <!-- <string name="app_name">Innovzen</string> -->
+    <string name="app_name">02Chair</string>
+    <string name="content_description">Content description</string>
+
+    <!-- Chair Info First Page -->
+    <string name="controle_par_votre">Controlled by your</string>
+    <string name="smartphone_tablet">SMARTPHONE / TABLET</string>
+
+    <!-- Chair Info FAITS -->
+    <string name="les_faits_page_title">FACTS</string>
+    <string name="les_faits_content_short">We breathe as we live: in a rush!\nPeople who are rushing most of the time and who are often stressed tend to have a short and shallow breathing close to hyperventilation.\n\nUnder those conditions, air goes through lungs too quickly, without having the time to reach great depths of the lungs.</string>
+    <string name="les_faits_content_long">Think then of what happens when there isn’t enough fresh air? Thousands of vesicles and capillary vessels only work part time.\n\nKnowing that O2 circulates from the vesicles to the blood and the CO2 circulates from the blood to the vessels, if we don’t breathe deeply, it creates a lack of oxygen, thus a reduction of alveolar-capillary gas exchanges.\n\nThis can cause headaches, distractions, dizziness, numbness in hands and feet, chronic fatigue causing serious diseases.</string>
+
+    <!-- MISCELLANEOUS -->
+    <string name="main_menu_back_again_to_exit">Press BACK again to exit the app</string>
+
+    <!-- USER EXPERIENCE DIALOG -->
+    <string name="dialog_user_experience_msg">An internal error has occurred. User experience might be affected.</string>
+    <string name="dialog_user_experience_msg_cause">Cause:</string>
+    <string name="dialog_user_experience_title">Warning</string>
+    <string name="dialog_user_experience_unknown_cause">Unknown</string>
+    <string name="dialog_user_experience_positive_btn">OK</string>
+    <string name="dialog_user_experience_could_not_load_sound">Could not load the sounds for the exercices.</string>
+    <string name="dialog_user_experience_could_not_load_lungs_buble_positions">Could not load appropriate data for animation.</string>
+
+    <!-- Chair Info CONCEPT -->
+    <string name="le_concept_page_title">CONCEPT</string>
+    <string name="le_concept_page_subtitle">Unique and revolutionary</string>
+    <string name="le_concept_content_short">Our aim is to increase breathing awareness and help users reach a deep and slow breathing to be physically and mentally healthier.\n\n"O2CHAIR" has its own application and it is available on smartphones and tablets.\n\nIt guides you through the breathing exercises and monitors your results.\n\nThe chair mainly focuses on the upper part of the body (from the pelvis to the head) and particularly on the rib cage, the centre of the breathing mechanism.</string>
+    <string name="le_concept_content_long"><b>How does it work?</b>\nOnce the application begins, the chair mechanism follows very accurately the movement of each inhalation, exhalation and retention and all results are shown on the smartphone/tablet.\n\nO2CHAIR enables us to fully understand the respiratory system and to control it.\n\nThanks to regular, easy and customised exercises (available on the application), users can improve their breathing for a better health and stress management. </string>
+
+    <!-- Chair Info 02BREATHE -->
+    <string name="breathe_page_title">02BREATHE</string>
+    <string name="breathe_page_subtitle">The perfect respiratory movement</string>
+    <string name="breathe_content_short">Your smartphone/tablet guides you through basic breathing mechanisms for an optimal oxygenation and a better stress management.</string>
+    <string name="breathe_content_long"><b>Inhalation</b>\n\nA push effect from the lower back to the top can be felt within the spine.\n\nShoulders, shoulder blades and rib cage expand while the head slowly swings backward.\n\nThis expansion increases the amount of air inhaled thus increasing the oxygen supply to all body organs.</string>
+
+    <!-- Chair Info 02BREATHESecond -->
+    <string name="breathe_second_page_title">02BREATHE</string>
+    <string name="breathe_second_content"><b>Exhalation</b>\nThe push effect of the inhalation phase disappears naturally and the top of the chair is slowly going back to its initial position.\n\nThe back of the user is lightly sinking into the chair and a feeling of relaxation is then happening.\n\nThis progressive support during the exhalation phase allows a better release of CO2 increasing the feeling of peace and relaxation.</string>
+
+    <!-- Chair Info 02PULSE -->
+    <string name="pulse_page_title">02PULSE</string>
+    <string name="pulse_page_subtitle">Pulse sensor, control of heart beat</string>
+    <string name="pulse_content_short">The pulse bracelet enables to measure the heart beat.\n\nResults are shown on the tablet/smartphone.\n\nMore relaxation from breathing exercises can be felt, the more the heart beat slows down.\n\nThe heart beat rate is a very good indicator to measure stress levels and emotions.</string>
+    <string name="pulse_content_long">More relaxation from breathing exercises can be felt, more the heart beat slows down.\n\nThe heart beat rate is a very good indicator to measure the stress level and emotions…</string>
+
+    <!-- Chair Info Benefices -->
+    <string name="benefices_page_title">BENEFITS</string>
+    <string name="benefices_content_short">For those of us who are looking for serenity, for forewarned sportsmen, for professionals managing stress…\n\nBreathing takes us to another dimension: it is a vital function by excellence.</string>
+    <string name="benefices_content_long"><b>A Good Breathing</b>\n\n&#8226;\u0020Increases physical energy\n&#8226;\u0020Reduces blood pressure and heart rate\n&#8226;\u0020Reduces lactic acid in muscles and blood\n&#8226;\u0020Balances O2 and CO2 levels in blood\n&#8226;\u0020Improves immune system\n&#8226;\u0020Helps you reach a state of relaxation and enhances creativity and learning ability\n&#8226;\u0020Leads to physical relaxation\n&#8226;\u0020Relieves anxiety\n&#8226;\u0020Improves blood circulation enabling O2 and food to run healthily from the lungs to the cells of the body... </string>
+
+    <!-- Chair Info 02PURE -->
+    <string name="pure_page_title">02PURE</string>
+    <string name="pure_page_subtitle"></string>
+    <string name="pure_page_content">Air quality and higher oxygen concentration are important for successful sessions. A lack of oxygen may cause health problems, such as attention and performance issues.\n\nIndeed the oxygen may become insufficient in indoor spaces due to a resident’s continuous breathing and in big cities where air pollution keeps increasing.\n\nO2PURE, an air purifier integrated as an option into O2CHAIR, provides additional oxygen. Its high concentration help boost your metabolism and optimise your exercise.\n\nAir goes through different modules within the multilayer filter especially made to guarantee the purest ambient air during your session. This system enables to successively filter different pollutants from tiny particles (dust, industrial and domestic pollution) to microbiology germs (bacteria, mold) and bad smells. </string>
+
+    <!-- Chair Info 02Zero-Gravity -->
+    <string name="zero_gravity_page_title">02ZERO-GRAVITY</string>
+    <string name="zero_gravity_page_subtitle">Biomechanism</string>
+    <string name="zero_gravity_page_content">The zero-gravity position is a biomechanic position.\n\nIts purpose is to reduce the pressure on the spine and maximise breathing exercises.\n\nThe zero-gravity therapy helps relax the backbone for a deeper and more comfortable breathing.</string>
+
+    <!-- Chair Info 02Relax -->
+    <string name="relax_page_title">02RELAX</string>
+    <string name="relax_page_subtitle">Science and design</string>
+    <string name="relax_page_content">The shape and the design of \'O2CHAIR\' makes it a true concept.\n\nSinuous and ergonomic lines are especially made for you to relax and optimise breathing exercises.\n\nThe anatomically-shaped foam guarantees an absolute comfort.</string>
+
+    <!-- Chair Info 02Leds -->
+    <string name="leds_page_title">02LEDS</string>
+    <string name="leds_page_subtitle">Measure relaxation level in real-time</string>
+    <string name="leds_page_content">A range of leds has been integrated into the chair and colours change during the session.\n\nThe leds will light up in orange at the beginning of the session and will change to green and blue and indicates where the user is at during the session.</string>
+
+    <!-- Chair Info 02Check -->
+    <string name="check_page_title">02CHECK</string>
+    <string name="check_page_subtitle">Maximise the relaxing space</string>
+    <string name="check_page_content">Your smartphone/tablet via sensors integrated into the chair enables us to optimally configure and control the relaxing space.\nA sensor captures the humidity rate as well as the CO2 of the room where the exercise will take place.\nYou will be advised on whether or not the room temperature needs to be readjusted before the breathing exercise.\nA headset is provided in order to block any external noise that may disrupt the session and to follow smoothly the instructions.\nThe sound volume can be adjusted accordingly.  </string>
+
+    <!-- Chair Info 02Sound -->
+    <string name="sound_page_title">02SOUND</string>
+    <string name="sound_page_subtitle">Speakers</string>
+    <string name="sound_page_content">Breathing exercises are done in rhythm and a relaxation music enhances calmness.\n\nDifferent musical notes for each inhalation, exhalation and full and empty retention  help us follow the exercises in an easy and intuitive way.\n\nYou can then better relax while you focus on breathing techniques.</string>
+
+    <!-- Chair Info 02Software -->
+    <string name="software_page_title">02SOFTWARE</string>
+    <string name="software_page_subtitle">Control centre</string>
+    <string name="software_page_content">Smartphone/Tablet is the control centre of the Chair. The application is simple and easy to use and it offers customised breathing exercises for everybody.\n\nIts unique graphics, sounds and voices make it a first ever and evolving chair for development and stress management.\n\nEvery inhalation, exhalation and retention is accurately analysed. Each session is synchronised with the Chair mechanism which facilitates the understanding of respiratory breathing and optimises the benefits of the exercise.</string>
+
+    <!-- Chair Info 02Heat -->
+    <string name="heat_page_title">02HEAT</string>
+    <string name="heat_page_subtitle">Heat to relax muscles</string>
+    <string name="heat_page_content"><![CDATA[We have integrated a heating system into the back of the chair as an option to maximise your comfort and for a better muscle relaxation.]]></string>
+
+    <!-- Chair Info 02Aroma -->
+    <string name="aroma_page_title">02AROMA</string>
+    <string name="aroma_page_subtitle">Essential oils, 100% natural and organic</string>
+    <string name="aroma_page_content"><![CDATA[Essential oils, which are integrated into the oxygen generator, create a relaxing atmosphere during the session. <br/><br/><font color="#aece5d">RELAXATION TIME:</font> mandarine and verveine to relax and reduce stress. <br/><br/><font color="#AECE5D">ENERGY TIME:</font> citrus fruits and honeyed apple to energise your body and mind. <br/><br/><font color="#AECE5D">REVITALISATION TIME:</font> sandalwood, rose and incense to revitalise your mind, body and soul and refocus your energy.]]></string>
+
+    <!-- Chair Info 02SWING -->
+    <string name="swing_page_title">02SWING</string>
+    <string name="swing_page_subtitle"></string>
+    <string name="swing_page_content"><![CDATA[O2SWING has been integrated into the chair as an option and enables you to swing slightly while you breathe out and breathe in for more efficient exercises.<br/><br/>The tilt and swing of the chair will improve blood circulation, regenerate all organs, help detoxify your body and consequently provide a sense of well-being.]]></string>
+
+    <!-- DRAWER RIGHT -->
+    <string name="drawer_right_option_animations">Graphics</string>
+    <string name="drawer_right_option_sound">Sounds</string>
+    <string name="drawer_right_option_exercises">Exercises</string>
+    <string name="drawer_right_option_history">History</string>
+
+    <!-- Chair Info Specifications -->
+    <string name="specifications_header_model">Model</string>
+    <string name="specifications_header_model_value">02CHAIR</string>
+    <string name="specifications_header_model_number">Model number</string>
+    <string name="specifications_header_model_number_value">02&#8211;8600</string>
+    <string name="specifications_header_voltage">Voltage rate</string>
+    <string name="specifications_header_voltage_value">220&#8211;240V</string>
+    <string name="specifications_header_power">Power</string>
+    <string name="specifications_header_power_value">260W</string>
+    <string name="specifications_header_frequency">Rated frequency</string>
+    <string name="specifications_header_frequency_value">50 / 60 Hz</string>
+    <string name="specifications_header_safety_design">Safety design</string>
+    <string name="specifications_header_safety_design_value">Class 1</string>
+    <string name="specifications_header_weight">Net weight</string>
+    <string name="specifications_header_weight_value">95 kg</string>
+    <string name="specifications_image1_height">1150 mm</string>
+    <string name="specifications_image1_width">800 mm</string>
+    <string name="specifications_image2_width">1250 mm</string>
+    <string name="specifications_image3_width">1800 mm</string>
+    <string name="specifications_image4_height">950 mm</string>
+    <string name="specifications_image4_width">800 mm</string>
+
+    <!-- Chair full info options -->
+    <string name="chair_full_info_heat">02HEAT</string>
+    <string name="chair_full_info_software">02SOFTWARE</string>
+    <string name="chair_full_info_aroma">02AROMA</string>
+    <string name="chair_full_info_relax">02RELAX</string>
+    <string name="chair_full_info_pure">02PURE</string>
+    <string name="chair_full_info_check">02CHECK</string>
+    <string name="chair_full_info_leds">02LEDs</string>
+    <string name="chair_full_info_zero_gravity">02ZERO-GRAVITY</string>
+    <string name="chair_full_info_sounds">02SOUND</string>
+
+    <!-- SUBHEADERS -->
+    <string name="subheader_base_reglages">SET</string>
+    <string name="subheader_base_reglage">SET</string>
+    <string name="subheader_base_notice">USER</string>
+    <string name="subheader_base_choose_exericse">CHOOSE YOUR</string>
+    <string name="subheader_base_chair_info_technical_specifications">SPECIFICATIONS AND</string>
+    <string name="subheader_timer">EXERCICE</string>
+    <string name="subheader_animation_picker">GRAPHIC</string>
+    <string name="subheader_help">GUIDE</string>
+    <string name="subheader_sound">SOUND SETTINGS</string>
+    <string name="subheader_exercise_picker">EXERCISE</string>
+    <string name="subheader_timer_advance">ADVANCED SETTINGS</string>
+    <string name="subheader_chair_info_technical_specifications">TECHNICAL DRAWINGS</string>
+
+    <!-- HELP -->
+    <string name="help_first"><![CDATA[<font color="#34a9bb">REMEMBER TO BREATHE !</font><br/>This application guides you to learn basic breathing mechanisms for an optimal oxygenation and a better stress management. Deep breathing exercises can help you relax and make you feel better within just a few minutes. Breathing slowly and deeply can improve your health considerably, by REDUCING your blood pressure, heart rate and STRENGTHENING your immune system.<br/><br/><font color="#34a9bb">TIPS</font><br/>We advise you to wear comfortable and loose clothes and take off your shoes during the session.<br/><br/>Make sure you exercise in a quiet and well ventilated place at room temperature.<br/><br/>It is also recommended to wait at least one hour after eating before starting any breathing exercise.]]></string>
+    <string name="help_second"><![CDATA[<font color="#34a9bb">AT YOUR OWN PACE</font><br/>Once you are sitting or lying down comfortably, you can choose your exercise.<br/><br/>You have 4 options:<br/><br/><font color="#34a9bb">BALANCE</font><br/>Cardiac coherence, synchronisation of the breathing with hear beats. Breathe in 5s – Breathe out 5s.<br/><br/><font color="#34a9bb">PERFORMANCE</font><br/>Inhalation longer than exhalation to increase oxygen rate. Breathe in 6s – Breathe out 4s.<br/><br/><font color="#34a9bb">RELAX</font><br/>Longer exhalation to reach a state of relaxation. Breathe in 4s – Breathe out 6s.<br/><br/><font color="#34a9bb">CUSTOMISED SETTINGS</font><br/>Time management of inhalation, exhalation and full and empty retention.]]></string>
+    <string name="help_third_o2chair"><![CDATA[You can start, stop, pause, reset or replay any exercise and modify any settings as you wish.<br/><br/>For best results, we recommend breathing in and out through your nose. Breathe in filling your lungs 3/4 of the way, do not force any retention and breathe out deeply throughout the session. Daily breathing exercises should improve your daily life.<br/><br/>Thanks to the <font color="#afcf60">O2CHAIR</font> application, breathing exercises are very easy to do.<br/><br/>All training is done progressively. We recommend to begin with a 5 minute session twice or 3 times a day and slowly increase the duration.<br/><br/><font color="#34a9bb">PREVENTION</font><br/>This application should not be used while driving or doing any other activities that can distract you.<br/>Stop immediately the exercise if you do not feel well.]]></string>
+    <string name="help_third_innovzen"><![CDATA[You can start, stop, pause, reset or replay any exercise and modify any settings as you wish.<br/><br/>For best results, we recommend breathing in and out through your nose. Breathe in filling your lungs 3/4 of the way, do not force any retention and breathe out deeply throughout the session. Daily breathing exercises should improve your daily life.<br/><br/>Thanks to the <font color="#afcf60">INNOVZEN</font> application, breathing exercises are very easy to do.<br/><br/>All training is done progressively. We recommend to begin with a 5 minute session twice or 3 times a day and slowly increase the duration.<br/><br/><font color="#34a9bb">PREVENTION</font><br/>This application should not be used while driving or doing any other activities that can distract you.<br/>Stop immediately the exercise if you do not feel well.]]></string>
+
+    <!-- SOUND PICKER -->
+    <string name="sound_ambiance_title">Music</string>
+    <string name="sound_voices_title">Voice</string>
+    <string name="sound_no_sound">Silence</string>
+    <string name="sound_validate_btn">Confirm</string>
+
+    <!-- EXERCISE PICKER -->
+    <string name="exercise_picker_echilibre_text">Balance\n</string>
+    <string name="exercise_picker_performance_text">Performance\n</string>
+    <string name="exercise_picker_relax_text">Relax\n</string>
+    <string name="exercise_picker_custom_text">Advanced\nsettings</string>
+
+    <!-- EXERCISE PICKER OVERLAY -->
+    <string name="exercise_picker_overlay_echilibre">cardiac coherence, synchronisation of the breathing with hear beats. Breathe in 5s – Breathe out 5s.</string>
+    <string name="exercise_picker_overlay_performance">inhalation longer than exhalation to increase oxygen rate. Breathe in 6s – Breathe out 4s.</string>
+    <string name="exercise_picker_overlay_relax">longer exhalation to reach a state of relaxation. Breathe in 4s – Breathe out 6s.</string>
+    <string name="exercise_picker_overlay_custom">time management of inhalation, exhalation and full and empty retention.</string>
+
+    <!-- TIMER -->
+    <string name="timer_max_minutes">Max 30 min</string>
+
+    <!-- TIMER ADVANCE -->
+    <string name="timer_advance_option_beginner">Beginner</string>
+    <string name="timer_advance_option_intermediary">Intermediate</string>
+    <string name="timer_advance_option_pro">Pro</string>
+    <string name="timer_advance_option_custom">Personal</string>
+    <string name="timer_advance_max_sixty_sec">Max 30 sec</string>
+
+    <!-- HISTORY -->
+    <string name="history_list_label_date">DATE</string>
+    <string name="history_list_label_inhale">INHALATION</string>
+    <string name="history_list_label_hold_inhale">BREATH RETENTION</string>
+    <string name="history_list_label_exhale">EXHALATION</string>
+    <string name="history_list_label_hold_exhale">BREATH RETENTION</string>
+    <string name="history_list_label_duration">DURATION</string>
+    <string name="history_clear_btn">Clear</string>
+
+    <!-- FRAG ANIMATION -->
+    <string name="animation_step_inhale">BREATHE IN</string>
+    <string name="animation_step_hold">HOLD</string>
+    <string name="animation_step_exhale">BREATHE OUT</string>
+    <string name="animation_subtitle_start_normal">Exercise</string>
+    <string name="animation_subtitle_start_custom">Custom settings:</string>
+    <string name="animation_subtitle_middle_advance">ADVANCED</string>
+    <string name="animation_subtitle_end_balance">BALANCE</string>
+    <string name="animation_subtitle_end_performance">PERFORMANCE</string>
+    <string name="animation_subtitle_end_relax">RELAX</string>
+    <string name="animation_subtitle_end_beginner">BEGINNER</string>
+    <string name="animation_subtitle_end_intermediary">INTERMEDIATE</string>
+    <string name="animation_subtitle_end_pro">PRO</string>
+
+</resources>

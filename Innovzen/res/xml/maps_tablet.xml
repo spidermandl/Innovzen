@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<maps xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <map name="map" >
+        <area
+            id="@+id/area1"
+            name="02SOFTWARE"
+            coords="600,257,650,307"
+            position="right"
+            shape="rect" />
+        <area
+            id="@+id/area2"
+            name="02HEAT"
+            coords="450,266,500,316"
+            position="right"
+            shape="rect" />
+        <area
+            id="@+id/area3"
+            name="02SOUND"
+            coords="454,215,505,265"
+            position="right"
+            shape="rect" />
+        <area
+            id="@+id/area4"
+            name="02ZERO-GRAVITY"
+            coords="430,582,480,632"
+            position="left"
+            shape="rect" />
+        <area
+            id="@+id/area5"
+            name="02AROMA"
+            coords="319,268,369,318"
+            position="left"
+            shape="rect" />
+        <area
+            id="@+id/area6"
+            name="02LEDS"
+            coords="363,450,413,500"
+            position="left"
+            shape="rect" />
+        <area
+            id="@+id/area7"
+            name="02RELAX"
+            coords="671,457,721,507"
+            position="right"
+            shape="rect" />
+        <area
+            id="@+id/area8"
+            name="02PULSE"
+            coords="632,338,682,388"
+            position="right"
+            shape="rect" />
+        <area
+            id="@+id/area9"
+            name="02PURE"
+            coords="318,342,368,392"
+            position="left"
+            shape="rect" />
+        <area
+            id="@+id/area10"
+            name="02SWING"
+            coords="627,510,677,560"
+            position="right"
+            shape="rect" />
+    </map>
+
+</maps>

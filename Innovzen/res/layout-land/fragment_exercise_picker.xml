@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <!-- HEADER -->
+
+    <include layout="@layout/reusable_header" />
+
+    <!-- SUBHEADER -->
+
+    <include layout="@layout/reusable_subheader" />
+
+    <!-- GRID -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/exercise_picker_footer"
+        android:layout_below="@+id/reusable_subheader"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <RelativeLayout style="@style/exercise_picker_grid_cell_container" >
+
+            <RelativeLayout style="@style/exercise_picker_grid_cell_inner_container" >
+
+                <ImageView
+                    android:id="@+id/exercise_picker_echilibre"
+                    style="@style/exercise_picker_grid_cell_image"
+                    android:layout_above="@+id/exercise_picker_echilibre_text"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/selector_icon_exercise_picker_echilibre" />
+
+                <TextView
+                    android:id="@+id/exercise_picker_echilibre_text"
+                    style="@style/exercise_picker_grid_cell_text"
+                    android:layout_alignParentBottom="true"
+                    android:text="@string/exercise_picker_echilibre_text" />
+
+                <ImageView
+                    android:id="@+id/exercise_picker_echilibre_info"
+                    style="@style/exercise_picker_grid_cell_info"
+                    android:layout_alignRight="@id/exercise_picker_echilibre"
+                    android:layout_below="@id/exercise_picker_echilibre" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/exercise_picker_grid_cell_container" >
+
+            <RelativeLayout style="@style/exercise_picker_grid_cell_inner_container" >
+
+                <ImageView
+                    android:id="@+id/exercise_picker_performance"
+                    style="@style/exercise_picker_grid_cell_image"
+                    android:layout_above="@+id/exercise_picker_performance_text"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/selector_icon_exercise_picker_performance" />
+
+                <TextView
+                    android:id="@id/exercise_picker_performance_text"
+                    style="@style/exercise_picker_grid_cell_text"
+                    android:layout_alignParentBottom="true"
+                    android:text="@string/exercise_picker_performance_text" />
+
+                <ImageView
+                    android:id="@+id/exercise_picker_performance_info"
+                    style="@style/exercise_picker_grid_cell_info"
+                    android:layout_alignRight="@id/exercise_picker_performance"
+                    android:layout_below="@id/exercise_picker_performance" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/exercise_picker_grid_cell_container" >
+
+            <RelativeLayout style="@style/exercise_picker_grid_cell_inner_container" >
+
+                <ImageView
+                    android:id="@+id/exercise_picker_relax"
+                    style="@style/exercise_picker_grid_cell_image"
+                    android:layout_above="@+id/exercise_picker_relax_text"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/selector_icon_exercise_picker_relax" />
+
+                <TextView
+                    android:id="@id/exercise_picker_relax_text"
+                    style="@style/exercise_picker_grid_cell_text"
+                    android:layout_alignParentBottom="true"
+                    android:text="@string/exercise_picker_relax_text" />
+
+                <ImageView
+                    android:id="@+id/exercise_picker_relax_info"
+                    style="@style/exercise_picker_grid_cell_info"
+                    android:layout_alignRight="@id/exercise_picker_relax"
+                    android:layout_below="@id/exercise_picker_relax" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/exercise_picker_grid_cell_container" >
+
+            <RelativeLayout style="@style/exercise_picker_grid_cell_inner_container" >
+
+                <ImageView
+                    android:id="@+id/exercise_picker_custom"
+                    style="@style/exercise_picker_grid_cell_image"
+                    android:layout_above="@+id/exercise_picker_custom_text"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/selector_icon_exercise_picker_custom" />
+
+                <TextView
+                    android:id="@id/exercise_picker_custom_text"
+                    style="@style/exercise_picker_grid_cell_text"
+                    android:layout_alignParentBottom="true"
+                    android:text="@string/exercise_picker_custom_text" />
+
+                <ImageView
+                    android:id="@+id/exercise_picker_custom_info"
+                    style="@style/exercise_picker_grid_cell_info"
+                    android:layout_alignRight="@id/exercise_picker_custom"
+                    android:layout_below="@id/exercise_picker_custom" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- FOOTER -->
+
+    <include
+        android:id="@+id/exercise_picker_footer"
+        layout="@layout/reusable_footer" />
+
+    <!-- OVERLAY -->
+
+    <RelativeLayout
+        android:id="@+id/exercise_picker_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f0ffffff"
+        android:clickable="true"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/exercise_picker_overlay_close_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:paddingRight="30dp"
+            android:paddingTop="30dp"
+            android:src="@drawable/icon_overlay_close_btn" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" >
+
+            <ImageView
+                android:id="@+id/exercise_picker_overlay_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:padding="30dp" />
+
+            <TextView
+                android:id="@+id/exercise_picker_overlay_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/exercise_picker_overlay_icon"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center_horizontal"
+                android:textSize="25sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

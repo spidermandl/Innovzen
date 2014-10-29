@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="15dp"
+    android:paddingTop="15dp" >
+
+    <!-- LUNGS -->
+
+    <RelativeLayout
+        android:id="@+id/animation_lungs_lungs_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.innovzen.animations.view.LungsView
+            android:id="@+id/animation_lungs_bubbles"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/exercise_animation_lungs_lungs" />
+    </RelativeLayout>
+    <!-- TEXT AND TIMER -->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="40dp" >
+
+        <!-- STEP TEXT -->
+
+        <TextView
+            android:id="@+id/animation_step_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:text="@string/animation_step_inhale"
+            android:textAllCaps="true"
+            android:textColor="@color/animation_gradient_step_inhale_text_color"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/timer_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/animation_step_text" >
+
+            <include layout="@layout/reusable_circular_seekbar_small" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

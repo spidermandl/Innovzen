@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ctc="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <include
+        android:id="@+id/viewpager_header"
+        layout="@layout/reusable_header" />
+
+    <RelativeLayout
+        android:id="@+id/viewpager_chair_extra_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.innovzen.imagemap.ImageMap
+            android:id="@+id/viewpager_page_large_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            ctc:fitImageToScreen="true"
+            ctc:map="map"
+            ctc:maxSizeFactor="1"
+            ctc:scaleFromOriginal="true" />
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/viewpager_footer"
+        layout="@layout/reusable_footer" />
+
+</RelativeLayout>

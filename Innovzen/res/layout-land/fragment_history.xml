@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <!-- HEADER -->
+
+    <include layout="@layout/reusable_header" />
+
+    <!-- MAIN CONTAINER -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/history_clear"
+        android:layout_below="@+id/reusable_header"
+        android:gravity="center" >
+
+        <LinearLayout
+            android:id="@+id/history_list_headers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@color/history_list_header_dark_gray"
+            android:orientation="horizontal"
+            android:weightSum="6" >
+
+            <TextView
+                android:id="@+id/date_label"
+                style="@style/history_list_header_landscape"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/history_list_label_date" />
+
+            <TextView
+                android:id="@+id/inhale_label"
+                style="@style/history_list_header_landscape"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/history_list_label_inhale" />
+
+            <TextView
+                android:id="@+id/hold_inhale_label"
+                style="@style/history_list_header_landscape"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/history_list_label_hold_inhale" />
+
+            <TextView
+                android:id="@+id/exhale_label"
+                style="@style/history_list_header_landscape"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/history_list_label_exhale" />
+
+            <TextView
+                android:id="@+id/hold_exhale_label"
+                style="@style/history_list_header_landscape"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/history_list_label_hold_exhale" />
+
+            <TextView
+                android:id="@+id/duration_label"
+                style="@style/history_list_header_landscape"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/history_list_label_duration" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/history_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/history_list_headers"
+            android:layout_centerVertical="true"
+            android:cacheColorHint="@android:color/transparent" />
+    </RelativeLayout>
+
+    <!-- CLEAR BTN -->
+
+    <TextView
+        android:id="@+id/history_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/history_footer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/selector_btn_validate"
+        android:drawableLeft="@drawable/icon_validate"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:text="@string/history_clear_btn"
+        android:textColor="@color/validate_btn_text"
+        android:textSize="18sp" />
+
+    <!-- FOOTER -->
+
+    <include
+        android:id="@id/history_footer"
+        layout="@layout/reusable_footer" />
+
+</RelativeLayout>

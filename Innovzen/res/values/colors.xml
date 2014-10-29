@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- FRAG MAIN MENU -->
+    <color name="main_menu_title_long">#757575</color>
+    <color name="main_menu_title_short">#34a9bb</color>
+    <color name="main_menu_gray">#9C9C9C</color>
+    <color name="chair_start_gray_text">#757575</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- MISCELLANEOUS -->
+    <color name="validate_btn_text">#34a9bb</color>
+    
+    <!-- DRAWER RIGHT -->
+    <color name="drawer_right_bckgnd">#C834a9bb</color>
+
+    <!-- Chair Info Table -->
+    <color name="border_light_gray">#D3D3D3</color>
+
+    <!-- SUBTITLE -->
+    <color name="subtitle_text_base">#757575</color>
+    <color name="subtitle_text_highlighted">#34a9bb</color>
+
+    <!-- LIST ITEM SOUND -->
+    <color name="list_item_sound_text">#34a9bb</color>
+    <color name="list_item_sound_bckgnd">#ffffff</color>
+    <color name="list_item_sound_bckgnd_selected">#d9d9d9</color>
+
+
+    <!-- EXERCISE PICKER OVERLAY -->
+    <color name="exercise_picker_overlay_text_beginning">#34a9bb</color>
+    
+    <!-- HISTORY LIST COLORS-->
+    <color name="history_list_item_light_gray">#E0E0E2</color>
+    <color name="history_list_header_dark_gray">#B7B6BC</color>
+    <color name="history_list_item_text_color_blue">#34a9bb</color>
+    
+    <!-- FRAGMENT ANIMATION -->
+    <color name="animation_footer_timers">#6eadbd</color>
+    <color name="animation_countdown_text">#9fc74b</color>
+    
+    <!-- ANIMATION BEACH -->
+    <color name="animation_beach_step_progress_bar_green">#b0ce46</color>
+    <color name="animation_beach_step_progress_bar_red">#851d0b</color>
+    <color name="animation_beach_step_progress_bar_bckgnd">#309ba3</color>
+    <color name="animation_beach_step_progress_bar_text">#309ba3</color>
+    <color name="animation_beach_step_text">#8b8b8b</color>
+    
+    <!-- ANIMATION PETALS -->
+    <color name="animation_petals_text_inhale">#34a9bb</color>
+    <color name="animation_petals_text_hold">#757575</color>
+    <color name="animation_petals_text_exhale">#aece5d</color>
+    
+    <!-- ANIMATION LUNGS -->
+    <color name="animation_lungs_text_inhale">#34a9bb</color>
+    <color name="animation_lungs_text_hold">#757575</color>
+    <color name="animation_lungs_text_exhale">#aece5d</color>
+        
+    <!-- ANIMATION GRADIENT -->
+    <color name="animation_gradient_step_inhale_text_color">#34a9bb</color>
+    <color name="animation_gradient_step_exhale_text_color">#AECE5D</color>
+    <color name="animation_gradient_step_hold_text_color">#8b8b8b</color>
+    
+
+    <!-- Timer advance settings  -->
+    <color name="tab_pressed">#e0e0e0</color>
+    <color name="tab_selected">#ffffff</color>
+
+</resources>

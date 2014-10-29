@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="right"
+    android:background="@color/drawer_right_bckgnd"
+    android:clickable="true"
+    android:orientation="vertical" >
+
+    <!-- CLOSE BTN -->
+
+    <ImageView
+        android:id="@+id/drawer_right_close_btn"
+        android:layout_width="@dimen/drawer_right_close_btn_dimensions"
+        android:layout_height="@dimen/drawer_right_close_btn_dimensions"
+        android:layout_gravity="right"
+        android:layout_marginBottom="@dimen/drawer_right_close_btn_margin_bottom"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/selector_drawer_right_close_btn" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="25dp" >
+
+        <!-- OPTIONS -->
+
+        <TextView
+            android:id="@+id/drawer_right_option_animation"
+            style="@style/drawer_right_item"
+            android:text="@string/drawer_right_option_animations" />
+
+        <TextView
+            android:id="@+id/drawer_right_option_sound"
+            style="@style/drawer_right_item"
+            android:text="@string/drawer_right_option_sound" />
+
+        <TextView
+            android:id="@+id/drawer_right_option_exercises"
+            style="@style/drawer_right_item"
+            android:text="@string/drawer_right_option_exercises" />
+
+        <TextView
+            android:id="@+id/drawer_right_option_history"
+            style="@style/drawer_right_item"
+            android:text="@string/drawer_right_option_history" />
+    </LinearLayout>
+
+</LinearLayout>

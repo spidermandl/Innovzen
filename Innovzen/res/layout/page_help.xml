@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <!-- HEADER -->
+
+    <include layout="@layout/reusable_header" />
+
+    <!-- SUBHEADER -->
+
+    <include layout="@layout/reusable_subheader" />
+
+    <!-- MAIN CONTAINER -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/page_help_footer"
+        android:layout_below="@+id/reusable_subheader"
+        android:layout_marginLeft="@dimen/page_help_main_text_margin_left"
+        android:layout_marginRight="@dimen/page_help_main_text_margin_right"
+        android:paddingTop="20dp" >
+
+        <TextView
+            android:id="@+id/page_help_main_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/page_help_main_text" />
+    </ScrollView>
+
+    <!-- FOOTER -->
+
+    <include
+        android:id="@id/page_help_footer"
+        layout="@layout/reusable_footer" />
+
+</RelativeLayout>

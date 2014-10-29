@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <!-- HEADER -->
+
+    <include layout="@layout/reusable_header" />
+
+    <!-- CENTER -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/main_menu_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:text="@string/main_menu_title"
+            android:textColor="@color/main_menu_title_long"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- BUTTONS -->
+
+        <LinearLayout
+            android:id="@+id/main_menu_buttons_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            android:orientation="horizontal"
+            android:weightSum="2" >
+
+            <!-- CHAIR INFO -->
+
+            <ImageButton
+                android:id="@+id/main_menu_chair_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/selector_icon_chair" />
+
+            <!-- ANIMATIONS -->
+
+            <ImageButton
+                android:id="@+id/main_menu_play_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/selector_icon_play" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <!-- HEADER -->
+
+    <include layout="@layout/reusable_header" />
+
+    <!-- SUBHEADER -->
+
+    <include
+        android:id="@+id/reusable_subheader"
+        layout="@layout/reusable_subheader" />
+
+    <!-- Tabs -->
+
+    <LinearLayout
+        android:id="@+id/timer_advance_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/reusable_subheader"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/tabs_time_setting"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <TextView
+            android:id="@+id/timer_advance_debutant"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_timer_advance_tabs_left"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:text="@string/timer_advance_option_beginner"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/timer_advance_intermediare"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_timer_advance_tabs_center"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:text="@string/timer_advance_option_intermediary"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/timer_advance_pro"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_timer_advance_tabs_center"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:text="@string/timer_advance_option_pro"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/timer_advance_perso"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/selector_timer_advance_tabs_right"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:text="@string/timer_advance_option_custom"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- GRID -->
+
+    <LinearLayout
+        android:id="@+id/timer_picker_main_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@+id/timer_advance_footer"
+        android:layout_below="@+id/timer_advance_tabs"
+        android:layout_centerInParent="true"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="4" >
+
+        <!-- INHALE -->
+
+        <RelativeLayout style="@style/timer_advance_grid_cell_container" >
+
+            <TextView
+                android:id="@+id/timer_advance_max_inhale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/timer_advance_max_sixty_sec"
+                android:textSize="20sp" />
+
+            <include
+                android:id="@+id/timer_advance_timer_inhale"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/timer_advance_inhale_text_container"
+                android:layout_below="@id/timer_advance_max_inhale"
+                layout="@layout/reusable_circular_seekbar_large" />
+
+            <RelativeLayout
+                android:id="@id/timer_advance_inhale_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true" >
+
+                <TextView
+                    android:id="@+id/timer_advance_inhale_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <!-- HOLD INHALE -->
+
+        <RelativeLayout style="@style/timer_advance_grid_cell_container" >
+
+            <TextView
+                android:id="@+id/timer_advance_max_hold_inhale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/timer_advance_max_sixty_sec"
+                android:textSize="20sp" />
+
+            <include
+                android:id="@+id/timer_advance_timer_hold_inhale"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/timer_advance_inhale_hold_text_container"
+                android:layout_below="@id/timer_advance_max_hold_inhale"
+                layout="@layout/reusable_circular_seekbar_large" />
+
+            <RelativeLayout
+                android:id="@id/timer_advance_inhale_hold_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true" >
+
+                <TextView
+                    android:id="@+id/timer_advance_hold_inhale_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <!-- EXHALE -->
+
+        <RelativeLayout style="@style/timer_advance_grid_cell_container" >
+
+            <TextView
+                android:id="@+id/timer_advance_max_exhale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/timer_advance_max_sixty_sec"
+                android:textSize="20sp" />
+
+            <include
+                android:id="@+id/timer_advance_timer_exhale"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/timer_advance_exhale_text_container"
+                android:layout_below="@id/timer_advance_max_exhale"
+                layout="@layout/reusable_circular_seekbar_large" />
+
+            <RelativeLayout
+                android:id="@id/timer_advance_exhale_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true" >
+
+                <TextView
+                    android:id="@+id/timer_advance_exhale_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <!-- HOLD EXHALE -->
+
+        <RelativeLayout style="@style/timer_advance_grid_cell_container" >
+
+            <TextView
+                android:id="@+id/timer_advance_max_hold_exhale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/timer_advance_max_sixty_sec"
+                android:textSize="20sp" />
+
+            <include
+                android:id="@+id/timer_advance_timer_hold_exhale"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/timer_advance_exhale_hold_text_container"
+                android:layout_below="@id/timer_advance_max_hold_exhale"
+                layout="@layout/reusable_circular_seekbar_large" />
+
+            <RelativeLayout
+                android:id="@id/timer_advance_exhale_hold_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true" >
+
+                <TextView
+                    android:id="@+id/timer_advance_hold_exhale_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- VALIDATE BTN -->
+
+    <TextView
+        android:id="@+id/timer_advance_validate_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timer_picker_main_container"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/selector_btn_validate"
+        android:drawableLeft="@drawable/icon_validate"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:text="@string/sound_validate_btn"
+        android:textColor="@color/validate_btn_text"
+        android:textSize="18sp" />
+
+    <!-- FOOTER -->
+
+    <include
+        android:id="@+id/timer_advance_footer"
+        layout="@layout/reusable_footer" />
+
+</RelativeLayout>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background"
+    android:gravity="center_horizontal" >
+
+    <include
+        android:id="@+id/viewpager_header"
+        layout="@layout/reusable_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/dummy_view"
+        android:layout_below="@+id/viewpager_header"
+        android:orientation="horizontal"
+        android:weightSum="5" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <ImageView
+                    android:id="@+id/mainimage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/chair_start" />
+
+                <ImageView
+                    android:id="@+id/waves_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/waves_left" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingRight="50dp" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/viewpager_start_store_buttons"
+                android:layout_alignParentTop="true" >
+
+                <ImageView
+                    android:id="@+id/waves_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/waves_right" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/waves_right"
+                    android:src="@drawable/chair_info_start_devices" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@id/viewpager_start_store_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/viewpager_start_gray_text"
+                android:layout_marginBottom="20dp"
+                android:weightSum="2"
+                android:orientation="horizontal" >
+
+                <ImageButton
+                    android:id="@+id/viewpager_start_applestore_btn"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/selector_icon_applestore" />
+
+                <ImageButton
+                    android:id="@+id/viewpager_start_playstore_btn"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:paddingLeft="5dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/selector_icon_playstore" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@id/viewpager_start_gray_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/viewpager_start_color_text"
+                android:text="@string/controle_par_votre"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/chair_start_gray_text"
+                android:textSize="@dimen/controle_text_size" />
+
+            <TextView
+                android:id="@id/viewpager_start_color_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="@string/smartphone_tablet"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/main_menu_title_short"
+                android:textSize="@dimen/smartphone_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@id/dummy_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/reusable_footer_height"
+        android:layout_alignParentBottom="true" >
+    </View>
+
+</RelativeLayout>

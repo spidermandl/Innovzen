@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <!-- HEADER -->
+
+    <include layout="@layout/reusable_header" />
+
+    <!-- SUBHEADER -->
+
+    <include layout="@layout/reusable_subheader" />
+
+    <TextView
+        android:id="@+id/timer_max_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reusable_subheader"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:text="@string/timer_max_minutes"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/timer_footer"
+        android:layout_below="@+id/timer_max_time"
+        android:layout_marginTop="15dp"
+        android:paddingBottom="@dimen/timer_main_container_padding_bottom"
+        android:weightSum="3" >
+
+        <!-- LEFT -->
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="@dimen/timer_main_container_left_right_cell_padding" >
+
+            <TextView
+                android:id="@+id/timer_custom_icon_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/timer_custom_icon_text"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/timer_large_custom_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/timer_custom_icon_text"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/selector_icon_large_custom_btn" />
+        </RelativeLayout>
+
+        <!-- CENTER -->
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <include layout="@layout/reusable_circular_seekbar_large" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <!-- RIGHT -->
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:padding="@dimen/timer_main_container_left_right_cell_padding" >
+
+            <TextView
+                android:id="@+id/timer_play_icon_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/timer_play_icon_text"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/timer_large_play_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/timer_play_icon_text"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/selector_icon_large_play_btn" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!-- FOOTER -->
+
+    <include
+        android:id="@id/timer_footer"
+        layout="@layout/reusable_footer" />
+
+</RelativeLayout>

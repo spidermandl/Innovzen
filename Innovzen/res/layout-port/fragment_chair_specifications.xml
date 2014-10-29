@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <include layout="@layout/reusable_header" />
+
+    <include layout="@layout/reusable_subheader" />
+
+    <ScrollView
+        android:id="@+id/viewpager_scroll_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/viewpager_footer"
+        android:layout_below="@+id/reusable_subheader" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/viewpager_specifications1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"
+                android:src="@drawable/chair_specs01" />
+
+            <ImageView
+                android:id="@+id/viewpager_specifications2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewpager_specifications1"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"
+                android:src="@drawable/chair_specs02" />
+
+            <ImageView
+                android:id="@+id/viewpager_specifications3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewpager_specifications2"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"
+                android:src="@drawable/chair_specs03" />
+
+            <ImageView
+                android:id="@+id/viewpager_specifications4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewpager_specifications3"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="20dp"
+                android:src="@drawable/chair_specs04" />
+
+            <TableLayout
+                android:id="@+id/viewpager_info_table"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewpager_specifications4"
+                android:stretchColumns="0,1" >
+
+                <TableRow
+                    android:id="@+id/viewpager_info_table_row1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_menu_gray"
+                    android:gravity="center_horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/specifications_header_model"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/specifications_header_model_number"
+                        android:textColor="@color/white" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/viewpager_info_table_row2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/table_row_height"
+                        android:background="@drawable/table_row_border_right"
+                        android:gravity="center"
+                        android:text="@string/specifications_header_model_value"
+                        android:textColor="@color/main_menu_title_short" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/table_row_height"
+                        android:background="@drawable/table_row_border_left"
+                        android:gravity="center"
+                        android:text="@string/specifications_header_model_number_value"
+                        android:textColor="@color/main_menu_title_short" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/viewpager_info_table_row3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_menu_gray"
+                    android:gravity="center_horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/specifications_header_voltage"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/specifications_header_power"
+                        android:textColor="@color/white" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/viewpager_info_table_row4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/table_row_height"
+                        android:background="@drawable/table_row_border_right"
+                        android:gravity="center"
+                        android:text="@string/specifications_header_voltage_value"
+                        android:textColor="@color/main_menu_title_short" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/table_row_height"
+                        android:background="@drawable/table_row_border_left"
+                        android:gravity="center"
+                        android:text="@string/specifications_header_power_value"
+                        android:textColor="@color/main_menu_title_short" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/viewpager_info_table_row5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_menu_gray"
+                    android:gravity="center_horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/specifications_header_frequency"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/specifications_header_safety_design"
+                        android:textColor="@color/white" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/viewpager_info_table_row6"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/table_row_height"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/table_row_height"
+                        android:background="@drawable/table_row_border_right"
+                        android:gravity="center"
+                        android:text="@string/specifications_header_frequency_value"
+                        android:textColor="@color/main_menu_title_short" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/table_row_height"
+                        android:background="@drawable/table_row_border_left"
+                        android:gravity="center"
+                        android:text="@string/specifications_header_safety_design_value"
+                        android:textColor="@color/main_menu_title_short" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/viewpager_info_table_row7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_menu_gray"
+                    android:gravity="center_horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@string/specifications_header_weight"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/white" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/viewpager_info_table_row8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/table_row_height"
+                        android:background="@drawable/table_row_border_right"
+                        android:gravity="center"
+                        android:text="@string/specifications_header_weight_value"
+                        android:textColor="@color/main_menu_title_short" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/table_row_height"
+                        android:background="@drawable/table_row_border_left"
+                        android:gravity="center_horizontal" />
+                </TableRow>
+            </TableLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/viewpager_footer"
+        layout="@layout/reusable_footer" />
+
+</RelativeLayout>

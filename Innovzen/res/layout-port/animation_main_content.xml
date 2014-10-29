@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background" >
+
+    <RelativeLayout
+        android:id="@+id/animation_dummy_white_view_for_fullscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="gone" >
+    </RelativeLayout>
+
+    <!-- HEADER -->
+
+    <include layout="@layout/reusable_header" />
+
+    <!-- SUBTITLE AND FULLSCREEN BTN CONTAINER -->
+
+    <RelativeLayout
+        android:id="@+id/animation_fullscreen_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reusable_header"
+        android:layout_marginTop="10dp" >
+
+        <!-- FULL SCREEN BTN -->
+
+        <ImageView
+            android:id="@+id/animation_fullscreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/selector_icon_fullscreen_in" />
+
+        <!-- ANIMATION TYPE -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/animation_fullscreen" >
+
+            <TextView
+                android:id="@+id/animation_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_animation_type_bckgnd"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/animation_type" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!-- ANIMATION CONTAINER -->
+
+    <RelativeLayout
+        android:id="@+id/animation_animation_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/animation_footer"
+        android:layout_below="@id/animation_fullscreen_container"
+        android:layout_centerInParent="true"
+        android:background="#ffff" >
+
+        <!-- android:background="@android:color/white" -->
+    </RelativeLayout>
+
+    <!-- COUNTDOWN -->
+
+    <TextView
+        android:id="@+id/animation_countdown"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/animation_footer"
+        android:layout_below="@id/animation_fullscreen_container"
+        android:layout_centerInParent="true"
+        android:clickable="false"
+        android:focusable="false"
+        android:gravity="center"
+        android:textColor="@color/animation_countdown_text"
+        android:textSize="@dimen/animation_countdown_text"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <!-- PLAY BUTTON OVERLAY -->
+
+    <RelativeLayout
+        android:id="@+id/animation_play_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/animation_footer"
+        android:layout_below="@id/animation_fullscreen_container"
+        android:background="#D2ffffff" >
+
+        <ImageView
+            android:id="@+id/animation_play_overlay_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/selector_icon_play_animation" />
+    </RelativeLayout>
+
+    <!-- FOOTER -->
+
+    <include
+        android:id="@id/animation_footer"
+        layout="@layout/reusable_footer" />
+
+</RelativeLayout>

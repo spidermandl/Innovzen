@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- REUSABLE HEADER -->
+    <dimen name="reusable_header_logo_margin_top">5dp</dimen>
+
+    <!-- REUSABLE FOOTER -->
+    <dimen name="reusable_footer_height">100dp</dimen>
+    <dimen name="reusable_footer_padding_bottom">10dp</dimen>
+    <dimen name="reusable_footer_padding_left">10dp</dimen>
+    <dimen name="reusable_footer_padding_right">10dp</dimen>
+    <dimen name="reusable_footer_padding_top">10dp</dimen>
+
+    <!-- SUBTITLE -->
+    <dimen name="subtitle_text">25sp</dimen>
+
+    <!-- FRAG ANIMATION -->
+    <dimen name="animation_footer_timer_text">16sp</dimen>
+
+    <!-- FRAG MAIN MENU -->
+    <dimen name="main_menu_title">20sp</dimen>
+
+    <!-- FRAG TIMER -->
+    <dimen name="timer_main_container_padding_bottom">5dp</dimen>
+    <dimen name="timer_main_container_left_right_cell_padding">10dp</dimen>
+
+    <!-- CHAIR SPECIFICATIONS -->
+    <dimen name="table_left_and_right_margins">10sp</dimen>
+    <dimen name="table_row_text_size">14sp</dimen>
+    <dimen name="table_row_header_text_size">14sp</dimen>
+
+    <!-- CHAIR INFO SPECIFICATION TABLE -->
+    <dimen name="table_row_height">40dp</dimen>
+
+    <!-- ANIMATION BEACH -->
+    <dimen name="animation_beach_step_progress_bar_text">25sp</dimen>
+
+</resources>

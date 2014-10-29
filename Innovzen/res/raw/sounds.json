@@ -1,0 +1,154 @@
+{
+    "voices": [
+        {
+            "id": 0,
+            "name": "Voix homme",
+            "lang": "fr",
+            "sounds": [
+                {
+                    "file": "inspirez_man_three_fr",
+                    "type": 0
+                },
+                {
+                    "file": "retenez_man_three_fr",
+                    "type": 1
+                },
+                {
+                    "file": "expirez_man_three_fr",
+                    "type": 2
+                }
+            ]
+        },
+        {
+            "id": 0,
+            "name": "Man voice",
+            "lang": "eng",
+            "sounds": [
+                {
+                    "file": "inspirez_man_four_eng",
+                    "type": 0
+                },
+                {
+                    "file": "retenez_man_four_eng",
+                    "type": 1
+                },
+                {
+                    "file": "expirez_man_four_eng",
+                    "type": 2
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "name": "Voix femme",
+            "lang": "fr",
+            "sounds": [
+                {
+                    "file": "inspirez_woman_three_fr",
+                    "type": 0
+                },
+                {
+                    "file": "retenez_woman_three_fr",
+                    "type": 1
+                },
+                {
+                    "file": "expirez_woman_three_fr",
+                    "type": 2
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "name": "Woman voice",
+            "lang": "eng",
+            "sounds": [
+                {
+                    "file": "inspirez_woman_four_eng",
+                    "type": 0
+                },
+                {
+                    "file": "retenez_woman_four_eng",
+                    "type": 1
+                },
+                {
+                    "file": "expirez_woman_four_eng",
+                    "type": 2
+                }
+            ]
+        }
+    ],
+    "ambiance": [
+        {
+            "id": 20,
+            "name": "Angelic Organ",
+            "sounds": [
+                {
+                    "file": "innovzen_angelicorgan_inspir",
+                    "type": 0
+                },
+                {
+                    "file": "innovzen_angelicorgan_retient",
+                    "type": 1
+                },
+                {
+                    "file": "innovzen_angelicorgan_expir",
+                    "type": 2
+                }
+            ]
+        },
+        {
+            "id": 21,
+            "name": "Aquatic SunBeam",
+            "sounds": [
+                {
+                    "file": "innovzen_aquaticsunbeam_inspir",
+                    "type": 0
+                },
+                {
+                    "file": "innovzen_aquaticsunbeam_retient",
+                    "type": 1
+                },
+                {
+                    "file": "innovzen_aquaticsunbeam_expir",
+                    "type": 2
+                }
+            ]
+        },
+        {
+            "id": 22,
+            "name": "Bondi Breath",
+            "sounds": [
+                {
+                    "file": "innovzen_bondibreath_inspir",
+                    "type": 0
+                },
+                {
+                    "file": "innovzen_bondibreath_retient",
+                    "type": 1
+                },
+                {
+                    "file": "innovzen_bondibreath_expir",
+                    "type": 2
+                }
+            ]
+        },
+        {
+            "id": 23,
+            "name": "Ithaca Vox",
+            "sounds": [
+                {
+                    "file": "innovzen_ithacavox_inspir",
+                    "type": 0
+                },
+                {
+                    "file": "innovzen_ithacavox_retient",
+                    "type": 1
+                },
+                {
+                    "file": "innovzen_ithacavox_expir",
+                    "type": 2
+                }
+            ]
+        }
+    ]
+}

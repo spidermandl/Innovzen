@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <!-- SUN CONTAINER -->
+
+    <RelativeLayout
+        android:id="@+id/animation_beach_sun_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" >
+
+        <com.innovzen.ui.AnimationBeachSunView
+            android:id="@+id/animation_beach_sun_red"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/exercise_animation_beach_sun_red" />
+
+        <com.innovzen.ui.AnimationBeachSunView
+            android:id="@+id/animation_beach_sun_green"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:alpha="0"
+            android:background="@drawable/exercise_animation_beach_sun_green" />
+    </RelativeLayout>
+
+    <!-- DUMMY WHITE BACKGROUND VIEW USED SO WE DON'T SEE THE SUN THROUGH TH BEACH WHEN CHANGING ALPHA -->
+
+    <View
+        android:id="@+id/animation_beach_dummy_white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white" />
+
+    <!-- RED BEACH -->
+
+    <com.innovzen.ui.AnimationBeachImageView
+        android:id="@+id/animation_beach_red"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitEnd"
+        app:sunDrawable="@drawable/exercise_animation_beach_red" />
+
+    <!-- GREEN BEACH -->
+
+    <com.innovzen.ui.AnimationBeachImageView
+        android:id="@+id/animation_beach_green"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:alpha="0"
+        android:scaleType="fitEnd"
+        app:sunDrawable="@drawable/exercise_animation_beach_green" />
+
+    <!-- GLOBAL PROGRESS BAR -->
+
+    <View
+        android:id="@+id/animation_beach_global_progress_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#80ffffff" />
+
+    <!-- STEP PROGRESS BAR + STEP TEXT -->
+
+    <LinearLayout
+        android:id="@+id/animation_beach_step_progress_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
+        android:paddingBottom="40dp"
+        android:paddingRight="10dp" >
+
+        <!-- STEP TEXT -->
+
+        <TextView
+            android:id="@+id/animation_step_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/animation_step_inhale"
+            android:textAllCaps="true"
+            android:textColor="@color/animation_beach_step_text"
+            android:textSize="@dimen/animation_beach_step_progress_bar_text" />
+
+        <!-- STEP BAR CONTAINER -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/animation_beach_step_progress_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="0"
+                android:textColor="@color/animation_beach_step_progress_bar_text"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/animation_beach_step_progress_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:textColor="@color/animation_beach_step_progress_bar_text"
+                android:textSize="16sp" />
+
+            <!-- STEP PROGRESS BAR -->
+
+            <RelativeLayout
+                android:id="@+id/animation_beach_step_progress_bar_fixed_bckgnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/animation_beach_step_progress_end_time"
+                android:layout_marginTop="10dp"
+                android:background="@color/animation_beach_step_progress_bar_bckgnd" >
+
+                <RelativeLayout
+                    android:id="@+id/animation_beach_step_progress_bar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true" >
+
+                    <!-- RED BAR -->
+
+                    <View
+                        android:id="@+id/animation_beach_step_progress_bar_red"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/animation_beach_step_progress_bar_red" />
+
+                    <!-- GREEN BAR -->
+
+                    <View
+                        android:id="@+id/animation_beach_step_progress_bar_green"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/animation_beach_step_progress_bar_green" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

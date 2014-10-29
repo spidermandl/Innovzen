@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- PETALS -->
+
+    <RelativeLayout
+        android:id="@+id/animation_petals_petals_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:padding="20dp" >
+
+        <com.innovzen.ui.PetalImageView
+            android:id="@+id/animation_petals_petal_0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/exercise_animation_petals_0" />
+
+        <com.innovzen.ui.PetalImageView
+            android:id="@+id/animation_petals_petal_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/exercise_animation_petals_1" />
+
+        <com.innovzen.ui.PetalImageView
+            android:id="@+id/animation_petals_petal_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/exercise_animation_petals_2" />
+
+        <com.innovzen.ui.PetalImageView
+            android:id="@+id/animation_petals_petal_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/exercise_animation_petals_3" />
+
+        <com.innovzen.ui.PetalImageView
+            android:id="@+id/animation_petals_petal_4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/exercise_animation_petals_4" />
+
+        <com.innovzen.ui.PetalImageView
+            android:id="@+id/animation_petals_petal_5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/exercise_animation_petals_5" />
+
+        <com.innovzen.ui.PetalImageView
+            android:id="@+id/animation_petals_petal_6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/exercise_animation_petals_6" />
+
+        <com.innovzen.ui.PetalImageView
+            android:id="@+id/animation_petals_petal_7"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/exercise_animation_petals_7" />
+    </RelativeLayout>
+
+    <!-- TEXT AND TIMER -->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="40dp" >
+
+        <!-- STEP TEXT -->
+
+        <TextView
+            android:id="@+id/animation_step_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/timer_container"
+            android:text="@string/animation_step_inhale"
+            android:textAllCaps="true"
+            android:textColor="@color/animation_gradient_step_inhale_text_color"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@id/timer_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" >
+
+            <include layout="@layout/reusable_circular_seekbar_small" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

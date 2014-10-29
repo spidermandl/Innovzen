@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+	android:enterFadeDuration="50"
+    android:exitFadeDuration="50">
+
+    <item android:state_pressed="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/listview_background_shape">
+            <solid android:color="@color/tab_pressed" />
+        </shape>
+        
+    </item>
+    
+    <item android:state_focused="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/listview_background_shape">
+            <solid android:color="@color/tab_selected" />
+        </shape>
+        
+    </item>
+
+</selector>

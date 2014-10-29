@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:id="@+id/reusable_circular_seekbar_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <ImageView
+        android:id="@+id/circular_seekbar_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:src="@drawable/circular_seekbar_background_large" />
+
+    <com.innovzen.customviews.CircularSeekBar
+        android:id="@+id/circular_seekbar_bottom_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        app:max="360"
+        app:progress="30" />
+
+    <ImageView
+        android:id="@+id/circular_seekbar_contour"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:src="@drawable/circular_seekbar_contour_large" />
+
+    <ImageView
+        android:id="@+id/circular_seekbar_core"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:src="@drawable/circular_seekbar_core_large" />
+
+    <com.innovzen.customviews.CircularSeekBar
+        android:id="@+id/circular_seekbar_top_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        app:max="360"
+        app:progress="30" />
+
+</RelativeLayout>
