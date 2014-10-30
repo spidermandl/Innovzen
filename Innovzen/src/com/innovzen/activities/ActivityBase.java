@@ -15,6 +15,10 @@ public class ActivityBase extends FragmentActivity {
 
     // A flag to indicate whether this is a tablet or phone
     // Use a static variable instead of calling isTablet every time so we don't
+	/**
+	 * Desmond
+	 * 判断是android手机还是android平板
+	 */
     public static boolean IS_TABLET;
 
     @Override
@@ -25,10 +29,18 @@ public class ActivityBase extends FragmentActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         // Get the device type
+        /**
+         * Desmond
+         * 写死平板
+         */
         ActivityBase.IS_TABLET = Util.isTablet(this);
 
         // TODO: uncomment this
         // If tablet, force in landscape. If not, keep in portrait mode
+        /**
+         * Desmond
+         * 平板显示为横屏，手机显示为竖屏
+         */
         if (ActivityBase.IS_TABLET) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         } else {

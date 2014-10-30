@@ -465,7 +465,7 @@ public abstract class ExecutorAsyncTask<Params, Progress, Result> {
 
 		@SuppressWarnings("rawtypes")
 		AsyncTaskResult(ExecutorAsyncTask task, Data... data) {
-			mTask = task;
+			mTask = task; 
 			mData = data;
 		}
 	}

@@ -28,7 +28,11 @@ public class ActivitySplashScreen extends ActivityBase {
      * 4. obviously, change the CURRENT_APP_TYPE value below
      * </pre>
      */
-    public static final int CURRENT_APP_TYPE = APP_TYPE_O2CHAIR;
+    /**
+     * Desmond
+     * app样式设定参数
+     */
+    public static final int CURRENT_APP_TYPE = APP_TYPE_INNOVZEN;//APP_TYPE_O2CHAIR;
     /*
      * ----------------------------------------------------------
      */
