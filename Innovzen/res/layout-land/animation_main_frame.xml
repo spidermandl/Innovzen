@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 按摩椅动画展示界面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/main_mea_vertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout:orientation="true"
+        layout:rate_down="13"
+        layout:rate_up="3" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/main_mea_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/main_mea_vertical_1"
+        layout:orientation="true"
+        layout:rate_down="13"
+        layout:rate_up="8" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/main_mea_vertical_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/main_mea_vertical_2"
+        layout:orientation="true"
+        layout:rate_down="13"
+        layout:rate_up="2" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/main_mea_horizontal_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout:orientation="false"
+        layout:rate_down="5"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/main_mea_horizontal_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/main_mea_horizontal_1"
+        android:layout_alignParentTop="true"
+        layout:orientation="false"
+        layout:rate_down="5"
+        layout:rate_up="3" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/main_mea_horizontal_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/main_mea_horizontal_2"
+        android:layout_alignParentTop="true"
+        layout:orientation="false"
+        layout:rate_down="5"
+        layout:rate_up="1" />
+
+    <!-- 左边栏 -->
+
+    <include
+        android:id="@+id/main_left"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout="@layout/reusable_lefter" />
+
+    <!-- 中上框架 -->
+
+    <LinearLayout
+        android:id="@+id/main_mid_up_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/main_mea_vertical_1"
+        android:layout_alignLeft="@id/main_mea_horizontal_2"
+        android:layout_alignRight="@id/main_mea_horizontal_2"
+        android:layout_alignTop="@id/main_mea_vertical_1"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <ImageView
+            android:id="@+id/main_animation_stop"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF00"
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/main_animation_start"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF00"
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/main_animation_pause"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF00"
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
+    </LinearLayout>
+
+    <!-- ANIMATION PARENT CONTAINER -->
+    <!-- 中中动画显示 -->
+
+    <RelativeLayout
+        android:id="@+id/animation_animation_parent_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/main_mea_vertical_2"
+        android:layout_alignLeft="@id/main_mea_horizontal_2"
+        android:layout_alignRight="@id/main_mea_horizontal_2"
+        android:layout_alignTop="@id/main_mea_vertical_2" >
+
+        <!-- ANIMATION CONTAINER -->
+
+        <RelativeLayout
+            android:id="@+id/animation_animation_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white" >
+        </RelativeLayout>
+
+        <!-- ANIMATION TYPE -->
+
+        <TextView
+            android:id="@+id/animation_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/shape_animation_type_bckgnd"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:singleLine="true"
+            android:text="Exercice PERFORMANCE"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/animation_type" />
+
+        <!-- FULL SCREEN BTN -->
+
+        <RelativeLayout
+            android:id="@+id/animation_fullscreen_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp" >
+
+            <ImageView
+                android:id="@+id/animation_fullscreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/selector_icon_fullscreen_in" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!-- 中下框架 -->
+
+    <LinearLayout
+        android:id="@+id/main_mid_down_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/main_mea_vertical_3"
+        android:layout_alignLeft="@id/main_mea_horizontal_2"
+        android:layout_alignRight="@id/main_mea_horizontal_2"
+        android:layout_alignTop="@id/main_mea_vertical_3"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <ImageView
+            android:id="@+id/main_animation_setting"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF00"
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/main_animation_help"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF00"
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/main_animation_zero"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FFFFFF00"
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
+    </LinearLayout>
+
+    <!-- 最右toolbar -->
+
+    <LinearLayout
+        android:id="@+id/main_right_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/main_mea_vertical_3"
+        android:layout_alignLeft="@id/main_mea_horizontal_3"
+        android:layout_alignRight="@id/main_mea_horizontal_3"
+        android:layout_alignTop="@id/main_mea_vertical_1"
+        android:orientation="vertical"
+        android:weightSum="6" >
+
+        <ImageView
+            android:id="@+id/main_animation_breathe_up"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:background="#FFFFFF00"
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/main_animation_breathe_down"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:background="#FFFFFF00"
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/main_animation_backrest_up"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:background="#FFFFFF00"
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/main_animation_backrest_down"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:background="#FFFFFF00"
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/main_animation_foot_up"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:background="#FFFFFF00"
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/main_animation_foot_down"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:background="#FFFFFF00"
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
+    </LinearLayout>
+
+</RelativeLayout>
