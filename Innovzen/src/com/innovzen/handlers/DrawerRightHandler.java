@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 
 import com.innovzen.interfaces.FragmentCommunicator;
 
+//ÓÒ²àfragment¹¦ÄÜ¿é
 public class DrawerRightHandler implements OnClickListener {
 
     // Hold references to objects received in the constructor

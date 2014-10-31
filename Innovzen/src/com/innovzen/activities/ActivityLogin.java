@@ -30,7 +30,8 @@ public class ActivityLogin extends ActivityBase implements OnClickListener, OnTo
     private static final String PASS = "innovzen";
     /*
      * -----------------------------------------------------
-     */
+     *///<>
+     //</>
 
     /** The width of the input field calculated as percentage from the entire width of the screen. Value used for TABLETS */
     private static final float WIDTH_INPUT_FRAC_TABLET = 0.5f;
@@ -138,7 +139,10 @@ public class ActivityLogin extends ActivityBase implements OnClickListener, OnTo
 
         if (input_pass != null) {
             // If the password is correct
-            if (input_pass.getText().toString().equals(ActivityLogin.PASS)) {
+          /*  if (input_pass.getText().toString().equals(ActivityLogin.PASS)) {*/
+        	//<chy>
+        	if (input_pass.getText().toString().equals("123")) {
+        	//<chy/>
 
                 // Store a flag to indicate we've successfuly entered the credentials
                 PersistentUtil.setBoolean(this, true, ActivityLogin.SHARED_PREF_IS_LOGGED_IN);

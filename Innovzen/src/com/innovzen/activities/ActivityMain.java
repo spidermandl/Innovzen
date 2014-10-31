@@ -27,7 +27,7 @@ import com.innovzen.handlers.SoundHandler;
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.interfaces.FragmentOnBackPressInterface;
 import com.innovzen.utils.PersistentUtil;
-
+          //主界面
 public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
     // Hold fragment tags
@@ -60,10 +60,10 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         super.navigateTo(FragMainMenu.class);
 
     }
-
+      //退出
     @Override
     public void onBackPressed() {
-
+        //获取当前FrameLayout片段
         // Get the current fragment in the FrameLayout
         Fragment frag = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
@@ -93,7 +93,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
             super.onBackPressed();
 
         } else { // Otherwise ask the user if he really wants to leave
-
+             //两秒内双击返回键退出程序
+        	
             // If this is the second tap inside the small time frame, then exist
             // the app
             if (mDoubleBackToExitPressedOnce) {
@@ -117,6 +118,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
                     mDoubleBackToExitPressedOnce = false;
 
                     if (mToast != null) {
+                    	//立即停止toast显示
                         mToast.cancel();
                         mToast = null;
                     }
@@ -126,7 +128,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         }
 
     }
-
+   //退出之前关闭并释放资源
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -140,6 +142,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
      * 
      * @author MAB
      */
+    //////////////////////////////////////////////////////////////----------------------
     private void loadSoundInfo() {
 
         // Configure the sounds (get the resource ids of the files <for quick reference>)
@@ -153,6 +156,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
      * @return
      * @author MAB
      */
+    //返回声音组列表
     public List<SoundGroup> getVoices() {
         if (mSoundHandler != null) {
             mSoundHandler.getVoices();
@@ -167,6 +171,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
      * @return
      * @author MAB
      */
+    //得到声音氛围组列表
     public List<SoundGroup> getAmbiance() {
         if (mSoundHandler != null) {
             mSoundHandler.getAmbiance();
@@ -182,6 +187,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
      * @param type
      * @author MAB
      */
+    //播放声音
     public void playVoice(int soundId, int type) {
         mSoundHandler.playVoice(soundId, type);
     }
@@ -193,6 +199,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
      * @param type
      * @author MAB
      */
+    //播放氛围声音
     public void playAmbiance(int soundId, int type, boolean loop) {
         mSoundHandler.playAmbiance(soundId, type, loop);
     }
@@ -203,9 +210,11 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
      * @param animationType
      * @author MAB
      */
+    //清理backstack并跳转到屏幕动画和附加事件
     private void gotoAnimationScreen(int animationType) {
 
         // Save the state first
+    	//提交喜好
         PersistentUtil.setInt(this, animationType, FragAnimationPicker.PERSIST_SELECTED_EXERCISE_ANIMATION);
 
         // // Refresh the backstack
@@ -222,7 +231,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
             navigateTo(FragAnimationPhone.class, bundle, true, ActivityMain.FRAG_TAG_ANIMATION);
         }
     }
-
+//接口方法
     @Override
     public void fragGoToChairInfo(boolean addToBackstack) {
         navigateTo(FragChairInfo.class, null, true);

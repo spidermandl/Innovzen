@@ -19,23 +19,31 @@
         <activity
             android:name="com.innovzen.activities.ActivitySplashScreen"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
 
         <!-- LOGIN -->
         <activity
             android:name="com.innovzen.activities.ActivityLogin"
             android:label="@string/app_name" >
+           
         </activity>
 
-        <!-- MAIN -->
+        <!-- MAIN -->ActivityTest
         <activity
             android:name="com.innovzen.activities.ActivityMain"
             android:label="@string/app_name" >
+            
+        </activity>
+        <!-- test -->
+        <activity
+            android:name="com.innovzen.activities.ActivityTest"
+            android:label="@string/app_name" >
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
