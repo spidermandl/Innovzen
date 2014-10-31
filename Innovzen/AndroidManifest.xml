@@ -19,7 +19,11 @@
         <activity
             android:name="com.innovzen.activities.ActivitySplashScreen"
             android:label="@string/app_name" >
-            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- LOGIN -->
@@ -29,7 +33,7 @@
            
         </activity>
 
-        <!-- MAIN -->ActivityTest
+        <!-- MAIN -->
         <activity
             android:name="com.innovzen.activities.ActivityMain"
             android:label="@string/app_name" >
@@ -37,13 +41,9 @@
         </activity>
         <!-- test -->
         <activity
-            android:name="com.innovzen.activities.ActivityTest"
+            android:name="com.innovzen.activities.ActivityMain2"
             android:label="@string/app_name" >
-             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+             
         </activity>
     </application>
 

@@ -2,125 +2,126 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="900dp"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_gravity="right"
- >
+    android:orientation="vertical" >
 
- <LinearLayout
-     android:orientation="horizontal"
-     android:layout_width="900dp"
-     android:layout_height="wrap_content"
-     android:background="@drawable/main_background"
-      >
-      <LinearLayout
-     android:orientation="vertical"
-     android:layout_width="445dp"
-     android:layout_height="wrap_content"
-      >
- <TextView 
-     android:id="@+id/text_balance"
-     android:layout_marginTop="60dp"
-     android:layout_gravity="center_horizontal"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:textColor="#36A7B7"
-     android:textSize="16sp"
-     android:text="Balance"
-     />
-   <ImageView 
-       android:id="@+id/button_balance"
-       android:layout_gravity="center"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:src="@drawable/icon_overlay_echilibre"
-       />
-   </LinearLayout>
-   <View 
-       android:layout_width="10dp"
-       android:layout_height="match_parent"
-       android:background="#000000"
-       />
-      <LinearLayout
-     android:orientation="vertical"
-     android:layout_width="445dp"
-     android:layout_height="wrap_content"
-      >
- <TextView 
-     android:layout_marginTop="60dp"
-android:layout_gravity="center_horizontal"    
- android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:textColor="#36A7B7"
-     android:textSize="16sp"
-     android:text="Relax"
-     />
-   <ImageView 
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-  android:layout_gravity="center"
-       android:src="@drawable/icon_overlay_relax"
-       />
-   </LinearLayout>
-   </LinearLayout>
-   <View 
-          android:layout_width="match_parent"
-          android:layout_height="10dp"
-          android:background="#000000"
-          />
-   
     <LinearLayout
-     android:orientation="horizontal"
-     android:layout_width="900dp"
-     android:layout_height="wrap_content"
+        android:layout_width="900dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/main_background"
-      >
-      
-      <LinearLayout
-     android:orientation="vertical"
-     android:layout_width="445dp"
-     android:layout_height="wrap_content"
-      >
-    <TextView 
-     android:layout_marginTop="60dp"
-     android:layout_gravity="center_horizontal"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:textColor="#36A7B7"
-     android:textSize="16sp"
-     android:text="Performance"
-     />
-   <ImageView 
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center"
-       android:src="@drawable/icon_overlay_performance"
-       />
-   </LinearLayout>
-   <View 
-       android:layout_width="10dp"
-       android:layout_height="match_parent"
-       android:background="#000000"
-       />
+        android:orientation="horizontal" >
+
         <LinearLayout
-     android:orientation="vertical"
-     android:layout_width="445dp"
-     android:layout_height="wrap_content"
-      >
-    <TextView 
-     android:layout_marginTop="60dp"
-     android:layout_gravity="center_horizontal"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:textColor="#36A7B7"
-     android:textSize="16sp"
-     android:text="My session"
-     />
-   <ImageView 
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_gravity="center"
-       android:src="@drawable/icon_overlay_relax"
-       />
-   </LinearLayout>
-   </LinearLayout>
+            android:id="@+id/main_menu_balance"
+            android:layout_width="445dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/text_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp"
+                android:text="Balance"
+                android:textColor="#36A7B7"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/button_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_overlay_echilibre" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:background="#000000" />
+
+        <LinearLayout
+            android:id="@+id/main_menu_relax"
+            android:layout_width="445dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp"
+                android:text="Relax"
+                android:textColor="#36A7B7"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_overlay_relax" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#000000" />
+
+    <LinearLayout
+        android:layout_width="900dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/main_background"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/main_menu_performance"
+            android:layout_width="445dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp"
+                android:text="Performance"
+                android:textColor="#36A7B7"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_overlay_performance" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:background="#000000" />
+
+        <LinearLayout
+            android:id="@+id/main_menu_session"
+            android:layout_width="445dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60dp"
+                android:text="My session"
+                android:textColor="#36A7B7"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/icon_overlay_relax" />
+        </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

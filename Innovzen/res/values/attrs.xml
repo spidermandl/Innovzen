@@ -38,11 +38,4 @@
         <attr name="sunDrawable" format="reference" />
     </declare-styleable>
 
-    <!-- MeasureView 属性 -->
-    <declare-styleable name="MeasureView">
-        <attr name="orientation" format="boolean" />
-        <attr name="rate_up" format="integer" />
-        <attr name="rate_down" format="integer" />
-    </declare-styleable>
-    
 </resources>
