@@ -6,14 +6,7 @@ import java.util.List;
 import com.innovzen.entities.SoundGroup;
 
 public interface FragmentCommunicator {
-   //<chy>
-	public void fragGoToGraphic(boolean addToBacestack);
-	public void fragGoToTime(boolean addToBacestack);
-	public void fragGoToMusic(boolean addToBacestack);
-	public void fragGoToLanguage(boolean addToBacestack);
-	public void fragGoToSetting(boolean addToBacestack);
-	public void fragGoToBalance(boolean addToBacestack);
-	//</chy>
+
     public void fragGoToChairInfo(boolean addToBackstack);
 
     public void fragGoToAnimation(boolean addToBackstack);
