@@ -13,21 +13,14 @@ import com.innovzen.entities.SoundGroup;
 import com.innovzen.fragments.FragAnimationPhone;
 import com.innovzen.fragments.FragAnimationPicker;
 import com.innovzen.fragments.FragAnimationTablet;
-import com.innovzen.fragments.FragBalance;
 import com.innovzen.fragments.FragChairInfo;
 import com.innovzen.fragments.FragExercisePicker;
-import com.innovzen.fragments.FragGraphic;
 import com.innovzen.fragments.FragHelp;
 import com.innovzen.fragments.FragHistory;
-import com.innovzen.fragments.FragLanguage;
 import com.innovzen.fragments.FragMainMenu;
-import com.innovzen.fragments.FragMusic;
-import com.innovzen.fragments.FragSettings;
 import com.innovzen.fragments.FragSoundPicker;
-import com.innovzen.fragments.FragTime;
 import com.innovzen.fragments.FragTimer;
 import com.innovzen.fragments.FragTimerAdvance;
-import com.innovzen.fragments.FragmentMenu2;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.handlers.SoundHandler;
@@ -64,11 +57,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         loadSoundInfo();
 
         // By default go to the main menu fragment
-       // super.navigateTo(FragMainMenu2.class);
-        //<chy>
-        super.navigateTo(FragmentMenu2.class);
-        //<chy/>
-Toast.makeText(this, "sssss", 0).show();
+        super.navigateTo(FragMainMenu.class);
+
     }
       //ÍË³ö
     @Override
@@ -394,34 +384,4 @@ Toast.makeText(this, "sssss", 0).show();
     public void fragGoToTimerAdvance(boolean addToBackstack) {
         navigateTo(FragTimerAdvance.class, null, addToBackstack);
     }
-	@Override
-	public void fragGoToBalance(boolean addToBacestack) {
-		navigateTo(FragBalance.class,null,addToBacestack);
-		
-	}
-	@Override
-	public void fragGoToSetting(boolean addToBacestack) {
-		navigateTo(FragSettings.class,null,addToBacestack);
-		
-	}
-	@Override
-	public void fragGoToLanguage(boolean addToBacestack) {
-		navigateTo(FragLanguage.class,null,addToBacestack);
-		
-	}
-	@Override
-	public void fragGoToMusic(boolean addToBacestack) {
-		navigateTo(FragMusic.class,null,addToBacestack);
-		
-	}
-	@Override
-	public void fragGoToTime(boolean addToBacestack) {
-		navigateTo(FragTime.class,null,addToBacestack);
-		
-	}
-	@Override
-	public void fragGoToGraphic(boolean addToBacestack) {
-		navigateTo(FragGraphic.class,null,addToBacestack);
-		
-	}
 }
