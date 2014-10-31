@@ -40,21 +40,21 @@ public class ActivitySplashScreen extends ActivityBase {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
+         //延时0毫秒线程加入队列
         new Handler().postDelayed(new Runnable() {
 
             @Override
             public void run() {
-
+            	//是否已经登录过
                 if (ActivitySplashScreen.isInnovzenApp() || PersistentUtil.getBoolean(ActivitySplashScreen.this, ActivityLogin.SHARED_PREF_IS_LOGGED_IN, false)) {
-
+                    //登录过跳转到主界面
                     // Jump to the main menu activity
                     Intent intent = new Intent(ActivitySplashScreen.this, ActivityMain.class);
                     startActivity(intent);
                     finish();
 
                 } else {
-
+                  //未登录跳转到登录界面
                     // Jump to the login activity
                     Intent intent = new Intent(ActivitySplashScreen.this, ActivityLogin.class);
                     startActivity(intent);

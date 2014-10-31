@@ -9,7 +9,7 @@ import android.preference.PreferenceManager;
 public class PersistentUtil {
 
     /***************** obtainSharedPreferences ************************************/
-
+    //获取到 SharedPreferences MODE默认为MODE_PRIVATE，而且生成文件名为 <包名>_preferences.xml 
     private static SharedPreferences obtainSharedPreferences(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context);
     }
@@ -87,6 +87,7 @@ public class PersistentUtil {
      * @param default
      * @return the value from shared preferences , false if is not set
      */
+    //查看prefKey偏好是否存在，若不存在则返回默认值
     public static boolean getBoolean(Context con, String prefKey, boolean defaultValue) {
         return obtainSharedPreferences(con).getBoolean(prefKey, defaultValue);
     }

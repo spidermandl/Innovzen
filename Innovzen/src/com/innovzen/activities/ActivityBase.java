@@ -25,10 +25,12 @@ public class ActivityBase extends FragmentActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         // Get the device type
+        //检查机器是否是平板电脑
         ActivityBase.IS_TABLET = Util.isTablet(this);
 
         // TODO: uncomment this
         // If tablet, force in landscape. If not, keep in portrait mode
+        //决定横排还是竖排
         if (ActivityBase.IS_TABLET) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         } else {
@@ -47,11 +49,13 @@ public class ActivityBase extends FragmentActivity {
      *            May be null
      * @author MAB
      */
+    //当前fragment与之前是否是通一个名字，如果不是,把bundle，加入当前的
     public void navigateTo(Class<?> fragmentClass, Bundle bundle, boolean addToBackstack, String fragmentTag) {
 
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         String curr_fragment_TAG = "";
         if (currentFragment != null) {
+        	                             //////
             curr_fragment_TAG = currentFragment.getClass().getSimpleName();
         }
 
@@ -66,7 +70,7 @@ public class ActivityBase extends FragmentActivity {
                 FragmentTransaction transaction = fragManager.beginTransaction();
                 transaction.replace(R.id.fragment_container, currentFragment);
                 if (addToBackstack) {
-                    transaction.addToBackStack(fragmentTag);
+                    transaction.addToBackStack(fragmentTag);//加入退回栈
                 }
 
                 /* this is not the proper resolve IllegalStateException: Can not perform this action after onSaveInstanceState */
@@ -126,6 +130,7 @@ public class ActivityBase extends FragmentActivity {
      * 
      * @author MAB
      */
+    //清空fragments的back stack
     public void clearBackstack() {
         FragmentManager fm = getSupportFragmentManager();
 
@@ -139,6 +144,7 @@ public class ActivityBase extends FragmentActivity {
      * 
      * @author MAB
      */
+   // 清空fragments的back stack
     public void clearFragFromBackstack(String tag) {
 
         if (tag != null) {

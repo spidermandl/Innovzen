@@ -37,9 +37,10 @@ import com.innovzen.utils.PersistentUtil;
  * @author MAB
  * 
  */
+//frag动画
 public class FragAnimationBase extends FragBase implements FragmentOnBackPressInterface {
 
-    /** The delay between each value of the countdown */
+    /** The delay between each value of the countdown */ 
     private static final int COUNTDOWN_DELAY = 1000; // 1 sec
 
     /** The minimum time (in miliseconds) for the duration of an exercise */
@@ -115,7 +116,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
 
     /** Hold the selected animation by the user */
     protected int mSelectedExerciseAnimationType = -1;
-
+//一个标志来指示方法animationCountdown是否应该继续,开始另一个1秒延迟
     /** A flag to indicate whether the method animationCountdown should continue and start another 1 sec delay */
     protected boolean mContinueCountdown = false;
 
@@ -134,6 +135,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
     protected ExerciseTimes mTimes = new ExerciseTimes();
 
     /** Hold the animation event listener for the play animation overlay */
+    //动画设置
     AnimationListener mPlayAnimListener = new AnimationListener() {
 
         @Override
@@ -190,6 +192,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
      * 
      * @author MAB
      */
+    //只能按一次
     protected void overlayBtnPressed() {
         // Disable the button (so we can't click on it again)
         play_overlay_btn.setClickable(false);
@@ -202,6 +205,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
      * 
      * @author MAB
      */
+    //点击开始练习按钮
     protected void startExercise() {
 
         mCurCountdownSecond = 0;
@@ -372,6 +376,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
      * 
      * @author MAB
      */
+    //加入动画 播放动画
     protected void animatePlayButton() {
 
         AnimationFactory animFactory = new AnimationFactory();
@@ -400,6 +405,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
             countdown_tv.setText(mCurCountdownSecond + "");
 
             // Start a delay of 1 second
+            //延时一秒启动里练习
             new Handler().postDelayed(new Runnable() {
 
                 @Override
