@@ -23,6 +23,11 @@ import com.innovzen.utils.Util;
  * @author MAB
  * 
  */
+/**
+ * Æ½°åÖ÷Ò³Ãæ
+ * @author desmond.duan
+ *
+ */
 public class FragAnimationTablet extends FragAnimationBase implements OnClickListener {
 
     // Hold view references

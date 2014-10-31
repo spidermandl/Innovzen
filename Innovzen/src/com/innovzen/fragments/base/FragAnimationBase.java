@@ -37,7 +37,15 @@ import com.innovzen.utils.PersistentUtil;
  * @author MAB
  * 
  */
+//<<<<<<< HEAD
 //frag动画
+//=======
+/**
+ * 嵌入有呼气动画的fragment，抽象成父类
+ * @author desmond.duan
+ * 
+ */
+// >>>>>>> 26f63c0aec4228061c19ef7e9a4295d1fa86d1a0
 public class FragAnimationBase extends FragBase implements FragmentOnBackPressInterface {
 
     /** The delay between each value of the countdown */ 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="900dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right"
+    android:background="@drawable/main_background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:text="Aquatic SunBean"
+        android:textColor="#36A7B7"
+        android:textSize="24sp" />
+<View
+    android:layout_width="match_parent"
+    android:layout_height="10dp"
+    android:background="#000000"
+    />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:text="Bondi Breath"
+        android:textColor="#36A7B7"
+        android:textSize="24sp" />
+<View
+    android:layout_width="match_parent"
+    android:layout_height="10dp"
+    android:background="#000000"
+    />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:text="Angelic Organ"
+        android:textColor="#36A7B7"
+        android:textSize="24sp" />
+
+
+</LinearLayout>
