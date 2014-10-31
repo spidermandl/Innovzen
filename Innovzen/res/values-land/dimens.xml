@@ -63,6 +63,5 @@
     
     <!-- 网格间的间距 -->
     <dimen name="grid_gap">10dp</dimen>
-    <dimen name="grid_half_gap">5dp</dimen>
 
 </resources>
