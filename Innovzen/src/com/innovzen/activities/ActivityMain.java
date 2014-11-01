@@ -28,6 +28,7 @@ import com.innovzen.fragments.FragSoundPicker;
 import com.innovzen.fragments.FragTime;
 import com.innovzen.fragments.FragTimer;
 import com.innovzen.fragments.FragTimerAdvance;
+import com.innovzen.fragments.FragVoice;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.handlers.SoundHandler;
@@ -421,6 +422,11 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragGoToLanguage(boolean addToBackstack) {
 		navigateTo(FragLanguage.class, null, addToBackstack);
+		
+	}
+	@Override
+	public void fragGoToVoice(boolean addToBackstack) {
+		navigateTo(FragVoice.class, null, addToBackstack);
 		
 	}
 }

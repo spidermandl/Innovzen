@@ -112,7 +112,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_2"
         android:layout_alignRight="@id/up_mea_Horizontal_2"
         android:layout_alignTop="@id/left_mea_vertical_1"
-        android:background="#FFFFFF"
+        android:background="@color/main_bg2"
         android:orientation="vertical"
         android:padding="@dimen/grid_half_gap" >
 
@@ -121,8 +121,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Bluetooth"
-            android:textColor="#69A6BD" />
+            android:text="@string/user_setting_bluetooth"
+            android:textColor="@color/voice_text" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -138,7 +138,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_3"
         android:layout_alignRight="@id/up_mea_Horizontal_3"
         android:layout_alignTop="@id/left_mea_vertical_1"
-        android:background="#FFFFFF"
+        android:background="@color/main_bg2"
         android:orientation="vertical"
         android:padding="@dimen/grid_half_gap" >
 
@@ -147,8 +147,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Language"
-            android:textColor="#69A6BD" />
+            android:text="@string/user_setting_language"
+            android:textColor="@color/frag_text" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_4"
         android:layout_alignRight="@id/up_mea_Horizontal_4"
         android:layout_alignTop="@id/left_mea_vertical_1"
-        android:background="#FFFFFF"
+        android:background="@color/main_bg2"
         android:orientation="vertical"
         android:padding="@dimen/grid_half_gap" >
 
@@ -173,8 +173,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Time"
-            android:textColor="#69A6BD" />
+            android:text="@string/user_setting_time"
+            android:textColor="@color/frag_text" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -190,7 +190,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_5"
         android:layout_alignRight="@id/up_mea_Horizontal_5"
         android:layout_alignTop="@id/left_mea_vertical_1"
-        android:background="#FFFFFF"
+        android:background="@color/main_bg2"
         android:orientation="vertical"
         android:padding="@dimen/grid_half_gap" >
 
@@ -199,8 +199,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Graphic"
-            android:textColor="#69A6BD" />
+            android:text="@string/user_setting_graphic"
+           android:textColor="@color/frag_text" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -216,7 +216,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_2"
         android:layout_alignRight="@id/up_mea_Horizontal_2"
         android:layout_alignTop="@id/left_mea_vertical_2"
-        android:background="#FFFFFF"
+        android:background="@color/main_bg2"
         android:orientation="vertical"
         android:padding="@dimen/grid_half_gap" >
 
@@ -225,8 +225,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Music"
-            android:textColor="#69A6BD" />
+            android:text="@string/user_setting_music"
+           android:textColor="@color/frag_text" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -235,13 +235,14 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/set_voice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
         android:layout_alignLeft="@id/up_mea_Horizontal_3"
         android:layout_alignRight="@id/up_mea_Horizontal_3"
         android:layout_alignTop="@id/left_mea_vertical_2"
-        android:background="#FFFFFF"
+        android:background="@color/main_bg2"
         android:orientation="vertical"
         android:padding="@dimen/grid_half_gap" >
 
@@ -250,8 +251,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Voice"
-            android:textColor="#69A6BD" />
+            android:text="@string/user_setting_voice"
+            android:textColor="@color/frag_text"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -266,7 +267,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_4"
         android:layout_alignRight="@id/up_mea_Horizontal_4"
         android:layout_alignTop="@id/left_mea_vertical_2"
-        android:background="#FFFFFF"
+        android:background="@color/main_bg2"
         android:orientation="vertical"
         android:padding="@dimen/grid_half_gap" >
 
@@ -275,8 +276,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Pulse"
-            android:textColor="#69A6BD" />
+            android:text="@string/user_setting_pulse"
+           android:textColor="@color/frag_text"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -291,7 +292,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_5"
         android:layout_alignRight="@id/up_mea_Horizontal_5"
         android:layout_alignTop="@id/left_mea_vertical_2"
-        android:background="#FFFFFF"
+        android:background="@color/main_bg2"
         android:orientation="vertical"
         android:padding="@dimen/grid_half_gap" >
 
@@ -300,7 +301,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Swing"
+            android:text="@string/user_setting_swing"
             android:textColor="#69A6BD" />
 
         <ImageView
@@ -316,7 +317,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_2"
         android:layout_alignRight="@id/up_mea_Horizontal_2"
         android:layout_alignTop="@id/left_mea_vertical_3"
-        android:background="#FFFFFF"
+        android:background="@color/main_bg2"
         android:orientation="vertical"
         android:padding="@dimen/grid_half_gap" >
 
@@ -325,7 +326,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Oxygen"
+            android:text="@string/user_setting_oxygen"
             android:textColor="#69A6BD" />
 
         <ImageView
@@ -341,7 +342,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_3"
         android:layout_alignRight="@id/up_mea_Horizontal_3"
         android:layout_alignTop="@id/left_mea_vertical_3"
-        android:background="#FFFFFF"
+        android:background="@color/main_bg2"
         android:orientation="vertical"
         android:padding="@dimen/grid_half_gap" >
 
@@ -350,7 +351,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="LEDs"
+            android:text="@string/user_setting_oxygen"
             android:textColor="#69A6BD" />
 
         <ImageView
@@ -366,7 +367,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_4"
         android:layout_alignRight="@id/up_mea_Horizontal_4"
         android:layout_alignTop="@id/left_mea_vertical_3"
-        android:background="#FFFFFF"
+        android:background="@color/main_bg2"
         android:orientation="vertical"
         android:padding="@dimen/grid_half_gap" >
 
@@ -375,7 +376,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Heat"
+            android:text="@string/user_setting_heat"
             android:textColor="#69A6BD" />
 
         <ImageView
@@ -391,7 +392,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_5"
         android:layout_alignRight="@id/up_mea_Horizontal_5"
         android:layout_alignTop="@id/left_mea_vertical_3"
-        android:background="#FFFFFF"
+        android:background="@color/main_bg2"
         android:orientation="vertical"
         android:padding="@dimen/grid_half_gap" >
 
@@ -400,7 +401,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Bluetooth"
+            android:text="@string/user_setting_history"
             android:textColor="#69A6BD" />
 
         <ImageView

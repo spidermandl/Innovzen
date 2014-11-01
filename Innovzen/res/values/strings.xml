@@ -213,8 +213,24 @@
     <string name="animation_subtitle_end_beginner">BEGINNER</string>
     <string name="animation_subtitle_end_intermediary">INTERMEDIATE</string>
     <string name="animation_subtitle_end_pro">PRO</string>
-   <!-- FRAG VOICE -->
-   <string name="voice_man">Man voice</string>
-   <string name="voice_woman">Woman voice</string>
-   <string name="voice_slience">Slience</string>
+    <!-- FRAG VOICE chy -->
+    <string name="voice_man">Man voice</string>
+    <string name="voice_woman">Woman voice</string>
+    <string name="voice_slience">Slience</string>
+    <!-- FRAG USER SETTING chy -->
+    <string name="user_setting_bluetooth">Bluetooth</string>
+    <string name="user_setting_language">Language</string>
+    <string name="user_setting_time">Time</string>
+    <string name="user_setting_graphic">Graphic</string>
+    <string name="user_setting_music">Music</string>
+    <string name="user_setting_voice">Voice</string>
+    <string name="user_setting_pulse">Pulse</string>
+    <string name="user_setting_swing">Swing</string>
+    <string name="user_setting_oxygen">Oxygen</string>
+    <string name="user_setting_leds">LEDs</string>
+    <string name="user_setting_heat">Heat</string>
+    <string name="user_setting_history">Histroy</string>
+<!-- chy -->
+    
+
 </resources>
