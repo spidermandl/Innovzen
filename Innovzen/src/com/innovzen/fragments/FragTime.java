@@ -22,7 +22,6 @@ public class FragTime extends FragBase implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		
-		
 	}
 
 	@Override

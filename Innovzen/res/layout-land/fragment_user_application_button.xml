@@ -3,7 +3,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#000000" >
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/left_vertical_1"
@@ -29,7 +30,6 @@
         android:id="@+id/up_mea_Horizontal_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/left_vertical_1"
         layout:orientation="false"
@@ -63,13 +63,13 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_1"
         android:layout_alignRight="@id/up_mea_Horizontal_1"
         android:layout_alignTop="@id/left_vertical_1"
-        android:background="#7CB148"
+        android:background="#000000"
         android:padding="@dimen/grid_half_gap" >
 
         <include layout="@layout/reusable_lefter" />
     </LinearLayout>
 
-    <LinearLayout
+    <ImageView
         android:id="@+id/menu_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,26 +77,10 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_2"
         android:layout_alignRight="@id/up_mea_Horizontal_2"
         android:layout_alignTop="@id/left_vertical_1"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
-        android:padding="@dimen/grid_half_gap" >
+        android:background="@drawable/selector_btn_balance"
+        android:padding="@dimen/grid_half_gap" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="Balance"
-            android:textColor="#69A6BD" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/icon_overlay_echilibre" />
-    </LinearLayout>
-
-    <LinearLayout
+    <ImageView
         android:id="@+id/menu_performance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -104,53 +88,21 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_2"
         android:layout_alignRight="@id/up_mea_Horizontal_2"
         android:layout_alignTop="@id/left_vertical_2"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
-        android:padding="@dimen/grid_half_gap" >
+        android:background="@drawable/selector_icon_perf"
+        android:padding="@dimen/grid_half_gap" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="Performance"
-            android:textColor="#69A6BD" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/icon_overlay_performance" />
-    </LinearLayout>
-
-    <LinearLayout
+    <ImageView
         android:id="@+id/menu_relax"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         android:layout_alignBottom="@id/left_vertical_1"
         android:layout_alignLeft="@id/up_mea_Horizontal_3"
         android:layout_alignRight="@id/up_mea_Horizontal_3"
         android:layout_alignTop="@id/left_vertical_1"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
-        android:padding="@dimen/grid_half_gap" >
+        android:background="@drawable/selector_icon_relax"
+        android:padding="@dimen/grid_half_gap" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="Relax"
-            android:textColor="#69A6BD" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/icon_overlay_relax" />
-    </LinearLayout>
-
-    <LinearLayout
+    <ImageView
         android:id="@+id/menu_mySession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -158,21 +110,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_3"
         android:layout_alignRight="@id/up_mea_Horizontal_3"
         android:layout_alignTop="@id/left_vertical_2"
-        android:background="#2E323D"
-        android:orientation="vertical"
-        android:padding="@dimen/grid_half_gap" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="My session"
-            android:textColor="#69A6BD" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:background="@drawable/selector_icon_mysession"
+        android:padding="@dimen/grid_half_gap" />
 
 </RelativeLayout>
