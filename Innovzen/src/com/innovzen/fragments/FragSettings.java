@@ -31,6 +31,7 @@ public class FragSettings extends FragBase implements OnClickListener{
 			break;
 		case R.id.set_time:
 			super.activityListener.fragGoToTime(true);
+			break;
 		case R.id.set_graphic:
 			super.activityListener.fragGoToGraphic(true);
 			break;

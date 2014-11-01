@@ -50,8 +50,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         layout:orientation="false"
-        layout:rate_down="5"
-        layout:rate_up="1" />
+        layout:rate_down="28"
+        layout:rate_up="4" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/main_mea_horizontal_2"
@@ -60,8 +60,8 @@
         android:layout_toRightOf="@id/main_mea_horizontal_1"
         android:layout_alignParentTop="true"
         layout:orientation="false"
-        layout:rate_down="5"
-        layout:rate_up="3" />
+        layout:rate_down="28"
+        layout:rate_up="18" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/main_mea_horizontal_3"
@@ -70,15 +70,15 @@
         android:layout_toRightOf="@id/main_mea_horizontal_2"
         android:layout_alignParentTop="true"
         layout:orientation="false"
-        layout:rate_down="5"
-        layout:rate_up="1" />
+        layout:rate_down="28"
+        layout:rate_up="6" />
 
     <!-- 左边栏 -->
 
     <include
         layout="@layout/reusable_lefter"
         android:id="@+id/main_left"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true" 
         android:layout_alignLeft="@id/main_mea_horizontal_1"
         android:layout_alignRight="@id/main_mea_horizontal_1"/>

@@ -46,7 +46,7 @@
         android:layout_alignBottom="@id/left_mea_vertical_1"
         android:layout_alignTop="@id/left_mea_vertical_1"
         android:layout_alignParentLeft="true"
-        android:background="#FFFFFF00"
+        android:background="@drawable/selector_icon_home_power"
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
@@ -68,5 +68,4 @@
         android:layout_alignParentLeft="true"
         android:background="#FF00FFFF"
         android:padding="@dimen/grid_half_gap" />
-
 </RelativeLayout>

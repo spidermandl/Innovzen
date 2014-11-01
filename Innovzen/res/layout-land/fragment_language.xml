@@ -3,7 +3,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#000000"
+     >
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/left_vertical_1"
@@ -63,118 +65,53 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_1"
         android:layout_alignRight="@id/up_mea_Horizontal_1"
         android:layout_alignTop="@id/left_vertical_1"
-        android:background="#7CB148"
+        android:background="#000000"
         android:padding="@dimen/grid_half_gap" >
 
         <include layout="@layout/reusable_lefter" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/menu_balance"
+
+        <ImageView
+          android:id="@+id/menu_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_vertical_1"
         android:layout_alignLeft="@id/up_mea_Horizontal_2"
         android:layout_alignRight="@id/up_mea_Horizontal_2"
         android:layout_alignTop="@id/left_vertical_1"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
-        android:padding="@dimen/grid_half_gap" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="English"
-            android:textColor="#69A6BD" />
+        android:background="@drawable/selector_icon_american"
+        android:padding="@dimen/grid_half_gap"/>
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:background="#27226D" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/menu_performance"
+            android:id="@+id/menu_performance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_vertical_2"
         android:layout_alignLeft="@id/up_mea_Horizontal_2"
         android:layout_alignRight="@id/up_mea_Horizontal_2"
         android:layout_alignTop="@id/left_vertical_2"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
-        android:padding="@dimen/grid_half_gap" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="German"
-            android:textColor="#69A6BD" />
+        android:background="@drawable/selector_icon_german"
+        android:padding="@dimen/grid_half_gap" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:background="#27226D" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/menu_relax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_vertical_1"
         android:layout_alignLeft="@id/up_mea_Horizontal_3"
         android:layout_alignRight="@id/up_mea_Horizontal_3"
         android:layout_alignTop="@id/left_vertical_1"
-        android:background="#FFFFFF"
-        android:orientation="vertical"
-        android:padding="@dimen/grid_half_gap" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="Frensh"
-            android:textColor="#69A6BD" />
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:background="#27226D" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/menu_mySession"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/left_vertical_2"
-        android:layout_alignLeft="@id/up_mea_Horizontal_3"
-        android:layout_alignRight="@id/up_mea_Horizontal_3"
-        android:layout_alignTop="@id/left_vertical_2"
-        android:background="#2E323D"
-        android:orientation="vertical"
-        android:padding="@dimen/grid_half_gap" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="Spanish"
-            android:textColor="#69A6BD" />
+        android:background="@drawable/selector_icon_french"
+        android:padding="@dimen/grid_half_gap"/>
 
        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:background="#27226D" />
-    </LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_3"
+        android:layout_alignRight="@id/up_mea_Horizontal_3"
+        android:layout_alignTop="@id/left_vertical_2"
+        android:background="@drawable/selector_icon_spanish"
+        android:padding="@dimen/grid_half_gap" />
 
 </RelativeLayout>
