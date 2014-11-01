@@ -13,12 +13,19 @@ import com.innovzen.entities.SoundGroup;
 import com.innovzen.fragments.FragAnimationPhone;
 import com.innovzen.fragments.FragAnimationPicker;
 import com.innovzen.fragments.FragAnimationTablet;
+import com.innovzen.fragments.FragBalance;
 import com.innovzen.fragments.FragChairInfo;
 import com.innovzen.fragments.FragExercisePicker;
+import com.innovzen.fragments.FragGraphic;
 import com.innovzen.fragments.FragHelp;
 import com.innovzen.fragments.FragHistory;
+import com.innovzen.fragments.FragLanguage;
+import com.innovzen.fragments.FragMain;
 import com.innovzen.fragments.FragMainMenu;
+import com.innovzen.fragments.FragMusic;
+import com.innovzen.fragments.FragSettings;
 import com.innovzen.fragments.FragSoundPicker;
+import com.innovzen.fragments.FragTime;
 import com.innovzen.fragments.FragTimer;
 import com.innovzen.fragments.FragTimerAdvance;
 import com.innovzen.fragments.base.FragAnimationBase;
@@ -57,8 +64,10 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         loadSoundInfo();
 
         // By default go to the main menu fragment
-        super.navigateTo(FragMainMenu.class);
-
+        //<chy>
+       // super.navigateTo(FragMainMenu.class);
+        super.navigateTo(FragMain.class);
+        //</chy>
     }
       //ÍË³ö
     @Override
@@ -384,4 +393,34 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
     public void fragGoToTimerAdvance(boolean addToBackstack) {
         navigateTo(FragTimerAdvance.class, null, addToBackstack);
     }
+	@Override
+	public void fragGoToBalance(boolean addToBackstack) {
+		navigateTo(FragBalance.class,null,addToBackstack);
+		
+	}
+	@Override
+	public void fragGoToSetting(boolean addToBackstack) {
+		navigateTo(FragSettings.class, null, addToBackstack);
+		
+	}
+	@Override
+	public void fragGoToTime(boolean addToBackstack) {
+		navigateTo(FragTime.class, null, addToBackstack);
+		
+	}
+	@Override
+	public void fragGoToMusic(boolean addToBackstack) {
+		navigateTo(FragMusic.class, null, addToBackstack);
+		
+	}
+	@Override
+	public void fragGoToGraphic(boolean addToBackstack) {
+		navigateTo(FragGraphic.class, null, addToBackstack);
+		
+	}
+	@Override
+	public void fragGoToLanguage(boolean addToBackstack) {
+		navigateTo(FragLanguage.class, null, addToBackstack);
+		
+	}
 }

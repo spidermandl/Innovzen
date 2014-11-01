@@ -1,65 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="900dp"
-    android:layout_height="wrap_content"
-    android:layout_gravity="right"
-    android:background="@drawable/main_background"
-    android:orientation="vertical" >
+<!-- chy音乐界面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="88dp"
-        android:gravity="center"
-        android:text="Aquatic SunBean"
-        android:textColor="#36A7B7"
-        android:textSize="24sp" />
-<View
-    android:layout_width="match_parent"
-    android:layout_height="10dp"
-    android:background="#000000"
-    />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="88dp"
-        android:gravity="center"
-        android:text="Bondi Breath"
-        android:textColor="#36A7B7"
-        android:textSize="24sp" />
-<View
-    android:layout_width="match_parent"
-    android:layout_height="10dp"
-    android:background="#000000"
-    />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="88dp"
-        android:gravity="center"
-        android:text="Angelic Organ"
-        android:textColor="#36A7B7"
-        android:textSize="24sp" />
-<View
-    android:layout_width="match_parent"
-    android:layout_height="10dp"
-    android:background="#000000"
-    />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="88dp"
-        android:gravity="center"
-        android:text="Ithaca Vox"
-        android:textColor="#36A7B7"
-        android:textSize="24sp" />
-<View
-    android:layout_width="match_parent"
-    android:layout_height="10dp"
-    android:background="#000000"
-    />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="88dp"
-        android:gravity="center"
-        android:text="Silence"
-        android:textColor="#36A7B7"
-        android:textSize="24sp" />
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout:orientation="true"
+        layout:rate_down="5"
+        layout:rate_up="1" />
 
-</LinearLayout>
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_1"
+        layout:orientation="true"
+        layout:rate_down="5"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_2"
+        layout:orientation="true"
+        layout:rate_down="5"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_3"
+        layout:orientation="true"
+        layout:rate_down="5"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_4"
+        layout:orientation="true"
+        layout:rate_down="5"
+        layout:rate_up="3" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/left_mea_vertical_1"
+        layout:orientation="false"
+        layout:rate_down="28"
+        layout:rate_up="5" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_1"
+        layout:orientation="false"
+        layout:rate_down="28"
+        layout:rate_up="23" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_5"
+        android:layout_alignLeft="@id/up_mea_Horizontal_1"
+        android:layout_alignRight="@id/up_mea_Horizontal_1"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        android:background="#7CB148"
+        android:padding="@dimen/grid_half_gap" >
+
+        <include layout="@layout/reusable_lefter" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_1"
+        android:layout_alignLeft="@id/up_mea_Horizontal_2"
+        android:layout_alignRight="@id/up_mea_Horizontal_2"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        android:background="#77BBC9"
+        android:orientation="vertical"
+        android:padding="@dimen/grid_half_gap" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Aquatic SunBeam"
+            android:textColor="#69A6BD" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_2"
+        android:layout_alignRight="@id/up_mea_Horizontal_2"
+        android:layout_alignTop="@id/left_mea_vertical_2"
+        android:background="#77BBC9"
+        android:orientation="vertical"
+        android:padding="@dimen/grid_half_gap" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Bondi Breath"
+            android:textColor="#69A6BD" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_3"
+        android:layout_alignLeft="@id/up_mea_Horizontal_2"
+        android:layout_alignRight="@id/up_mea_Horizontal_2"
+        android:layout_alignTop="@id/left_mea_vertical_3"
+        android:background="#77BBC9"
+        android:orientation="vertical"
+        android:padding="@dimen/grid_half_gap" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Angelic Organ"
+            android:textColor="#69A6BD" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_4"
+        android:layout_alignLeft="@id/up_mea_Horizontal_2"
+        android:layout_alignRight="@id/up_mea_Horizontal_2"
+        android:layout_alignTop="@id/left_mea_vertical_4"
+        android:background="#77BBC9"
+        android:orientation="vertical"
+        android:padding="@dimen/grid_half_gap" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Ithaca Vox"
+            android:textColor="#69A6BD" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_5"
+        android:layout_alignLeft="@id/up_mea_Horizontal_2"
+        android:layout_alignRight="@id/up_mea_Horizontal_2"
+        android:layout_alignTop="@id/left_mea_vertical_5"
+        android:background="#77BBC9"
+        android:orientation="vertical"
+        android:padding="@dimen/grid_half_gap" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Silence"
+            android:textColor="#69A6BD" />
+    </LinearLayout>
+
+</RelativeLayout>

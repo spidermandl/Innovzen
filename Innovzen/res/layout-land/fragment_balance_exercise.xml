@@ -25,6 +25,7 @@
                 android:background="#000000" />
 
             <ImageView
+                android:id="@+id/Settings"
                 android:layout_width="240dp"
                 android:layout_height="200dp"
                 android:src="@drawable/icon_play" />

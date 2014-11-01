@@ -1,124 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="900dp"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_gravity="right"
- >
+<!-- chy启动界面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
 
- <LinearLayout
-     android:orientation="horizontal"
-     android:layout_width="900dp"
-     android:layout_height="wrap_content"
-     android:background="@drawable/main_background"
-      >
-      <LinearLayout
-     android:orientation="vertical"
-     android:layout_width="445dp"
-     android:layout_height="wrap_content"
-      >
- <TextView 
-     android:layout_marginTop="60dp"
-     android:layout_gravity="center_horizontal"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:textColor="#36A7B7"
-     android:textSize="16sp"
-     android:text="English"
-     />
-   <ImageView 
-       android:layout_gravity="center"
-       android:layout_width="100dp"
-       android:layout_height="100dp"
-       android:background="#334782"
-       />
-   </LinearLayout>
-   <View 
-       android:layout_width="10dp"
-       android:layout_height="match_parent"
-       android:background="#000000"
-       />
-      <LinearLayout
-     android:orientation="vertical"
-     android:layout_width="445dp"
-     android:layout_height="wrap_content"
-      >
- <TextView 
-     android:layout_marginTop="60dp"
-android:layout_gravity="center_horizontal"    
- android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:textColor="#36A7B7"
-     android:textSize="16sp"
-     android:text="French"
-     />
-   <ImageView 
-       android:layout_gravity="center"
-       android:layout_width="100dp"
-       android:layout_height="100dp"
-       android:background="#334782"
-       />
-   </LinearLayout>
-   </LinearLayout>
-   <View 
-          android:layout_width="match_parent"
-          android:layout_height="10dp"
-          android:background="#000000"
-          />
-   
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_vertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout:orientation="true"
+        layout:rate_down="26"
+        layout:rate_up="13" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_vertical_1"
+        layout:orientation="true"
+        layout:rate_down="26"
+        layout:rate_up="13" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/left_vertical_1"
+        layout:orientation="false"
+        layout:rate_down="28"
+        layout:rate_up="5" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_1"
+        layout:orientation="false"
+        layout:rate_down="28"
+        layout:rate_up="12" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_2"
+        layout:orientation="false"
+        layout:rate_down="28"
+        layout:rate_up="11" />
+
     <LinearLayout
-     android:orientation="horizontal"
-     android:layout_width="900dp"
-     android:layout_height="wrap_content"
-        android:background="@drawable/main_background"
-      >
-      
-      <LinearLayout
-     android:orientation="vertical"
-     android:layout_width="445dp"
-     android:layout_height="wrap_content"
-      >
-    <TextView 
-     android:layout_marginTop="60dp"
-     android:layout_gravity="center_horizontal"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:textColor="#36A7B7"
-     android:textSize="16sp"
-     android:text="German"
-     />
-   <ImageView 
-       android:layout_gravity="center"
-       android:layout_width="100dp"
-       android:layout_height="100dp"
-       android:background="#334782"
-       />
-   </LinearLayout>
-   <View 
-       android:layout_width="10dp"
-       android:layout_height="match_parent"
-       android:background="#000000"
-       />
-        <LinearLayout
-     android:orientation="vertical"
-     android:layout_width="445dp"
-     android:layout_height="wrap_content"
-      >
-    <TextView 
-     android:layout_marginTop="60dp"
-     android:layout_gravity="center_horizontal"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:textColor="#36A7B7"
-     android:textSize="16sp"
-     android:text="Spanish"
-     />
-   <ImageView 
-       android:layout_gravity="center"
-       android:layout_width="100dp"
-       android:layout_height="100dp"
-       android:background="#334782"
-       />
-   </LinearLayout>
-   </LinearLayout>
-</LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_1"
+        android:layout_alignRight="@id/up_mea_Horizontal_1"
+        android:layout_alignTop="@id/left_vertical_1"
+        android:background="#7CB148"
+        android:padding="@dimen/grid_half_gap" >
+
+        <include layout="@layout/reusable_lefter" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_vertical_1"
+        android:layout_alignLeft="@id/up_mea_Horizontal_2"
+        android:layout_alignRight="@id/up_mea_Horizontal_2"
+        android:layout_alignTop="@id/left_vertical_1"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:padding="@dimen/grid_half_gap" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="English"
+            android:textColor="#69A6BD" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="#27226D" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_performance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_2"
+        android:layout_alignRight="@id/up_mea_Horizontal_2"
+        android:layout_alignTop="@id/left_vertical_2"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:padding="@dimen/grid_half_gap" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="German"
+            android:textColor="#69A6BD" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="#27226D" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_relax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_vertical_1"
+        android:layout_alignLeft="@id/up_mea_Horizontal_3"
+        android:layout_alignRight="@id/up_mea_Horizontal_3"
+        android:layout_alignTop="@id/left_vertical_1"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:padding="@dimen/grid_half_gap" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Frensh"
+            android:textColor="#69A6BD" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="#27226D" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_mySession"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_3"
+        android:layout_alignRight="@id/up_mea_Horizontal_3"
+        android:layout_alignTop="@id/left_vertical_2"
+        android:background="#2E323D"
+        android:orientation="vertical"
+        android:padding="@dimen/grid_half_gap" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Spanish"
+            android:textColor="#69A6BD" />
+
+       <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="#27226D" />
+    </LinearLayout>
+
+</RelativeLayout>

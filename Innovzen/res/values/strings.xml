@@ -213,5 +213,8 @@
     <string name="animation_subtitle_end_beginner">BEGINNER</string>
     <string name="animation_subtitle_end_intermediary">INTERMEDIATE</string>
     <string name="animation_subtitle_end_pro">PRO</string>
-
+   <!-- FRAG VOICE -->
+   <string name="voice_man">Man voice</string>
+   <string name="voice_woman">Woman voice</string>
+   <string name="voice_slience">Slience</string>
 </resources>

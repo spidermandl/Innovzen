@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout:orientation="true"
+        layout:rate_down="9"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_1"
+        layout:orientation="true"
+        layout:rate_down="9"
+        layout:rate_up="3" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_2"
+        layout:orientation="true"
+        layout:rate_down="9"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_3"
+        layout:orientation="true"
+        layout:rate_down="9"
+        layout:rate_up="3" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_4"
+        layout:orientation="true"
+        layout:rate_down="9"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/left_mea_vertical_1"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="12" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_1"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="7" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_2"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="17" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_3"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="7" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_4"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="17" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_5"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="7" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_5"
+        android:layout_alignLeft="@id/up_mea_Horizontal_1"
+        android:layout_alignRight="@id/up_mea_Horizontal_1"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        android:background="#7CB148"
+        android:padding="@dimen/grid_half_gap" >
+
+        <include layout="@layout/reusable_lefter" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_5"
+        android:layout_alignLeft="@id/up_mea_Horizontal_2"
+        android:layout_alignRight="@id/up_mea_Horizontal_6"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:padding="@dimen/grid_half_gap" >
+
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/circular_seekbar_background_small"
+            android:src="@drawable/icon_animation_picker_gradient" />
+
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/circular_seekbar_background_small"
+            android:src="@drawable/icon_animation_picker_petals" />
+
+        
+    </LinearLayout>
+
+<ImageView
+    android:layout_width="140dp"
+    android:layout_height="140dp"
+    android:layout_alignLeft="@+id/linearLayout1"
+    android:layout_marginTop="300dp"
+    android:layout_marginLeft="66dp"
+    android:background="@drawable/circular_seekbar_background_small"
+    android:src="@drawable/icon_animation_picker_beach" />
+
+</RelativeLayout>
