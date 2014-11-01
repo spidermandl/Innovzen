@@ -1,34 +1,25 @@
-
 package com.innovzen.fragments;
 
-import com.innovzen.o2chair.R;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.handlers.CircularSeekBarHandler;
 import com.innovzen.handlers.FooterHandler;
+import com.innovzen.o2chair.R;
 import com.innovzen.utils.PersistentUtil;
 import com.innovzen.utils.Util;
-
 /**
- * Fragment should be called with some extras. See ANIMATION_xxx for types of animations available (int values) and also use {@link #KEY_ANIMATION_TYPE} for the bundle key<br/>
- * Note: If no animation type specified in the bundle, the default {@link #ANIMATION_PETALS} will be used
- * 
- * @author MAB
- * 
- */
-/**
- * 平板主页面
- * @author desmond.duan
+ * 新版呼气吸气动画主界面
+ * @author Desmond Duan
  *
  */
-public class FragAnimationTablet extends FragAnimationBase implements OnClickListener {
+public class FragAnimationTabletNew extends FragAnimationBase implements OnClickListener {
 
     // Hold view references
     private View mView;
@@ -55,7 +46,7 @@ public class FragAnimationTablet extends FragAnimationBase implements OnClickLis
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_animation, container, false);
+        View view = inflater.inflate(R.layout.fragment_animation_new, container, false);
 
         super.onView(view);
 
@@ -89,12 +80,6 @@ public class FragAnimationTablet extends FragAnimationBase implements OnClickLis
                 super.activityListener.fragGoToHelp(true);
                 break;
             case R.id.animation_open_drawer_btn:
-            	//<Desmond>
-//                if (super.mDrawerHandler != null) {
-//                    super.pauseExercise();
-//                    super.mDrawerHandler.show();
-//                }
-              //<Desmond>
                 break;
             case R.id.animation_fullscreen:
                 toggleFullscreen();
@@ -114,14 +99,18 @@ public class FragAnimationTablet extends FragAnimationBase implements OnClickLis
     private void initialize(View view) {
 
         // Get references
-        super.footer = (RelativeLayout) view.findViewById(R.id.animation_footer);
+    	//<Desmond>
+        //super.footer = (RelativeLayout) view.findViewById(R.id.animation_footer);
+      //<Desmond>
         header_buttons_container = view.findViewById(R.id.animation_header_buttons_container);
         timer_footer_container = view.findViewById(R.id.animation_footer_container);
 
         // Set click listeners
-        view.findViewById(R.id.animation_pause_btn).setOnClickListener(this);
-        view.findViewById(R.id.animation_help_btn).setOnClickListener(this);
-        view.findViewById(R.id.animation_open_drawer_btn).setOnClickListener(this);
+      //<Desmond>
+//        view.findViewById(R.id.animation_pause_btn).setOnClickListener(this);
+//        view.findViewById(R.id.animation_help_btn).setOnClickListener(this);
+//        view.findViewById(R.id.animation_open_drawer_btn).setOnClickListener(this);
+      //<Desmond>
         view.findViewById(R.id.animation_fullscreen).setOnClickListener(this);
         view.findViewById(R.id.animation_play_overlay_btn).setOnClickListener(this);
 
@@ -176,8 +165,10 @@ public class FragAnimationTablet extends FragAnimationBase implements OnClickLis
         /*
          * Init the footer
          */
-        super.mFooterHandler = new FooterHandler(super.activityListener, super.footer, FooterHandler.HOME, -1, -1);
-        super.mFooterHandler.setRightIconOnClickListener(super.mClickListener);
+      //<Desmond>
+//        super.mFooterHandler = new FooterHandler(super.activityListener, super.footer, FooterHandler.HOME, -1, -1);
+//        super.mFooterHandler.setRightIconOnClickListener(super.mClickListener);
+      //<Desmond>
 
         // Just for the tablet, set the countdown value a bit to the right
         super.countdown_tv.setPadding(Util.getScreenDimensions(getActivity())[0] / 3, 0, 0, 0);
@@ -186,19 +177,21 @@ public class FragAnimationTablet extends FragAnimationBase implements OnClickLis
 
     private void toggleFullscreen() {
         // Check if it's in fullscreen mode by looking at the visibility of the footer
-        if (super.footer.getVisibility() == View.VISIBLE) { // currently NOT in fullscreen mode
-
-            /* Make stuff disappear */
-
-            header_buttons_container.setVisibility(View.GONE);
-
-            animation_type.setVisibility(View.INVISIBLE);
-
-            timer_footer_container.setVisibility(View.GONE);
-
-            super.enableFullscreen();
-
-        } else { // currently in fullscreen mode
+    	//<Desmond>
+//        if (super.footer.getVisibility() == View.VISIBLE) { // currently NOT in fullscreen mode
+//
+//            /* Make stuff disappear */
+//
+//            header_buttons_container.setVisibility(View.GONE);
+//
+//            animation_type.setVisibility(View.INVISIBLE);
+//
+//            timer_footer_container.setVisibility(View.GONE);
+//
+//            super.enableFullscreen();
+//
+//        } else { // currently in fullscreen mode
+    	//<Desmond>
 
             /* Make stuff appear */
 
@@ -210,7 +203,7 @@ public class FragAnimationTablet extends FragAnimationBase implements OnClickLis
 
             super.disableFullscreen();
 
-        }
+        //}
     };
 
     private void toggleTimerThumbs(boolean show) {

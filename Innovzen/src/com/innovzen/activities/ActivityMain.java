@@ -13,6 +13,7 @@ import com.innovzen.entities.SoundGroup;
 import com.innovzen.fragments.FragAnimationPhone;
 import com.innovzen.fragments.FragAnimationPicker;
 import com.innovzen.fragments.FragAnimationTablet;
+import com.innovzen.fragments.FragAnimationTabletNew;
 import com.innovzen.fragments.FragBalance;
 import com.innovzen.fragments.FragChairInfo;
 import com.innovzen.fragments.FragExercisePicker;
@@ -63,6 +64,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
         // Load the sound information
         loadSoundInfo();
+        
 
         // By default go to the main menu fragment
         //<chy>
@@ -255,7 +257,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         addToBackstack = true;
 
         if (IS_TABLET) {
-            navigateTo(FragAnimationTablet.class, null, addToBackstack, ActivityMain.FRAG_TAG_ANIMATION);
+            navigateTo(FragAnimationTabletNew.class, null, addToBackstack, ActivityMain.FRAG_TAG_ANIMATION);
         } else {
             navigateTo(FragAnimationPhone.class, null, addToBackstack, ActivityMain.FRAG_TAG_ANIMATION);
         }

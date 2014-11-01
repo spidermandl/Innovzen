@@ -103,7 +103,9 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
     public static String STRING_EXHALE;
 
     // Hold view references
-    protected DrawerRightHandler mDrawerHandler;
+    //<Desmond>
+    //protected DrawerRightHandler mDrawerHandler;
+    //</Desmond>
     protected ImageView fullscreen_btn;
     protected TextView animation_type;
     protected View play_overlay;
@@ -179,12 +181,14 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.footer_icon_right:
-                    if (mDrawerHandler != null) {
-
-                        pauseExercise();
-
-                        mDrawerHandler.show();
-                    }
+                	//<Desmond>
+//                    if (mDrawerHandler != null) {
+//
+//                        pauseExercise();
+//
+//                        mDrawerHandler.show();
+//                    }
+                  //<Desmond>
                     break;
                 case R.id.animation_play_overlay_btn:
                     overlayBtnPressed();
@@ -273,12 +277,14 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
 
     @Override
     public boolean onBackPress() {
-        if (mDrawerHandler.isOpen()) {
-
-            mDrawerHandler.hide();
-
-            return true;
-        }
+    	//<Desmond>
+//        if (mDrawerHandler.isOpen()) {
+//
+//            mDrawerHandler.hide();
+//
+//            return true;
+//        }
+      //<Desmond>
 
         return false;
     }
@@ -301,12 +307,16 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
     public void init(View view) {
 
         // Get references
-        DrawerLayout drawer = (DrawerLayout) view.findViewById(R.id.drawer_layout);
+    	//<Desmond>
+        //DrawerLayout drawer = (DrawerLayout) view.findViewById(R.id.drawer_layout);
+        //<Desmond>
         animation_type = (TextView) view.findViewById(R.id.animation_type);
         play_overlay = view.findViewById(R.id.animation_play_overlay);
         animation_parent_container = view.findViewById(R.id.animation_animation_container);
         play_overlay_btn = view.findViewById(R.id.animation_play_overlay_btn);
-        header = view.findViewById(R.id.reusable_header);
+      //<Desmond>
+      //header = view.findViewById(R.id.reusable_header);
+      //<Desmond>
         fullscreen_btn = (ImageView) view.findViewById(R.id.animation_fullscreen);
         dummy_white_background_for_fullscreen = view.findViewById(R.id.animation_dummy_white_view_for_fullscreen);
         countdown_tv = (TextView) view.findViewById(R.id.animation_countdown);
@@ -323,11 +333,13 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
          * Initialize the drawer
          */
         // Init the handler
-        mDrawerHandler = new DrawerRightHandler(super.activityListener, drawer);
-        // Don't display the semi-transparent black overlay around the drawer
-        drawer.setScrimColor(Color.parseColor("#00FFFFFF"));
-        // Disable the drawer toggle using the swipe gestures
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+      //<Desmond>
+//        mDrawerHandler = new DrawerRightHandler(super.activityListener, drawer);
+//        // Don't display the semi-transparent black overlay around the drawer
+//        drawer.setScrimColor(Color.parseColor("#00FFFFFF"));
+//        // Disable the drawer toggle using the swipe gestures
+//        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+      //<Desmond>
 
         // Get the times for the 4 steps of an exercise
         mTimes.inhale = PersistentUtil.getInt(getActivity(), PERSIST_TIME_INHALE, 0);
@@ -564,9 +576,10 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         fullscreen_btn.setImageResource(R.drawable.selector_icon_fullscreen_out);
 
         mExerciseManager.toggleFullscreen();
-
-        footer.setVisibility(View.GONE);
-        header.setVisibility(View.GONE);
+      //<Desmond>
+//        footer.setVisibility(View.GONE);
+//        header.setVisibility(View.GONE);
+      //<Desmond>
 
     }
 
@@ -582,9 +595,10 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         fullscreen_btn.setImageResource(R.drawable.selector_icon_fullscreen_in);
 
         mExerciseManager.toggleFullscreen();
-
-        footer.setVisibility(View.VISIBLE);
-        header.setVisibility(View.VISIBLE);
+      //<Desmond>
+//        footer.setVisibility(View.VISIBLE);
+//        header.setVisibility(View.VISIBLE);
+      //<Desmond>
     }
 
     /**

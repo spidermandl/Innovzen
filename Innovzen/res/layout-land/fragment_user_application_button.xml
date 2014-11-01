@@ -29,7 +29,6 @@
         android:id="@+id/up_mea_Horizontal_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/left_vertical_1"
         layout:orientation="false"
@@ -56,18 +55,13 @@
         layout:rate_down="28"
         layout:rate_up="11" />
 
-    <LinearLayout
+    <include layout="@layout/reusable_lefter" 
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/left_vertical_2"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_alignLeft="@id/up_mea_Horizontal_1"
         android:layout_alignRight="@id/up_mea_Horizontal_1"
-        android:layout_alignTop="@id/left_vertical_1"
-        android:background="#7CB148"
-        android:padding="@dimen/grid_half_gap" >
-
-        <include layout="@layout/reusable_lefter" />
-    </LinearLayout>
+        android:layout_alignParentBottom="true"/>
 
     <LinearLayout
         android:id="@+id/menu_balance"

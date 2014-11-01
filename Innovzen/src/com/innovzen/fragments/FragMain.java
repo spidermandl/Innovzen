@@ -9,6 +9,11 @@ import android.view.View.OnClickListener;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
 
+/**
+ * 第一个主界面，启动机器，进入联系
+ * @author Desmond Duan
+ *
+ */
 public class FragMain extends FragBase implements OnClickListener{
 
 	 @Override
@@ -24,7 +29,8 @@ public class FragMain extends FragBase implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.menu_balance:
 			//test
-			super.activityListener.fragGoToSetting(true);
+			//super.activityListener.fragGoToSetting(true);
+			super.activityListener.fragGoToAnimation(true);
 			break;
 
 		default:
