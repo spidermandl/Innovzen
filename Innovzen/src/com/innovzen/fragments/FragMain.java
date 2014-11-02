@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
@@ -32,7 +33,12 @@ public class FragMain extends FragBase implements OnClickListener{
 			//super.activityListener.fragGoToSetting(true);
 			super.activityListener.fragGoToAnimation(true);
 			break;
-
+		case R.id.menu_relax:
+			super.activityListener.fragGoToAnimation(true);
+			break;
+		case R.id.menu_performance:
+			super.activityListener.fragGoToAnimation(true);
+			break;
 		default:
 			break;
 		}
@@ -45,7 +51,8 @@ public class FragMain extends FragBase implements OnClickListener{
 		view.findViewById(R.id.menu_mySession).setOnClickListener(this);
 		view.findViewById(R.id.menu_performance).setOnClickListener(this);
 		view.findViewById(R.id.menu_relax).setOnClickListener(this);
-		
+		ImageView left_mid = (ImageView) view.findViewById(R.id.left_mid);
+		left_mid.setBackgroundResource(R.drawable.banner_choose_exercise);
 	}
 
 }

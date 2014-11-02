@@ -5,11 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
 
 public class FragSettings extends FragBase implements OnClickListener{
+	private ImageView left_top,left_mid,left_bottom;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -51,6 +54,12 @@ public class FragSettings extends FragBase implements OnClickListener{
 		view.findViewById(R.id.set_time).setOnClickListener(this);
 		view.findViewById(R.id.set_graphic).setOnClickListener(this);
 		view.findViewById(R.id.set_voice).setOnClickListener(this);
+		left_top = (ImageView) view.findViewById(R.id.left_top);
+		left_mid = (ImageView) view.findViewById(R.id.left_mid);
+		left_bottom = (ImageView) view.findViewById(R.id.left_bottom);
+		left_top.setBackgroundResource(R.drawable.selector_btn_back);
+		left_mid.setBackgroundResource(R.drawable.banner_settings);
+		left_bottom.setBackgroundResource(R.drawable.selector_btn_volume);
 	}
 
 }
