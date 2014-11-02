@@ -3,18 +3,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:background="#000000"
-    >
+    android:layout_height="match_parent"
+    android:background="@color/main_backgroud" >
 
-  <!-- <RelativeLayout
+    <!--
+    <RelativeLayout
         android:id="@+id/animation_dummy_white_view_for_fullscreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
         android:visibility="gone" >
-    </RelativeLayout> -->  
-    
+    </RelativeLayout>
+    -->
+
     <com.innovzen.ui.MeasureView
         android:id="@+id/main_mea_vertical_1"
         android:layout_width="wrap_content"
@@ -59,8 +60,8 @@
         android:id="@+id/main_mea_horizontal_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/main_mea_horizontal_1"
         android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/main_mea_horizontal_1"
         layout:orientation="false"
         layout:rate_down="28"
         layout:rate_up="18" />
@@ -69,8 +70,8 @@
         android:id="@+id/main_mea_horizontal_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/main_mea_horizontal_2"
         android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/main_mea_horizontal_2"
         layout:orientation="false"
         layout:rate_down="28"
         layout:rate_up="6" />
@@ -83,8 +84,9 @@
         android:layout_alignLeft="@id/main_mea_horizontal_1"
         android:layout_alignRight="@id/main_mea_horizontal_1"
         android:layout_alignTop="@id/main_mea_vertical_1"
-        layout="@layout/reusable_lefter" />
-    
+        layout="@layout/reusable_lefter"
+        android:background="#000000"
+        android:padding="@dimen/grid_half_gap" />
 
     <!-- 中上框架 -->
 
@@ -96,7 +98,6 @@
         android:layout_alignLeft="@id/main_mea_horizontal_2"
         android:layout_alignRight="@id/main_mea_horizontal_2"
         android:layout_alignTop="@id/main_mea_vertical_1"
-        
         android:orientation="horizontal"
         android:weightSum="3" >
 
@@ -132,14 +133,13 @@
     <!-- 中中动画显示 -->
 
     <include
-        layout="@layout/animation_core"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/main_mea_vertical_2"
         android:layout_alignLeft="@id/main_mea_horizontal_2"
         android:layout_alignRight="@id/main_mea_horizontal_2"
-        android:layout_alignTop="@id/main_mea_vertical_2" />
-
+        android:layout_alignTop="@id/main_mea_vertical_2"
+        layout="@layout/animation_core" />
 
     <!-- 中下框架 -->
 

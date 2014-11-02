@@ -5,7 +5,7 @@
     xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="#000000" >
+    android:background="@color/main_backgroud" >
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/left_mea_vertical_1"
@@ -88,18 +88,15 @@
         layout:rate_down="65"
         layout:rate_up="13" />
 
-    <LinearLayout
+    <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_3"
         android:layout_alignLeft="@id/up_mea_Horizontal_1"
         android:layout_alignRight="@id/up_mea_Horizontal_1"
         android:layout_alignTop="@id/left_mea_vertical_1"
-        android:background="#000000"
-        android:padding="@dimen/grid_half_gap" >
-
-        <include layout="@layout/reusable_lefter" />
-    </LinearLayout>
+        layout="@layout/reusable_lefter"
+        android:padding="@dimen/grid_half_gap" />
 
     <ImageView
         android:id="@+id/set_bluetooth"
@@ -110,8 +107,7 @@
         android:layout_alignRight="@id/up_mea_Horizontal_2"
         android:layout_alignTop="@id/left_mea_vertical_1"
         android:background="@drawable/selector_icon_bluetooth"
-        android:padding="@dimen/grid_half_gap" 
-        />
+        android:padding="@dimen/grid_half_gap" />
 
     <ImageView
         android:id="@+id/set_language"
@@ -146,8 +142,8 @@
         android:background="@drawable/selector_icon_graphic"
         android:padding="@dimen/grid_half_gap" />
 
-        <ImageView
-            android:id="@+id/set_music"
+    <ImageView
+        android:id="@+id/set_music"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
@@ -157,9 +153,8 @@
         android:background="@drawable/selector_icon_music"
         android:padding="@dimen/grid_half_gap" />
 
-
-        <ImageView
-           android:id="@+id/set_voice"
+    <ImageView
+        android:id="@+id/set_voice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
@@ -167,32 +162,30 @@
         android:layout_alignRight="@id/up_mea_Horizontal_3"
         android:layout_alignTop="@id/left_mea_vertical_2"
         android:background="@drawable/selector_icon_voice"
-        android:padding="@dimen/grid_half_gap"/>
+        android:padding="@dimen/grid_half_gap" />
 
-        <ImageView
-            android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
         android:layout_alignLeft="@id/up_mea_Horizontal_4"
         android:layout_alignRight="@id/up_mea_Horizontal_4"
         android:layout_alignTop="@id/left_mea_vertical_2"
         android:background="@drawable/selector_icon_pulse"
-        android:padding="@dimen/grid_half_gap"  />
+        android:padding="@dimen/grid_half_gap" />
 
-
-        <ImageView
-           android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
         android:layout_alignLeft="@id/up_mea_Horizontal_5"
         android:layout_alignRight="@id/up_mea_Horizontal_5"
         android:layout_alignTop="@id/left_mea_vertical_2"
         android:background="@drawable/selector_icon_swing"
-        android:padding="@dimen/grid_half_gap"/>
+        android:padding="@dimen/grid_half_gap" />
 
-
-        <ImageView
-             android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_3"
         android:layout_alignLeft="@id/up_mea_Horizontal_2"
@@ -201,34 +194,34 @@
         android:background="@drawable/selector_icon_o2"
         android:padding="@dimen/grid_half_gap" />
 
-        <ImageView
-           android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_3"
         android:layout_alignLeft="@id/up_mea_Horizontal_3"
         android:layout_alignRight="@id/up_mea_Horizontal_3"
         android:layout_alignTop="@id/left_mea_vertical_3"
         android:background="@drawable/selector_icon_leds"
-        android:padding="@dimen/grid_half_gap"/>
+        android:padding="@dimen/grid_half_gap" />
 
-        <ImageView
-           android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_3"
         android:layout_alignLeft="@id/up_mea_Horizontal_4"
         android:layout_alignRight="@id/up_mea_Horizontal_4"
         android:layout_alignTop="@id/left_mea_vertical_3"
         android:background="@drawable/selector_icon_heat"
-        android:padding="@dimen/grid_half_gap"  />
+        android:padding="@dimen/grid_half_gap" />
 
-        <ImageView
-           android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_3"
         android:layout_alignLeft="@id/up_mea_Horizontal_5"
         android:layout_alignRight="@id/up_mea_Horizontal_5"
         android:layout_alignTop="@id/left_mea_vertical_3"
         android:background="@drawable/selector_icon_history"
-        android:padding="@dimen/grid_half_gap"/>
+        android:padding="@dimen/grid_half_gap" />
 
 </RelativeLayout>

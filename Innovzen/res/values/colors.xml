@@ -70,6 +70,7 @@
     <color name="frag_text">#69A6BD</color>
      <color name="voice_text">#69A6BD</color>
      <!-- MainBackground -->
+     <color name="main_backgroud">#000000</color>
      <color name="main_bg">#77BBC9</color>
       <color name="main_bg2">#ffffff</color>
     <!-- chy -->
