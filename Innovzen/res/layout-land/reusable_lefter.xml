@@ -5,11 +5,11 @@
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:id="@+id/left_toolbar"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:id="@+id/left_toolbar" >
+    android:layout_height="match_parent" >
 
-<com.innovzen.ui.MeasureView
+    <com.innovzen.ui.MeasureView
         android:id="@+id/left_mea_vertical_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,14 +39,14 @@
         layout:rate_down="13"
         layout:rate_up="2" />
 
-     <ImageView
+    <ImageView
         android:id="@+id/left_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_1"
-        android:layout_alignTop="@id/left_mea_vertical_1"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/selector_icon_home_power"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        android:background="@drawable/selector_btn_back"
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
@@ -54,8 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
-        android:layout_alignTop="@id/left_mea_vertical_2"
         android:layout_alignParentLeft="true"
+        android:layout_alignTop="@id/left_mea_vertical_2"
         android:background="@drawable/banner_time"
         android:padding="@dimen/grid_half_gap" />
 
@@ -64,8 +64,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_3"
-        android:layout_alignTop="@id/left_mea_vertical_3"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/selector_btn_help"
+        android:layout_alignTop="@id/left_mea_vertical_3"
+        android:background="@drawable/selector_btn_volume"
         android:padding="@dimen/grid_half_gap" />
+
+    <LinearLayout
+        android:id="@+id/voice_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@id/left_mea_vertical_2"
+        android:background="@drawable/btn_volum_open"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:weightSum="12" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3" 
+            android:src="@drawable/icon_volum"
+            />
+
+        <ProgressBar
+            android:layout_weight="6"
+            android:id="@+id/myView_ProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="3dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:progress="57"
+            android:background="@drawable/volume_level_down"
+             >
+        </ProgressBar>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3" 
+              android:src="@drawable/icon_volum_less"
+            />
+    </LinearLayout>
+
 </RelativeLayout>

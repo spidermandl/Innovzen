@@ -4,7 +4,7 @@
     xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="#000000" >
+    android:background="@color/main_backgroud" >
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/left_vertical_1"
@@ -56,18 +56,15 @@
         layout:rate_down="28"
         layout:rate_up="12" />
 
-    <LinearLayout
+    <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_vertical_2"
         android:layout_alignLeft="@id/up_mea_Horizontal_1"
         android:layout_alignRight="@id/up_mea_Horizontal_1"
         android:layout_alignTop="@id/left_vertical_1"
-        android:background="#000000"
-        android:padding="@dimen/grid_half_gap" >
-
-        <include layout="@layout/reusable_lefter" />
-    </LinearLayout>
+        layout="@layout/reusable_lefter"
+        android:padding="@dimen/grid_half_gap" />
 
     <ImageView
         android:id="@+id/menu_balance"
@@ -93,8 +90,8 @@
 
     <ImageView
         android:id="@+id/menu_relax"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_vertical_1"
         android:layout_alignLeft="@id/up_mea_Horizontal_3"
         android:layout_alignRight="@id/up_mea_Horizontal_3"
