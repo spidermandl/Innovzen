@@ -56,18 +56,16 @@
         layout:rate_down="28"
         layout:rate_up="12" />
 
-    <LinearLayout
+    <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_vertical_2"
         android:layout_alignLeft="@id/up_mea_Horizontal_1"
         android:layout_alignRight="@id/up_mea_Horizontal_1"
         android:layout_alignTop="@id/left_vertical_1"
+        layout="@layout/reusable_lefter"
         android:background="#000000"
-        android:padding="@dimen/grid_half_gap" >
-
-        <include layout="@layout/reusable_lefter" />
-    </LinearLayout>
+        android:padding="@dimen/grid_half_gap" />
 
     <ImageView
         android:id="@+id/menu_balance"
@@ -93,8 +91,8 @@
 
     <ImageView
         android:id="@+id/menu_relax"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_vertical_1"
         android:layout_alignLeft="@id/up_mea_Horizontal_3"
         android:layout_alignRight="@id/up_mea_Horizontal_3"

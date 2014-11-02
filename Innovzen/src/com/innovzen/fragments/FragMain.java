@@ -45,6 +45,11 @@ public class FragMain extends FragBase implements OnClickListener{
 		view.findViewById(R.id.menu_mySession).setOnClickListener(this);
 		view.findViewById(R.id.menu_performance).setOnClickListener(this);
 		view.findViewById(R.id.menu_relax).setOnClickListener(this);
+		if(this.getActivity().findViewById(R.id.left_toolbar)!=null){
+			leftTop.setOnClickListener(this);
+			leftMid.setOnClickListener(this);
+			leftMid.setOnClickListener(this);
+		}
 		
 	}
 

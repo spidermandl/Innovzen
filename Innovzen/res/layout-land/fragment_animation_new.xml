@@ -76,12 +76,14 @@
     <!-- 左边栏 -->
 
     <include
-        layout="@layout/reusable_lefter"
-        android:id="@+id/main_left"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/main_mea_vertical_3"
         android:layout_alignLeft="@id/main_mea_horizontal_1"
-        android:layout_alignRight="@id/main_mea_horizontal_1"/>
+        android:layout_alignRight="@id/main_mea_horizontal_1"
+        android:layout_alignTop="@id/main_mea_vertical_1"
+        layout="@layout/reusable_lefter" />
+    
 
     <!-- 中上框架 -->
 
