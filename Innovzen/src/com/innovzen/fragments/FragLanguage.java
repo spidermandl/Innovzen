@@ -33,7 +33,7 @@ public class FragLanguage extends FragBase implements OnClickListener {
 
 	@Override
 	public void init(View view) {
-		
+		initLefter(view);
 
 	}
 
