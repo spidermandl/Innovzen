@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.o2chair.R;
@@ -27,10 +28,7 @@ public abstract class FragBase extends Fragment {
      * desmond
      * 界面左侧控制栏
      */
-    protected ImageView leftTop;
-    protected ImageView leftMid;
-    protected ImageView leftBottom;
-    protected LinearLayout voice_progressbar;
+   
 
     /**
      * Does proper initializations after inflating the view
@@ -54,6 +52,10 @@ public abstract class FragBase extends Fragment {
          * 实例化左侧控制栏的所有组件
          */
         if(activity.findViewById(R.id.left_toolbar)!=null){
+        	 ImageView leftTop;
+        	    final ImageView leftMid;
+        	    final ImageView leftBottom;
+        	    final LinearLayout voice_progressbar;
         	leftTop=(ImageView)activity.findViewById(R.id.left_top);
         	leftMid=(ImageView)activity.findViewById(R.id.left_mid);
         	leftBottom=(ImageView)activity.findViewById(R.id.left_bottom);
@@ -63,7 +65,7 @@ public abstract class FragBase extends Fragment {
         	leftBottom.setOnClickListener(new OnClickListener() {			
     			@Override
     			public void onClick(View v) {
-    			
+    			Toast.makeText(getActivity(), "sssssssss", 0).show();
                      leftMid.setVisibility(View.INVISIBLE);
                      leftBottom.setVisibility(View.INVISIBLE);
                      voice_progressbar.setVisibility(View.VISIBLE);
