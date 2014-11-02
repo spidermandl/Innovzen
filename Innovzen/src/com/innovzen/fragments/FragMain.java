@@ -5,12 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
 
 /**
- * 第一个主界面，启动机器，进入联系
+ * 第一个主界面，启动机器，进入练习
  * @author Desmond Duan
  *
  */
@@ -32,7 +33,12 @@ public class FragMain extends FragBase implements OnClickListener{
 			//super.activityListener.fragGoToSetting(true);
 			super.activityListener.fragGoToAnimation(true);
 			break;
-
+		case R.id.menu_relax:
+			super.activityListener.fragGoToAnimation(true);
+			break;
+		case R.id.menu_performance:
+			super.activityListener.fragGoToAnimation(true);
+			break;
 		default:
 			break;
 		}
@@ -45,12 +51,18 @@ public class FragMain extends FragBase implements OnClickListener{
 		view.findViewById(R.id.menu_mySession).setOnClickListener(this);
 		view.findViewById(R.id.menu_performance).setOnClickListener(this);
 		view.findViewById(R.id.menu_relax).setOnClickListener(this);
-		if(this.getActivity().findViewById(R.id.left_toolbar)!=null){
-			leftTop.setOnClickListener(this);
-			leftMid.setOnClickListener(this);
-			leftMid.setOnClickListener(this);
-		}
-		
+
+	    /**
+	     * desmond
+	     * 实例化左侧控制栏的所有组件
+	     */
+		leftTop=(ImageView)view.findViewById(R.id.left_top);
+		leftMid=(ImageView)view.findViewById(R.id.left_mid);
+		leftBottom=(ImageView)view.findViewById(R.id.left_bottom);
+		leftTop.setOnClickListener(this);
+		leftMid.setOnClickListener(this);
+		leftMid.setOnClickListener(this);
+		leftMid.setBackgroundResource(R.drawable.banner_choose_exercise);
 	}
 
 }

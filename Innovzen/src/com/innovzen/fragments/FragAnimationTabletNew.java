@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.innovzen.entities.ExerciseTimes;
@@ -79,6 +80,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
             case R.id.animation_help_btn:
                 super.activityListener.fragGoToHelp(true);
                 break;
+             //<chy settings>
+            case R.id.main_animation_setting:
+            	super.activityListener.fragGoToSetting(true);
+              //</chy>  
             case R.id.animation_open_drawer_btn:
                 break;
             case R.id.animation_fullscreen:
@@ -87,6 +92,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
             case R.id.animation_play_overlay_btn:
                 overlayPlayBtnPressed();
                 break;
+                
         }
 
     }
@@ -113,7 +119,15 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
       //<Desmond>
         view.findViewById(R.id.animation_fullscreen).setOnClickListener(this);
         view.findViewById(R.id.animation_play_overlay_btn).setOnClickListener(this);
-
+      //<chy> settins¼àÌýÊÂ¼þ
+        view.findViewById(R.id.main_animation_setting).setOnClickListener(this);
+        ImageView left_mid =(ImageView) view.findViewById(R.id.left_mid);
+        ImageView left_bottom = (ImageView) view.findViewById(R.id.left_bottom);
+        ImageView left_top = (ImageView) view.findViewById(R.id.left_top);
+        left_top.setBackgroundResource(R.drawable.selector_btn_back);
+        left_mid.setBackgroundResource(R.drawable.banner_balance_min);
+        left_bottom.setBackgroundResource(R.drawable.selector_btn_volume);
+      //</chy>  
         this.mView = view;
 
         /*

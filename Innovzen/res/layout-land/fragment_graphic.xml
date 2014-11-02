@@ -63,7 +63,7 @@
         android:layout_toRightOf="@id/left_mea_vertical_1"
         layout:orientation="false"
         layout:rate_down="67"
-        layout:rate_up="12" />
+        layout:rate_up="10" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/up_mea_Horizontal_2"
@@ -73,7 +73,7 @@
         android:layout_toRightOf="@id/up_mea_Horizontal_1"
         layout:orientation="false"
         layout:rate_down="67"
-        layout:rate_up="7" />
+        layout:rate_up="8" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/up_mea_Horizontal_3"
@@ -93,7 +93,7 @@
         android:layout_toRightOf="@id/up_mea_Horizontal_3"
         layout:orientation="false"
         layout:rate_down="67"
-        layout:rate_up="7" />
+        layout:rate_up="8" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/up_mea_Horizontal_5"

@@ -4,6 +4,7 @@ package com.innovzen.fragments.base;
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
 import com.innovzen.interfaces.FragmentCommunicator;
@@ -46,14 +47,5 @@ public abstract class FragBase extends Fragment {
             throw new ClassCastException(activity.toString() + " must implement FragmentCommunicator");
         }
         
-        /**
-         * desmond
-         * 实例化左侧控制栏的所有组件
-         */
-        if(activity.findViewById(R.id.left_toolbar)!=null){
-        	leftTop=(ImageView)activity.findViewById(R.id.left_top);
-        	leftMid=(ImageView)activity.findViewById(R.id.left_mid);
-        	leftBottom=(ImageView)activity.findViewById(R.id.left_bottom);
-        }
     }
 }

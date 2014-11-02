@@ -3,7 +3,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:background="#000000"
+    >
 
   <!-- <RelativeLayout
         android:id="@+id/animation_dummy_white_view_for_fullscreen"
@@ -74,7 +76,6 @@
         layout:rate_up="6" />
 
     <!-- 左边栏 -->
-
     <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,6 +96,7 @@
         android:layout_alignLeft="@id/main_mea_horizontal_2"
         android:layout_alignRight="@id/main_mea_horizontal_2"
         android:layout_alignTop="@id/main_mea_vertical_1"
+        
         android:orientation="horizontal"
         android:weightSum="3" >
 
@@ -103,7 +105,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_home"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -112,7 +114,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_play"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -121,7 +123,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_pause"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
     </LinearLayout>
@@ -157,7 +159,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_settings"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -166,7 +168,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_help"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -175,7 +177,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_gravity"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
     </LinearLayout>
@@ -198,7 +200,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#FF00FF00"
+            android:background="@drawable/selector_btn_breath_more"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -207,7 +209,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#FF00FF00"
+            android:background="@drawable/selector_btn_breath_less"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -216,7 +218,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#FF00FF00"
+            android:background="@drawable/selector_btn_backup"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -225,7 +227,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#FF00FF00"
+            android:background="@drawable/selector_btn_backdown"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -234,7 +236,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#FF00FF00"
+            android:background="@drawable/selector_btn_footup"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -243,7 +245,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#FF00FF00"
+            android:background="@drawable/selector_btn_footdown"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
     </LinearLayout>
