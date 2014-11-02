@@ -52,13 +52,7 @@ public class FragMain extends FragBase implements OnClickListener{
 		view.findViewById(R.id.menu_performance).setOnClickListener(this);
 		view.findViewById(R.id.menu_relax).setOnClickListener(this);
 
-	    /**
-	     * desmond
-	     * 实例化左侧控制栏的所有组件
-	     */
-		leftTop=(ImageView)view.findViewById(R.id.left_top);
-		leftMid=(ImageView)view.findViewById(R.id.left_mid);
-		leftBottom=(ImageView)view.findViewById(R.id.left_bottom);
+	    initLefter(view);
 		leftTop.setOnClickListener(this);
 		leftMid.setOnClickListener(this);
 		leftMid.setOnClickListener(this);

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.o2chair.R;
@@ -39,6 +40,28 @@ public abstract class FragBase extends Fragment {
 	 */
 	public abstract void init(View view);
 
+	/**
+	 * desmond 初始化左侧控制栏
+	 * 
+	 * @param view
+	 */
+	protected void initLefter(View view) {
+		leftTop = (ImageView) view.findViewById(R.id.left_top);
+		leftMid = (ImageView) view.findViewById(R.id.left_mid);
+		leftBottom = (ImageView) view.findViewById(R.id.left_bottom);
+		// 点击切换图片
+		voice_progressbar = (LinearLayout) view.findViewById(R.id.voice_progressbar);
+		leftBottom.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				leftMid.setVisibility(View.INVISIBLE);
+				leftBottom.setVisibility(View.INVISIBLE);
+				voice_progressbar.setVisibility(View.VISIBLE);
+			}
+		});
+	}
+
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -50,25 +73,6 @@ public abstract class FragBase extends Fragment {
 					+ " must implement FragmentCommunicator");
 		}
 
-		/**
-		 * desmond 实例化左侧控制栏的所有组件
-		 */
-		leftTop = (ImageView) activity.findViewById(R.id.left_top);
-		leftMid = (ImageView) activity.findViewById(R.id.left_mid);
-		leftBottom = (ImageView) activity.findViewById(R.id.left_bottom);
-
-		// 点击切换图片
-		voice_progressbar = (LinearLayout) activity
-				.findViewById(R.id.voice_progressbar);
-		leftBottom.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-				leftMid.setVisibility(View.INVISIBLE);
-				leftBottom.setVisibility(View.INVISIBLE);
-				voice_progressbar.setVisibility(View.VISIBLE);
-			}
-		});
-
 	}
+
 }
