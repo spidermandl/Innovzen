@@ -52,7 +52,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
         super.onView(view);
 
         initialize(view);
-
+        initLefter(view);
         return view;
 
     }

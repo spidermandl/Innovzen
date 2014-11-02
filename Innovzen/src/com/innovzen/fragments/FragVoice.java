@@ -28,6 +28,7 @@ public class FragVoice extends FragBase implements OnClickListener{
 
 	@Override
 	public void init(View view) {
+		initLefter(view);
 		left_top = (ImageView) view.findViewById(R.id.left_top);
 		left_mid = (ImageView) view.findViewById(R.id.left_mid);
 		left_bottom = (ImageView) view.findViewById(R.id.left_bottom);
