@@ -67,6 +67,7 @@
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
+        android:id="@+id/man_voice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_1"
@@ -77,6 +78,7 @@
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
+        android:id="@+id/woman_voice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
@@ -87,6 +89,7 @@
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
+        android:id="@+id/silence_voice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_3"

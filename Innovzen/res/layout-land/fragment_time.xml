@@ -150,6 +150,7 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/time_5min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
@@ -157,7 +158,9 @@
         android:layout_alignRight="@id/up_mea_Horizontal_3"
         android:layout_alignTop="@id/left_mea_vertical_2"
         android:background="@drawable/selector_time_5min" />
+
     <ImageView
+        android:id="@+id/time_10min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
@@ -165,7 +168,9 @@
         android:layout_alignRight="@id/up_mea_Horizontal_5"
         android:layout_alignTop="@id/left_mea_vertical_2"
         android:background="@drawable/selector_time_10min" />
-<ImageView
+
+    <ImageView
+        android:id="@+id/time_15min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
@@ -173,7 +178,9 @@
         android:layout_alignRight="@id/up_mea_Horizontal_7"
         android:layout_alignTop="@id/left_mea_vertical_2"
         android:background="@drawable/selector_time_15min" />
-<ImageView
+
+    <ImageView
+        android:id="@+id/time_20min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_4"
@@ -181,7 +188,9 @@
         android:layout_alignRight="@id/up_mea_Horizontal_3"
         android:layout_alignTop="@id/left_mea_vertical_4"
         android:background="@drawable/selector_time_20min" />
-<ImageView
+
+    <ImageView
+        android:id="@+id/time_25min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_4"
@@ -189,7 +198,9 @@
         android:layout_alignRight="@id/up_mea_Horizontal_5"
         android:layout_alignTop="@id/left_mea_vertical_4"
         android:background="@drawable/selector_time_25min" />
-<ImageView
+
+    <ImageView
+        android:id="@+id/time_30min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_4"
@@ -197,4 +208,5 @@
         android:layout_alignRight="@id/up_mea_Horizontal_7"
         android:layout_alignTop="@id/left_mea_vertical_4"
         android:background="@drawable/selector_time_30min" />
+
 </RelativeLayout>

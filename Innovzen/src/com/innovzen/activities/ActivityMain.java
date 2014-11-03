@@ -24,8 +24,9 @@ import com.innovzen.fragments.FragChairInfo;
 import com.innovzen.fragments.FragExercisePicker;
 import com.innovzen.fragments.FragGraphic;
 import com.innovzen.fragments.FragHelp;
+import com.innovzen.fragments.FragHelpNew;
 import com.innovzen.fragments.FragHistory;
-import com.innovzen.fragments.FragHistory2;
+import com.innovzen.fragments.FragHistoryNew;
 import com.innovzen.fragments.FragLanguage;
 import com.innovzen.fragments.FragMain;
 import com.innovzen.fragments.FragMainMenu;
@@ -493,8 +494,14 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		
 	}
 	@Override
-	public void fragGoToHistory2(boolean addToBackstack) {
-		navigateTo(FragHistory2.class, null, addToBackstack);
+	public void fragGoToHistoryNew(boolean addToBackstack) {
+		navigateTo(FragHistoryNew.class, null, addToBackstack);
+		
+	}
+
+	@Override
+	public void fragGoToHelpNew(boolean addToBackstack) {
+		navigateTo(FragHelpNew.class, null, addToBackstack);
 		
 	}
 

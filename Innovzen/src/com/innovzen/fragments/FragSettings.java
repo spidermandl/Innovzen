@@ -41,7 +41,7 @@ public class FragSettings extends FragBase implements OnClickListener{
 			super.activityListener.fragGoToVoice(true);
 			break;
 		case R.id.set_history:
-			super.activityListener.fragGoToHistory2(true);
+			super.activityListener.fragGoToHistoryNew(true);
 			break;
 		default:
 			break;
