@@ -124,14 +124,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
         view.findViewById(R.id.animation_fullscreen).setOnClickListener(this);
         view.findViewById(R.id.main_animation_help).setOnClickListener(this);
       //<chy> settins¼àÌýÊÂ¼þ
+        view.findViewById(R.id.animation_play_overlay_btn).setOnClickListener(this);
         view.findViewById(R.id.main_animation_setting).setOnClickListener(this);
-        view.findViewById(R.id.main_animation_setting).setOnClickListener(this);
-        ImageView left_mid =(ImageView) view.findViewById(R.id.left_mid);
-        ImageView left_bottom = (ImageView) view.findViewById(R.id.left_bottom);
-        ImageView left_top = (ImageView) view.findViewById(R.id.left_top);
-        left_top.setBackgroundResource(R.drawable.selector_btn_back);
-        left_mid.setBackgroundResource(R.drawable.banner_balance_min);
-        left_bottom.setBackgroundResource(R.drawable.selector_btn_volume);
       //</chy>  
         this.mView = view;
 
@@ -194,6 +188,14 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
 
     }
 
+    @Override
+    protected void initLefter(View view){
+    	super.initLefter(view);
+        leftTop.setBackgroundResource(R.drawable.selector_btn_back);
+        leftMid.setBackgroundResource(R.drawable.banner_balance_min);
+        leftBottom.setBackgroundResource(R.drawable.selector_btn_volume);
+    }
+    
     private void toggleFullscreen() {
         // Check if it's in fullscreen mode by looking at the visibility of the footer
     	//<Desmond>
