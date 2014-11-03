@@ -39,6 +39,9 @@ public class FragMain extends FragBase implements OnClickListener{
 		case R.id.menu_performance:
 			super.activityListener.fragGoToAnimation(true);
 			break;
+		case R.id.left_top:
+			super.activityListener.fragConnectBluetooth();
+			break;
 		default:
 			break;
 		}
@@ -55,7 +58,8 @@ public class FragMain extends FragBase implements OnClickListener{
 	    initLefter(view);
 		leftTop.setOnClickListener(this);
 		leftMid.setOnClickListener(this);
-		leftMid.setOnClickListener(this);
+		leftBottom.setOnClickListener(this);
+		leftTop.setBackgroundResource(R.drawable.selector_btn_home);
 		leftMid.setBackgroundResource(R.drawable.banner_choose_exercise);
 	}
 

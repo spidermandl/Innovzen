@@ -1,5 +1,6 @@
 package com.innovzen.activities;
 
+import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -48,6 +49,7 @@ public class ActivityBase extends FragmentActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
     }
+
 
     /**
      * Navigate to a specific fragment

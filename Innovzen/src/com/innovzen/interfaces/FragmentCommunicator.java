@@ -80,5 +80,9 @@ public interface FragmentCommunicator {
     public void fragGoToAnimationFromTimer();
 
     public void fragGoToAnimationFromTimerAdvanced();
+    /**
+     * 建立蓝牙连接
+     */
+    public void fragConnectBluetooth();
 
 }
