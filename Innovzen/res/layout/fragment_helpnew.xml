@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_backgroud" >
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout:orientation="true"
+        layout:rate_down="1"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/left_mea_vertical_1"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="12" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_1"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="55" />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_1"
+        android:layout_alignLeft="@id/up_mea_Horizontal_1"
+        android:layout_alignRight="@id/up_mea_Horizontal_1"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        layout="@layout/reusable_lefter"
+        android:background="@color/main_backgroud"
+        android:padding="@dimen/grid_half_gap" />
+
+    <com.jfeinstein.jazzyviewpager.JazzyViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/help_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@id/left_mea_vertical_1"
+        android:layout_alignLeft="@id/up_mea_Horizontal_2"
+        android:layout_alignRight="@id/up_mea_Horizontal_2"
+        android:layout_alignTop="@id/left_mea_vertical_1" 
+         android:padding="@dimen/grid_half_gap" 
+        />
+    </RelativeLayout>

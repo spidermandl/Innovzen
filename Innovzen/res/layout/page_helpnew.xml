@@ -4,13 +4,10 @@
     android:layout_height="match_parent"
     android:background="@drawable/main_background" >
 
-    <!-- HEADER -->
-
-    <include layout="@layout/reusable_header" />
 
     <!-- SUBHEADER -->
 
-    <include layout="@layout/reusable_subheader" />
+
 
     <!-- MAIN CONTAINER -->
 
@@ -26,15 +23,13 @@
         <TextView
             android:id="@+id/page_help_main_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:textSize="@dimen/page_help_main_text" />
     </ScrollView>
 
     <!-- FOOTER -->
 
-    <include
-        android:id="@id/page_help_footer"
-        layout="@layout/reusable_footer" />
+
 
 </RelativeLayout>
