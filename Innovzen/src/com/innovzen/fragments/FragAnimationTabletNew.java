@@ -83,6 +83,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
              //<chy settings>
             case R.id.main_animation_setting:
             	super.activityListener.fragGoToSetting(true);
+            	break;
+            case R.id.main_animation_help:
+            	super.activityListener.fragGoToHelpNew(true);
+                break;
               //</chy>  
             case R.id.animation_open_drawer_btn:
                 break;
@@ -118,8 +122,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
 //        view.findViewById(R.id.animation_open_drawer_btn).setOnClickListener(this);
       //<Desmond>
         view.findViewById(R.id.animation_fullscreen).setOnClickListener(this);
-        view.findViewById(R.id.animation_play_overlay_btn).setOnClickListener(this);
+        view.findViewById(R.id.main_animation_help).setOnClickListener(this);
       //<chy> settins¼àÌýÊÂ¼þ
+        view.findViewById(R.id.main_animation_setting).setOnClickListener(this);
         view.findViewById(R.id.main_animation_setting).setOnClickListener(this);
         ImageView left_mid =(ImageView) view.findViewById(R.id.left_mid);
         ImageView left_bottom = (ImageView) view.findViewById(R.id.left_bottom);
