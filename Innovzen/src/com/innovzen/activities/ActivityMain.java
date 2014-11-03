@@ -678,4 +678,10 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		
 	}
 
+	@Override
+	public void fragConnectBluetooth() {
+		isBlueToothSetup();
+		
+	}
+
 }
