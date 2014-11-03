@@ -25,25 +25,27 @@ import com.innovzen.handlers.FooterHandler;
 import com.innovzen.handlers.HeaderHandler;
 import com.innovzen.ui.HorizontalListView;
 
-public class FragHistory extends FragBase implements OnClickListener {
+public class FragHistory2 extends FragBase implements OnClickListener {
 
     // Hold the footer handler
-    private FooterHandler mFooterHandler;
+  
 
     // Hold the header handler
-    private HeaderHandler mHeaderHandler;
+  
 
     private HorizontalListView historyListViewPortrait;
     private ListView historyListViewLandscape;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_history, container, false);
+        View view = inflater.inflate(R.layout.fragment_history2, container, false);
 
         init(view);
 
         return view;
     }
+  
+
 
     @Override
     public void onClick(View v) {
@@ -56,19 +58,18 @@ public class FragHistory extends FragBase implements OnClickListener {
     @Override
     public void init(View view) {
         Resources res = getResources();
-      
+
         // Get references
         RelativeLayout footer = (RelativeLayout) view.findViewById(R.id.history_footer);
 
         // Set listeners
-        (view.findViewById(R.id.history_clear)).setOnClickListener(this);
+      
 
         // Init the footer
-        mFooterHandler = new FooterHandler(super.activityListener, footer, FooterHandler.HOME, -1, -1);
+     
 
         // Init the header
-        mHeaderHandler = new HeaderHandler(getActivity(), (RelativeLayout) view.findViewById(R.id.reusable_header));
-        mHeaderHandler.showLeftArrow(null);
+
     }
 
     @Override
@@ -76,9 +77,9 @@ public class FragHistory extends FragBase implements OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         if (ActivityBase.IS_TABLET) {
-            historyListViewLandscape = (ListView) view.findViewById(R.id.history_list_view);
+            historyListViewLandscape = (ListView) view.findViewById(R.id.history_list_view2);
         } else {
-            historyListViewPortrait = (HorizontalListView) view.findViewById(R.id.history_list_view);
+            historyListViewPortrait = (HorizontalListView) view.findViewById(R.id.history_list_view2);
         }
 
         new GetAllHistoryAsyncTask(getActivity(), new DataLoadedListener() {
