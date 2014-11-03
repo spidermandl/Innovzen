@@ -53,8 +53,10 @@ public class AdapterHelp extends PagerAdapter {
     public Object instantiateItem(ViewGroup view, int position) {
 
         // Inflate a new page
-        final View page = mInflater.inflate(R.layout.page_help, view, false);
-
+    	//<chy>
+       // final View page = mInflater.inflate(R.layout.page_help, view, false);
+    	final View page = mInflater.inflate(R.layout.page_help, view, false);
+     //   </chy>
         Resources res = mCtx.getResources();
 
         // Initialize the header
