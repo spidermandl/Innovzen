@@ -25,6 +25,7 @@ import com.innovzen.fragments.FragExercisePicker;
 import com.innovzen.fragments.FragGraphic;
 import com.innovzen.fragments.FragHelp;
 import com.innovzen.fragments.FragHistory;
+import com.innovzen.fragments.FragHistory2;
 import com.innovzen.fragments.FragLanguage;
 import com.innovzen.fragments.FragMain;
 import com.innovzen.fragments.FragMainMenu;
@@ -455,6 +456,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
     public void fragGoToTimerAdvance(boolean addToBackstack) {
         navigateTo(FragTimerAdvance.class, null, addToBackstack);
     }
+    ////<chy>
 	@Override
 	public void fragGoToBalance(boolean addToBackstack) {
 		navigateTo(FragBalance.class,null,addToBackstack);
@@ -490,4 +492,11 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		navigateTo(FragVoice.class, null, addToBackstack);
 		
 	}
+	@Override
+	public void fragGoToHistory2(boolean addToBackstack) {
+		navigateTo(FragHistory2.class, null, addToBackstack);
+		
+	}
+
+	
 }

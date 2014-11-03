@@ -116,7 +116,6 @@
         layout:rate_up="7" />
 
     <LinearLayout
-        
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_5"
@@ -130,6 +129,7 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/exercise_graphic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
@@ -139,6 +139,7 @@
         android:background="@drawable/selector_icon_btn1" />
 
     <ImageView
+        android:id="@+id/relax_graphic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
@@ -148,6 +149,7 @@
         android:background="@drawable/selector_btn_btn2" />
 
     <ImageView
+        android:id="@+id/breath_graphic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_4"
@@ -155,7 +157,9 @@
         android:layout_alignRight="@id/up_mea_Horizontal_3"
         android:layout_alignTop="@id/left_mea_vertical_4"
         android:background="@drawable/selector_btn_btn3" />
-     <ImageView
+
+    <ImageView
+        android:id="@+id/summer_graphic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_4"
@@ -163,4 +167,5 @@
         android:layout_alignRight="@id/up_mea_Horizontal_5"
         android:layout_alignTop="@id/left_mea_vertical_4"
         android:background="@drawable/selector_btn_btn4" />
+
 </RelativeLayout>

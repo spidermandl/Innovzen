@@ -40,6 +40,9 @@ public class FragSettings extends FragBase implements OnClickListener{
 		case R.id.set_voice:
 			super.activityListener.fragGoToVoice(true);
 			break;
+		case R.id.set_history:
+			super.activityListener.fragGoToHistory2(true);
+			break;
 		default:
 			break;
 		}
@@ -54,6 +57,7 @@ public class FragSettings extends FragBase implements OnClickListener{
 		view.findViewById(R.id.set_time).setOnClickListener(this);
 		view.findViewById(R.id.set_graphic).setOnClickListener(this);
 		view.findViewById(R.id.set_voice).setOnClickListener(this);
+		view.findViewById(R.id.set_history).setOnClickListener(this);
 		leftTop = (ImageView) view.findViewById(R.id.left_top);
 		leftMid = (ImageView) view.findViewById(R.id.left_mid);
 		leftBottom = (ImageView) view.findViewById(R.id.left_bottom);

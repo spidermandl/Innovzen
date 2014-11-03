@@ -23,7 +23,6 @@ public abstract class FragBase extends Fragment {
 	// fragments
 	protected FragmentCommunicator activityListener;
 	private ImageView iv;
-
 	/**
 	 * desmond 界面左侧控制栏
 	 */
@@ -49,8 +48,17 @@ public abstract class FragBase extends Fragment {
 		leftTop = (ImageView) view.findViewById(R.id.left_top);
 		leftMid = (ImageView) view.findViewById(R.id.left_mid);
 		leftBottom = (ImageView) view.findViewById(R.id.left_bottom);
-		// 点击切换图片
 		voice_progressbar = (LinearLayout) view.findViewById(R.id.voice_progressbar);
+		//点击返回上一个fragment
+		leftTop.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			   getActivity().onBackPressed();
+				
+			}
+		});
+		// 点击切换图片
 		leftBottom.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
