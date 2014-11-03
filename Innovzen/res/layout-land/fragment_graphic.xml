@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/background" >
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout:orientation="true"
+        layout:rate_down="9"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_1"
+        layout:orientation="true"
+        layout:rate_down="9"
+        layout:rate_up="3" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_2"
+        layout:orientation="true"
+        layout:rate_down="9"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_3"
+        layout:orientation="true"
+        layout:rate_down="9"
+        layout:rate_up="3" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_4"
+        layout:orientation="true"
+        layout:rate_down="9"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/left_mea_vertical_1"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="10" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_1"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="8" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_2"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="17" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_3"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="8" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_4"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="17" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_5"
+        layout:orientation="false"
+        layout:rate_down="67"
+        layout:rate_up="7" />
+
+    <LinearLayout
+        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_5"
+        android:layout_alignLeft="@id/up_mea_Horizontal_1"
+        android:layout_alignRight="@id/up_mea_Horizontal_1"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        android:background="#000000"
+        android:padding="@dimen/grid_half_gap" >
+
+        <include layout="@layout/reusable_lefter" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_3"
+        android:layout_alignRight="@id/up_mea_Horizontal_3"
+        android:layout_alignTop="@id/left_mea_vertical_2"
+        android:background="@drawable/selector_icon_btn1" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_5"
+        android:layout_alignRight="@id/up_mea_Horizontal_5"
+        android:layout_alignTop="@id/left_mea_vertical_2"
+        android:background="@drawable/selector_btn_btn2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_4"
+        android:layout_alignLeft="@id/up_mea_Horizontal_3"
+        android:layout_alignRight="@id/up_mea_Horizontal_3"
+        android:layout_alignTop="@id/left_mea_vertical_4"
+        android:background="@drawable/selector_btn_btn3" />
+     <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_4"
+        android:layout_alignLeft="@id/up_mea_Horizontal_5"
+        android:layout_alignRight="@id/up_mea_Horizontal_5"
+        android:layout_alignTop="@id/left_mea_vertical_4"
+        android:background="@drawable/selector_btn_btn4" />
+</RelativeLayout>

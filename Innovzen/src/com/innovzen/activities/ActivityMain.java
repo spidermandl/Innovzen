@@ -3,9 +3,14 @@ package com.innovzen.activities;
 
 import java.util.List;
 
+import android.app.Activity;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.innovzen.o2chair.R;
@@ -13,21 +18,30 @@ import com.innovzen.entities.SoundGroup;
 import com.innovzen.fragments.FragAnimationPhone;
 import com.innovzen.fragments.FragAnimationPicker;
 import com.innovzen.fragments.FragAnimationTablet;
+import com.innovzen.fragments.FragAnimationTabletNew;
+import com.innovzen.fragments.FragBalance;
 import com.innovzen.fragments.FragChairInfo;
 import com.innovzen.fragments.FragExercisePicker;
+import com.innovzen.fragments.FragGraphic;
 import com.innovzen.fragments.FragHelp;
 import com.innovzen.fragments.FragHistory;
+import com.innovzen.fragments.FragLanguage;
+import com.innovzen.fragments.FragMain;
 import com.innovzen.fragments.FragMainMenu;
+import com.innovzen.fragments.FragMusic;
+import com.innovzen.fragments.FragSettings;
 import com.innovzen.fragments.FragSoundPicker;
+import com.innovzen.fragments.FragTime;
 import com.innovzen.fragments.FragTimer;
 import com.innovzen.fragments.FragTimerAdvance;
+import com.innovzen.fragments.FragVoice;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.handlers.SoundHandler;
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.interfaces.FragmentOnBackPressInterface;
 import com.innovzen.utils.PersistentUtil;
-          //主界面
+//主界面
 public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
     // Hold fragment tags
@@ -47,6 +61,15 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
     // Hold the sound handler
     private SoundHandler mSoundHandler;
+    
+    /**
+     * Desmond
+     * 蓝牙设备适配器
+     */
+    private BluetoothAdapter mBluetoothAdapter = null;
+    //蓝牙开启intent请求
+    private static final int REQUEST_ENABLE_BT = 1;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +78,17 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
         // Load the sound information
         loadSoundInfo();
-
+        
+        //获取蓝牙设备适配器实例
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         // By default go to the main menu fragment
-        super.navigateTo(FragMainMenu.class);
-
+        //<chy>
+       // super.navigateTo(FragMainMenu.class);
+        super.navigateTo(FragMain.class);
+        //</chy>
     }
-      //退出
+    
+    //退出
     @Override
     public void onBackPressed() {
         //获取当前FrameLayout片段
@@ -137,6 +165,49 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         mSoundHandler.releasePlayers();
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+//        case REQUEST_CONNECT_DEVICE:
+//            // When DeviceListActivity returns with a device to connect
+//            if (resultCode == Activity.RESULT_OK) {
+//                // Get the device MAC address
+//                String address = data.getExtras().getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+//                // Get the BLuetoothDevice object
+//                BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
+//                // Attempt to connect to the device
+//                mChatService.connect(device);
+//            }
+//            break;
+        case REQUEST_ENABLE_BT:
+            // When the request to enable Bluetooth returns
+            if (resultCode == Activity.RESULT_OK) {
+                // Bluetooth is now enabled, so set up a chat session
+                
+            } else {
+                // User did not enable Bluetooth or an error occured
+                Toast.makeText(this, R.string.bt_not_enabled_leaving, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    /**
+     * Desmond
+     * 判断蓝牙设备是否开启
+     */
+    private void isBlueToothSetup(){
+    	// If the adapter is null, then Bluetooth is not supported
+        if (mBluetoothAdapter == null) {
+            Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
+            return;
+        }
+        
+        if (!mBluetoothAdapter.isEnabled()) {
+            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+        
+        } else {// 进入蓝牙通讯
+            
+        }
+    }
     /**
      * Read the data from the .json file and parse it
      * 
@@ -245,7 +316,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         addToBackstack = true;
 
         if (IS_TABLET) {
-            navigateTo(FragAnimationTablet.class, null, addToBackstack, ActivityMain.FRAG_TAG_ANIMATION);
+            navigateTo(FragAnimationTabletNew.class, null, addToBackstack, ActivityMain.FRAG_TAG_ANIMATION);
         } else {
             navigateTo(FragAnimationPhone.class, null, addToBackstack, ActivityMain.FRAG_TAG_ANIMATION);
         }
@@ -384,4 +455,39 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
     public void fragGoToTimerAdvance(boolean addToBackstack) {
         navigateTo(FragTimerAdvance.class, null, addToBackstack);
     }
+	@Override
+	public void fragGoToBalance(boolean addToBackstack) {
+		navigateTo(FragBalance.class,null,addToBackstack);
+		
+	}
+	@Override
+	public void fragGoToSetting(boolean addToBackstack) {
+		navigateTo(FragSettings.class, null, addToBackstack);
+		
+	}
+	@Override
+	public void fragGoToTime(boolean addToBackstack) {
+		navigateTo(FragTime.class, null, addToBackstack);
+		
+	}
+	@Override
+	public void fragGoToMusic(boolean addToBackstack) {
+		navigateTo(FragMusic.class, null, addToBackstack);
+		
+	}
+	@Override
+	public void fragGoToGraphic(boolean addToBackstack) {
+		navigateTo(FragGraphic.class, null, addToBackstack);
+		
+	}
+	@Override
+	public void fragGoToLanguage(boolean addToBackstack) {
+		navigateTo(FragLanguage.class, null, addToBackstack);
+		
+	}
+	@Override
+	public void fragGoToVoice(boolean addToBackstack) {
+		navigateTo(FragVoice.class, null, addToBackstack);
+		
+	}
 }

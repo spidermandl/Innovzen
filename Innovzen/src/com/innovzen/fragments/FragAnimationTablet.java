@@ -89,10 +89,12 @@ public class FragAnimationTablet extends FragAnimationBase implements OnClickLis
                 super.activityListener.fragGoToHelp(true);
                 break;
             case R.id.animation_open_drawer_btn:
-                if (super.mDrawerHandler != null) {
-                    super.pauseExercise();
-                    super.mDrawerHandler.show();
-                }
+            	//<Desmond>
+//                if (super.mDrawerHandler != null) {
+//                    super.pauseExercise();
+//                    super.mDrawerHandler.show();
+//                }
+              //<Desmond>
                 break;
             case R.id.animation_fullscreen:
                 toggleFullscreen();

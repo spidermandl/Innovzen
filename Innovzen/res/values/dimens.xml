@@ -33,5 +33,8 @@
     <dimen name="drawer_right_text_margin_top">40dp</dimen>
     <dimen name="drawer_right_close_btn_dimensions">30dp</dimen>
     <dimen name="drawer_right_close_btn_margin_bottom">25dp</dimen>
-
+  <!-- chy -->
+  <!-- Voice -->
+   <dimen name="voice_text">22sp</dimen>
+  <!-- chy -->
 </resources>

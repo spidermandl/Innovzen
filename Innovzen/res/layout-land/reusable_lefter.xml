@@ -5,10 +5,11 @@
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:id="@+id/left_toolbar"
     android:layout_width="wrap_content"
     android:layout_height="match_parent" >
 
-<com.innovzen.ui.MeasureView
+    <com.innovzen.ui.MeasureView
         android:id="@+id/left_mea_vertical_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,34 +39,89 @@
         layout:rate_down="13"
         layout:rate_up="2" />
 
-     <ImageView
+    <ImageView
         android:id="@+id/left_top"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_1"
-        android:layout_alignTop="@id/left_mea_vertical_1"
         android:layout_alignParentLeft="true"
-        android:background="#FFFFFF00"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        android:background="@drawable/selector_btn_back"
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
         android:id="@+id/left_mid"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
-        android:layout_alignTop="@id/left_mea_vertical_2"
         android:layout_alignParentLeft="true"
-        android:background="#FFFF00FF"
+        android:layout_alignTop="@id/left_mea_vertical_2"
+        android:background="@drawable/banner_time"
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
         android:id="@+id/left_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@id/left_mea_vertical_3"
+        android:background="@drawable/selector_btn_volume"
+        android:padding="@dimen/grid_half_gap" />
+
+    <LinearLayout
+        android:id="@+id/voice_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_3"
-        android:layout_alignTop="@id/left_mea_vertical_3"
         android:layout_alignParentLeft="true"
-        android:background="#FF00FFFF"
-        android:padding="@dimen/grid_half_gap" />
+        android:layout_alignTop="@id/left_mea_vertical_2"
+        android:background="@drawable/btn_volum_open"
+        android:orientation="vertical"
+        android:visibility="invisible"
+      >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+        
+            android:src="@drawable/icon_volum" />
+
+    
+      <!--   <ProgressBar
+            android:layout_weight="8"
+            android:id="@+id/myView_ProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:progress="30"
+            android:max="100"
+            
+            android:progressDrawable="@drawable/volume_level_up"
+            android:background="@drawable/volume_level_down"
+             >
+        </ProgressBar> -->
+
+
+         <com.innovzen.fragments.VerticalSeekBar
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+    
+            android:minWidth="10dp"
+            android:maxWidth="10dp"
+            android:background="@drawable/volume_level_down"
+            android:progressDrawable="@drawable/volume_level_up"
+            android:thumb="@drawable/volume_cursor" /> 
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+        
+            android:src="@drawable/icon_volum_less" />
+    </LinearLayout>
 
 </RelativeLayout>

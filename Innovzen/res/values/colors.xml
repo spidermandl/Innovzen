@@ -65,5 +65,13 @@
     <!-- Timer advance settings  -->
     <color name="tab_pressed">#e0e0e0</color>
     <color name="tab_selected">#ffffff</color>
-
+    <!-- chy -->
+    <!-- Voice text-->
+    <color name="frag_text">#69A6BD</color>
+     <color name="voice_text">#69A6BD</color>
+     <!-- MainBackground -->
+     <color name="main_backgroud">#000000</color>
+     <color name="main_bg">#77BBC9</color>
+      <color name="main_bg2">#ffffff</color>
+    <!-- chy -->
 </resources>

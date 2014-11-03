@@ -3,7 +3,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/main_backgroud" >
+
+    <!--
+    <RelativeLayout
+        android:id="@+id/animation_dummy_white_view_for_fullscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="gone" >
+    </RelativeLayout>
+    -->
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/main_mea_vertical_1"
@@ -42,36 +53,40 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         layout:orientation="false"
-        layout:rate_down="5"
-        layout:rate_up="1" />
+        layout:rate_down="28"
+        layout:rate_up="4" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/main_mea_horizontal_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/main_mea_horizontal_1"
         android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/main_mea_horizontal_1"
         layout:orientation="false"
-        layout:rate_down="5"
-        layout:rate_up="3" />
+        layout:rate_down="28"
+        layout:rate_up="18" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/main_mea_horizontal_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/main_mea_horizontal_2"
         android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/main_mea_horizontal_2"
         layout:orientation="false"
-        layout:rate_down="5"
-        layout:rate_up="1" />
+        layout:rate_down="28"
+        layout:rate_up="6" />
 
     <!-- 左边栏 -->
-
     <include
-        android:id="@+id/main_left"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        layout="@layout/reusable_lefter" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/main_mea_vertical_3"
+        android:layout_alignLeft="@id/main_mea_horizontal_1"
+        android:layout_alignRight="@id/main_mea_horizontal_1"
+        android:layout_alignTop="@id/main_mea_vertical_1"
+        layout="@layout/reusable_lefter"
+        android:background="#000000"
+        android:padding="@dimen/grid_half_gap" />
 
     <!-- 中上框架 -->
 
@@ -91,7 +106,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_home"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -100,7 +115,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_play"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -109,7 +124,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_pause"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
     </LinearLayout>
@@ -117,57 +132,14 @@
     <!-- ANIMATION PARENT CONTAINER -->
     <!-- 中中动画显示 -->
 
-    <RelativeLayout
-        android:id="@+id/animation_animation_parent_container"
+    <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/main_mea_vertical_2"
         android:layout_alignLeft="@id/main_mea_horizontal_2"
         android:layout_alignRight="@id/main_mea_horizontal_2"
-        android:layout_alignTop="@id/main_mea_vertical_2" >
-
-        <!-- ANIMATION CONTAINER -->
-
-        <RelativeLayout
-            android:id="@+id/animation_animation_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white" >
-        </RelativeLayout>
-
-        <!-- ANIMATION TYPE -->
-
-        <TextView
-            android:id="@+id/animation_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/shape_animation_type_bckgnd"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:singleLine="true"
-            android:text="Exercice PERFORMANCE"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/animation_type" />
-
-        <!-- FULL SCREEN BTN -->
-
-        <RelativeLayout
-            android:id="@+id/animation_fullscreen_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp" >
-
-            <ImageView
-                android:id="@+id/animation_fullscreen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/selector_icon_fullscreen_in" />
-        </RelativeLayout>
-    </RelativeLayout>
+        android:layout_alignTop="@id/main_mea_vertical_2"
+        layout="@layout/animation_core" />
 
     <!-- 中下框架 -->
 
@@ -187,7 +159,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_settings"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -196,7 +168,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_help"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -205,7 +177,7 @@
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_gravity"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
     </LinearLayout>
@@ -228,7 +200,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_breath_more"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -237,7 +209,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_breath_less"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -246,7 +218,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_backup"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -255,7 +227,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_backdown"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -264,7 +236,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_footup"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
@@ -273,7 +245,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-            android:background="#FFFFFF00"
+            android:background="@drawable/selector_btn_footdown"
             android:padding="@dimen/grid_half_gap" >
         </ImageView>
     </LinearLayout>
