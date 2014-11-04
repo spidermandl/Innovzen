@@ -90,12 +90,18 @@
         android:layout_alignTop="@id/left_mea_vertical_2"
         android:background="@drawable/btn_volum_open"
         android:orientation="vertical"
-        android:visibility="invisible" >
+        android:visibility="invisible" 
+        android:weightSum="5"
+
+        >
 
         <ImageView
+            android:layout_marginTop="20dp"
+          
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+
             android:src="@drawable/icon_volum" />
 
         <!--
@@ -116,17 +122,22 @@
         -->
 
         <com.innovzen.fragments.VerticalSeekBar
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/volume_level_down"
-            android:progressDrawable="@drawable/volume_level_up"
+          
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:layout_gravity="center"
+            android:max="100"
+            
             android:thumb="@drawable/volume_cursor" />
 
         <ImageView
+           
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+
             android:src="@drawable/icon_volum_less" />
     </LinearLayout>
 
