@@ -55,26 +55,23 @@ public class AdapterHelp extends PagerAdapter {
         // Inflate a new page
     	//<chy>
        // final View page = mInflater.inflate(R.layout.page_help, view, false);
-    	final View page = mInflater.inflate(R.layout.page_helpnew, view, false);
+    	final View page = mInflater.inflate(R.layout.page_help, view, false);
      //   </chy>
         Resources res = mCtx.getResources();
 
         // Initialize the header
-        //<chy>
         HeaderHandler header = new HeaderHandler((Activity) mCtx, (RelativeLayout) page.findViewById(R.id.reusable_header));
         header.showLeftArrow(new CustomClickListener(mListener, position));
         if (position == 0 || position == 1) {
             header.showRightArrow(new CustomClickListener(mListener, position));
         }
-       
 
         // Initialize the subheader
         new SubheaderHandler(res, (TextView) page.findViewById(R.id.reusable_subheader), res.getString(R.string.subheader_base_notice), res.getString(R.string.subheader_help));
-        //</chy>
+
         // Initialize the footer
-        //<chy>
-        /*new FooterHandler(mActivityListener, (RelativeLayout) page.findViewById(R.id.page_help_footer), FooterHandler.HOME, -1, -1);*/
-         //</chy>
+        new FooterHandler(mActivityListener, (RelativeLayout) page.findViewById(R.id.page_help_footer), FooterHandler.HOME, -1, -1);
+
         // Initialize the main container
         if (position == 0) {
             ((TextView) page.findViewById(R.id.page_help_main_content)).setText(Html.fromHtml(res.getString(R.string.help_first)));
