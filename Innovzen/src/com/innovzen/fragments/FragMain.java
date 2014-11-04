@@ -35,7 +35,9 @@ public class FragMain extends FragBase implements OnClickListener{
 			super.activityListener.fragGoToAnimation(true);
 			break;
 		case R.id.menu_relax:
-			super.activityListener.fragGoToAnimation(true);
+			
+			//super.activityListener.fragGoToAnimation(true);
+			super.activityListener.fragGoToSetting(true);
 			break;
 		case R.id.menu_performance:
 			super.activityListener.fragGoToAnimation(true);
