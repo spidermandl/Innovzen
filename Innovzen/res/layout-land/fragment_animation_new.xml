@@ -139,7 +139,8 @@
         android:layout_alignLeft="@id/main_mea_horizontal_2"
         android:layout_alignRight="@id/main_mea_horizontal_2"
         android:layout_alignTop="@id/main_mea_vertical_2"
-        layout="@layout/animation_core" />
+        layout="@layout/animation_core"
+         />
 
     <!-- 中下框架 -->
 

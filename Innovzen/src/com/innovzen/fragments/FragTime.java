@@ -43,6 +43,7 @@ public class FragTime extends FragBase implements OnClickListener {
                time_30min.setBackgroundResource(R.drawable.selector_time_30min);
                editor.putString("time","5min");
    			editor.commit();
+   			getMyShareSharedPreferences("time");
 			break;
 		case R.id.time_10min:
 			 time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -53,6 +54,7 @@ public class FragTime extends FragBase implements OnClickListener {
              time_30min.setBackgroundResource(R.drawable.selector_time_30min);
              editor.putString("time","10min");
  			editor.commit();
+ 			getMyShareSharedPreferences("time");
 			break;
 		case R.id.time_15min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -63,6 +65,7 @@ public class FragTime extends FragBase implements OnClickListener {
             time_30min.setBackgroundResource(R.drawable.selector_time_30min);
             editor.putString("time","15min");
 			editor.commit();
+			getMyShareSharedPreferences("time");
 			break;
 		case R.id.time_20min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -73,6 +76,7 @@ public class FragTime extends FragBase implements OnClickListener {
             time_30min.setBackgroundResource(R.drawable.selector_time_30min);
             editor.putString("time","20min");
 			editor.commit();
+			getMyShareSharedPreferences("time");
 			break;
 		case R.id.time_25min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -83,6 +87,7 @@ public class FragTime extends FragBase implements OnClickListener {
             time_30min.setBackgroundResource(R.drawable.selector_time_30min);
             editor.putString("time","25min");
 			editor.commit();
+			getMyShareSharedPreferences("time");
 			break;
 		case R.id.time_30min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -93,6 +98,7 @@ public class FragTime extends FragBase implements OnClickListener {
             time_30min.setBackgroundResource(R.drawable.btn_30min_activated);
             editor.putString("time","30min");
 			editor.commit();
+			getMyShareSharedPreferences("time");
 			break;
 		default:
 			break;
@@ -128,6 +134,7 @@ public class FragTime extends FragBase implements OnClickListener {
 		}else if(myTime.equals("30min")){
 			time_30min.setBackgroundResource(R.drawable.btn_30min_activated);
 		}
+		getMyShareSharedPreferences("time");
 	}
 
 }

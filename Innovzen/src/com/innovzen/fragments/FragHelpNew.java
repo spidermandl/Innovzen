@@ -5,7 +5,9 @@ import com.innovzen.o2chair.R;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.interfaces.FragmentOnBackPressInterface;
@@ -19,6 +21,8 @@ public class FragHelpNew extends FragBase implements OnCustomClickListener, Frag
 
     // Hold the viewpager adapter
     private AdapterHelp mAdapter;
+
+	private ImageView helpBack;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +51,9 @@ public class FragHelpNew extends FragBase implements OnCustomClickListener, Frag
                         break;
                 }
                 break;
+            case R.id.helpBack:
+            	   getActivity().onBackPressed();
+            	   break;
         }
     }
 
@@ -57,8 +64,15 @@ public class FragHelpNew extends FragBase implements OnCustomClickListener, Frag
 
     @Override
     public void init(View view) {
-         //<chy>
-    	
+    	//<chy>  ·µ»Ø°´Å¥
+         helpBack = (ImageView) view.findViewById(R.id.helpBack);
+         helpBack.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				 getActivity().onBackPressed();			
+			}
+		});
     	//</chy>
         // Get references
         viewpager = (JazzyViewPager) view.findViewById(R.id.help_viewpager);

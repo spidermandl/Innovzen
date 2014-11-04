@@ -64,7 +64,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_1"
         android:layout_alignRight="@id/up_mea_Horizontal_1"
         android:layout_alignTop="@id/left_mea_vertical_2"
-        android:background="@drawable/banner_help"
+        android:background="@drawable/banner_history"
         android:padding="@dimen/grid_half_gap" />
 
     <!-- MAIN CONTAINER -->

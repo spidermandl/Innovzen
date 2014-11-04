@@ -191,8 +191,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
     @Override
     protected void initLefter(View view){
     	super.initLefter(view);
+    	getMyShareSharedPreferences("time");
         leftTop.setBackgroundResource(R.drawable.selector_btn_back);
-        leftMid.setBackgroundResource(R.drawable.banner_balance_min);
+        leftMid.setBackgroundResource(R.drawable.banner_balance);
         leftBottom.setBackgroundResource(R.drawable.selector_btn_volume);
     }
     
