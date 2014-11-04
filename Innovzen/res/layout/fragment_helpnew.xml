@@ -12,8 +12,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         layout:orientation="true"
-        layout:rate_down="1"
-        layout:rate_up="1" />
+        layout:rate_down="13"
+        layout:rate_up="3" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_1"
+        layout:orientation="true"
+        layout:rate_down="13"
+        layout:rate_up="10" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/up_mea_Horizontal_1"
@@ -36,26 +46,37 @@
         layout:rate_down="67"
         layout:rate_up="55" />
 
-    <include
+    <ImageView
+        android:id="@+id/helpBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_1"
         android:layout_alignLeft="@id/up_mea_Horizontal_1"
         android:layout_alignRight="@id/up_mea_Horizontal_1"
         android:layout_alignTop="@id/left_mea_vertical_1"
-        layout="@layout/reusable_lefter"
-        android:background="@color/main_backgroud"
+        android:background="@drawable/selector_btn_back"
         android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_1"
+        android:layout_alignRight="@id/up_mea_Horizontal_1"
+        android:layout_alignTop="@id/left_mea_vertical_2"
+        android:background="@drawable/banner_help"
+        android:padding="@dimen/grid_half_gap"
+    />
 
     <com.jfeinstein.jazzyviewpager.JazzyViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/help_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignBottom="@id/left_mea_vertical_1"
+        android:layout_alignBottom="@id/left_mea_vertical_2"
         android:layout_alignLeft="@id/up_mea_Horizontal_2"
         android:layout_alignRight="@id/up_mea_Horizontal_2"
-        android:layout_alignTop="@id/left_mea_vertical_1" 
-         android:padding="@dimen/grid_half_gap" 
-        />
-    </RelativeLayout>
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        android:padding="@dimen/grid_half_gap" />
+
+</RelativeLayout>

@@ -12,8 +12,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         layout:orientation="true"
-        layout:rate_down="1"
-        layout:rate_up="1" />
+        layout:rate_down="17"
+        layout:rate_up="4" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_1"
+        layout:orientation="true"
+        layout:rate_down="17"
+        layout:rate_up="13" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/up_mea_Horizontal_1"
@@ -23,8 +33,8 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/left_mea_vertical_1"
         layout:orientation="false"
-        layout:rate_down="67"
-        layout:rate_up="12" />
+        layout:rate_down="100"
+        layout:rate_up="18" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/up_mea_Horizontal_2"
@@ -33,18 +43,28 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/up_mea_Horizontal_1"
         layout:orientation="false"
-        layout:rate_down="67"
-        layout:rate_up="55" />
+        layout:rate_down="100"
+        layout:rate_up="81" />
 
-    <include
+    <ImageView
+        android:id="@+id/historyBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_1"
         android:layout_alignLeft="@id/up_mea_Horizontal_1"
         android:layout_alignRight="@id/up_mea_Horizontal_1"
         android:layout_alignTop="@id/left_mea_vertical_1"
-        layout="@layout/reusable_lefter"
-        android:background="@color/main_backgroud"
+        android:background="@drawable/selector_btn_back"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_1"
+        android:layout_alignRight="@id/up_mea_Horizontal_1"
+        android:layout_alignTop="@id/left_mea_vertical_2"
+        android:background="@drawable/banner_history"
         android:padding="@dimen/grid_half_gap" />
 
     <!-- MAIN CONTAINER -->
@@ -52,7 +72,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/left_mea_vertical_1"
+        android:layout_alignBottom="@id/left_mea_vertical_2"
         android:layout_alignLeft="@id/up_mea_Horizontal_2"
         android:layout_alignRight="@id/up_mea_Horizontal_2"
         android:layout_alignTop="@id/left_mea_vertical_1"
@@ -64,7 +84,6 @@
             android:id="@+id/history_list_headers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:background="@color/history_list_header_dark_gray"
             android:orientation="horizontal"
             android:weightSum="6" >
@@ -117,13 +136,11 @@
                 android:layout_weight="1"
                 android:text="@string/history_list_label_duration" />
         </LinearLayout>
-
         <ListView
             android:id="@+id/history_list_view2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/history_list_headers"
-            android:layout_centerVertical="true"
             android:cacheColorHint="@android:color/transparent" />
     </RelativeLayout>
 

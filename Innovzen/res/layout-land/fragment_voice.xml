@@ -43,8 +43,8 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/left_mea_vertical_1"
         layout:orientation="false"
-        layout:rate_down="28"
-        layout:rate_up="4" />
+        layout:rate_down="100"
+        layout:rate_up="18" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/up_mea_Horizontal_2"
@@ -53,8 +53,8 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/up_mea_Horizontal_1"
         layout:orientation="false"
-        layout:rate_down="28"
-        layout:rate_up="24" />
+        layout:rate_down="100"
+        layout:rate_up="81" />
 
     <include
         android:layout_width="wrap_content"

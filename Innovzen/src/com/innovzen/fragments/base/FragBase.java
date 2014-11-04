@@ -1,11 +1,14 @@
 package com.innovzen.fragments.base;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.innovzen.interfaces.FragmentCommunicator;
@@ -27,10 +30,24 @@ public abstract class FragBase extends Fragment {
 	 * desmond 界面左侧控制栏
 	 */
 	protected ImageView leftTop;
-	protected ImageView leftMid;
+	protected LinearLayout leftMid;
 	protected ImageView leftBottom;
 	protected LinearLayout voice_progressbar;
-
+	private TextView myMinutes;
+    /**
+     * @author chy 取到ShareSharedPreferences內值
+     */
+	protected void getMyShareSharedPreferences(String str){
+		SharedPreferences sp = null;
+		if(str.equals("time")){
+		sp = getActivity().getSharedPreferences("saveTimeMin", Context.MODE_PRIVATE);
+		String mytime = sp.getString(str, "");
+		myMinutes.setText(mytime);
+		}else if(str.equals("graphic")){
+			sp = getActivity().getSharedPreferences("saveGraphic", Context.MODE_PRIVATE);
+			Toast.makeText(getActivity(), "ok", 0).show();
+		}
+	}
 	/**
 	 * Does proper initializations after inflating the view
 	 * 
@@ -46,9 +63,10 @@ public abstract class FragBase extends Fragment {
 	 */
 	protected void initLefter(View view) {
 		leftTop = (ImageView) view.findViewById(R.id.left_top);
-		leftMid = (ImageView) view.findViewById(R.id.left_mid);
+		leftMid = (LinearLayout) view.findViewById(R.id.left_mid);
 		leftBottom = (ImageView) view.findViewById(R.id.left_bottom);
 		voice_progressbar = (LinearLayout) view.findViewById(R.id.voice_progressbar);
+		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		//点击返回上一个fragment
 		leftTop.setOnClickListener(new OnClickListener() {
 			
