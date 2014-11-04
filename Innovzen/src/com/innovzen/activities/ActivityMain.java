@@ -301,7 +301,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	
 			// If there are paired devices, add each one to the ArrayAdapter
 			if (pairedDevices.size() > 0) {
-				findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
+				bluetoothDialog.findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
 				for (BluetoothDevice device : pairedDevices) {
 					mPairedDevicesArrayAdapter.add(device.getName() + "\n"
 							+ device.getAddress());

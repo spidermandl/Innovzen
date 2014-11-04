@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Setting界面 -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/main_backgroud" >
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout:orientation="true"
+        layout:rate_down="3"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_1"
+        layout:orientation="true"
+        layout:rate_down="3"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_mea_vertical_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_mea_vertical_2"
+        layout:orientation="true"
+        layout:rate_down="3"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/left_mea_vertical_1"
+        layout:orientation="false"
+        layout:rate_down="100"
+        layout:rate_up="18" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_1"
+        layout:orientation="false"
+        layout:rate_down="100"
+        layout:rate_up="21" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_2"
+        layout:orientation="false"
+        layout:rate_down="100"
+        layout:rate_up="20" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_3"
+        layout:orientation="false"
+        layout:rate_down="100"
+        layout:rate_up="20" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/up_mea_Horizontal_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/up_mea_Horizontal_4"
+        layout:orientation="false"
+        layout:rate_down="100"
+        layout:rate_up="21" />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_3"
+        android:layout_alignLeft="@id/up_mea_Horizontal_1"
+        android:layout_alignRight="@id/up_mea_Horizontal_1"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        layout="@layout/reusable_lefter"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:id="@+id/set_bluetooth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_1"
+        android:layout_alignLeft="@id/up_mea_Horizontal_2"
+        android:layout_alignRight="@id/up_mea_Horizontal_2"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        android:background="@drawable/selector_icon_bluetooth"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:id="@+id/set_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_1"
+        android:layout_alignLeft="@id/up_mea_Horizontal_3"
+        android:layout_alignRight="@id/up_mea_Horizontal_3"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        android:background="@drawable/selector_icon_language"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:id="@+id/set_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_1"
+        android:layout_alignLeft="@id/up_mea_Horizontal_4"
+        android:layout_alignRight="@id/up_mea_Horizontal_4"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        android:background="@drawable/selector_icon_time"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:id="@+id/set_graphic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_1"
+        android:layout_alignLeft="@id/up_mea_Horizontal_5"
+        android:layout_alignRight="@id/up_mea_Horizontal_5"
+        android:layout_alignTop="@id/left_mea_vertical_1"
+        android:background="@drawable/selector_icon_graphic"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:id="@+id/set_music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_2"
+        android:layout_alignRight="@id/up_mea_Horizontal_2"
+        android:layout_alignTop="@id/left_mea_vertical_2"
+        android:background="@drawable/selector_icon_music"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:id="@+id/set_voice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_3"
+        android:layout_alignRight="@id/up_mea_Horizontal_3"
+        android:layout_alignTop="@id/left_mea_vertical_2"
+        android:background="@drawable/selector_icon_voice"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_4"
+        android:layout_alignRight="@id/up_mea_Horizontal_4"
+        android:layout_alignTop="@id/left_mea_vertical_2"
+        android:background="@drawable/selector_icon_pulse"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_2"
+        android:layout_alignLeft="@id/up_mea_Horizontal_5"
+        android:layout_alignRight="@id/up_mea_Horizontal_5"
+        android:layout_alignTop="@id/left_mea_vertical_2"
+        android:background="@drawable/selector_icon_swing"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_3"
+        android:layout_alignLeft="@id/up_mea_Horizontal_2"
+        android:layout_alignRight="@id/up_mea_Horizontal_2"
+        android:layout_alignTop="@id/left_mea_vertical_3"
+        android:background="@drawable/selector_icon_o2"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_3"
+        android:layout_alignLeft="@id/up_mea_Horizontal_3"
+        android:layout_alignRight="@id/up_mea_Horizontal_3"
+        android:layout_alignTop="@id/left_mea_vertical_3"
+        android:background="@drawable/selector_icon_leds"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_3"
+        android:layout_alignLeft="@id/up_mea_Horizontal_4"
+        android:layout_alignRight="@id/up_mea_Horizontal_4"
+        android:layout_alignTop="@id/left_mea_vertical_3"
+        android:background="@drawable/selector_icon_heat"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:id="@+id/set_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/left_mea_vertical_3"
+        android:layout_alignLeft="@id/up_mea_Horizontal_5"
+        android:layout_alignRight="@id/up_mea_Horizontal_5"
+        android:layout_alignTop="@id/left_mea_vertical_3"
+        android:background="@drawable/selector_icon_history"
+        android:padding="@dimen/grid_half_gap" />
+
+</RelativeLayout>

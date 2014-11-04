@@ -36,7 +36,7 @@ public class ActivityBase extends FragmentActivity {
          * Desmond
          * 写死平板
          */
-        ActivityBase.IS_TABLET = Util.isTablet(this);
+        ActivityBase.IS_TABLET = true;//Util.isTablet(this);
 
         // If tablet, force in landscape. If not, keep in portrait mode
         //决定横排还是竖排
