@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
@@ -17,6 +18,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 	private String FILE = "saveGraphic";//用于保存SharedPreferences的文件
 	private SharedPreferences sp = null;//声明一个SharedPreferences存贮gtaphic图片样式
 	private ImageView exercise_graphic,relax_graphic,breath_graphic,summer_graphic;
+	private LinearLayout left_mid;
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_graphic, container, false);
@@ -71,6 +73,8 @@ public class FragGraphic extends FragBase implements OnClickListener{
 	public void init(View view) {
 		initLefter(view);
 		getMyShareSharedPreferences("time");
+		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
+		left_mid.setBackgroundResource(R.drawable.banner_graphic);
 		exercise_graphic = (ImageView) view.findViewById(R.id.exercise_graphic);
 		exercise_graphic.setOnClickListener(this);
 		relax_graphic = (ImageView) view.findViewById(R.id.relax_graphic);

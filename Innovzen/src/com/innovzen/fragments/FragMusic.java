@@ -31,6 +31,7 @@ public class FragMusic extends FragBase implements OnClickListener{
 	@Override
 	public void init(View view) {
 		initLefter(view);
+		getMyShareSharedPreferences("time");
 		left_top = (ImageView) view.findViewById(R.id.left_top);
 		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
 		left_bottom = (ImageView) view.findViewById(R.id.left_bottom);

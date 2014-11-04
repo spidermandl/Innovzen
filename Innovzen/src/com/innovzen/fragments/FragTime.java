@@ -9,22 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
 
 public class FragTime extends FragBase implements OnClickListener {
-	private ImageView left_top, left_mid, left_bottom;
-	private String FILE = "saveTimeMin";// 用于保存SharedPreferences的文件
+	//private String FILE = "saveTimeMin";// 用于保存SharedPreferences的文件
 	private SharedPreferences sp = null;// 声明一个SharedPreferences存贮gtaphic图片样式
 	private ImageView time_5min, time_10min, time_15min, time_20min,
 			time_25min, time_30min;
+	private LinearLayout left_mid;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_time, container, false);
-		sp = getActivity().getSharedPreferences(FILE, Context.MODE_PRIVATE);
+		sp = getActivity().getSharedPreferences(super.SAVE_TIME_MIN, Context.MODE_PRIVATE);
 		init(view);
 
 		return view;
@@ -43,7 +44,7 @@ public class FragTime extends FragBase implements OnClickListener {
                time_30min.setBackgroundResource(R.drawable.selector_time_30min);
                editor.putString("time","5min");
    			editor.commit();
-   			getMyShareSharedPreferences("time");
+   			getMyShareSharedPreferences(super.SHARED_TIME);
 			break;
 		case R.id.time_10min:
 			 time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -54,7 +55,7 @@ public class FragTime extends FragBase implements OnClickListener {
              time_30min.setBackgroundResource(R.drawable.selector_time_30min);
              editor.putString("time","10min");
  			editor.commit();
- 			getMyShareSharedPreferences("time");
+ 			getMyShareSharedPreferences(super.SHARED_TIME);
 			break;
 		case R.id.time_15min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -108,6 +109,8 @@ public class FragTime extends FragBase implements OnClickListener {
 	@Override
 	public void init(View view) {
 		initLefter(view);
+		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
+		left_mid.setBackgroundResource(R.drawable.banner_time);
 		time_5min = (ImageView) view.findViewById(R.id.time_5min);
 		time_5min.setOnClickListener(this);
 		time_10min = (ImageView) view.findViewById(R.id.time_10min);

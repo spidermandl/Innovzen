@@ -3,12 +3,15 @@ package com.innovzen.fragments.base;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +27,10 @@ import com.innovzen.o2chair.R;
  * 
  */
 public abstract class FragBase extends Fragment {
-
+	public static final String SHARED_TIME = "time";
+	public static final String SHARED_GRAPHIC = "graphic";
+	public static final String SAVE_TIME_MIN = "saveTimeMin";
+	public static final String SAVE_GRAPHIC = "saveGraphic";
 	// Holds the reference to where the activity listens for messages from the
 	// fragments
 	protected FragmentCommunicator activityListener;
@@ -44,17 +50,17 @@ public abstract class FragBase extends Fragment {
 	private ImageView volum_less;
 
 	/**
-	 * @author chy 取到ShareSharedPreferences內值
+	 * @author chy 取到SharedPreferences內值
 	 */
 	protected void getMyShareSharedPreferences(String str) {
 		SharedPreferences sp = null;
-		if (str.equals("time")) {
-			sp = getActivity().getSharedPreferences("saveTimeMin",
+		if (str.equals(SHARED_TIME)) {
+			sp = getActivity().getSharedPreferences(SAVE_TIME_MIN,
 					Context.MODE_PRIVATE);
 			String mytime = sp.getString(str, "");
 			myMinutes.setText(mytime);
-		} else if (str.equals("graphic")) {
-			sp = getActivity().getSharedPreferences("saveGraphic",
+		} else if (str.equals(SHARED_GRAPHIC)) {
+			sp = getActivity().getSharedPreferences(SAVE_GRAPHIC,
 					Context.MODE_PRIVATE);
 			Toast.makeText(getActivity(), "ok", 0).show();
 		}
@@ -86,24 +92,13 @@ public abstract class FragBase extends Fragment {
 		seekBar = (VerticalSeekBar) view.findViewById(R.id.mySeekBar);
 		seekBar.setMax(maxVolume);
 		seekBar.setProgress(currentVolume);
-		/*seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			
-            
-			@Override
-			public void onStopTrackingTouch(VerticalSeekBar VerticalSeekBar) {
-				// TODO Auto-generated method stub
-
-			}
+     
 
 			@Override
-			public void onStartTrackingTouch(VerticalSeekBar VerticalSeekBar) {
-				
-
-			}
-
-			@Override
-			public void onProgressChanged(VerticalSeekBar VerticalSeekBar,
-					int progress, boolean fromUser) {
+			public void onProgressChanged(SeekBar seekBar, int progress,
+					boolean fromUser) {
 				audiomanage.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
 				currentVolume = audiomanage.getStreamVolume(AudioManager.STREAM_MUSIC);
                 seekBar.setProgress(currentVolume);
@@ -112,8 +107,21 @@ public abstract class FragBase extends Fragment {
                 }else{
                 	volum_less.setBackgroundResource(R.drawable.icon_volum_less);
                 }
+				
 			}
-		});*/
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		// 点击返回上一个fragment
 		leftTop.setOnClickListener(new OnClickListener() {

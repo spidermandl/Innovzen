@@ -3,8 +3,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="@dimen/grid_half_gap"
-    >
+    android:padding="@dimen/grid_half_gap" >
+
     <!-- ANIMATION PARENT CONTAINER -->
 
     <RelativeLayout
@@ -47,6 +47,13 @@
             android:layout_marginTop="15dp" >
 
             <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:src="@drawable/heart" />
+
+            <ImageView
                 android:id="@+id/animation_fullscreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,7 +93,5 @@
             android:layout_centerInParent="true"
             android:src="@drawable/selector_icon_play_animation" />
     </RelativeLayout>
-
-   
 
 </RelativeLayout>

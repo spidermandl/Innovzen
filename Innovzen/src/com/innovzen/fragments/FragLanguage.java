@@ -13,6 +13,8 @@ import com.innovzen.o2chair.R;
 
 public class FragLanguage extends FragBase implements OnClickListener {
 
+	private LinearLayout left_mid;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -31,8 +33,12 @@ public class FragLanguage extends FragBase implements OnClickListener {
 
 	@Override
 	public void init(View view) {
+		
 		initLefter(view);
 		getMyShareSharedPreferences("time");
+		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
+		left_mid.setBackgroundResource(R.drawable.banner_language);
+		
 	}
 
 }
