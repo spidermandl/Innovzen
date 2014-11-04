@@ -13,8 +13,6 @@ import com.innovzen.o2chair.R;
 
 public class FragLanguage extends FragBase implements OnClickListener {
 
-
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -34,7 +32,7 @@ public class FragLanguage extends FragBase implements OnClickListener {
 	@Override
 	public void init(View view) {
 		initLefter(view);
-
+		getMyShareSharedPreferences("time");
 	}
 
 }

@@ -70,7 +70,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 	@Override
 	public void init(View view) {
 		initLefter(view);
-
+		getMyShareSharedPreferences("time");
 		exercise_graphic = (ImageView) view.findViewById(R.id.exercise_graphic);
 		exercise_graphic.setOnClickListener(this);
 		relax_graphic = (ImageView) view.findViewById(R.id.relax_graphic);

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Window;
 
+import com.innovzen.fragments.FragAnimationTabletNew;
 import com.innovzen.o2chair.R;
 import com.innovzen.utils.Util;
 
@@ -85,12 +86,14 @@ public class ActivityBase extends FragmentActivity {
                 if (addToBackstack) {
                     transaction.addToBackStack(fragmentTag);//º”»ÎÕÀªÿ’ª
                 }
-
+                String fragName=fragmentClass.getSimpleName();
+                
                 /* this is not the proper resolve IllegalStateException: Can not perform this action after onSaveInstanceState */
                 transaction.commitAllowingStateLoss();
 
                 // Force the transaction to happen immediately and not be scheduled for later
                 getSupportFragmentManager().executePendingTransactions();
+                
 
             } catch (Exception e) {
                 e.printStackTrace();

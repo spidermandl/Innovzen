@@ -674,6 +674,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 	@Override
 	public void fragGoToHelpNew(boolean addToBackstack) {
+		try{
+			super.clearBackstack();
+    } catch (Exception e) {
+        e.printStackTrace();
+        // Do nothin'
+    }
 		navigateTo(FragHelpNew.class, null, addToBackstack);
 		
 	}

@@ -68,6 +68,7 @@ public class FragVoice extends FragBase implements OnClickListener {
 	@Override
 	public void init(View view) {
 		initLefter(view);
+		getMyShareSharedPreferences("time");
 		man_voice = (ImageView) view.findViewById(R.id.man_voice);
 		woman_voice = (ImageView) view.findViewById(R.id.woman_voice);
 		silence_voice = (ImageView) view.findViewById(R.id.silence_voice);
