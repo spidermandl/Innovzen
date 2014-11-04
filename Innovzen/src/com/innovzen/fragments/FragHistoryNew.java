@@ -27,100 +27,113 @@ import com.innovzen.ui.HorizontalListView;
 
 public class FragHistoryNew extends FragBase implements OnClickListener {
 
-    // Hold the footer handler
-  
+	// Hold the footer handler
 
-    // Hold the header handler
-  
+	// Hold the header handler
 
-    private HorizontalListView historyListViewPortrait;
-    private ListView historyListViewLandscape;
+	private HorizontalListView historyListViewPortrait;
+	private ListView historyListViewLandscape;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_historynew, container, false);
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_historynew, container,
+				false);
 
-        init(view);
+		init(view);
 
-        return view;
-    }
-  
+		return view;
+	}
 
+	@Override
+	public void onClick(View v) {
+		// <chy>
+		/*
+		 * int id = v.getId(); if (id == R.id.history_clear) { clearHistory(); }
+		 */
+		// </chy>
+		switch (v.getId()) {
+		case R.id.historyBack:
+			getActivity().onBackPressed();
+			break;
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        if (id == R.id.history_clear) {
-            clearHistory();
-        }
-    }
+		default:
+			break;
+		}
+	}
 
-    @Override
-    public void init(View view) {
-        Resources res = getResources();
+	@Override
+	public void init(View view) {
+		Resources res = getResources();
 
-        // Get references
-        RelativeLayout footer = (RelativeLayout) view.findViewById(R.id.history_footer);
+		// Get references
+		RelativeLayout footer = (RelativeLayout) view
+				.findViewById(R.id.history_footer);
 
-        // Set listeners
-      
+		// Set listeners
+		view.findViewById(R.id.historyBack).setOnClickListener(this);
 
-        // Init the footer
-     
+		// Init the footer
 
-        // Init the header
+		// Init the header
 
-    }
+	}
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
 
-        if (ActivityBase.IS_TABLET) {
-            historyListViewLandscape = (ListView) view.findViewById(R.id.history_list_view2);
-        } else {
-            historyListViewPortrait = (HorizontalListView) view.findViewById(R.id.history_list_view2);
-        }
+		if (ActivityBase.IS_TABLET) {
+			historyListViewLandscape = (ListView) view
+					.findViewById(R.id.history_list_view2);
+		} else {
+			historyListViewPortrait = (HorizontalListView) view
+					.findViewById(R.id.history_list_view2);
+		}
 
-        new GetAllHistoryAsyncTask(getActivity(), new DataLoadedListener() {
+		new GetAllHistoryAsyncTask(getActivity(), new DataLoadedListener() {
 
-            @Override
-            public <T> void onDataLoaded(T t) {
-                populateHistoryList((List<History>) t);
-            }
-        }).execute();
-    }
+			@Override
+			public <T> void onDataLoaded(T t) {
+				populateHistoryList((List<History>) t);
+			}
+		}).execute();
+	}
 
-    private void populateHistoryList(List<History> historyList) {
-        if (ActivityBase.IS_TABLET) {
-            historyListViewLandscape.setAdapter(new HistoryListAdapter(getActivity(), historyList));
-        } else {
-            historyListViewPortrait.setAdapter(new HistoryListAdapter(getActivity(), historyList));
-        }
-    }
+	private void populateHistoryList(List<History> historyList) {
+		if (ActivityBase.IS_TABLET) {
+			historyListViewLandscape.setAdapter(new HistoryListAdapter(
+					getActivity(), historyList));
+		} else {
+			historyListViewPortrait.setAdapter(new HistoryListAdapter(
+					getActivity(), historyList));
+		}
+	}
 
-    private void clearHistory() {
-        new EraseAllHistoryAsyncTask(getActivity(), new DataErasedListener() {
+	private void clearHistory() {
+		new EraseAllHistoryAsyncTask(getActivity(), new DataErasedListener() {
 
-            @Override
-            public <T> void onDataErased(boolean success) {
-                if (success) {
-                    // Update the adapter now
-                    populateHistoryList(new ArrayList<History>());
+			@Override
+			public <T> void onDataErased(boolean success) {
+				if (success) {
+					// Update the adapter now
+					populateHistoryList(new ArrayList<History>());
 
-                    if (ActivityBase.IS_TABLET) {
-                        ((HistoryListAdapter) historyListViewLandscape.getAdapter()).clearData();
-                    } else {
-                        ((HistoryListAdapter) historyListViewPortrait.getAdapter()).clearData();
-                    }
+					if (ActivityBase.IS_TABLET) {
+						((HistoryListAdapter) historyListViewLandscape
+								.getAdapter()).clearData();
+					} else {
+						((HistoryListAdapter) historyListViewPortrait
+								.getAdapter()).clearData();
+					}
 
-                } else {
-                    // TODO: ??
-                }
+				} else {
+					// TODO: ??
+				}
 
-            }
+			}
 
-        }).execute();
-    }
+		}).execute();
+	}
 
 }

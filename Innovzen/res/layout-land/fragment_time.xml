@@ -64,8 +64,8 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/left_mea_vertical_1"
         layout:orientation="false"
-        layout:rate_down="68"
-        layout:rate_up="11" />
+        layout:rate_down="100"
+        layout:rate_up="18" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/up_mea_Horizontal_2"
@@ -74,7 +74,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/up_mea_Horizontal_1"
         layout:orientation="false"
-        layout:rate_down="68"
+        layout:rate_down="100"
         layout:rate_up="4" />
 
     <com.innovzen.ui.MeasureView
@@ -84,8 +84,8 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/up_mea_Horizontal_2"
         layout:orientation="false"
-        layout:rate_down="68"
-        layout:rate_up="14" />
+        layout:rate_down="100"
+        layout:rate_up="22" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/up_mea_Horizontal_4"
@@ -94,7 +94,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/up_mea_Horizontal_3"
         layout:orientation="false"
-        layout:rate_down="68"
+        layout:rate_down="100"
         layout:rate_up="4" />
 
     <com.innovzen.ui.MeasureView
@@ -104,8 +104,8 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/up_mea_Horizontal_4"
         layout:orientation="false"
-        layout:rate_down="68"
-        layout:rate_up="14" />
+        layout:rate_down="100"
+        layout:rate_up="22" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/up_mea_Horizontal_6"
@@ -114,7 +114,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/up_mea_Horizontal_5"
         layout:orientation="false"
-        layout:rate_down="68"
+        layout:rate_down="100"
         layout:rate_up="4" />
 
     <com.innovzen.ui.MeasureView
@@ -124,8 +124,8 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/up_mea_Horizontal_6"
         layout:orientation="false"
-        layout:rate_down="68"
-        layout:rate_up="14" />
+        layout:rate_down="100"
+        layout:rate_up="22" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/up_mea_Horizontal_8"
@@ -134,8 +134,8 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/up_mea_Horizontal_7"
         layout:orientation="false"
-        layout:rate_down="68"
-        layout:rate_up="3" />
+        layout:rate_down="100"
+        layout:rate_up="4" />
 
     <LinearLayout
         android:layout_width="wrap_content"

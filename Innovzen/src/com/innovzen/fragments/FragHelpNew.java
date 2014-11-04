@@ -57,7 +57,9 @@ public class FragHelpNew extends FragBase implements OnCustomClickListener, Frag
 
     @Override
     public void init(View view) {
-
+         //<chy>
+    	
+    	//</chy>
         // Get references
         viewpager = (JazzyViewPager) view.findViewById(R.id.help_viewpager);
 

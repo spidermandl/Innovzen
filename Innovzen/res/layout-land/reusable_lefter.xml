@@ -106,12 +106,9 @@
 
 
          <com.innovzen.fragments.VerticalSeekBar
-            android:layout_width="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-    
-            android:minWidth="10dp"
-            android:maxWidth="10dp"
             android:background="@drawable/volume_level_down"
             android:progressDrawable="@drawable/volume_level_up"
             android:thumb="@drawable/volume_cursor" /> 
