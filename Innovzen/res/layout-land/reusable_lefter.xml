@@ -91,18 +91,17 @@
         android:background="@drawable/btn_volum_open"
         android:orientation="vertical"
         android:visibility="invisible" 
-        android:weightSum="5"
+        android:weightSum="6"
 
         >
 
         <ImageView
-            android:layout_marginTop="20dp"
-          
+          android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:src="@drawable/icon_volum" />
+            android:background="@drawable/icon_volum" />
 
         <!--
         <ProgressBar
@@ -122,23 +121,22 @@
         -->
 
         <com.innovzen.fragments.VerticalSeekBar
-          
-            android:layout_width="20dp"
+            android:layout_weight="4"
+          android:id="@+id/mySeekBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="18dp"
             android:paddingRight="18dp"
-            android:layout_gravity="center"
-            android:max="100"
-            
+            android:layout_gravity="center"      
             android:thumb="@drawable/volume_cursor" />
 
         <ImageView
-           
+            android:layout_weight="1"
+            android:id="@+id/volum_less"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:src="@drawable/icon_volum_less" />
+            android:background="@drawable/icon_volum_less" />
     </LinearLayout>
 
 </RelativeLayout>
