@@ -38,6 +38,7 @@ import android.util.Log;
  * thread for performing data transmissions when connected.
  */
 public class BluetoothService {
+	
     // Debugging
     private static final String TAG = "BluetoothChatService";
     private static final boolean D = true;

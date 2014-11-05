@@ -42,5 +42,9 @@
 
     <!-- FRAG ANIMATION -->
     <dimen name="animation_countdown_text">150sp</dimen>
+    
+    <!-- 网格间的间距 -->
+    <dimen name="grid_gap">10dp</dimen>
+    <dimen name="grid_half_gap">5dp</dimen>
 
 </resources>
