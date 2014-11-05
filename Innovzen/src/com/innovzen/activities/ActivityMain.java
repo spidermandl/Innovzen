@@ -459,8 +459,13 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 		// Display the frag
 		if (IS_TABLET) {
-			navigateTo(FragAnimationTablet.class, bundle, true,
+			
+			//chy
+			/*navigateTo(FragAnimationTablet.class, bundle, true,
+					ActivityMain.FRAG_TAG_ANIMATION);*/
+			navigateTo(FragAnimationTabletNew.class, bundle, true,
 					ActivityMain.FRAG_TAG_ANIMATION);
+			//chy
 		} else {
 			navigateTo(FragAnimationPhone.class, bundle, true,
 					ActivityMain.FRAG_TAG_ANIMATION);

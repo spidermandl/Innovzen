@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
 import android.widget.RelativeLayout;
 
 import com.innovzen.entities.ExerciseTimes;
@@ -28,6 +30,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
 
     /** Hold this state so we'll know when we come back from fullscreen to either set it to invisible or visibles */
     private boolean mIsFooterTimersInvisible = true;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,7 +71,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
                 break;
                 //È«ÆÁ
             case R.id.animation_fullscreen:
-                super.enableFullscreen();
+            	 toggleFullscreen();
                 break;
             case R.id.animation_play_overlay_btn:
                 overlayPlayBtnPressed();
@@ -78,7 +82,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
             	break;
             	//¿ªÊ¼
             case R.id.main_animation_start:
-            	 overlayPlayBtnPressed();
+            	overlayPlayBtnPressed();
+            	
             	break;
             	//ÔÝÍ£
             case R.id.main_animation_pause:
@@ -106,6 +111,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
         view.findViewById(R.id.main_animation_stop).setOnClickListener(this);
         view.findViewById(R.id.animation_play_overlay_btn).setOnClickListener(this);
         view.findViewById(R.id.main_animation_setting).setOnClickListener(this);
+       
       //</chy>  
         this.mView = view;
 

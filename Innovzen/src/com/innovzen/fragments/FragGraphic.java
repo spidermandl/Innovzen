@@ -38,6 +38,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 			summer_graphic.setBackgroundResource(R.drawable.selector_btn_btn4);
 			editor.putString("graphic","exercise");
 			editor.commit();
+			super.activityListener.fragGradientAnimationPicked();
 			break;
 		case R.id.relax_graphic:
 			exercise_graphic.setBackgroundResource(R.drawable.selector_icon_btn1);
@@ -46,6 +47,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 			summer_graphic.setBackgroundResource(R.drawable.selector_btn_btn4);
 			editor.putString("graphic","relax");
 			editor.commit();
+			super.activityListener.fragPetalsAnimationPicked();
 			break;
 		case R.id.breath_graphic:
 			exercise_graphic.setBackgroundResource(R.drawable.selector_icon_btn1);
@@ -54,6 +56,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 			summer_graphic.setBackgroundResource(R.drawable.selector_btn_btn4);
 			editor.putString("graphic","breath");
 			editor.commit();
+			super.activityListener.fragLungsAnimationPicked();
 			break;
 		case R.id.summer_graphic:
 			exercise_graphic.setBackgroundResource(R.drawable.selector_icon_btn1);
@@ -62,6 +65,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 			summer_graphic.setBackgroundResource(R.drawable.btn_4_activated);
 			editor.putString("graphic","summer");
 			editor.commit();
+			super.activityListener.fragBeachAnimationPicked();
 			break;
 		default:
 			break;
