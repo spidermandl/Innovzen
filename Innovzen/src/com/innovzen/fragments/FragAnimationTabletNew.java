@@ -18,165 +18,210 @@ import com.innovzen.o2chair.R;
 import com.innovzen.utils.PersistentUtil;
 import com.innovzen.utils.Util;
 import com.jfeinstein.jazzyviewpager.MainActivity;
+
 /**
  * 新版呼气吸气动画主界面
+ * 
  * @author Desmond Duan
- *
+ * 
  */
-public class FragAnimationTabletNew extends FragAnimationBase implements OnClickListener {
+public class FragAnimationTabletNew extends FragAnimationBase implements
+		OnClickListener {
 
-    // Hold view references
-    private View mView;
+	// Hold view references
+	private View mView;
 
-    /** Hold this state so we'll know when we come back from fullscreen to either set it to invisible or visibles */
-    private boolean mIsFooterTimersInvisible = true;
+	/**
+	 * Hold this state so we'll know when we come back from fullscreen to either
+	 * set it to invisible or visibles
+	 */
+	private boolean mIsFooterTimersInvisible = true;
 
+	private View subtitle_container;
 
+	private LinearLayout up;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_animation_new, container, false);
+	private LinearLayout down;
 
-        super.onView(view);
+	private LinearLayout right, left_include;
 
-        initialize(view);
-        initLefter(view);
-        return view;
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_animation_new,
+				container, false);
 
-    }
+		super.onView(view);
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
+		initialize(view);
+		initLefter(view);
+		return view;
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.animation_pause_btn:
-                super.pauseExercise();
-                break;
-            case R.id.animation_help_btn:
-                super.activityListener.fragGoToHelp(true);
-                break;
-             //<chy settings>
-            case R.id.main_animation_setting:
-            	super.activityListener.fragGoToSetting(true);
-            	break;
-            case R.id.main_animation_help:
-            	super.activityListener.fragGoToHelpNew(true);
-                break;
-              //</chy>  
-            case R.id.animation_open_drawer_btn:
-                break;
-                //全屏
-            case R.id.animation_fullscreen:
-            	 toggleFullscreen();
-                break;
-            case R.id.animation_play_overlay_btn:
-                overlayPlayBtnPressed();
-                break;
-                //结束
-            case R.id.main_animation_stop:
-            	super.pauseExercise();
-            	break;
-            	//开始
-            case R.id.main_animation_start:
-            	overlayPlayBtnPressed();
-            	
-            	break;
-            	//暂停
-            case R.id.main_animation_pause:
-                super.pauseExercise();
-            	break;
-           
-                
-        }
+	}
 
-    }
+	@Override
+	public void onResume() {
+		super.onResume();
+	}
 
-    /**
-     * Does proper initializations
-     * 
-     * @author MAB
-     */
-    private void initialize(View view) {
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.animation_pause_btn:
+			super.pauseExercise();
+			break;
+		case R.id.animation_help_btn:
+			super.activityListener.fragGoToHelp(true);
+			break;
+		// <chy settings>
+		case R.id.main_animation_setting:
+			super.activityListener.fragGoToSetting(true);
+			break;
+		case R.id.main_animation_help:
+			super.activityListener.fragGoToHelpNew(true);
+			break;
+		// </chy>
+		case R.id.animation_open_drawer_btn:
+			break;
+		// 全屏
+		case R.id.animation_fullscreen:
+			toggleFullscreen();
+			break;
+		case R.id.animation_play_overlay_btn:
+			overlayPlayBtnPressed();
+			break;
+		// 结束
+		case R.id.main_animation_stop:
+			super.pauseExercise();
+			break;
+		// 开始
+		case R.id.main_animation_start:
+			overlayPlayBtnPressed();
 
-        view.findViewById(R.id.animation_fullscreen).setOnClickListener(this);
-        view.findViewById(R.id.main_animation_help).setOnClickListener(this);
-      //<chy> settins监听事件
-        view.findViewById(R.id.animation_fullscreen).setOnClickListener(this);
-        view.findViewById(R.id.main_animation_pause).setOnClickListener(this);
-        view.findViewById(R.id.main_animation_start).setOnClickListener(this);
-        view.findViewById(R.id.main_animation_stop).setOnClickListener(this);
-        view.findViewById(R.id.animation_play_overlay_btn).setOnClickListener(this);
-        view.findViewById(R.id.main_animation_setting).setOnClickListener(this);
-       
-      //</chy>  
-        this.mView = view;
+			break;
+		// 暂停
+		case R.id.main_animation_pause:
+			super.pauseExercise();
+			break;
 
-        // If simple, default exercise selected, then don't display any timers
-        if (isDefaultExercise()) {
-        	mIsFooterTimersInvisible = true;
-        } else {
-            // If only the exercise duration has been customized, then display it only
-            if (isExerciseDurationCustomized()) {
-            	mIsFooterTimersInvisible = false;
-            }
-        }
-        
-        if (!isDefaultExercise() && !isExerciseDurationCustomized() && !isEntireExerciseCustomized()) {
-            //timer_footer_container.setVisibility(View.INVISIBLE);
+		}
 
-            mIsFooterTimersInvisible = true;
-        }
-        super.countdown_tv.setPadding(Util.getScreenDimensions(getActivity())[0] / 3, 0, 0, 0);
+	}
 
-    }
+	/**
+	 * Does proper initializations
+	 * 
+	 * @author MAB
+	 */
+	private void initialize(View view) {
 
-    @Override
-    protected void initLefter(View view){
-    	super.initLefter(view);
-    	getMyShareSharedPreferences("time");
-        leftTop.setBackgroundResource(R.drawable.selector_btn_back);
-        leftMid.setBackgroundResource(R.drawable.banner_balance);
-        leftBottom.setBackgroundResource(R.drawable.selector_btn_volume);
-    }
-    
-    private void toggleFullscreen() {
-        // Check if it's in fullscreen mode by looking at the visibility of the footer
-    	//<Desmond>
-//        if (super.footer.getVisibility() == View.VISIBLE) { // currently NOT in fullscreen mode
-//
-//            /* Make stuff disappear */
-//
-//            header_buttons_container.setVisibility(View.GONE);
-//
-//            animation_type.setVisibility(View.INVISIBLE);
-//
-//            timer_footer_container.setVisibility(View.GONE);
-//
-//            super.enableFullscreen();
-//
-//        } else { // currently in fullscreen mode
-    	//<Desmond>
+		subtitle_container = view.findViewById(R.id.animation_type);
+		left_include = (LinearLayout) view.findViewById(R.id.left_include);
+		down = (LinearLayout) view.findViewById(R.id.main_mid_down_frame);
+		right = (LinearLayout) view.findViewById(R.id.main_right_frame);
+		up = (LinearLayout) view.findViewById(R.id.main_mid_up_frame);
+		view.findViewById(R.id.animation_fullscreen).setOnClickListener(this);
+		view.findViewById(R.id.main_animation_help).setOnClickListener(this);
+		// <chy> settins监听事件
+		view.findViewById(R.id.animation_fullscreen).setOnClickListener(this);
+		view.findViewById(R.id.main_animation_pause).setOnClickListener(this);
+		view.findViewById(R.id.main_animation_start).setOnClickListener(this);
+		view.findViewById(R.id.main_animation_stop).setOnClickListener(this);
+		view.findViewById(R.id.animation_play_overlay_btn).setOnClickListener(
+				this);
+		view.findViewById(R.id.main_animation_setting).setOnClickListener(this);
 
-            /* Make stuff appear */
+		// </chy>
+		this.mView = view;
 
-           animation_type.setVisibility(View.VISIBLE);
+		// If simple, default exercise selected, then don't display any timers
+		if (isDefaultExercise()) {
+			mIsFooterTimersInvisible = true;
+		} else {
+			// If only the exercise duration has been customized, then display
+			// it only
+			if (isExerciseDurationCustomized()) {
+				mIsFooterTimersInvisible = false;
+			}
+		}
 
-           super.disableFullscreen();
+		if (!isDefaultExercise() && !isExerciseDurationCustomized()
+				&& !isEntireExerciseCustomized()) {
+			// timer_footer_container.setVisibility(View.INVISIBLE);
 
-    };
+			mIsFooterTimersInvisible = true;
+		}
+		super.countdown_tv.setPadding(
+				Util.getScreenDimensions(getActivity())[0] / 3, 0, 0, 0);
 
+	}
 
-    /**
-     * When the overlay PLAY btn is pressed, it goes here
-     * 
-     * @author MAB
-     */
-    private void overlayPlayBtnPressed() {
-        super.overlayBtnPressed();
-    }
+	@Override
+	protected void initLefter(View view) {
+		super.initLefter(view);
+		getMyShareSharedPreferences("time");
+		leftTop.setBackgroundResource(R.drawable.selector_btn_back);
+		leftMid.setBackgroundResource(R.drawable.banner_balance);
+		leftBottom.setBackgroundResource(R.drawable.selector_btn_volume);
+	}
+
+	/* private void toggleFullscreen() { */
+	// Check if it's in fullscreen mode by looking at the visibility of the
+	// footer
+	// <Desmond>
+	// if (super.footer.getVisibility() == View.VISIBLE) { // currently NOT in
+	// fullscreen mode
+	//
+	// /* Make stuff disappear */
+	//
+	// header_buttons_container.setVisibility(View.GONE);
+	//
+	// animation_type.setVisibility(View.INVISIBLE);
+	//
+	// timer_footer_container.setVisibility(View.GONE);
+	//
+	// super.enableFullscreen();
+	//
+	// } else { // currently in fullscreen mode
+	// <Desmond>
+
+	/* Make stuff appear */
+
+	/*
+	 * animation_type.setVisibility(View.VISIBLE);
+	 * 
+	 * super.disableFullscreen();
+	 * 
+	 * };
+	 */
+	private void toggleFullscreen() {
+		if (up.getVisibility() == View.VISIBLE) {
+
+			subtitle_container.setVisibility(View.GONE);
+			up.setVisibility(View.GONE);
+			down.setVisibility(View.GONE);
+			right.setVisibility(View.GONE);
+			left_include.setVisibility(View.GONE);
+			super.enableFullscreen();
+		} else {
+
+			subtitle_container.setVisibility(View.VISIBLE);
+			up.setVisibility(View.VISIBLE);
+			down.setVisibility(View.VISIBLE);
+			right.setVisibility(View.VISIBLE);
+			left_include.setVisibility(View.VISIBLE);
+			super.disableFullscreen();
+
+		}
+	}
+
+	/**
+	 * When the overlay PLAY btn is pressed, it goes here
+	 * 
+	 * @author MAB
+	 */
+	private void overlayPlayBtnPressed() {
+		super.overlayBtnPressed();
+	}
 
 }
