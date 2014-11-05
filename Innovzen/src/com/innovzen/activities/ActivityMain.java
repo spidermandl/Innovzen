@@ -1,45 +1,21 @@
 package com.innovzen.activities;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Set;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.innovzen.o2chair.R;
 import com.innovzen.bluetooth.BluetoothService;
 import com.innovzen.entities.SoundGroup;
 import com.innovzen.fragments.FragAnimationPhone;
 import com.innovzen.fragments.FragAnimationPicker;
-import com.innovzen.fragments.FragAnimationTablet;
 import com.innovzen.fragments.FragAnimationTabletNew;
 import com.innovzen.fragments.FragBalance;
 import com.innovzen.fragments.FragBluetoothDialog;
@@ -96,7 +72,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	
 	//设置蓝牙对话框
 	private FragBluetoothDialog bluetoothDialog=null;
-	private BluetoothService bluetoothService=null;
+	private BluetoothService mBluetoothService=null;
 
     // Message types sent from the BluetoothChatService Handler
     public static final int MESSAGE_STATE_CHANGE = 1;
@@ -105,72 +81,44 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
     public static final int MESSAGE_DEVICE_NAME = 4;
     public static final int MESSAGE_TOAST = 5;
 	// The Handler that gets information back from the BluetoothChatService
-//    private final Handler bluetoothHandler = new Handler() {
-//        @Override
-//        public void handleMessage(Message msg) {
-//            switch (msg.what) {
-//            case MESSAGE_STATE_CHANGE:
-//                switch (msg.arg1) {
-//                case BluetoothChatService.STATE_CONNECTED:
-//                    mTitle.setText(R.string.title_connected_to);
-//                    mTitle.append(mConnectedDeviceName);
-//                    mConversationArrayAdapter.clear();
-//                    
-//                    Calendar now = Calendar.getInstance();
-//                    mSaveFileName = "/" + String.format("%04d%02d%02d%02d%02d%02d", 
-//                    		now.get(Calendar.YEAR), now.get(Calendar.MONTH),
-//                    		now.get(Calendar.DATE), now.get(Calendar.HOUR_OF_DAY), 
-//                    		now.get(Calendar.MINUTE) - now.get(Calendar.SECOND))
-//                    		+ ".txt";
-//                    break;
-//                case BluetoothChatService.STATE_CONNECTING:
-//                    mTitle.setText(R.string.title_connecting);
-//                    break;
-//                case BluetoothChatService.STATE_LISTEN:
-//                case BluetoothChatService.STATE_NONE:
-//                    mTitle.setText(R.string.title_not_connected);
-//                    break;
-//                }
-//                break;
-//            case MESSAGE_WRITE:
-//                byte[] writeBuf = (byte[]) msg.obj;
-//                // construct a string from the buffer
-//                String writeMessage = new String(writeBuf);
-//                mConversationArrayAdapter.add("Me:  " + writeMessage);
-//                break;
-//            case MESSAGE_READ:
-//                byte[] readBuf = (byte[]) msg.obj;
-//                // construct a string from the valid bytes in the buffer
-//                String readMessage = new String(readBuf, 0, msg.arg1);
-//                mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
-//                
-//                if (mSaveFileName.equals("") == false) {
-//                	String rootDir = Environment.getExternalStorageDirectory().getPath();
-//                	File dir = new File(rootDir + "/BluetoothChat");
-//                	if (dir.exists() == false)
-//                		dir.mkdirs();
-//                	try {
-//                		writeFileSdcardFile(rootDir + "/BluetoothChat" + mSaveFileName, 
-//                				readMessage, true);
-//                	} catch (IOException e) {
-//                		Log.e(TAG, "Write file failed.");
-//                	}
-//                }
-//                break;
-//            case MESSAGE_DEVICE_NAME:
-//                // save the connected device's name
-//                mConnectedDeviceName = msg.getData().getString(DEVICE_NAME);
-//                Toast.makeText(getApplicationContext(), "Connected to "
-//                               + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
-//                break;
-//            case MESSAGE_TOAST:
-//                Toast.makeText(getApplicationContext(), msg.getData().getString(TOAST),
-//                               Toast.LENGTH_SHORT).show();
-//                break;
-//            }
-//        }
-//    };
+    private final Handler bluetoothHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+            case MESSAGE_STATE_CHANGE://链接状态变化
+                switch (msg.arg1) {
+                case BluetoothService.STATE_CONNECTED://连接建立
+
+                    break;
+                case BluetoothService.STATE_CONNECTING://正在建立连接
+                    break;
+                case BluetoothService.STATE_LISTEN://监听端口
+                case BluetoothService.STATE_NONE:
+                    break;
+                }
+                break;
+            case MESSAGE_WRITE:
+                byte[] writeBuf = (byte[]) msg.obj;
+                // construct a string from the buffer
+                String writeMessage = new String(writeBuf);
+                break;
+            case MESSAGE_READ:
+                byte[] readBuf = (byte[]) msg.obj;
+                // construct a string from the valid bytes in the buffer
+                String readMessage = new String(readBuf, 0, msg.arg1);
+                break;
+            case MESSAGE_DEVICE_NAME://保存设备名称
+                // save the connected device's name
+                break;
+            case MESSAGE_TOAST:
+                break;
+            }
+        }
+    };
     
+    public BluetoothService getBluetoothService(){
+    	return mBluetoothService;
+    }
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -178,7 +126,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 		// Load the sound information
 		loadSoundInfo();
-		
+		initBluetooth();
 		// By default go to the main menu fragment
 		// <chy>
 		// super.navigateTo(FragMainMenu.class);
@@ -321,7 +269,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		bluetoothDialog.show(this.getSupportFragmentManager(), "bbb");
 	}
 
-	
+	/**
+	 * 初始化蓝牙服务
+	 */
+	private void initBluetooth(){
+		mBluetoothService=new BluetoothService(this,bluetoothHandler);
+	}
 		
 	/**
 	 * Read the data from the .json file and parse it

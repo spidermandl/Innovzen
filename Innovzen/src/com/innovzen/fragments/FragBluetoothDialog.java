@@ -2,6 +2,7 @@ package com.innovzen.fragments;
 
 import java.util.Set;
 
+import com.innovzen.activities.ActivityMain;
 import com.innovzen.o2chair.R;
 
 import android.bluetooth.BluetoothAdapter;
@@ -117,7 +118,7 @@ public class FragBluetoothDialog extends DialogFragment {
             // Get the BLuetoothDevice object
             BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
             // Attempt to connect to the device
-            mChatService.connect(device);
+            ((ActivityMain)FragBluetoothDialog.this.getActivity()).getBluetoothService().connect(device);
 		}
 	};
     
