@@ -42,7 +42,7 @@ public class FragTime extends FragBase implements OnClickListener {
                time_20min.setBackgroundResource(R.drawable.selector_time_20min);
                time_25min.setBackgroundResource(R.drawable.selector_time_25min);
                time_30min.setBackgroundResource(R.drawable.selector_time_30min);
-               editor.putString("time","5min");
+               editor.putString(super.SHARED_TIME,"5min");
    			editor.commit();
    			getMyShareSharedPreferences(super.SHARED_TIME);
 			break;

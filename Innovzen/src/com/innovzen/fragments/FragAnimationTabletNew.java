@@ -15,6 +15,7 @@ import com.innovzen.handlers.FooterHandler;
 import com.innovzen.o2chair.R;
 import com.innovzen.utils.PersistentUtil;
 import com.innovzen.utils.Util;
+import com.jfeinstein.jazzyviewpager.MainActivity;
 /**
  * 新版呼气吸气动画主界面
  * @author Desmond Duan
@@ -64,12 +65,26 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
               //</chy>  
             case R.id.animation_open_drawer_btn:
                 break;
+                //全屏
             case R.id.animation_fullscreen:
-                toggleFullscreen();
+                super.enableFullscreen();
                 break;
             case R.id.animation_play_overlay_btn:
                 overlayPlayBtnPressed();
                 break;
+                //结束
+            case R.id.main_animation_stop:
+            	super.pauseExercise();
+            	break;
+            	//开始
+            case R.id.main_animation_start:
+            	 overlayPlayBtnPressed();
+            	break;
+            	//暂停
+            case R.id.main_animation_pause:
+                super.pauseExercise();
+            	break;
+           
                 
         }
 
@@ -85,6 +100,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements OnClick
         view.findViewById(R.id.animation_fullscreen).setOnClickListener(this);
         view.findViewById(R.id.main_animation_help).setOnClickListener(this);
       //<chy> settins监听事件
+        view.findViewById(R.id.animation_fullscreen).setOnClickListener(this);
+        view.findViewById(R.id.main_animation_pause).setOnClickListener(this);
+        view.findViewById(R.id.main_animation_start).setOnClickListener(this);
+        view.findViewById(R.id.main_animation_stop).setOnClickListener(this);
         view.findViewById(R.id.animation_play_overlay_btn).setOnClickListener(this);
         view.findViewById(R.id.main_animation_setting).setOnClickListener(this);
       //</chy>  

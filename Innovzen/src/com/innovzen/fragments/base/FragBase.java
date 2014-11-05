@@ -27,10 +27,12 @@ import com.innovzen.o2chair.R;
  * 
  */
 public abstract class FragBase extends Fragment {
+	public static final String SHARED_MUSIC = "music";
 	public static final String SHARED_TIME = "time";
 	public static final String SHARED_GRAPHIC = "graphic";
 	public static final String SAVE_TIME_MIN = "saveTimeMin";
 	public static final String SAVE_GRAPHIC = "saveGraphic";
+	public static final String SAVE_MUSIC = "saveMusic";
 	// Holds the reference to where the activity listens for messages from the
 	// fragments
 	protected FragmentCommunicator activityListener;
@@ -63,6 +65,10 @@ public abstract class FragBase extends Fragment {
 			sp = getActivity().getSharedPreferences(SAVE_GRAPHIC,
 					Context.MODE_PRIVATE);
 			Toast.makeText(getActivity(), "ok", 0).show();
+		}else if(str.equals(SHARED_MUSIC)){
+			sp = getActivity().getSharedPreferences(SAVE_MUSIC,
+					Context.MODE_PRIVATE);
+			//“Ù¿÷
 		}
 	}
 
