@@ -55,7 +55,7 @@ public class AdapterHelp extends PagerAdapter {
         // Inflate a new page
     	//<chy>
        // final View page = mInflater.inflate(R.layout.page_help, view, false);
-    	final View page = mInflater.inflate(R.layout.page_help, view, false);
+    	final View page = mInflater.inflate(R.layout.page_helpnew, view, false);
      //   </chy>
         Resources res = mCtx.getResources();
 
@@ -70,10 +70,18 @@ public class AdapterHelp extends PagerAdapter {
         new SubheaderHandler(res, (TextView) page.findViewById(R.id.reusable_subheader), res.getString(R.string.subheader_base_notice), res.getString(R.string.subheader_help));
 
         // Initialize the footer
-        new FooterHandler(mActivityListener, (RelativeLayout) page.findViewById(R.id.page_help_footer), FooterHandler.HOME, -1, -1);
+      //  new FooterHandler(mActivityListener, (RelativeLayout) page.findViewById(R.id.page_help_footer), FooterHandler.HOME, -1, -1);
 
         // Initialize the main container
-        if (position == 0) {
+        if(position == 0) {
+            if(ActivitySplashScreen.isInnovzenApp()){
+            	 ((TextView) page.findViewById(R.id.page_help_main_content)).setText(Html.fromHtml(res.getString(R.string.help_1)));
+            }else{
+           	 ((TextView) page.findViewById(R.id.page_help_main_content)).setText(Html.fromHtml(res.getString(R.string.help_2)));
+
+            }
+            }
+       /* if (position == 0) {
             ((TextView) page.findViewById(R.id.page_help_main_content)).setText(Html.fromHtml(res.getString(R.string.help_first)));
         } else if (position == 1) {
             ((TextView) page.findViewById(R.id.page_help_main_content)).setText(Html.fromHtml(res.getString(R.string.help_second)));
@@ -84,7 +92,7 @@ public class AdapterHelp extends PagerAdapter {
                 ((TextView) page.findViewById(R.id.page_help_main_content)).setText(Html.fromHtml(res.getString(R.string.help_third_o2chair)));
             }
         }
-
+*/
         // Keep the reference to the header handler so it won't get scrapped
         page.setTag(header);
 

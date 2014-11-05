@@ -77,6 +77,7 @@
         layout:rate_up="21" />
 
     <!-- 左边栏 -->
+
     <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -139,8 +140,7 @@
         android:layout_alignLeft="@id/main_mea_horizontal_2"
         android:layout_alignRight="@id/main_mea_horizontal_2"
         android:layout_alignTop="@id/main_mea_vertical_2"
-        layout="@layout/animation_core"
-         />
+        layout="@layout/animation_core" />
 
     <!-- 中下框架 -->
 

@@ -4,18 +4,24 @@
     android:layout_height="match_parent"
     android:background="@drawable/main_background" >
 
+    <!-- HEADER -->
+<!-- chy隐藏 -->
+    <include 
+        
+        android:visibility="invisible"
+        layout="@layout/reusable_header" />
 
     <!-- SUBHEADER -->
-
-
+<!-- chy隐藏 -->
+    <include
+        android:visibility="invisible"
+         layout="@layout/reusable_subheader" />
 
     <!-- MAIN CONTAINER -->
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/page_help_footer"
-        android:layout_below="@+id/reusable_subheader"
         android:layout_marginLeft="@dimen/page_help_main_text_margin_left"
         android:layout_marginRight="@dimen/page_help_main_text_margin_right"
         android:paddingTop="20dp" >
@@ -23,13 +29,16 @@
         <TextView
             android:id="@+id/page_help_main_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
+            android:layout_height="wrap_content"
             android:textSize="@dimen/page_help_main_text" />
     </ScrollView>
 
     <!-- FOOTER -->
 
-
-
+  <!-- chy 
+   <include
+        
+        android:id="@id/page_help_footer"
+        layout="@layout/reusable_footer" />
+ -->
 </RelativeLayout>

@@ -318,7 +318,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
       //header = view.findViewById(R.id.reusable_header);
       //<Desmond>
         fullscreen_btn = (ImageView) view.findViewById(R.id.animation_fullscreen);
-        dummy_white_background_for_fullscreen = view.findViewById(R.id.animation_dummy_white_view_for_fullscreen);
+    dummy_white_background_for_fullscreen = view.findViewById(R.id.animation_dummy_white_view_for_fullscreen);
         countdown_tv = (TextView) view.findViewById(R.id.animation_countdown);
 
         // Set event listeners
@@ -571,7 +571,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
      */
     protected void enableFullscreen() {
 
-        dummy_white_background_for_fullscreen.setVisibility(View.VISIBLE);
+       dummy_white_background_for_fullscreen.setVisibility(View.VISIBLE);
 
         fullscreen_btn.setImageResource(R.drawable.selector_icon_fullscreen_out);
 
