@@ -30,6 +30,7 @@ import com.innovzen.fragments.FragLanguage;
 import com.innovzen.fragments.FragMain;
 import com.innovzen.fragments.FragMainMenu;
 import com.innovzen.fragments.FragMusic;
+import com.innovzen.fragments.FragSession;
 import com.innovzen.fragments.FragSettings;
 import com.innovzen.fragments.FragSoundPicker;
 import com.innovzen.fragments.FragTime;
@@ -585,7 +586,11 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		navigateTo(FragHistoryNew.class, null, addToBackstack);
 		
 	}
-
+	@Override
+	public void fragGoToSession(boolean addToBackstack) {
+		navigateTo(FragSession.class, null, addToBackstack);
+		
+	}
 	@Override
 	public void fragGoToHelpNew(boolean addToBackstack) {
 		try{
@@ -603,5 +608,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		isBlueToothSetup();
 		
 	}
+	
 
 }

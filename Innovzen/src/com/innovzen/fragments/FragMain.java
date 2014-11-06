@@ -42,6 +42,9 @@ public class FragMain extends FragBase implements OnClickListener{
 		case R.id.menu_performance:
 			super.activityListener.fragGoToAnimation(true);
 			break;
+		case R.id.menu_mySession:
+			super.activityListener.fragGoToSession(true);
+			break;
 		case R.id.left_top:
 			super.activityListener.fragConnectBluetooth();
 			break;
