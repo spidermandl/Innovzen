@@ -86,7 +86,6 @@ public class ActivityBase extends FragmentActivity {
                 if (addToBackstack) {
                     transaction.addToBackStack(fragmentTag);//º”»ÎÕÀªÿ’ª
                 }
-                String fragName=fragmentClass.getSimpleName();
                 
                 /* this is not the proper resolve IllegalStateException: Can not perform this action after onSaveInstanceState */
                 transaction.commitAllowingStateLoss();
