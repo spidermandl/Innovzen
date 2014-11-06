@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- chy My session界面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_backgroud" >
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/top_horizontal_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout:orientation="false"
+        layout:rate_down="22"
+        layout:rate_up="5" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/top_horizontal_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/top_horizontal_1"
+        layout:orientation="false"
+        layout:rate_down="22"
+        layout:rate_up="4" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/top_horizontal_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/top_horizontal_2"
+        layout:orientation="false"
+        layout:rate_down="22"
+        layout:rate_up="4" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/top_horizontal_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/top_horizontal_3"
+        layout:orientation="false"
+        layout:rate_down="22"
+        layout:rate_up="4" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/top_horizontal_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/top_horizontal_4"
+        layout:orientation="false"
+        layout:rate_down="22"
+        layout:rate_up="5" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/top_horizontal_1"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@id/top_horizontal_1"
+        android:background="@drawable/banner_my_session_left" 
+        android:padding="@dimen/grid_half_gap"
+        />
+     <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/top_horizontal_2"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@id/top_horizontal_2"
+        android:background="@drawable/selector_btn_volume" 
+        android:padding="@dimen/grid_half_gap"
+        />
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/top_horizontal_3"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@id/top_horizontal_3"
+        android:background="@drawable/selector_btn_settings"
+        android:padding="@dimen/grid_half_gap"
+         />
+       <ImageView
+           android:id="@+id/top4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/top_horizontal_4"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@id/top_horizontal_4"
+        android:background="@drawable/selector_btn_help" 
+        android:padding="@dimen/grid_half_gap"
+        />
+ <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/top_horizontal_5"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@id/top_horizontal_5"
+        android:layout_alignBottom="@id/top4"
+        android:background="@drawable/selector_btn_gravity"
+        android:padding="@dimen/grid_half_gap"
+         />
+</RelativeLayout>

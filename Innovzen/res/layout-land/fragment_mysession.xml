@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- chy My session界面 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/main_backgroud" >
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/left_vertical_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout:orientation="true"
+        layout:rate_down="37"
+        layout:rate_up="9" />
+     <com.innovzen.ui.MeasureView
+        android:id="@+id/left_vertical_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/left_vertical_1"
+        android:layout_alignParentLeft="true"
+        layout:orientation="true"
+        layout:rate_down="37"
+        layout:rate_up="22" />
+    
+      <com.innovzen.ui.MeasureView
+        android:id="@+id/left_vertical_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/left_vertical_2"
+        layout:orientation="true"
+        layout:rate_down="37"
+        layout:rate_up="6" />
+        <com.innovzen.ui.MeasureView
+        android:id="@+id/horizontal_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        layout:orientation="false"
+        layout:rate_down="1"
+        layout:rate_up="1" />
+     <include 
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:layout_alignBottom="@id/left_vertical_1"
+         android:layout_alignTop="@id/left_vertical_1"
+         android:layout_alignLeft="@id/horizontal_1"
+         android:layout_alignRight="@id/horizontal_1"
+         layout="@layout/fragment_mysession_top"
+         android:padding="@dimen/grid_half_gap"
+         />
+
+ <include 
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:layout_alignBottom="@id/left_vertical_2"
+         android:layout_alignTop="@id/left_vertical_2"
+         android:layout_alignLeft="@id/horizontal_1"
+         android:layout_alignRight="@id/horizontal_1"
+         layout="@layout/fragment_mysession_mid"
+         android:padding="@dimen/grid_half_gap"
+         />
+ <include 
+      android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:layout_alignBottom="@id/left_vertical_3"
+         android:layout_alignTop="@id/left_vertical_3"
+         android:layout_alignLeft="@id/horizontal_1"
+         android:layout_alignRight="@id/horizontal_1"
+         layout="@layout/fragment_mysession_bottom"
+         android:padding="@dimen/grid_half_gap"
+     />
+</RelativeLayout>
