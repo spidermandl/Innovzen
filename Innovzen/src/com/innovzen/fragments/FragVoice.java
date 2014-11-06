@@ -81,12 +81,15 @@ public class FragVoice extends FragBase implements OnClickListener {
 		man_voice.setOnClickListener(this);
 		woman_voice.setOnClickListener(this);
 		silence_voice.setOnClickListener(this);
+		man_voice.setBackgroundResource(R.drawable.btn_man_voice_activated);
 		String myVoice =sp.getString("voice","");
 		if(myVoice==null||myVoice.equals("man")){
 			man_voice.setBackgroundResource(R.drawable.btn_man_voice_activated);
 		}else if(myVoice.equals("woman")){
+			man_voice.setBackgroundResource(R.drawable.selector_voice_man);
 			man_voice.setBackgroundResource(R.drawable.btn_woman_voice_activated);
 		}else if(myVoice.equals("silence")){
+			man_voice.setBackgroundResource(R.drawable.selector_voice_man);
 			silence_voice.setBackgroundResource(R.drawable.btn_silence_voice_activated);
 		}
 	}
