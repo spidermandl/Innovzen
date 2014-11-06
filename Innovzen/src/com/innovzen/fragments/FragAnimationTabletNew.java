@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 import android.widget.RelativeLayout;
 
@@ -44,6 +45,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private LinearLayout down;
 
 	private LinearLayout right, left_include;
+
+	private LinearLayout animation_center_1,animation_center_2;
+
+	private RelativeLayout animation_play_overlay;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -114,7 +119,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * @author MAB
 	 */
 	private void initialize(View view) {
-
+		animation_play_overlay = (RelativeLayout) view.findViewById(R.id.animation_play_overlay);
+         animation_center_1 = (LinearLayout) view.findViewById(R.id.animation_center_1);
 		subtitle_container = view.findViewById(R.id.animation_type);
 		left_include = (LinearLayout) view.findViewById(R.id.left_include);
 		down = (LinearLayout) view.findViewById(R.id.main_mid_down_frame);
@@ -196,21 +202,27 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 */
 	private void toggleFullscreen() {
 		if (up.getVisibility() == View.VISIBLE) {
-
+			   super.enableFullscreen();
 			subtitle_container.setVisibility(View.GONE);
+			
 			up.setVisibility(View.GONE);
 			down.setVisibility(View.GONE);
 			right.setVisibility(View.GONE);
 			left_include.setVisibility(View.GONE);
-			super.enableFullscreen();
+			/*animation_center_1.setVisibility(View.GONE);
+			animation_center_2.setVisibility(View.VISIBLE);*/
+		
+			animation_center_1.l
+			
 		} else {
-
+			super.disableFullscreen();
 			subtitle_container.setVisibility(View.VISIBLE);
 			up.setVisibility(View.VISIBLE);
 			down.setVisibility(View.VISIBLE);
 			right.setVisibility(View.VISIBLE);
 			left_include.setVisibility(View.VISIBLE);
-			super.disableFullscreen();
+			/*animation_center_2.setVisibility(View.GONE);
+			animation_center_1.setVisibility(View.VISIBLE);*/
 
 		}
 	}
