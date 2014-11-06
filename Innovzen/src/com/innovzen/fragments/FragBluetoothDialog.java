@@ -5,7 +5,6 @@ import java.util.Set;
 import com.innovzen.activities.ActivityMain;
 import com.innovzen.o2chair.R;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -13,10 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +21,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 /**
@@ -88,6 +83,7 @@ public class FragBluetoothDialog extends DialogFragment {
 		filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
 		this.getActivity().registerReceiver(mReceiver, filter);
 	            
+		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
 
 		// If there are paired devices, add each one to the ArrayAdapter
@@ -123,11 +119,13 @@ public class FragBluetoothDialog extends DialogFragment {
             BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
             // Attempt to connect to the device
             ((ActivityMain)FragBluetoothDialog.this.getActivity()).getBluetoothService().connect(device);
+            FragBluetoothDialog.this.dismiss();
 		}
 	};
     
     /**
 	 * Start device discover with the BluetoothAdapter
+	 * 开始 发现新蓝牙设备
 	 */
 	private void doDiscovery()
 	{
@@ -151,6 +149,7 @@ public class FragBluetoothDialog extends DialogFragment {
     	this.getActivity().unregisterReceiver(mReceiver);
     	super.onStop();
     }
+    
  // The BroadcastReceiver that listens for discovered devices and
  	// changes the title when discovery is finished
  	private final BroadcastReceiver mReceiver = new BroadcastReceiver()

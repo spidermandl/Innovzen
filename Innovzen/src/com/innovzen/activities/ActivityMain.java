@@ -208,6 +208,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
 		// case REQUEST_CONNECT_DEVICE:
 		// // When DeviceListActivity returns with a device to connect
@@ -230,8 +231,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 			} else {
 				// User did not enable Bluetooth or an error occured
-				Toast.makeText(this, R.string.bt_not_enabled_leaving,
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, R.string.bt_not_enabled_leaving,Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
