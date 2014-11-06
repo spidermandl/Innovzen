@@ -5,6 +5,7 @@ import java.util.Set;
 import com.innovzen.activities.ActivityMain;
 import com.innovzen.o2chair.R;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -12,7 +13,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 /**
@@ -52,11 +56,17 @@ public class FragBluetoothDialog extends DialogFragment {
         
     	return dg;
     }  
-         
+    
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+    	// TODO Auto-generated method stub
+    	super.onCreate(savedInstanceState);
+    }
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
     		Bundle savedInstanceState) {
-    	getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
+    	getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);//不设标题
     	View view = inflater.inflate(R.layout.bluetooth_device_list, container, false);
     	ListView pairedListView = (ListView) view.findViewById(R.id.paired_devices);
 		mPairedDevicesArrayAdapter = new ArrayAdapter<String>(this.getActivity(),R.layout.bluetooth_device_name);
@@ -77,29 +87,23 @@ public class FragBluetoothDialog extends DialogFragment {
 		// Register for broadcasts when discovery has finished
 		filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
 		this.getActivity().registerReceiver(mReceiver, filter);
+	            
+		Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
 
-		// 获取蓝牙设备适配器实例
-		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-		// Get a set of currently paired devices
-		if(mBluetoothAdapter!=null){
-			Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
-	
-			// If there are paired devices, add each one to the ArrayAdapter
-			if (pairedDevices.size() > 0) {
-				view.findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
-				for (BluetoothDevice device : pairedDevices) {
-					mPairedDevicesArrayAdapter.add(device.getName() + "\n"
-							+ device.getAddress());
-				}
-			} else {
-				String noDevices = getResources().getText(R.string.none_paired).toString();
-				mPairedDevicesArrayAdapter.add(noDevices);
+		// If there are paired devices, add each one to the ArrayAdapter
+		if (pairedDevices.size() > 0) {
+			view.findViewById(R.id.title_paired_devices).setVisibility(View.VISIBLE);
+			for (BluetoothDevice device : pairedDevices) {
+				mPairedDevicesArrayAdapter.add(device.getName() + "\n"
+						+ device.getAddress());
 			}
+		} else {
+			String noDevices = getResources().getText(R.string.none_paired).toString();
+			mPairedDevicesArrayAdapter.add(noDevices);
 		}
-		
+
 		doDiscovery();
-		
+
     	return view;
     }
     

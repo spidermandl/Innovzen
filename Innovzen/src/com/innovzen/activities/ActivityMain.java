@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -69,11 +70,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	private SoundHandler mSoundHandler;
 
 	// 蓝牙开启intent请求
-	private static final int REQUEST_ENABLE_BT = 1;
+	public static final int REQUEST_ENABLE_BT = 1;
 	
 	//设置蓝牙对话框
 	private FragBluetoothDialog bluetoothDialog=null;
 	private BluetoothService mBluetoothService=null;
+	private BluetoothAdapter mBluetoothAdapter=null;
 
     // Message types sent from the BluetoothChatService Handler
     public static final int MESSAGE_STATE_CHANGE = 1;
@@ -251,21 +253,18 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	 * Desmond 判断蓝牙设备是否开启
 	 */
 	private boolean isBlueToothSetup() {
-//		// If the adapter is null, then Bluetooth is not supported
-//		if (mBluetoothAdapter == null) {
-//			Toast.makeText(this, "Bluetooth is not available",Toast.LENGTH_LONG).show();
-//			return;
-//		}
-//
-//		if (!mBluetoothAdapter.isEnabled()) {
-//			Intent enableIntent = new Intent(
-//					BluetoothAdapter.ACTION_REQUEST_ENABLE);
-//			startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
-//
-//		} else {// 进入蓝牙通讯
-//			bluetoothDialog =FragBluetoothDialog.newInstance("aaa", "aaaa");
-//			bluetoothDialog.show(this.getSupportFragmentManager(), "bbb");
-//		}
+		//判断有无蓝牙设备
+		if(mBluetoothAdapter==null){
+			Toast.makeText(this, R.string.bt_not_enabled_leaving, 1000).show();
+			return false;
+		}
+		//判断蓝牙是否开启
+        if (!mBluetoothAdapter.isEnabled()) {
+            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            this.startActivityForResult(enableIntent, ActivityMain.REQUEST_ENABLE_BT);
+            return false;
+        }
+        //判断蓝牙通信是否建立
 		if(mBluetoothService.getState()!=BluetoothService.STATE_CONNECTED){
 			bluetoothDialog =FragBluetoothDialog.newInstance("", "");
 			bluetoothDialog.show(this.getSupportFragmentManager(), "");
@@ -278,6 +277,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	 * 初始化蓝牙服务
 	 */
 	private void initBluetooth(){
+
+		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		mBluetoothService=new BluetoothService(this,bluetoothHandler);
 	}
 		
