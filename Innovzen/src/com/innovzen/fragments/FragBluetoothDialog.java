@@ -139,10 +139,14 @@ public class FragBluetoothDialog extends DialogFragment {
 	
     @Override
     public void dismiss() {
-    	this.getActivity().unregisterReceiver(mReceiver);
     	super.dismiss();
     }
     
+    @Override
+    public void onStop() {
+    	this.getActivity().unregisterReceiver(mReceiver);
+    	super.onStop();
+    }
  // The BroadcastReceiver that listens for discovered devices and
  	// changes the title when discovery is finished
  	private final BroadcastReceiver mReceiver = new BroadcastReceiver()

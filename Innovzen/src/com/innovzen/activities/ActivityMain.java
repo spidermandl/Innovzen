@@ -249,7 +249,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	/**
 	 * Desmond 判断蓝牙设备是否开启
 	 */
-	private void isBlueToothSetup() {
+	private boolean isBlueToothSetup() {
 //		// If the adapter is null, then Bluetooth is not supported
 //		if (mBluetoothAdapter == null) {
 //			Toast.makeText(this, "Bluetooth is not available",Toast.LENGTH_LONG).show();
@@ -265,8 +265,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 //			bluetoothDialog =FragBluetoothDialog.newInstance("aaa", "aaaa");
 //			bluetoothDialog.show(this.getSupportFragmentManager(), "bbb");
 //		}
-		bluetoothDialog =FragBluetoothDialog.newInstance("aaa", "aaaa");
-		bluetoothDialog.show(this.getSupportFragmentManager(), "bbb");
+		if(mBluetoothService.getState()!=BluetoothService.STATE_CONNECTED){
+			bluetoothDialog =FragBluetoothDialog.newInstance("", "");
+			bluetoothDialog.show(this.getSupportFragmentManager(), "");
+			return false;
+		}
+		return true;
 	}
 
 	/**
