@@ -19,7 +19,9 @@ import com.innovzen.o2chair.R;
  *
  */
 public class FragMain extends FragBase implements OnClickListener{
-	 @Override
+	 private TextView myMintues;
+
+	@Override
 	    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 	        View view = inflater.inflate(R.layout.fragment_user_application_button, container, false);
 	        
@@ -36,8 +38,8 @@ public class FragMain extends FragBase implements OnClickListener{
 			break;
 		case R.id.menu_relax:
 			
-			//super.activityListener.fragGoToAnimation(true);
-			super.activityListener.fragGoToSetting(true);
+			super.activityListener.fragPetalsAnimationPicked();
+			myMintues.setText("10min");
 			break;
 		case R.id.menu_performance:
 			super.activityListener.fragGoToAnimation(true);
@@ -59,6 +61,7 @@ public class FragMain extends FragBase implements OnClickListener{
 
 	@Override
 	public void init(View view) {
+	myMintues = (TextView) view.findViewById(R.id.myMinutes);
 		
 		view.findViewById(R.id.menu_balance).setOnClickListener(this);
 		view.findViewById(R.id.menu_mySession).setOnClickListener(this);

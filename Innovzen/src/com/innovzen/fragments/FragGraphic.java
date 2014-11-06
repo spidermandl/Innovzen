@@ -38,7 +38,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 			summer_graphic.setBackgroundResource(R.drawable.selector_btn_btn4);
 			editor.putString("graphic","exercise");
 			editor.commit();
-			super.activityListener.fragGradientAnimationPicked();
+			//super.activityListener.fragGradientAnimationPicked();
 			break;
 		case R.id.relax_graphic:
 			exercise_graphic.setBackgroundResource(R.drawable.selector_icon_btn1);
@@ -88,14 +88,19 @@ public class FragGraphic extends FragBase implements OnClickListener{
 		summer_graphic =(ImageView) view.findViewById(R.id.summer_graphic);
 		summer_graphic.setOnClickListener(this);
 		String myGraphic =sp.getString("graphic","");
+		exercise_graphic.setBackgroundResource(R.drawable.btn_1_activated);
 		if(myGraphic==null||myGraphic.equals("exercise")){
 			exercise_graphic.setBackgroundResource(R.drawable.btn_1_activated);
 		}else if(myGraphic.equals("relax")){
 			relax_graphic.setBackgroundResource(R.drawable.btn_2_activated);
+			exercise_graphic.setBackgroundResource(R.drawable.selector_icon_btn1);
 		}else if(myGraphic.equals("breath")){
 			breath_graphic.setBackgroundResource(R.drawable.btn_3_activated);
+			exercise_graphic.setBackgroundResource(R.drawable.selector_icon_btn1);
+			
 		}else if(myGraphic.equals("summer")){
 			summer_graphic.setBackgroundResource(R.drawable.btn_4_activated);
+			exercise_graphic.setBackgroundResource(R.drawable.selector_icon_btn1);
 		}
 	
 	}

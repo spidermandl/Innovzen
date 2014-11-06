@@ -123,19 +123,25 @@ public class FragTime extends FragBase implements OnClickListener {
 		time_25min.setOnClickListener(this);
 		time_30min = (ImageView) view.findViewById(R.id.time_30min);
 		time_30min.setOnClickListener(this);
+		time_5min.setBackgroundResource(R.drawable.btn_5min_activated);
 		String myTime =sp.getString("time","");
 		if(myTime==null||myTime.equals("5min")){
 			time_5min.setBackgroundResource(R.drawable.btn_5min_activated);
 		}else if(myTime.equals("10min")){
 			time_10min.setBackgroundResource(R.drawable.btn_10min_activated);
+			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
 		}else if(myTime.equals("15min")){
 			time_15min.setBackgroundResource(R.drawable.btn_15min_activated);
+			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
 		}else if(myTime.equals("20min")){
 			time_20min.setBackgroundResource(R.drawable.btn_20min_activated);
+			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
 		}else if(myTime.equals("25min")){
 			time_25min.setBackgroundResource(R.drawable.btn_25min_activated);
+			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
 		}else if(myTime.equals("30min")){
 			time_30min.setBackgroundResource(R.drawable.btn_30min_activated);
+			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
 		}
 		getMyShareSharedPreferences("time");
 	}

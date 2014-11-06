@@ -1,5 +1,7 @@
 package com.innovzen.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 
 import android.widget.RelativeLayout;
 
@@ -50,6 +53,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 	private RelativeLayout animation_play_overlay;
 
+	private RelativeLayout rl;
+
+	private TextView myMinutes;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -60,6 +67,11 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 		initialize(view);
 		initLefter(view);
+		/*rl = new RelativeLayout(getActivity());
+		RelativeLayout.LayoutParams lp1 =  new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+		
+		animation_center_1.addView(animation_center_1,lp1);
+		getActivity().setContentView(rl);*/
 		return view;
 
 	}
@@ -119,7 +131,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * @author MAB
 	 */
 	private void initialize(View view) {
-
+            myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		animation_play_overlay = (RelativeLayout) view.findViewById(R.id.animation_play_overlay);
 		animation_center_1 = (LinearLayout) view.findViewById(R.id.animation_center_1);
 		/*animation_center_2 = (LinearLayout) view.findViewById(R.id.animation_center_2);*/
@@ -167,7 +179,14 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	@Override
 	protected void initLefter(View view) {
 		super.initLefter(view);
+		SharedPreferences	sp = getActivity().getSharedPreferences(super.SAVE_TIME_MIN, Context.MODE_PRIVATE);
+		String temp = sp.getString("time", "");
+		if(temp.equals("")||temp==null){
+			myMinutes.setText("5min");
+		}else{
+		
 		getMyShareSharedPreferences("time");
+		}
 		leftTop.setBackgroundResource(R.drawable.selector_btn_back);
 		leftMid.setBackgroundResource(R.drawable.banner_balance);
 		leftBottom.setBackgroundResource(R.drawable.selector_btn_volume);
@@ -211,6 +230,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			down.setVisibility(View.GONE);
 			right.setVisibility(View.GONE);
 			left_include.setVisibility(View.GONE);
+			
+			
 			/*animation_center_1.setVisibility(View.GONE);*/
 		/*	animation_center_2.setVisibility(View.VISIBLE);*/
 			super.enableFullscreen();

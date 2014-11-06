@@ -109,17 +109,22 @@ public class FragMusic extends FragBase implements OnClickListener{
 		music3.setOnClickListener(this);
 		music4.setOnClickListener(this);
 		music5.setOnClickListener(this);
+		music1.setBackgroundResource(R.drawable.btn_aquatic_music_activated);
 		String myMusic =sp.getString(super.SHARED_MUSIC,"");
 		if(myMusic==null||myMusic.equals(SELECT_MUSIC1)){
 			music1.setBackgroundResource(R.drawable.btn_aquatic_music_activated);
 		}else if(myMusic.equals(SELECT_MUSIC2)){
 			music2.setBackgroundResource(R.drawable.btn_bondi_music_activated);
+			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
 		}else if(myMusic.equals(SELECT_MUSIC3)){
 			music3.setBackgroundResource(R.drawable.btn_angelic_music_activated);
+			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
 		}else if(myMusic.equals(SELECT_MUSIC4)){
 			music4.setBackgroundResource(R.drawable.btn_ithaca_music_activated);
+			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
 		}else if(myMusic.equals(SELECT_MUSIC5)){
 			music5.setBackgroundResource(R.drawable.btn_silence_music_activated);
+			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
 		
 	}
 	}
