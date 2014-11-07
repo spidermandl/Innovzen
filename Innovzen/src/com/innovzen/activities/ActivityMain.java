@@ -204,6 +204,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 		// Release the players before exiting
 		mSoundHandler.releasePlayers();
+		mBluetoothService.stop();
 	}
 
 	@Override
