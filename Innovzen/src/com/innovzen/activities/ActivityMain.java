@@ -1,5 +1,5 @@
 package com.innovzen.activities;
-
+ 
 import java.util.List;
 
 import android.app.Activity;
@@ -94,6 +94,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
                     break;
                 case BluetoothService.STATE_CONNECTING://正在建立连接
+                	sendCommand(0xFF);
+                	
                     break;
                 case BluetoothService.STATE_LISTEN://监听端口
                 case BluetoothService.STATE_NONE:
