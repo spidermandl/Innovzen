@@ -293,6 +293,18 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
           mBluetoothService.write(send);
       }
 	}
+	
+	/**
+	 * 向设备发送16指令
+	 */
+	private void sendCommand(int value){
+	    byte[] src = new byte[4];  
+	    src[3] =  (byte) ((value>>24) & 0xFF);  
+	    src[2] =  (byte) ((value>>16) & 0xFF);  
+	    src[1] =  (byte) ((value>>8) & 0xFF);    
+	    src[0] =  (byte) (value & 0xFF);                  
+	    mBluetoothService.write(new byte[]{src[0]});
+	}
 	/**
 	 * Read the data from the .json file and parse it
 	 * 
