@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import com.innovzen.o2chair.R;
@@ -91,8 +93,11 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
             case MESSAGE_STATE_CHANGE://链接状态变化
                 switch (msg.arg1) {
                 case BluetoothService.STATE_CONNECTED://连接建立
-
-                	sendCommand(0xFF);
+                	sendCommand(0xF0);
+                	sendCommand(0x83);
+                	sendCommand(0x01);
+                	sendCommand(0x11);
+                	sendCommand(0xF1);
                     break;
                 case BluetoothService.STATE_CONNECTING://正在建立连接
                 	
@@ -299,7 +304,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	/**
 	 * 向设备发送16指令
 	 */
-	private void sendCommand(int value){
+	protected void sendCommand(int value){
 	    byte[] src = new byte[4];  
 	    src[3] =  (byte) ((value>>24) & 0xFF);  
 	    src[2] =  (byte) ((value>>16) & 0xFF);  
@@ -452,6 +457,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragGoToHistory(boolean addToBackstack) {
 		navigateTo(FragHistory.class, null, addToBackstack);
+		
 	}
 
 	@Override
@@ -602,7 +608,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragGoToLanguage(boolean addToBackstack) {
 		navigateTo(FragLanguage.class, null, addToBackstack);
-
+		
 	}
 
 	@Override
@@ -637,6 +643,35 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	public void fragConnectBluetooth() {
 		isBlueToothSetup();
 		
+	}
+	//运行
+	@Override
+	public void GoToBegin() {
+		sendCommand(0xF0);
+    	sendCommand(0x83);
+    	sendCommand(0x11);
+    	sendCommand(0x11);
+    	sendCommand(0xF1);
+		
+	}
+	//关闭
+	@Override
+	public void GoToEnd() {
+		sendCommand(0xF0);
+    	sendCommand(0x83);
+    	sendCommand(0x01);
+    	sendCommand(0x11);
+    	sendCommand(0xF1);
+		
+	}
+	//暂停  机器硬件暂时未安装该功能
+	@Override
+	public void GoToPause() {
+		sendCommand(0xF0);
+    	sendCommand(0x83);
+    	sendCommand(0x19);
+    	sendCommand(0x19);
+    	sendCommand(0xF1);
 	}
 	
 

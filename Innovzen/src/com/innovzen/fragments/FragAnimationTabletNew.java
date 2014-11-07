@@ -2,6 +2,7 @@ package com.innovzen.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,15 +111,21 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		// ½áÊø
 		case R.id.main_animation_stop:
 			super.pauseExercise();
+			super.activityListener.GoToEnd();
 			break;
 		// ¿ªÊ¼
 		case R.id.main_animation_start:
 			overlayPlayBtnPressed();
+			super.activityListener.GoToBegin();
+			
+		
+			//
 
 			break;
 		// ÔÝÍ£
 		case R.id.main_animation_pause:
 			super.pauseExercise();
+			super.activityListener.GoToPause();
 			break;
 
 		}
