@@ -92,9 +92,9 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
                 switch (msg.arg1) {
                 case BluetoothService.STATE_CONNECTED://连接建立
 
+                	sendCommand(0xFF);
                     break;
                 case BluetoothService.STATE_CONNECTING://正在建立连接
-                	sendCommand(0xFF);
                 	
                     break;
                 case BluetoothService.STATE_LISTEN://监听端口
