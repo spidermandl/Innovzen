@@ -284,6 +284,16 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	}
 		
 	/**
+	 * 向设备发送16指令
+	 */
+	private void sendCommand(String message){
+      if (message.length() > 0) {
+          // Get the message bytes and tell the BluetoothChatService to write
+          byte[] send = message.getBytes();
+          mBluetoothService.write(send);
+      }
+	}
+	/**
 	 * Read the data from the .json file and parse it
 	 * 
 	 * @author MAB
