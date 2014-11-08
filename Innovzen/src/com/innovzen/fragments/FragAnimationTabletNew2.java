@@ -30,7 +30,7 @@ import com.jfeinstein.jazzyviewpager.MainActivity;
  * @author Desmond Duan
  * 
  */
-public class FragAnimationTabletNew extends FragAnimationBase implements
+public class FragAnimationTabletNew2 extends FragAnimationBase implements
 		OnClickListener {
 
 	// Hold view references
@@ -54,8 +54,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 	private RelativeLayout animation_play_overlay;
 
-	private RelativeLayout rl;
-
 	private TextView myMinutes;
 
 	@Override
@@ -68,11 +66,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 		initialize(view);
 		initLefter(view);
-		/*rl = new RelativeLayout(getActivity());
-		RelativeLayout.LayoutParams lp1 =  new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-		
-		animation_center_1.addView(animation_center_1,lp1);
-		getActivity().setContentView(rl);*/
 		return view;
 
 	}
@@ -187,23 +180,15 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	protected void initLefter(View view) {
 		super.initLefter(view);
 		SharedPreferences	sp = getActivity().getSharedPreferences(super.SAVE_TIME_MIN, Context.MODE_PRIVATE);
-		
-		switch (super.inittime) {
-		case 1:
+		String temp = sp.getString("time", "");
+		if(temp.equals("")||temp==null){
 			myMinutes.setText("5min");
-			super.inittime=0;
-			break;
-		case 2:
-			myMinutes.setText("10min");
-			super.inittime=0;
-			break;
-		case 3:
-			myMinutes.setText("15min");
-			super.inittime=0;
-			break;
-		default:
-			break;
+		}else{
+		
+		getMyShareSharedPreferences("time");
 		}
+		
+		
 		
 		leftTop.setBackgroundResource(R.drawable.selector_btn_back);
 		leftMid.setBackgroundResource(R.drawable.banner_balance);

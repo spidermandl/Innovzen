@@ -35,14 +35,16 @@ public class FragMain extends FragBase implements OnClickListener{
 			//test
 			//super.activityListener.fragGoToSetting(true);
 			super.activityListener.fragGoToAnimation(true);
+			super.inittime=1;
 			break;
 		case R.id.menu_relax:
 			
 			super.activityListener.fragPetalsAnimationPicked();
-			myMintues.setText("10min");
+			super.inittime=2;
 			break;
 		case R.id.menu_performance:
 			super.activityListener.fragGoToAnimation(true);
+			super.inittime=3;
 			break;
 		case R.id.menu_mySession:
 			super.activityListener.fragGoToSession(true);

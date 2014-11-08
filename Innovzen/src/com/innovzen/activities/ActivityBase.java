@@ -15,6 +15,7 @@ import com.innovzen.utils.Util;
 
 public class ActivityBase extends FragmentActivity {
 
+	public static int MyState=0;
     // A flag to indicate whether this is a tablet or phone
     // Use a static variable instead of calling isTablet every time so we don't
 	/**

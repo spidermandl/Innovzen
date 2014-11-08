@@ -27,6 +27,7 @@ import com.innovzen.o2chair.R;
  * 
  */
 public abstract class FragBase extends Fragment {
+	public static int inittime=0;
 	public static final String SHARED_MUSIC = "music";
 	public static final String SHARED_TIME = "time";
 	public static final String SHARED_GRAPHIC = "graphic";

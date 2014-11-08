@@ -419,7 +419,9 @@ public class BluetoothService {
                 }
             }
         }
-
+        public void read(byte[] buffer){
+        	
+        }
         /**
          * Write to the connected OutStream.
          * @param buffer  The bytes to write

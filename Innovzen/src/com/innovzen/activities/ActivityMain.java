@@ -1,5 +1,5 @@
 package com.innovzen.activities;
- 
+
 import java.util.List;
 
 import android.app.Activity;
@@ -73,62 +73,85 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 	// 蓝牙开启intent请求
 	public static final int REQUEST_ENABLE_BT = 1;
-	
-	//设置蓝牙对话框
-	private FragBluetoothDialog bluetoothDialog=null;
-	private BluetoothService mBluetoothService=null;
-	private BluetoothAdapter mBluetoothAdapter=null;
 
-    // Message types sent from the BluetoothChatService Handler
-    public static final int MESSAGE_STATE_CHANGE = 1;
-    public static final int MESSAGE_READ = 2;
-    public static final int MESSAGE_WRITE = 3;
-    public static final int MESSAGE_DEVICE_NAME = 4;
-    public static final int MESSAGE_TOAST = 5;
+	// 设置蓝牙对话框
+	private FragBluetoothDialog bluetoothDialog = null;
+	private BluetoothService mBluetoothService = null;
+	private BluetoothAdapter mBluetoothAdapter = null;
+
+	// Message types sent from the BluetoothChatService Handler
+	public static final int MESSAGE_STATE_CHANGE = 1;
+	public static final int MESSAGE_READ = 2;
+	public static final int MESSAGE_WRITE = 3;
+	public static final int MESSAGE_DEVICE_NAME = 4;
+	public static final int MESSAGE_TOAST = 5;
 	// The Handler that gets information back from the BluetoothChatService
-    private final Handler bluetoothHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-            case MESSAGE_STATE_CHANGE://链接状态变化
-                switch (msg.arg1) {
-                case BluetoothService.STATE_CONNECTED://连接建立
-                	sendCommand(0xF0);
-                	sendCommand(0x83);
-                	sendCommand(0x01);
-                	sendCommand(0x11);
-                	sendCommand(0xF1);
-                    break;
-                case BluetoothService.STATE_CONNECTING://正在建立连接
-                	
-                    break;
-                case BluetoothService.STATE_LISTEN://监听端口
-                case BluetoothService.STATE_NONE:
-                    break;
-                }
-                break;
-            case MESSAGE_WRITE:
-                byte[] writeBuf = (byte[]) msg.obj;
-                // construct a string from the buffer
-                String writeMessage = new String(writeBuf);
-                break;
-            case MESSAGE_READ:
-                byte[] readBuf = (byte[]) msg.obj;
-                // construct a string from the valid bytes in the buffer
-                String readMessage = new String(readBuf, 0, msg.arg1);
-                break;
-            case MESSAGE_DEVICE_NAME://保存设备名称
-                // save the connected device's name
-                break;
-            case MESSAGE_TOAST:
-                break;
-            }
-        }
-    };
-    
-    public BluetoothService getBluetoothService(){
-    	return mBluetoothService;
-    }
+
+
+	private int state = 1;
+	public void MyCommand(int start,int id,int coding,int checkSum,int end){
+		sendCommand(start);
+		if (state == 2) {
+			sendCommand(id);
+		}
+		if (state == 3) {
+			sendCommand(coding);
+		}
+		if (state == 4) {
+			sendCommand(checkSum);
+		}
+		if (state == 5) {
+			sendCommand(end);
+		}
+	}
+	private final Handler bluetoothHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case MESSAGE_STATE_CHANGE:// 链接状态变化
+				switch (msg.arg1) {
+				case BluetoothService.STATE_CONNECTED:// 连接建立
+					//准备命令
+					MyCommand(0xF0, 0x83, 0x01, 0x11, 0xF1);
+					break;
+				case BluetoothService.STATE_CONNECTING:// 正在建立连接
+
+					break;
+				case BluetoothService.STATE_LISTEN:// 监听端口
+				case BluetoothService.STATE_NONE:
+					break;
+				}
+				break;
+			case MESSAGE_WRITE:
+				byte[] writeBuf = (byte[]) msg.obj;
+				// construct a string from the buffer
+				String writeMessage = new String(writeBuf);
+				System.out.println(writeMessage);
+				System.out.println(state);
+				state++;
+				if(state>5){
+					state=1;
+				}
+
+				break;
+			case MESSAGE_READ:
+				byte[] readBuf = (byte[]) msg.obj;
+				// construct a string from the valid bytes in the buffer
+				String readMessage = new String(readBuf, 0, msg.arg1);
+				break;
+			case MESSAGE_DEVICE_NAME:// 保存设备名称
+				// save the connected device's name
+				break;
+			case MESSAGE_TOAST:
+				break;
+			}
+		}
+	};
+
+	public BluetoothService getBluetoothService() {
+		return mBluetoothService;
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -149,14 +172,18 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	public void onBackPressed() {
 		// 获取当前FrameLayout片段
 		// Get the current fragment in the FrameLayout
-		Fragment frag = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+		Fragment frag = getSupportFragmentManager().findFragmentById(
+				R.id.fragment_container);
 
-		// If the fragment is allowed to handle the back press, then pass the event to it first
+		// If the fragment is allowed to handle the back press, then pass the
+		// event to it first
 		if (frag != null && frag instanceof FragmentOnBackPressInterface) {
-			// If the fragment has NOT handled the back press, then we'll handle it
+			// If the fragment has NOT handled the back press, then we'll handle
+			// it
 			if (!(((FragmentOnBackPressInterface) frag).onBackPress())) {
 				// Do nothin'. Let it continue with the normal onBackPress flow
-			} else { // The fragment handled the event, so we don't have to do anything else
+			} else { // The fragment handled the event, so we don't have to do
+						// anything else
 
 				// Do nothin'
 				return;
@@ -182,7 +209,9 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 			// Set the flag to true
 			mDoubleBackToExitPressedOnce = true;
 			// Display the toast
-			mToast = Toast.makeText(this,getString(R.string.main_menu_back_again_to_exit),Toast.LENGTH_SHORT);
+			mToast = Toast.makeText(this,
+					getString(R.string.main_menu_back_again_to_exit),
+					Toast.LENGTH_SHORT);
 			mToast.show();
 			// Start the timeframe during which if the user presses the back
 			// again, then it will close the app
@@ -234,12 +263,14 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 			// When the request to enable Bluetooth returns
 			if (resultCode == Activity.RESULT_OK) {
 				// Bluetooth is now enabled, so set up a chat session
-				bluetoothDialog =FragBluetoothDialog.newInstance("aaa", "aaaa");
+				bluetoothDialog = FragBluetoothDialog
+						.newInstance("aaa", "aaaa");
 				bluetoothDialog.show(this.getSupportFragmentManager(), "bbb");
 
 			} else {
 				// User did not enable Bluetooth or an error occured
-				Toast.makeText(this, R.string.bt_not_enabled_leaving,Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, R.string.bt_not_enabled_leaving,
+						Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
@@ -261,20 +292,22 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	 * Desmond 判断蓝牙设备是否开启
 	 */
 	private boolean isBlueToothSetup() {
-		//判断有无蓝牙设备
-		if(mBluetoothAdapter==null){
+		// 判断有无蓝牙设备
+		if (mBluetoothAdapter == null) {
 			Toast.makeText(this, R.string.bt_not_enabled_leaving, 1000).show();
 			return false;
 		}
-		//判断蓝牙是否开启
-        if (!mBluetoothAdapter.isEnabled()) {
-            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            this.startActivityForResult(enableIntent, ActivityMain.REQUEST_ENABLE_BT);
-            return false;
-        }
-        //判断蓝牙通信是否建立
-		if(mBluetoothService.getState()!=BluetoothService.STATE_CONNECTED){
-			bluetoothDialog =FragBluetoothDialog.newInstance("", "");
+		// 判断蓝牙是否开启
+		if (!mBluetoothAdapter.isEnabled()) {
+			Intent enableIntent = new Intent(
+					BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			this.startActivityForResult(enableIntent,
+					ActivityMain.REQUEST_ENABLE_BT);
+			return false;
+		}
+		// 判断蓝牙通信是否建立
+		if (mBluetoothService.getState() != BluetoothService.STATE_CONNECTED) {
+			bluetoothDialog = FragBluetoothDialog.newInstance("", "");
 			bluetoothDialog.show(this.getSupportFragmentManager(), "");
 			return false;
 		}
@@ -284,34 +317,35 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	/**
 	 * 初始化蓝牙服务
 	 */
-	private void initBluetooth(){
+	private void initBluetooth() {
 
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-		mBluetoothService=new BluetoothService(this,bluetoothHandler);
+		mBluetoothService = new BluetoothService(this, bluetoothHandler);
 	}
-		
+
 	/**
 	 * 向设备发送16指令
 	 */
-	private void sendCommand(String message){
-      if (message.length() > 0) {
-          // Get the message bytes and tell the BluetoothChatService to write
-          byte[] send = message.getBytes();
-          mBluetoothService.write(send);
-      }
+	private void sendCommand(String message) {
+		if (message.length() > 0) {
+			// Get the message bytes and tell the BluetoothChatService to write
+			byte[] send = message.getBytes();
+			mBluetoothService.write(send);
+		}
 	}
-	
+
 	/**
 	 * 向设备发送16指令
 	 */
-	protected void sendCommand(int value){
-	    byte[] src = new byte[4];  
-	    src[3] =  (byte) ((value>>24) & 0xFF);  
-	    src[2] =  (byte) ((value>>16) & 0xFF);  
-	    src[1] =  (byte) ((value>>8) & 0xFF);    
-	    src[0] =  (byte) (value & 0xFF);                  
-	    mBluetoothService.write(new byte[]{src[0]});
+	protected void sendCommand(int value) {
+		byte[] src = new byte[4];
+		src[3] = (byte) ((value >> 24) & 0xFF);
+		src[2] = (byte) ((value >> 16) & 0xFF);
+		src[1] = (byte) ((value >> 8) & 0xFF);
+		src[0] = (byte) (value & 0xFF);
+		mBluetoothService.write(new byte[] { src[0] });
 	}
+
 	/**
 	 * Read the data from the .json file and parse it
 	 * 
@@ -404,13 +438,15 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 		// Display the frag
 		if (IS_TABLET) {
-			
-			//chy
-			/*navigateTo(FragAnimationTablet.class, bundle, true,
-					ActivityMain.FRAG_TAG_ANIMATION);*/
+
+			// chy
+			/*
+			 * navigateTo(FragAnimationTablet.class, bundle, true,
+			 * ActivityMain.FRAG_TAG_ANIMATION);
+			 */
 			navigateTo(FragAnimationTabletNew.class, bundle, true,
 					ActivityMain.FRAG_TAG_ANIMATION);
-			//chy
+			// chy
 		} else {
 			navigateTo(FragAnimationPhone.class, bundle, true,
 					ActivityMain.FRAG_TAG_ANIMATION);
@@ -457,7 +493,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragGoToHistory(boolean addToBackstack) {
 		navigateTo(FragHistory.class, null, addToBackstack);
-		
+
 	}
 
 	@Override
@@ -608,7 +644,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragGoToLanguage(boolean addToBackstack) {
 		navigateTo(FragLanguage.class, null, addToBackstack);
-		
+
 	}
 
 	@Override
@@ -620,59 +656,66 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragGoToHistoryNew(boolean addToBackstack) {
 		navigateTo(FragHistoryNew.class, null, addToBackstack);
-		
+
 	}
+
 	@Override
 	public void fragGoToSession(boolean addToBackstack) {
 		navigateTo(FragSession.class, null, addToBackstack);
-		
+
 	}
+
 	@Override
 	public void fragGoToHelpNew(boolean addToBackstack) {
-		try{
+		try {
 			super.clearBackstack();
-    } catch (Exception e) {
-        e.printStackTrace();
-        // Do nothin'
-    }
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Do nothin'
+		}
 		navigateTo(FragHelpNew.class, null, addToBackstack);
-		
+
 	}
 
 	@Override
 	public void fragConnectBluetooth() {
 		isBlueToothSetup();
-		
+
 	}
-	//运行
+
+	// 运行
 	@Override
 	public void GoToBegin() {
-		sendCommand(0xF0);
-    	sendCommand(0x83);
-    	sendCommand(0x11);
-    	sendCommand(0x11);
-    	sendCommand(0xF1);
-		
+		MyCommand(0xF0, 0x83, 0x11, 0x11, 0xF1);
+		/*sendCommand(0xF0);
+		sendCommand(0x83);
+		sendCommand(0x11);
+		sendCommand(0x11);
+		sendCommand(0xF1);*/
+
 	}
-	//关闭
+
+	// 关闭
 	@Override
 	public void GoToEnd() {
-		sendCommand(0xF0);
-    	sendCommand(0x83);
-    	sendCommand(0x01);
-    	sendCommand(0x11);
-    	sendCommand(0xF1);
-		
+		MyCommand(0xF0, 0x83, 0x01, 0x11, 0xF1);
+		/*sendCommand(0xF0);
+		sendCommand(0x83);
+		sendCommand(0x01);
+		sendCommand(0x11);
+		sendCommand(0xF1);*/
+
 	}
-	//暂停  机器硬件暂时未安装该功能
+
+	// 暂停 机器硬件暂时未安装该功能
 	@Override
 	public void GoToPause() {
-		sendCommand(0xF0);
-    	sendCommand(0x83);
-    	sendCommand(0x19);
-    	sendCommand(0x19);
-    	sendCommand(0xF1);
+		MyCommand(0xF0, 0x83, 0x19, 0x19, 0xF1);
+		/*sendCommand(0xF0);
+		sendCommand(0x83);
+		sendCommand(0x19);
+		sendCommand(0x19);
+		sendCommand(0xF1);*/
 	}
-	
 
 }
