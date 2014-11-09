@@ -119,15 +119,12 @@
 
         <com.innovzen.fragments.VerticalSeekBar
             android:id="@+id/mySeekBar"
-            android:layout_width="30dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="4"
-            android:paddingLeft="2dp"
-            android:background="@drawable/volume_level_down"
-            android:progressDrawable="@drawable/volume_level_up"
-           android:maxWidth="5dp"
-           android:minWidth="5dp"
+            android:progressDrawable="@drawable/seekbar_define_style"  
+            
             android:thumb="@drawable/volume_cursor" />
 
         <ImageView

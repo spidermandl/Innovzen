@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+<!-- chy -->
+<color name="seekbar2">#9E9E9E</color>
+ <color name="seekbar1">#0D7600</color>
     <!-- FRAG MAIN MENU -->
     <color name="main_menu_title_long">#757575</color>
     <color name="main_menu_title_short">#34a9bb</color>

@@ -78,6 +78,8 @@ public abstract class FragBase extends Fragment {
 		seekBar = (VerticalSeekBar) view.findViewById(R.id.mySeekBar);
 		seekBar.setMax(maxVolume);
 		seekBar.setProgress(currentVolume);
+	//	seekBar.setProgressDrawable(d)
+		
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			
      
