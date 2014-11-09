@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
+import com.innovzen.utils.MyPreference;
 
 /**
  * 第一个主界面，启动机器，进入练习
@@ -34,17 +35,19 @@ public class FragMain extends FragBase implements OnClickListener{
 		case R.id.menu_balance:
 			//test
 			//super.activityListener.fragGoToSetting(true);
+			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.FIVE_MINUTES);
 			super.activityListener.fragGoToAnimation(true);
-			super.inittime=1;
+			
 			break;
 		case R.id.menu_relax:
-			
+			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.TEN_MINUTES);
 			super.activityListener.fragPetalsAnimationPicked();
-			super.inittime=2;
+			
 			break;
 		case R.id.menu_performance:
+			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.FIFTEEN_MINUTES);
 			super.activityListener.fragGoToAnimation(true);
-			super.inittime=3;
+			
 			break;
 		case R.id.menu_mySession:
 			super.activityListener.fragGoToSession(true);
@@ -70,7 +73,7 @@ public class FragMain extends FragBase implements OnClickListener{
 		view.findViewById(R.id.menu_performance).setOnClickListener(this);
 		view.findViewById(R.id.menu_relax).setOnClickListener(this);
 	    initLefter(view);
-	    getMyShareSharedPreferences("time");
+	    myMintues.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 		leftTop.setOnClickListener(this);
 		leftMid.setOnClickListener(this);
 		leftBottom.setOnClickListener(this);

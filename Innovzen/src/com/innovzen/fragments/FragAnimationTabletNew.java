@@ -20,6 +20,7 @@ import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.handlers.CircularSeekBarHandler;
 import com.innovzen.handlers.FooterHandler;
 import com.innovzen.o2chair.R;
+import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
 import com.innovzen.utils.Util;
 import com.jfeinstein.jazzyviewpager.MainActivity;
@@ -57,6 +58,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private RelativeLayout rl;
 
 	private TextView myMinutes;
+
+	private LinearLayout fullScreen;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -138,6 +141,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * @author MAB
 	 */
 	private void initialize(View view) {
+		
+		fullScreen = (LinearLayout) view.findViewById(R.id.animation_center_1);
+		
             myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		animation_play_overlay = (RelativeLayout) view.findViewById(R.id.animation_play_overlay);
 		animation_center_1 = (LinearLayout) view.findViewById(R.id.animation_center_1);
@@ -186,24 +192,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	@Override
 	protected void initLefter(View view) {
 		super.initLefter(view);
-		SharedPreferences	sp = getActivity().getSharedPreferences(super.SAVE_TIME_MIN, Context.MODE_PRIVATE);
-		
-		switch (super.inittime) {
-		case 1:
-			myMinutes.setText("5min");
-			super.inittime=0;
-			break;
-		case 2:
-			myMinutes.setText("10min");
-			super.inittime=0;
-			break;
-		case 3:
-			myMinutes.setText("15min");
-			super.inittime=0;
-			break;
-		default:
-			break;
-		}
+		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 		
 		leftTop.setBackgroundResource(R.drawable.selector_btn_back);
 		leftMid.setBackgroundResource(R.drawable.banner_balance);
@@ -239,21 +228,38 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * 
 	 * };
 	 */
+	
 	private void toggleFullscreen() {
 		if (up.getVisibility() == View.VISIBLE) {
 
+			/*RelativeLayout.LayoutParams  fullScreenLayoutParams=	(RelativeLayout.LayoutParams) fullScreen.getLayoutParams();
+			fullScreenLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+			fullScreenLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+			fullScreenLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+			fullScreenLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			*/
+			
+			 RelativeLayout.LayoutParams  fullScreenLayoutParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+			 fullScreenLayoutParams2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+				fullScreenLayoutParams2.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+				fullScreenLayoutParams2.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+				fullScreenLayoutParams2.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+				fullScreen.setLayoutParams(fullScreenLayoutParams2);
+			
+			
 			subtitle_container.setVisibility(View.GONE);
-
 			up.setVisibility(View.GONE);
 			down.setVisibility(View.GONE);
 			right.setVisibility(View.GONE);
 			left_include.setVisibility(View.GONE);
 			
 			
-			/*animation_center_1.setVisibility(View.GONE);*/
+			animation_center_1.setVisibility(View.GONE);
 		/*	animation_center_2.setVisibility(View.VISIBLE);*/
 			super.enableFullscreen();
 			// animation_center_1.l
+			
+			
 
 		} else {
 			super.disableFullscreen();

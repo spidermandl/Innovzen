@@ -7,11 +7,15 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
+import com.innovzen.utils.MyPreference;
 
 public class FragSettings extends FragBase implements OnClickListener{
+
+	private TextView myMinutes;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,7 +57,8 @@ public class FragSettings extends FragBase implements OnClickListener{
 	@Override
 	public void init(View view) {
 		initLefter(view);
-		getMyShareSharedPreferences("time");
+		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
+		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 		view.findViewById(R.id.set_language).setOnClickListener(this);
 		view.findViewById(R.id.set_music).setOnClickListener(this);
 		view.findViewById(R.id.set_time).setOnClickListener(this);

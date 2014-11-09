@@ -7,13 +7,16 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
+import com.innovzen.utils.MyPreference;
 
 public class FragLanguage extends FragBase implements OnClickListener {
 
 	private LinearLayout left_mid;
+	private TextView myMinutes;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,12 +36,15 @@ public class FragLanguage extends FragBase implements OnClickListener {
 
 	@Override
 	public void init(View view) {
-		
+
 		initLefter(view);
-		getMyShareSharedPreferences("time");
+		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
+		myMinutes.setText(MyPreference.getInstance(this.getActivity())
+				.readString(MyPreference.TIME));
+
 		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
 		left_mid.setBackgroundResource(R.drawable.banner_language);
-		
+
 	}
 
 }

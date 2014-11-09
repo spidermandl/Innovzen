@@ -137,7 +137,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
 				// construct a string from the valid bytes in the buffer
-				String readMessage = new String(readBuf, 0, msg.arg1);
+				//String readMessage = new String(readBuf, 0, msg.arg1);
+				
 				break;
 			case MESSAGE_DEVICE_NAME:// 保存设备名称
 				// save the connected device's name

@@ -27,7 +27,7 @@ import com.innovzen.o2chair.R;
  * 
  */
 public abstract class FragBase extends Fragment {
-	public static int inittime=0;
+
 	public static final String SHARED_MUSIC = "music";
 	public static final String SHARED_TIME = "time";
 	public static final String SHARED_GRAPHIC = "graphic";
@@ -47,31 +47,10 @@ public abstract class FragBase extends Fragment {
 	protected LinearLayout leftMid;
 	protected ImageView leftBottom;
 	protected LinearLayout voice_progressbar;
-	private TextView myMinutes;
 	private VerticalSeekBar seekBar;
 	private AudioManager audiomanage;
 	private ImageView volum_less;
 
-	/**
-	 * @author chy 取到SharedPreferences內值
-	 */
-	protected void getMyShareSharedPreferences(String str) {
-		SharedPreferences sp = null;
-		if (str.equals(SHARED_TIME)) {
-			sp = getActivity().getSharedPreferences(SAVE_TIME_MIN,
-					Context.MODE_PRIVATE);
-			String mytime = sp.getString(str, "");
-			myMinutes.setText(mytime);
-		} else if (str.equals(SHARED_GRAPHIC)) {
-			sp = getActivity().getSharedPreferences(SAVE_GRAPHIC,
-					Context.MODE_PRIVATE);
-			Toast.makeText(getActivity(), "ok", 0).show();
-		}else if(str.equals(SHARED_MUSIC)){
-			sp = getActivity().getSharedPreferences(SAVE_MUSIC,
-					Context.MODE_PRIVATE);
-			//音乐
-		}
-	}
 
 	/**
 	 * Does proper initializations after inflating the view
@@ -129,7 +108,7 @@ public abstract class FragBase extends Fragment {
 				
 			}
 		});
-		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
+	
 		// 点击返回上一个fragment
 		leftTop.setOnClickListener(new OnClickListener() {
 

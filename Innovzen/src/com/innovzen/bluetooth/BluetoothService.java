@@ -419,9 +419,14 @@ public class BluetoothService {
                 }
             }
         }
-        public void read(byte[] buffer){
-        	
-        }
+    /*    public void read(){
+        	try {
+				byte[] buffer =mmInStream.read();
+				mHandler.obtainMessage(MESSAGE_READ, -2, -2,buffer).sendToTarget();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        }*/
         /**
          * Write to the connected OutStream.
          * @param buffer  The bytes to write

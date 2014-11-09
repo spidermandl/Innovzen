@@ -6,6 +6,8 @@ package com.innovzen.bluetooth;
  *
  */
 public class BluetoothCommand {
+	
+	/*BluetoothService */
 
 	//Æô¶¯»úÆ÷
 	public static final int START_MACHINE=0xF0;

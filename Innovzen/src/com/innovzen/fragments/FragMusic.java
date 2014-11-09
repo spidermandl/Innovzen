@@ -10,16 +10,14 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
+import com.innovzen.utils.MyPreference;
 
 public class FragMusic extends FragBase implements OnClickListener{
-	public static final String SELECT_MUSIC1 = "music1";
-	public static final String SELECT_MUSIC2 = "music2";
-	public static final String SELECT_MUSIC3 = "music3";
-	public static final String SELECT_MUSIC4 = "music4";
-	public static final String SELECT_MUSIC5 = "music5";
+
 	private ImageView left_top,left_bottom;
 	LinearLayout left_mid;
 	private SharedPreferences sp = null;
@@ -28,17 +26,17 @@ public class FragMusic extends FragBase implements OnClickListener{
 	private ImageView music3;
 	private ImageView music4;
 	private ImageView music5;
+	private TextView myMinutes;
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_music, container, false);
-    	sp = getActivity().getSharedPreferences(super.SAVE_MUSIC, Context.MODE_PRIVATE);
         init(view);
 
         return view;
     }
 	@Override
 	public void onClick(View v) {
-		Editor editor = sp.edit();
+
 		switch (v.getId()) {
 		case R.id.music1:
 			music1.setBackgroundResource(R.drawable.btn_aquatic_music_activated);
@@ -46,8 +44,7 @@ public class FragMusic extends FragBase implements OnClickListener{
 			music3.setBackgroundResource(R.drawable.selector_music_angelic);
 			music4.setBackgroundResource(R.drawable.selector_music_ithaca);
 			music5.setBackgroundResource(R.drawable.selector_music_silence); 
-			   editor.putString(super.SHARED_MUSIC,SELECT_MUSIC1);
-	   			editor.commit();	   			
+			   MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC1);	   			
 			break;
 		case R.id.music2:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -55,8 +52,8 @@ public class FragMusic extends FragBase implements OnClickListener{
 			music3.setBackgroundResource(R.drawable.selector_music_angelic);
 			music4.setBackgroundResource(R.drawable.selector_music_ithaca);
 			music5.setBackgroundResource(R.drawable.selector_music_silence); 
-			   editor.putString(super.SHARED_MUSIC,SELECT_MUSIC2);
-	   			editor.commit();	   			
+			   MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC2);	   			
+   			
 			break;
 		case R.id.music3:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -64,8 +61,8 @@ public class FragMusic extends FragBase implements OnClickListener{
 			music3.setBackgroundResource(R.drawable.btn_angelic_music_activated);
 			music4.setBackgroundResource(R.drawable.selector_music_ithaca);
 			music5.setBackgroundResource(R.drawable.selector_music_silence); 
-			   editor.putString(super.SHARED_MUSIC,SELECT_MUSIC3);
-	   			editor.commit();	   			
+			   MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC3);	   			
+	   			
 			break;
 		case R.id.music4:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -73,8 +70,8 @@ public class FragMusic extends FragBase implements OnClickListener{
 			music3.setBackgroundResource(R.drawable.selector_music_angelic);
 			music4.setBackgroundResource(R.drawable.btn_ithaca_music_activated);
 			music5.setBackgroundResource(R.drawable.selector_music_silence); 
-			   editor.putString(super.SHARED_MUSIC,SELECT_MUSIC4);
-	   			editor.commit();	   			
+			   MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC4);	   			
+	   			
 			break;
 		case R.id.music5:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -82,8 +79,8 @@ public class FragMusic extends FragBase implements OnClickListener{
 			music3.setBackgroundResource(R.drawable.selector_music_angelic);
 			music4.setBackgroundResource(R.drawable.selector_music_ithaca);
 			music5.setBackgroundResource(R.drawable.btn_silence_music_activated); 
-			   editor.putString(super.SHARED_MUSIC,SELECT_MUSIC5);
-	   			editor.commit();	   			
+			   MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC5);	   			
+	   			
 			break;
 		default:
 			break;
@@ -94,7 +91,8 @@ public class FragMusic extends FragBase implements OnClickListener{
 	@Override
 	public void init(View view) {
 		initLefter(view);
-		getMyShareSharedPreferences(super.SHARED_TIME);
+		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
+		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 		left_top = (ImageView) view.findViewById(R.id.left_top);
 		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
 		left_top.setBackgroundResource(R.drawable.selector_btn_back);
@@ -110,19 +108,19 @@ public class FragMusic extends FragBase implements OnClickListener{
 		music4.setOnClickListener(this);
 		music5.setOnClickListener(this);
 		music1.setBackgroundResource(R.drawable.btn_aquatic_music_activated);
-		String myMusic =sp.getString(super.SHARED_MUSIC,"");
-		if(myMusic==null||myMusic.equals(SELECT_MUSIC1)){
+		String myMusic =MyPreference.getInstance(this.getActivity()).readString(MyPreference.MUSIC);
+		if(myMusic==null||myMusic.equals(MyPreference.SELECT_MUSIC1)){
 			music1.setBackgroundResource(R.drawable.btn_aquatic_music_activated);
-		}else if(myMusic.equals(SELECT_MUSIC2)){
+		}else if(myMusic.equals(MyPreference.SELECT_MUSIC2)){
 			music2.setBackgroundResource(R.drawable.btn_bondi_music_activated);
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
-		}else if(myMusic.equals(SELECT_MUSIC3)){
+		}else if(myMusic.equals(MyPreference.SELECT_MUSIC3)){
 			music3.setBackgroundResource(R.drawable.btn_angelic_music_activated);
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
-		}else if(myMusic.equals(SELECT_MUSIC4)){
+		}else if(myMusic.equals(MyPreference.SELECT_MUSIC4)){
 			music4.setBackgroundResource(R.drawable.btn_ithaca_music_activated);
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
-		}else if(myMusic.equals(SELECT_MUSIC5)){
+		}else if(myMusic.equals(MyPreference.SELECT_MUSIC5)){
 			music5.setBackgroundResource(R.drawable.btn_silence_music_activated);
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
 		

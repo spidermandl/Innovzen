@@ -16,8 +16,24 @@ public class MyPreference {
 	private static Context globleContext;//全局context
 	
 	private final static String INNOVZEN_PREFERENCE="INNOVZEN_PREFERENCE";
-	
+	public final static String VOICE="voice";
+	public final static String MAN_VOICE="Man voice";
+	public final static String WOMAN_VOICE="Woman voice";
+	public final static String SILENCE="silence";
+	public static final String MUSIC="music";
+	public static final String SELECT_MUSIC1 = "music1";
+	public static final String SELECT_MUSIC2 = "music2";
+	public static final String SELECT_MUSIC3 = "music3";
+	public static final String SELECT_MUSIC4 = "music4";
+	public static final String SELECT_MUSIC5 = "music5";
 	public final static String GRAPHIC="graphic";
+	public final static String TIME="time";
+	public final static String FIVE_MINUTES="5min";
+	public final static String TEN_MINUTES="10min";
+	public final static String FIFTEEN_MINUTES="15min";
+	public final static String TWENTY_MINUTES="20min";
+	public final static String TWENTY_FIVE_MINUTES="25min";
+	public final static String THIRTY_MINUTES="25min";
 	//提供私有的构造方法
 	private MyPreference(){}
 	/**
