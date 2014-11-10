@@ -51,15 +51,12 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 	private LinearLayout right, left_include;
 
-	private LinearLayout animation_center_1, animation_center_2;
-
 	private RelativeLayout animation_play_overlay;
 
 	private RelativeLayout rl;
 
 	private TextView myMinutes;
 
-	private LinearLayout fullScreen;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -142,11 +139,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 */
 	private void initialize(View view) {
 		
-		fullScreen = (LinearLayout) view.findViewById(R.id.animation_center_1);
-		
-            myMinutes = (TextView) view.findViewById(R.id.myMinutes);
+        myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		animation_play_overlay = (RelativeLayout) view.findViewById(R.id.animation_play_overlay);
-		animation_center_1 = (LinearLayout) view.findViewById(R.id.animation_center_1);
 		/*animation_center_2 = (LinearLayout) view.findViewById(R.id.animation_center_2);*/
 		subtitle_container = view.findViewById(R.id.animation_type);
 		left_include = (LinearLayout) view.findViewById(R.id.left_include);
@@ -160,8 +154,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		view.findViewById(R.id.main_animation_pause).setOnClickListener(this);
 		view.findViewById(R.id.main_animation_start).setOnClickListener(this);
 		view.findViewById(R.id.main_animation_stop).setOnClickListener(this);
-		view.findViewById(R.id.animation_play_overlay_btn).setOnClickListener(
-				this);
+		view.findViewById(R.id.animation_play_overlay_btn).setOnClickListener(this);
 		view.findViewById(R.id.main_animation_setting).setOnClickListener(this);
 
 		// </chy>
@@ -239,12 +232,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			fullScreenLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 			*/
 			
-			 RelativeLayout.LayoutParams  fullScreenLayoutParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-			 fullScreenLayoutParams2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-				fullScreenLayoutParams2.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-				fullScreenLayoutParams2.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-				fullScreenLayoutParams2.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-				fullScreen.setLayoutParams(fullScreenLayoutParams2);
+			RelativeLayout.LayoutParams  fullScreenLayoutParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+			fullScreen.setLayoutParams(fullScreenLayoutParams2);
 			
 			
 			subtitle_container.setVisibility(View.GONE);
@@ -252,15 +241,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			down.setVisibility(View.GONE);
 			right.setVisibility(View.GONE);
 			left_include.setVisibility(View.GONE);
-			
-			
-			animation_center_1.setVisibility(View.GONE);
-		/*	animation_center_2.setVisibility(View.VISIBLE);*/
+//			
+//			
 			super.enableFullscreen();
-			// animation_center_1.l
 			
-			
-
 		} else {
 			super.disableFullscreen();
 			subtitle_container.setVisibility(View.VISIBLE);
@@ -268,10 +252,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			down.setVisibility(View.VISIBLE);
 			right.setVisibility(View.VISIBLE);
 			left_include.setVisibility(View.VISIBLE);
-			/*
-			 * animation_center_2.setVisibility(View.GONE);
-			 * animation_center_1.setVisibility(View.VISIBLE);
-			 */
 
 		}
 	}

@@ -8,20 +8,60 @@
     <!-- ANIMATION PARENT CONTAINER -->
 
     <RelativeLayout
-        android:id="@+id/animation_animation_parent_container"
+        android:id="@+id/animation_animation_container"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/white" >
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/animation_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/shape_animation_type_bckgnd"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:singleLine="true"
+        android:text="Exercice PERFORMANCE"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/animation_type" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/heart" />
+
+    <ImageView
+        android:id="@+id/animation_fullscreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/selector_icon_fullscreen_in" />
+
+    <!-- <RelativeLayout
+        android:id="@+id/animation_animation_parent_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <!-- ANIMATION CONTAINER -->
+        ANIMATION CONTAINER
 
         <RelativeLayout
             android:id="@+id/animation_animation_container"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
             android:background="@android:color/white" >
         </RelativeLayout>
 
-        <!-- ANIMATION TYPE -->
+        ANIMATION TYPE
 
         <TextView
             android:id="@+id/animation_type"
@@ -37,12 +77,12 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/animation_type" />
 
-        <!-- FULL SCREEN BTN -->
+        FULL SCREEN BTN
 
         <RelativeLayout
             android:id="@+id/animation_fullscreen_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginRight="15dp"
             android:layout_marginTop="15dp" >
 
@@ -57,13 +97,13 @@
                 android:id="@+id/animation_fullscreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
                 android:layout_marginBottom="30dp"
                 android:layout_marginLeft="15dp"
                 android:src="@drawable/selector_icon_fullscreen_in" />
         </RelativeLayout>
-    </RelativeLayout>
+    </RelativeLayout> -->
 
     <!-- COUNTDOWN -->
 
@@ -83,13 +123,12 @@
     <!-- PLAY BUTTON OVERLAY -->
 
     <RelativeLayout
-        android:visibility="invisible"
         android:id="@+id/animation_play_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#D2ffffff"
-        android:clickable="true" 
-        >
+        android:clickable="true"
+        android:visibility="invisible" >
 
         <ImageView
             android:id="@+id/animation_play_overlay_btn"

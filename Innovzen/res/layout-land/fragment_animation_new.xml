@@ -135,20 +135,17 @@
 
     <!-- ANIMATION PARENT CONTAINER -->
     <!-- 中中动画显示 -->
-<LinearLayout 
-    android:id="@+id/animation_center_1"
-     android:layout_width="wrap_content"
+
+    <include
+        android:id="@+id/main_animation_container"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/main_mea_vertical_2"
         android:layout_alignLeft="@id/main_mea_horizontal_2"
         android:layout_alignRight="@id/main_mea_horizontal_2"
         android:layout_alignTop="@id/main_mea_vertical_2"
-    >
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         layout="@layout/animation_core" />
-</LinearLayout>
+
     <!-- 中下框架 -->
 
     <LinearLayout
