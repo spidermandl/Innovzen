@@ -95,7 +95,7 @@ public class BluetoothCommand {
 		src[2] = (byte) ((values[i] >> 16) & 0xFF);
 		src[1] = (byte) ((values[i] >> 8) & 0xFF);
 		src[0] = (byte) (values[i] & 0xFF);
-		mBluetoothService.write(new byte[] { src[0] });
+		//mBluetoothService.write(new byte[] { src[0] });
 		}
 	}
 	/**

@@ -1,29 +1,19 @@
 package com.innovzen.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import android.widget.RelativeLayout;
 
-import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
-import com.innovzen.handlers.CircularSeekBarHandler;
-import com.innovzen.handlers.FooterHandler;
 import com.innovzen.o2chair.R;
 import com.innovzen.utils.MyPreference;
-import com.innovzen.utils.PersistentUtil;
 import com.innovzen.utils.Util;
-import com.jfeinstein.jazzyviewpager.MainActivity;
 
 /**
  * 新版呼气吸气动画主界面
@@ -52,10 +42,16 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private LinearLayout right, left_include;
 
 	private RelativeLayout animation_play_overlay;
-
-	private RelativeLayout rl;
+	
+	private RelativeLayout anim_container;
 
 	private TextView myMinutes;
+	
+	/**
+	 * 半屏动画 布局
+	 * 全屏动画 布局
+	 */
+	private RelativeLayout.LayoutParams inAnimLayoutParam,fullAnimLayoutParam;
 
 
 	@Override
@@ -68,11 +64,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 		initialize(view);
 		initLefter(view);
-		/*rl = new RelativeLayout(getActivity());
-		RelativeLayout.LayoutParams lp1 =  new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-		
-		animation_center_1.addView(animation_center_1,lp1);
-		getActivity().setContentView(rl);*/
+
 		return view;
 
 	}
@@ -147,6 +139,11 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		down = (LinearLayout) view.findViewById(R.id.main_mid_down_frame);
 		right = (LinearLayout) view.findViewById(R.id.main_right_frame);
 		up = (LinearLayout) view.findViewById(R.id.main_mid_up_frame);
+		anim_container=(RelativeLayout)view.findViewById(R.id.main_animation_container);
+		
+		inAnimLayoutParam=(RelativeLayout.LayoutParams)anim_container.getLayoutParams();
+		fullAnimLayoutParam=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+		
 		view.findViewById(R.id.animation_fullscreen).setOnClickListener(this);
 		view.findViewById(R.id.main_animation_help).setOnClickListener(this);
 		// <chy> settins监听事件
@@ -232,27 +229,28 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			fullScreenLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 			*/
 			
-			RelativeLayout.LayoutParams  fullScreenLayoutParams2 = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-			fullScreen.setLayoutParams(fullScreenLayoutParams2);
-			
-			
+
 			subtitle_container.setVisibility(View.GONE);
 			up.setVisibility(View.GONE);
 			down.setVisibility(View.GONE);
 			right.setVisibility(View.GONE);
 			left_include.setVisibility(View.GONE);
-//			
-//			
+
+			anim_container.setLayoutParams(fullAnimLayoutParam);
+			
 			super.enableFullscreen();
 			
 		} else {
-			super.disableFullscreen();
+
 			subtitle_container.setVisibility(View.VISIBLE);
 			up.setVisibility(View.VISIBLE);
 			down.setVisibility(View.VISIBLE);
 			right.setVisibility(View.VISIBLE);
 			left_include.setVisibility(View.VISIBLE);
-
+			
+			anim_container.setLayoutParams(inAnimLayoutParam);
+			
+			super.disableFullscreen();
 		}
 	}
 

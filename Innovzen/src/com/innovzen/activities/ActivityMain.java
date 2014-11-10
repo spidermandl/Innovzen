@@ -90,22 +90,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	// The Handler that gets information back from the BluetoothChatService
 
 
-	/*private int state = 1;
-	public void MyCommand(int start,int id,int coding,int checkSum,int end){
-		sendCommand(start);
-		if (state == 2) {
-			sendCommand(id);
-		}
-		if (state == 3) {
-			sendCommand(coding);
-		}
-		if (state == 4) {
-			sendCommand(checkSum);
-		}
-		if (state == 5) {
-			sendCommand(end);
-		}
-	}*/
 	private final Handler bluetoothHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -475,12 +459,17 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		super.clearBackstack();
 
 		addToBackstack = true;
+		
+		// Set the bundle
+		Bundle bundle = new Bundle();
+		bundle.putInt(FragAnimationBase.KEY_ANIMATION_TYPE, 
+				MyPreference.getInstance(this).readInt(MyPreference.GRAPHIC));
 
 		if (IS_TABLET) {
-			navigateTo(FragAnimationTabletNew.class, null, addToBackstack,
+			navigateTo(FragAnimationTabletNew.class, bundle, addToBackstack,
 					ActivityMain.FRAG_TAG_ANIMATION);
 		} else {
-			navigateTo(FragAnimationPhone.class, null, addToBackstack,
+			navigateTo(FragAnimationPhone.class, bundle, addToBackstack,
 					ActivityMain.FRAG_TAG_ANIMATION);
 		}
 	}
@@ -677,14 +666,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 	@Override
 	public void fragGoToHelpNew(boolean addToBackstack) {
-		try {
-			super.clearBackstack();
-		} catch (Exception e) {
-			e.printStackTrace();
-			// Do nothin'
-		}
 		navigateTo(FragHelpNew.class, null, addToBackstack);
-
 	}
 
 	@Override
@@ -696,7 +678,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	// ÔËÐÐ
 	@Override
 	public void GoToBegin() {
-		BluetoothCommand.getInstance().sendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
+		//BluetoothCommand.getInstance().sendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
 	/*	MyCommand(0xF0, 0x83, 0x11, 0x11, 0xF1);*/
 		/*sendCommand(0xF0);
 		sendCommand(0x83);

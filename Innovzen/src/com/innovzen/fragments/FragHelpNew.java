@@ -52,8 +52,8 @@ public class FragHelpNew extends FragBase implements OnCustomClickListener, Frag
                 }
                 break;
             case R.id.helpBack:
-            	   getActivity().onBackPressed();
-            	   break;
+            	getActivity().onBackPressed();
+            	break;
         }
     }
 

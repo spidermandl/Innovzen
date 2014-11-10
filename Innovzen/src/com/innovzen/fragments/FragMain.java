@@ -41,7 +41,7 @@ public class FragMain extends FragBase implements OnClickListener{
 			break;
 		case R.id.menu_relax:
 			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.TEN_MINUTES);
-			super.activityListener.fragPetalsAnimationPicked();
+			super.activityListener.fragGoToAnimation(true);
 			
 			break;
 		case R.id.menu_performance:
