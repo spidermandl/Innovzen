@@ -80,6 +80,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	private FragBluetoothDialog bluetoothDialog = null;
 	private BluetoothService mBluetoothService = null;
 	private BluetoothAdapter mBluetoothAdapter = null;
+	private BluetoothCommand mBluetoothCommand = null;
 
 	// Message types sent from the BluetoothChatService Handler
 	public static final int MESSAGE_STATE_CHANGE = 1;
@@ -87,9 +88,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	public static final int MESSAGE_WRITE = 3;
 	public static final int MESSAGE_DEVICE_NAME = 4;
 	public static final int MESSAGE_TOAST = 5;
+	
 	// The Handler that gets information back from the BluetoothChatService
-
-
 	private final Handler bluetoothHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -142,7 +142,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		}
 	};
 
-	private BluetoothCommand mBluetoothCommand;
 
 	public BluetoothService getBluetoothService() {
 		return mBluetoothService;
@@ -676,6 +675,11 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	public void fragConnectBluetooth() {
 		isBlueToothSetup();
 
+	}
+
+	@Override
+	public void fragSendCommand(int[] commands) {
+		mBluetoothCommand.sendCommand(commands);
 	}
 
 

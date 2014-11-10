@@ -2,7 +2,6 @@ package com.innovzen.bluetooth;
 
 import android.content.Context;
 
-import com.innovzen.utils.MyPreference;
 
 /**
  * À¶ÑÀÃüÁî
@@ -68,57 +67,65 @@ public class BluetoothCommand {
 	// PerformanceÃüÁî
 	public static int PERFORMANCE_MACHINE_VALUES[] = { START_MACHINE,
 			ANDROID_TABLET, PERFORMANCE, 0x11, END_MACHINE };
-	//breathe +ÃüÁî
-	public static int BREATHE_UP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,BREATH_UP, 0x11, END_MACHINE };
-	//breathe -ÃüÁî
-	public static int BREATHE_DOWN_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,BREATH_DOWM, 0x11, END_MACHINE };
-	//backrest upÃüÁî
-	public static int BACK_REST_UP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,BACKREST_ADJUST_UP, 0x11, END_MACHINE };
-	//backrest downÃüÁî
-	public static int BACK_REST_DOWN_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,BACKREST_ADJUST_DOWN, 0x11, END_MACHINE };
-    //backrest upÔÝÍ£ÃüÁî
-	public static int BACK_REST_UP_STOP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,BACKREST_ADJUST_UP_STOP, 0x11, END_MACHINE };
-	//backrest downÔÝÍ£ÃüÁî
-	public static int BACK_REST_DOWN_STOP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,BACKREST_ADJUST_DOWN_STOP, 0x11, END_MACHINE };
-    //foot upÃüÁî
-	public static int FOOT_UP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,FOOT_ADJUST_UP, 0x11, END_MACHINE };
-    //foot down ÃüÁî
-	public static int FOOT_DOWN_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,FOOT_ADJUST_DOWN, 0x11, END_MACHINE };
-    // foot up stopÃüÁî
-	public static int FOOT_UP_STOP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,FOOT_ADJUST_UP_STOP, 0x11, END_MACHINE };
-    //foot down stop ÃüÁî
-	public static int FOOT_DOWN_STOP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,FOOT_ADJUST_DOWN_STOP, 0x11, END_MACHINE };
-    //Zero gravityÃüÁî
-	public static int ZERO_GRAVITY_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,ZERO_GRAVITY, 0x11, END_MACHINE };
+	// breathe +ÃüÁî
+	public static int BREATHE_UP_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, BREATH_UP, 0x11, END_MACHINE };
+	// breathe -ÃüÁî
+	public static int BREATHE_DOWN_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, BREATH_DOWM, 0x11, END_MACHINE };
+	// backrest upÃüÁî
+	public static int BACK_REST_UP_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, BACKREST_ADJUST_UP, 0x11, END_MACHINE };
+	// backrest downÃüÁî
+	public static int BACK_REST_DOWN_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, BACKREST_ADJUST_DOWN, 0x11, END_MACHINE };
+	// backrest upÔÝÍ£ÃüÁî
+	public static int BACK_REST_UP_STOP_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, BACKREST_ADJUST_UP_STOP, 0x11, END_MACHINE };
+	// backrest downÔÝÍ£ÃüÁî
+	public static int BACK_REST_DOWN_STOP_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, BACKREST_ADJUST_DOWN_STOP, 0x11, END_MACHINE };
+	// foot upÃüÁî
+	public static int FOOT_UP_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, FOOT_ADJUST_UP, 0x11, END_MACHINE };
+	// foot down ÃüÁî
+	public static int FOOT_DOWN_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, FOOT_ADJUST_DOWN, 0x11, END_MACHINE };
+	// foot up stopÃüÁî
+	public static int FOOT_UP_STOP_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, FOOT_ADJUST_UP_STOP, 0x11, END_MACHINE };
+	// foot down stop ÃüÁî
+	public static int FOOT_DOWN_STOP_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, FOOT_ADJUST_DOWN_STOP, 0x11, END_MACHINE };
+	// Zero gravityÃüÁî
+	public static int ZERO_GRAVITY_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, ZERO_GRAVITY, 0x11, END_MACHINE };
 
-	private static BluetoothService mBluetoothService = null;
-	private Context context=null;
-	private static BluetoothCommand mBluetoothCommand;
+	private BluetoothService mBluetoothService = null;
+	private Context context = null;
 
 	// Ìá¹©Ë½ÓÐµÄ¹¹Ôì·½·¨
 	// Ìá¹©Ë½ÓÐµÄ¹¹Ôì·½·¨
-		public BluetoothCommand() {
-			super();
-		}
-	      
-		public BluetoothCommand(Context context,BluetoothService mBluetoothService) {
-			this.context=context;
-			this.mBluetoothService = mBluetoothService;
-		}
+	public BluetoothCommand() {
+	}
+
+	public BluetoothCommand(Context context, BluetoothService mBluetoothService) {
+		this.context = context;
+		this.mBluetoothService = mBluetoothService;
+	}
 
 	/**
 	 * ¶ÔÍâÌá¹©µÄ³õÊ¼»¯·½·¨
 	 * 
 	 * @return
 	 */
-	/*public static BluetoothCommand getInstance() {
-		// ³õÊ¼»¯×ÔÉí¶ÔÏó
-		if (myBluetoothCommand == null) {
-			myBluetoothCommand = new BluetoothCommand();
-
-		}
-		return myBluetoothCommand;
-	}*/
+	/*
+	 * public static BluetoothCommand getInstance() { // ³õÊ¼»¯×ÔÉí¶ÔÏó if
+	 * (myBluetoothCommand == null) { myBluetoothCommand = new
+	 * BluetoothCommand();
+	 * 
+	 * } return myBluetoothCommand; }
+	 */
 
 	/**
 	 * ·¢ËÍÖ¸Áî
@@ -133,7 +140,7 @@ public class BluetoothCommand {
 			temp[2] = (byte) ((values[i] >> 16) & 0xFF);
 			temp[1] = (byte) ((values[i] >> 8) & 0xFF);
 			temp[0] = (byte) (values[i] & 0xFF);
-			src[i]=temp[0];
+			src[i] = temp[0];
 		}
 		mBluetoothService.write(src);
 	}

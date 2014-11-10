@@ -345,7 +345,12 @@ public class AnimationLungs extends ExerciseAnimationBase {
 
             // Set the left position of the lungs
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) lungs_and_bubbles_container.getLayoutParams();
-            params.leftMargin = (int) (Util.getScreenDimensions(mCtx)[0] * 0.2f);
+            /**
+             * Desmond
+             * ¶¯»­¿¿×ó
+             */
+            params.leftMargin = 0;//(int) (Util.getScreenDimensions(mCtx)[0] * 0.2f);
+            //</Desmond>
             lungs_and_bubbles_container.setLayoutParams(params);
 
         } else { // PHONE

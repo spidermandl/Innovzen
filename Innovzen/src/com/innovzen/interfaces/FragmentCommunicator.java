@@ -87,5 +87,8 @@ public interface FragmentCommunicator {
      * 建立蓝牙连接
      */
     public void fragConnectBluetooth();
-
+    /**
+     * 发送蓝牙数据
+     */
+    public void fragSendCommand(int[] commands);
 }
