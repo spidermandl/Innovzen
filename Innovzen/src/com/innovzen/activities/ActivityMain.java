@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import com.innovzen.o2chair.R;
+import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.bluetooth.BluetoothService;
 import com.innovzen.entities.SoundGroup;
 import com.innovzen.fragments.FragAnimationPhone;
@@ -45,6 +46,7 @@ import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.handlers.SoundHandler;
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.interfaces.FragmentOnBackPressInterface;
+import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
 
 //主界面
@@ -88,7 +90,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	// The Handler that gets information back from the BluetoothChatService
 
 
-	private int state = 1;
+	/*private int state = 1;
 	public void MyCommand(int start,int id,int coding,int checkSum,int end){
 		sendCommand(start);
 		if (state == 2) {
@@ -103,7 +105,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		if (state == 5) {
 			sendCommand(end);
 		}
-	}
+	}*/
 	private final Handler bluetoothHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -112,7 +114,9 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				switch (msg.arg1) {
 				case BluetoothService.STATE_CONNECTED:// 连接建立
 					//准备命令
-					MyCommand(0xF0, 0x83, 0x01, 0x11, 0xF1);
+					
+					BluetoothCommand.getInstance().sendCommand(BluetoothCommand.START_MACHINE_VALUES);
+					/*MyCommand(0xF0, 0x83, 0x01, 0x11, 0xF1);*/
 					break;
 				case BluetoothService.STATE_CONNECTING:// 正在建立连接
 
@@ -127,15 +131,20 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				// construct a string from the buffer
 				String writeMessage = new String(writeBuf);
 				System.out.println(writeMessage);
-				System.out.println(state);
+				/*System.out.println(state);
 				state++;
 				if(state>5){
 					state=1;
-				}
+				}*/
 
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
+				//得到机器传过来的指令转为int
+				int receiveCommand =BluetoothCommand.getInstance().getCommand(readBuf, 0);
+				//存贮当前机器的指令状态
+			MyPreference.getInstance(getApplicationContext()).writeString(MyPreference.RECEIVE_COMMAND, receiveCommand);
+				
 				// construct a string from the valid bytes in the buffer
 				//String readMessage = new String(readBuf, 0, msg.arg1);
 				
@@ -687,7 +696,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	// 运行
 	@Override
 	public void GoToBegin() {
-		MyCommand(0xF0, 0x83, 0x11, 0x11, 0xF1);
+		BluetoothCommand.getInstance().sendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
+	/*	MyCommand(0xF0, 0x83, 0x11, 0x11, 0xF1);*/
 		/*sendCommand(0xF0);
 		sendCommand(0x83);
 		sendCommand(0x11);
@@ -699,7 +709,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	// 关闭
 	@Override
 	public void GoToEnd() {
-		MyCommand(0xF0, 0x83, 0x01, 0x11, 0xF1);
+		BluetoothCommand.getInstance().sendCommand(BluetoothCommand.START_MACHINE_VALUES);
+		/*MyCommand(0xF0, 0x83, 0x01, 0x11, 0xF1);*/
 		/*sendCommand(0xF0);
 		sendCommand(0x83);
 		sendCommand(0x01);
@@ -711,7 +722,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	// 暂停 机器硬件暂时未安装该功能
 	@Override
 	public void GoToPause() {
-		MyCommand(0xF0, 0x83, 0x19, 0x19, 0xF1);
+		BluetoothCommand.getInstance().sendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
+		/*MyCommand(0xF0, 0x83, 0x19, 0x19, 0xF1);*/
 		/*sendCommand(0xF0);
 		sendCommand(0x83);
 		sendCommand(0x19);

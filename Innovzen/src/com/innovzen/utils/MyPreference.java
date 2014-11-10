@@ -34,6 +34,7 @@ public class MyPreference {
 	public final static String TWENTY_MINUTES="20min";
 	public final static String TWENTY_FIVE_MINUTES="25min";
 	public final static String THIRTY_MINUTES="25min";
+	public final static String RECEIVE_COMMAND="receive command";
 	//提供私有的构造方法
 	private MyPreference(){}
 	/**

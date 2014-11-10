@@ -90,7 +90,7 @@
         android:layout_alignTop="@id/left_mea_vertical_2"
         android:background="@drawable/btn_volum_open"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:weightSum="6" >
 
         <ImageView
