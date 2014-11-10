@@ -188,47 +188,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		leftMid.setBackgroundResource(R.drawable.banner_balance);
 		leftBottom.setBackgroundResource(R.drawable.selector_btn_volume);
 	}
-
-	/* private void toggleFullscreen() { */
-	// Check if it's in fullscreen mode by looking at the visibility of the
-	// footer
-	// <Desmond>
-	// if (super.footer.getVisibility() == View.VISIBLE) { // currently NOT in
-	// fullscreen mode
-	//
-	// /* Make stuff disappear */
-	//
-	// header_buttons_container.setVisibility(View.GONE);
-	//
-	// animation_type.setVisibility(View.INVISIBLE);
-	//
-	// timer_footer_container.setVisibility(View.GONE);
-	//
-	// super.enableFullscreen();
-	//
-	// } else { // currently in fullscreen mode
-	// <Desmond>
-
-	/* Make stuff appear */
-
-	/*
-	 * animation_type.setVisibility(View.VISIBLE);
-	 * 
-	 * super.disableFullscreen();
-	 * 
-	 * };
-	 */
 	
 	private void toggleFullscreen() {
 		if (up.getVisibility() == View.VISIBLE) {
-
-			/*RelativeLayout.LayoutParams  fullScreenLayoutParams=	(RelativeLayout.LayoutParams) fullScreen.getLayoutParams();
-			fullScreenLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-			fullScreenLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-			fullScreenLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-			fullScreenLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-			*/
-			
 
 			subtitle_container.setVisibility(View.GONE);
 			up.setVisibility(View.GONE);

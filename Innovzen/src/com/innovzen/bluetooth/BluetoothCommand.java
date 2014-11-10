@@ -53,17 +53,22 @@ public class BluetoothCommand {
 	public static final int TWENTY_MIN = 0x23;
 	public static final int TWENTY_FIVE_MIN = 0x24;
 	public static final int THIRTY_MIN = 0x25;
-	//开机关机命令
-	public static  int START_MACHINE_VALUES[]={START_MACHINE,ANDROID_TABLET,POWER_ON_OFF,0x11,END_MACHINE};
-	//暂停
-	public static  int PAUSE_MACHINE_VALUES[]={START_MACHINE,ANDROID_TABLET,PAUSE,0x11,END_MACHINE};
-	//Blance键
-	public static  int BLANCE_MACHINE_VALUES[]={START_MACHINE,ANDROID_TABLET,BALANCE,0x11,END_MACHINE};
-	//Relax键
-	public static  int RELAX_MACHINE_VALUES[]={START_MACHINE,ANDROID_TABLET,RELAX,0x11,END_MACHINE};
-	//Performance键
-	public static  int PERFORMANCE_MACHINE_VALUES[]={START_MACHINE,ANDROID_TABLET,PERFORMANCE,0x11,END_MACHINE};
-	///////////////
+	// 开机关机命令
+	public static int START_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
+			POWER_ON_OFF, 0x11, END_MACHINE };
+	// 暂停
+	public static int PAUSE_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
+			PAUSE, 0x11, END_MACHINE };
+	// Blance键
+	public static int BLANCE_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, BALANCE, 0x11, END_MACHINE };
+	// Relax键
+	public static int RELAX_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
+			RELAX, 0x11, END_MACHINE };
+	// Performance键
+	public static int PERFORMANCE_MACHINE_VALUES[] = { START_MACHINE,
+			ANDROID_TABLET, PERFORMANCE, 0x11, END_MACHINE };
+	// /////////////
 	private BluetoothService mBluetoothService = null;
 	private static BluetoothCommand myBluetoothCommand;
 
@@ -84,30 +89,34 @@ public class BluetoothCommand {
 		}
 		return myBluetoothCommand;
 	}
-    /**
-     * 发送指令
-     * @param value
-     */
+
+	/**
+	 * 发送指令
+	 * 
+	 * @param value
+	 */
 	public void sendCommand(int[] values) {
-		for(int i=0;i<=5;i++){
-		byte[] src = new byte[4];
-		src[3] = (byte) ((values[i] >> 24) & 0xFF);
-		src[2] = (byte) ((values[i] >> 16) & 0xFF);
-		src[1] = (byte) ((values[i] >> 8) & 0xFF);
-		src[0] = (byte) (values[i] & 0xFF);
-		//mBluetoothService.write(new byte[] { src[0] });
+		byte[] src = new byte[values.length];
+		for (int i = 0; i < values.length; i++) {
+			byte[] temp = new byte[4];
+			temp[3] = (byte) ((values[i] >> 24) & 0xFF);
+			temp[2] = (byte) ((values[i] >> 16) & 0xFF);
+			temp[1] = (byte) ((values[i] >> 8) & 0xFF);
+			temp[0] = (byte) (values[i] & 0xFF);
+			src[i]=temp[0];
 		}
+		mBluetoothService.write(src);
 	}
+
 	/**
 	 * 解析命令
 	 */
-	public  int getCommand(byte[] bytes,int offset){
+	public int getCommand(byte[] bytes, int offset) {
 		int value;
-		 value = (int) ((bytes[offset]&0xFF)   
-		            | ((bytes[offset+1]<<8) & 0xFF00)  
-		            | ((bytes[offset+2]<<16)& 0xFF0000)   
-		            | ((bytes[offset+3]<<24) & 0xFF000000));  
-	 return value;
+		value = (int) ((bytes[offset] & 0xFF)
+				| ((bytes[offset + 1] << 8) & 0xFF00)
+				| ((bytes[offset + 2] << 16) & 0xFF0000) | ((bytes[offset + 3] << 24) & 0xFF000000));
+		return value;
 	}
 
 }
