@@ -10,13 +10,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.innovzen.fragments.VerticalSeekBar;
-
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.o2chair.R;
 
@@ -46,7 +46,7 @@ public abstract class FragBase extends Fragment {
 	protected ImageView leftTop;
 	protected LinearLayout leftMid;
 	protected ImageView leftBottom;
-	protected LinearLayout voice_progressbar;
+	protected RelativeLayout voice_progressbar;
 	private VerticalSeekBar seekBar;
 	private AudioManager audiomanage;
 	private ImageView volum_less;
@@ -73,8 +73,7 @@ public abstract class FragBase extends Fragment {
 		leftTop = (ImageView) view.findViewById(R.id.left_top);
 		leftMid = (LinearLayout) view.findViewById(R.id.left_mid);
 		leftBottom = (ImageView) view.findViewById(R.id.left_bottom);
-		voice_progressbar = (LinearLayout) view
-				.findViewById(R.id.voice_progressbar);
+		voice_progressbar = (RelativeLayout) view.findViewById(R.id.voice_progressbar);
 		seekBar = (VerticalSeekBar) view.findViewById(R.id.mySeekBar);
 		seekBar.setMax(maxVolume);
 		seekBar.setProgress(currentVolume);
@@ -128,6 +127,17 @@ public abstract class FragBase extends Fragment {
 				leftMid.setVisibility(View.INVISIBLE);
 				leftBottom.setVisibility(View.INVISIBLE);
 				voice_progressbar.setVisibility(View.VISIBLE);
+			}
+		});
+		
+		voice_progressbar.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				leftMid.setVisibility(View.VISIBLE);
+				leftBottom.setVisibility(View.VISIBLE);
+				voice_progressbar.setVisibility(View.INVISIBLE);
+				
 			}
 		});
 	}

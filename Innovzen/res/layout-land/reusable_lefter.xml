@@ -81,7 +81,7 @@
         android:background="@drawable/selector_btn_volume"
         android:padding="@dimen/grid_half_gap" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/voice_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,51 +89,36 @@
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@id/left_mea_vertical_2"
         android:background="@drawable/btn_volum_open"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        android:weightSum="6" >
+        android:visibility="invisible">
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:background="@drawable/icon_volum" />
-
-        <!--
-        <ProgressBar
-            android:layout_weight="8"
-            android:id="@+id/myView_ProgressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="20dp"
+            android:id="@+id/volumn_max"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:progress="30"
-            android:max="100"
-            
-            android:progressDrawable="@drawable/volume_level_up"
-            android:background="@drawable/volume_level_down"
-             >
-        </ProgressBar>
-        -->
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/icon_volum" 
+            android:layout_marginTop="30dip"/>
 
+        <ImageView
+            android:id="@+id/volum_less"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dip"
+            android:background="@drawable/icon_volum_less" />
+        
         <com.innovzen.fragments.VerticalSeekBar
             android:id="@+id/mySeekBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="4"
-            android:progressDrawable="@drawable/seekbar_define_style"  
-            
-            android:thumb="@drawable/volume_cursor" />
+            android:thumb="@drawable/volume_cursor"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/volumn_max"
+            android:layout_above="@id/volum_less"
+            android:progressDrawable="@drawable/seekbar_define_style"  />
 
-        <ImageView
-            android:id="@+id/volum_less"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:background="@drawable/icon_volum_less" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
