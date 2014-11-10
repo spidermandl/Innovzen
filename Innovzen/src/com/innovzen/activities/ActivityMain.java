@@ -46,6 +46,7 @@ import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.handlers.SoundHandler;
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.interfaces.FragmentOnBackPressInterface;
+import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
 
 //主界面
@@ -139,6 +140,11 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
+				//得到机器传过来的指令转为int
+				int receiveCommand =BluetoothCommand.getInstance().getCommand(readBuf, 0);
+				//存贮当前机器的指令状态
+			MyPreference.getInstance(getApplicationContext()).writeString(MyPreference.RECEIVE_COMMAND, receiveCommand);
+				
 				// construct a string from the valid bytes in the buffer
 				//String readMessage = new String(readBuf, 0, msg.arg1);
 				

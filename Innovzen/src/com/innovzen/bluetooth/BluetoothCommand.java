@@ -98,5 +98,16 @@ public class BluetoothCommand {
 		mBluetoothService.write(new byte[] { src[0] });
 		}
 	}
+	/**
+	 * ½âÎöÃüÁî
+	 */
+	public  int getCommand(byte[] bytes,int offset){
+		int value;
+		 value = (int) ((bytes[offset]&0xFF)   
+		            | ((bytes[offset+1]<<8) & 0xFF00)  
+		            | ((bytes[offset+2]<<16)& 0xFF0000)   
+		            | ((bytes[offset+3]<<24) & 0xFF000000));  
+	 return value;
+	}
 
 }
