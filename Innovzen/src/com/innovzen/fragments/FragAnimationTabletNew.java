@@ -2,14 +2,18 @@ package com.innovzen.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import android.widget.RelativeLayout;
 
+import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.o2chair.R;
 import com.innovzen.utils.MyPreference;
@@ -53,6 +57,16 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 */
 	private RelativeLayout.LayoutParams inAnimLayoutParam,fullAnimLayoutParam;
 
+	private BluetoothCommand mBluetoothCommand;
+
+	private ImageView backRestUp;
+
+	private ImageView backRestDown;
+
+	private ImageView footUp;
+
+	private ImageView footDown;
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,12 +75,17 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				container, false);
 
 		super.onView(view);
-
+		initdata();
 		initialize(view);
 		initLefter(view);
 
 		return view;
 
+	}
+
+	private void initdata() {
+		mBluetoothCommand = new BluetoothCommand();
+		
 	}
 
 	@Override
@@ -102,24 +121,33 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 结束
 		case R.id.main_animation_stop:
+			mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
+			
 			super.pauseExercise();
-			super.activityListener.GoToEnd();
+			
 			break;
 		// 开始
 		case R.id.main_animation_start:
+			mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
 			overlayPlayBtnPressed();
-			super.activityListener.GoToBegin();
 			
-		
-			//
-
 			break;
 		// 暂停
 		case R.id.main_animation_pause:
+			mBluetoothCommand.sendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
 			super.pauseExercise();
-			super.activityListener.GoToPause();
+			
 			break;
+		case R.id.main_animation_breathe_up:
+			mBluetoothCommand.sendCommand(BluetoothCommand.BREATHE_UP_MACHINE_VALUES);
+			break;
+		case R.id.main_animation_breathe_down:
+			mBluetoothCommand.sendCommand(BluetoothCommand.BREATHE_DOWN_MACHINE_VALUES);
+			break;
+		case R.id.main_animation_zero:
+			mBluetoothCommand.sendCommand(BluetoothCommand.ZERO_GRAVITY_MACHINE_VALUES);
 
+			break;
 		}
 
 	}
@@ -130,17 +158,21 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * @author MAB
 	 */
 	private void initialize(View view) {
-		
+		view.findViewById(R.id.main_animation_breathe_up).setOnClickListener(this);
+		view.findViewById(R.id.main_animation_breathe_down).setOnClickListener(this);
+		view.findViewById(R.id.main_animation_zero).setOnClickListener(this);
+		backRestUp = (ImageView) view.findViewById(R.id.main_animation_backrest_up);
+		backRestDown = (ImageView) view.findViewById(R.id.main_animation_backrest_down);
+		footUp = (ImageView) view.findViewById(R.id.main_animation_foot_up);
+		footDown = (ImageView) view.findViewById(R.id.main_animation_foot_down);
         myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		animation_play_overlay = (RelativeLayout) view.findViewById(R.id.animation_play_overlay);
-		/*animation_center_2 = (LinearLayout) view.findViewById(R.id.animation_center_2);*/
 		subtitle_container = view.findViewById(R.id.animation_type);
 		left_include = (LinearLayout) view.findViewById(R.id.left_include);
 		down = (LinearLayout) view.findViewById(R.id.main_mid_down_frame);
 		right = (LinearLayout) view.findViewById(R.id.main_right_frame);
 		up = (LinearLayout) view.findViewById(R.id.main_mid_up_frame);
-		anim_container=(RelativeLayout)view.findViewById(R.id.main_animation_container);
-		
+		anim_container=(RelativeLayout)view.findViewById(R.id.main_animation_container);		
 		inAnimLayoutParam=(RelativeLayout.LayoutParams)anim_container.getLayoutParams();
 		fullAnimLayoutParam=new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 		
@@ -152,8 +184,79 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		view.findViewById(R.id.main_animation_start).setOnClickListener(this);
 		view.findViewById(R.id.main_animation_stop).setOnClickListener(this);
 		view.findViewById(R.id.animation_play_overlay_btn).setOnClickListener(this);
-		view.findViewById(R.id.main_animation_setting).setOnClickListener(this);
-
+		view.findViewById(R.id.main_animation_setting).setOnClickListener(this);  
+		backRestUp.setOnTouchListener(new OnTouchListener() {			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch (event.getAction()) {
+				case MotionEvent.ACTION_DOWN:
+					mBluetoothCommand.sendCommand(BluetoothCommand.BACK_REST_UP_MACHINE_VALUES);
+					System.out.println("back up");
+					break;
+				case MotionEvent.ACTION_UP:
+					mBluetoothCommand.sendCommand(BluetoothCommand.BACK_REST_UP_STOP_MACHINE_VALUES);
+					System.out.println("back up stop");
+					break;
+				default:
+					break;
+				}
+				return false;
+			}
+		});
+		backRestDown.setOnTouchListener(new OnTouchListener() {			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch (event.getAction()) {
+				case MotionEvent.ACTION_DOWN:
+					mBluetoothCommand.sendCommand(BluetoothCommand.BACK_REST_DOWN_MACHINE_VALUES);
+					System.out.println("back down");
+					break;
+				case MotionEvent.ACTION_UP:
+					mBluetoothCommand.sendCommand(BluetoothCommand.BACK_REST_DOWN_STOP_MACHINE_VALUES);
+					System.out.println("back down stop");
+					break;
+				default:
+					break;
+				}
+				return false;
+			}
+		});
+		footUp.setOnTouchListener(new OnTouchListener() {			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch (event.getAction()) {
+				case MotionEvent.ACTION_DOWN:
+					mBluetoothCommand.sendCommand(BluetoothCommand.FOOT_UP_MACHINE_VALUES);
+					System.out.println("foot up");
+					break;
+				case MotionEvent.ACTION_UP:
+					mBluetoothCommand.sendCommand(BluetoothCommand.FOOT_UP_STOP_MACHINE_VALUES);
+					System.out.println("foot up stop");
+					break;
+				default:
+					break;
+				}
+				return false;
+			}
+		});
+		footDown.setOnTouchListener(new OnTouchListener() {			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch (event.getAction()) {
+				case MotionEvent.ACTION_DOWN:
+					mBluetoothCommand.sendCommand(BluetoothCommand.FOOT_DOWN_MACHINE_VALUES);
+					System.out.println("foot down");
+					break;
+				case MotionEvent.ACTION_UP:
+					mBluetoothCommand.sendCommand(BluetoothCommand.FOOT_DOWN_STOP_MACHINE_VALUES);
+					System.out.println("foot down stop");
+					break;
+				default:
+					break;
+				}
+				return false;
+			}
+		});
 		// </chy>
 		this.mView = view;
 
@@ -185,7 +288,15 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 		
 		leftTop.setBackgroundResource(R.drawable.selector_btn_back);
+		//根据不同的按钮点击进入动画界面，leftmid显示不同的背景
+		String midBackground = MyPreference.getInstance(this.getActivity()).readString(MyPreference.BLANCE_RELAX_PERFORMANCE);
+		if(midBackground.equals(MyPreference.BLANCE)){		
 		leftMid.setBackgroundResource(R.drawable.banner_balance);
+		}else if(midBackground.equals(MyPreference.RELAX)){
+			leftMid.setBackgroundResource(R.drawable.banner_relax);
+		}else if(midBackground.equals(MyPreference.PERFORMANCE)){
+			leftMid.setBackgroundResource(R.drawable.banner_performance);
+		}
 		leftBottom.setBackgroundResource(R.drawable.selector_btn_volume);
 	}
 	

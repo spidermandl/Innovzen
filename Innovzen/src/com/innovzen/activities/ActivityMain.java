@@ -99,7 +99,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				case BluetoothService.STATE_CONNECTED:// 连接建立
 					//准备命令
 					
-					BluetoothCommand.getInstance().sendCommand(BluetoothCommand.START_MACHINE_VALUES);
+					mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
 					/*MyCommand(0xF0, 0x83, 0x01, 0x11, 0xF1);*/
 					break;
 				case BluetoothService.STATE_CONNECTING:// 正在建立连接
@@ -125,7 +125,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
 				//得到机器传过来的指令转为int
-				int receiveCommand =BluetoothCommand.getInstance().getCommand(readBuf, 0);
+				int receiveCommand =mBluetoothCommand.getCommand(readBuf, 0);
 				//存贮当前机器的指令状态
 			MyPreference.getInstance(getApplicationContext()).writeString(MyPreference.RECEIVE_COMMAND, receiveCommand);
 				
@@ -141,6 +141,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 			}
 		}
 	};
+
+	private BluetoothCommand mBluetoothCommand;
 
 	public BluetoothService getBluetoothService() {
 		return mBluetoothService;
@@ -315,6 +317,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		mBluetoothService = new BluetoothService(this, bluetoothHandler);
+		mBluetoothCommand = new BluetoothCommand(this,mBluetoothService);
 	}
 
 	/**
@@ -675,42 +678,5 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 	}
 
-	// 运行
-	@Override
-	public void GoToBegin() {
-		//BluetoothCommand.getInstance().sendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
-	/*	MyCommand(0xF0, 0x83, 0x11, 0x11, 0xF1);*/
-		/*sendCommand(0xF0);
-		sendCommand(0x83);
-		sendCommand(0x11);
-		sendCommand(0x11);
-		sendCommand(0xF1);*/
-
-	}
-
-	// 关闭
-	@Override
-	public void GoToEnd() {
-		BluetoothCommand.getInstance().sendCommand(BluetoothCommand.START_MACHINE_VALUES);
-		/*MyCommand(0xF0, 0x83, 0x01, 0x11, 0xF1);*/
-		/*sendCommand(0xF0);
-		sendCommand(0x83);
-		sendCommand(0x01);
-		sendCommand(0x11);
-		sendCommand(0xF1);*/
-
-	}
-
-	// 暂停 机器硬件暂时未安装该功能
-	@Override
-	public void GoToPause() {
-		BluetoothCommand.getInstance().sendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
-		/*MyCommand(0xF0, 0x83, 0x19, 0x19, 0xF1);*/
-		/*sendCommand(0xF0);
-		sendCommand(0x83);
-		sendCommand(0x19);
-		sendCommand(0x19);
-		sendCommand(0xF1);*/
-	}
 
 }

@@ -59,36 +59,66 @@ public class BluetoothCommand {
 	// 暂停
 	public static int PAUSE_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
 			PAUSE, 0x11, END_MACHINE };
-	// Blance键
+	// Blance命令
 	public static int BLANCE_MACHINE_VALUES[] = { START_MACHINE,
 			ANDROID_TABLET, BALANCE, 0x11, END_MACHINE };
-	// Relax键
+	// Relax命令
 	public static int RELAX_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
 			RELAX, 0x11, END_MACHINE };
-	// Performance键
+	// Performance命令
 	public static int PERFORMANCE_MACHINE_VALUES[] = { START_MACHINE,
 			ANDROID_TABLET, PERFORMANCE, 0x11, END_MACHINE };
-	// /////////////
-	private BluetoothService mBluetoothService = null;
-	private static BluetoothCommand myBluetoothCommand;
+	//breathe +命令
+	public static int BREATHE_UP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,BREATH_UP, 0x11, END_MACHINE };
+	//breathe -命令
+	public static int BREATHE_DOWN_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,BREATH_DOWM, 0x11, END_MACHINE };
+	//backrest up命令
+	public static int BACK_REST_UP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,BACKREST_ADJUST_UP, 0x11, END_MACHINE };
+	//backrest down命令
+	public static int BACK_REST_DOWN_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,BACKREST_ADJUST_DOWN, 0x11, END_MACHINE };
+    //backrest up暂停命令
+	public static int BACK_REST_UP_STOP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,BACKREST_ADJUST_UP_STOP, 0x11, END_MACHINE };
+	//backrest down暂停命令
+	public static int BACK_REST_DOWN_STOP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,BACKREST_ADJUST_DOWN_STOP, 0x11, END_MACHINE };
+    //foot up命令
+	public static int FOOT_UP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,FOOT_ADJUST_UP, 0x11, END_MACHINE };
+    //foot down 命令
+	public static int FOOT_DOWN_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,FOOT_ADJUST_DOWN, 0x11, END_MACHINE };
+    // foot up stop命令
+	public static int FOOT_UP_STOP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,FOOT_ADJUST_UP_STOP, 0x11, END_MACHINE };
+    //foot down stop 命令
+	public static int FOOT_DOWN_STOP_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,FOOT_ADJUST_DOWN_STOP, 0x11, END_MACHINE };
+    //Zero gravity命令
+	public static int ZERO_GRAVITY_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,ZERO_GRAVITY, 0x11, END_MACHINE };
+
+	private static BluetoothService mBluetoothService = null;
+	private Context context=null;
+	private static BluetoothCommand mBluetoothCommand;
 
 	// 提供私有的构造方法
-	private BluetoothCommand() {
-	}
+	// 提供私有的构造方法
+		public BluetoothCommand() {
+			super();
+		}
+	      
+		public BluetoothCommand(Context context,BluetoothService mBluetoothService) {
+			this.context=context;
+			this.mBluetoothService = mBluetoothService;
+		}
 
 	/**
 	 * 对外提供的初始化方法
 	 * 
 	 * @return
 	 */
-	public static BluetoothCommand getInstance() {
+	/*public static BluetoothCommand getInstance() {
 		// 初始化自身对象
 		if (myBluetoothCommand == null) {
 			myBluetoothCommand = new BluetoothCommand();
 
 		}
 		return myBluetoothCommand;
-	}
+	}*/
 
 	/**
 	 * 发送指令

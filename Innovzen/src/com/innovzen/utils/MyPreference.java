@@ -35,6 +35,12 @@ public class MyPreference {
 	public final static String TWENTY_FIVE_MINUTES="25min";
 	public final static String THIRTY_MINUTES="25min";
 	public final static String RECEIVE_COMMAND="receive command";
+	public final static String BLANCE="blance";
+	public final static String RELAX="relax";
+	public final static String PERFORMANCE="performance";
+	
+	
+	public final static String BLANCE_RELAX_PERFORMANCE="blance_relax_performance";
 	//提供私有的构造方法
 	private MyPreference(){}
 	/**
