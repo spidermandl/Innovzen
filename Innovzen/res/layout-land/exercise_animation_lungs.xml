@@ -34,7 +34,7 @@
         android:layout_marginRight="40dp" >
 
         <!-- STEP TEXT -->
-
+        
         <TextView
             android:id="@+id/animation_step_text"
             android:layout_width="wrap_content"
