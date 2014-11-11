@@ -16,17 +16,21 @@ public class MyPreference {
 	private static Context globleContext;//È«¾Öcontext
 	
 	private final static String INNOVZEN_PREFERENCE="INNOVZEN_PREFERENCE";
+	//¼ÇÂ¼Voice¼ü×´Ì¬
 	public final static String VOICE="voice";
 	public final static String MAN_VOICE="Man voice";
 	public final static String WOMAN_VOICE="Woman voice";
 	public final static String SILENCE="silence";
+	//¼ÇÂ¼Music¼ü×´Ì¬
 	public static final String MUSIC="music";
 	public static final String SELECT_MUSIC1 = "music1";
 	public static final String SELECT_MUSIC2 = "music2";
 	public static final String SELECT_MUSIC3 = "music3";
 	public static final String SELECT_MUSIC4 = "music4";
 	public static final String SELECT_MUSIC5 = "music5";
+	//¼ÇÂ¼Graphic¼ü×´Ì¬
 	public final static String GRAPHIC="graphic";
+	//¼ÇÂ¼Time¼ü×´Ì¬
 	public final static String TIME="time";
 	public final static String FIVE_MINUTES="5min";
 	public final static String TEN_MINUTES="10min";
@@ -34,29 +38,48 @@ public class MyPreference {
 	public final static String TWENTY_MINUTES="20min";
 	public final static String TWENTY_FIVE_MINUTES="25min";
 	public final static String THIRTY_MINUTES="25min";
+	
 	public final static String RECEIVE_COMMAND="receive command";
+	//¼ÇÂ¼´ÓÄÄ¸ö¼üÎ»½øÈë¶¯»­½çÃæ
 	public final static String BLANCE="blance";
 	public final static String RELAX="relax";
 	public final static String PERFORMANCE="performance";
 	public final static String BLANCE_RELAX_PERFORMANCE="blance_relax_performance";
+	//¼ÇÂ¼Oxygen¼ü×´Ì¬
 	public final static String OXTGEN="oxygen";
+	//Oxygen¼ü×´Ì¬   ¿ª
 	public final static int OXTGEN_OPEN=1;
+	//Oxygen¼ü×´Ì¬   ¹Ø
 	public final static int OXTGEN_CLOSE=0;
-	
+	//¼ÇÂ¼Swing¼ü×´Ì¬
 	public final static String SWING="swing";
+	//Swing¼ü×´Ì¬   ¿ª
 	public final static int SWING_OPEN=1;
+	//Swing¼ü×´Ì¬   ¹Ø
 	public final static int SWING_CLOSE=0;
+	//¼ÇÂ¼Leds¼ü×´Ì¬
 	public final static String LED="led";
+	//Leds¼ü×´Ì¬   ¿ª
 	public final static int LED_OPEN=1;
+	//Leds¼ü×´Ì¬   ¹Ø
 	public final static int LED_CLOSE=0;
+	//Heat¼ü×´Ì¬
 	public final static String HEAT="heat";
-	public final static int HEAT_OPEN=1;
+	//Hear¼ü×´Ì¬  ¿ª
+	public final static int HEAT_OPEN=1;	
+	//Hear¼ü×´Ì¬  ¹Ø
 	public final static int HEAT_CLOSE=0;
+	//Bluetooth¼ü×´Ì¬
 	public final static String BLUETOOTH="bluetooth";
+	//Bluetooth¼ü×´Ì¬  ¿ª
 	public final static int BLUETOOTH_OPEN=1;
+	//Bluetooth¼ü×´Ì¬  ¹Ø
 	public final static int BLUETOOTH_CLOSE=0;
+	//Zero gravity¼ü×´Ì¬
 	public final static String ZERO="zero";
+	//Zero gravity¼ü×´Ì¬  ¿ª
 	public final static int ZERO_OPEN=1;
+	//Zero gravity¼ü×´Ì¬  ¹Ø
 	public final static int ZERO_CLOSE=0;
 	//Ìá¹©Ë½ÓÐµÄ¹¹Ôì·½·¨
 	private MyPreference(){}
