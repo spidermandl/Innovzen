@@ -38,11 +38,26 @@ public class MyPreference {
 	public final static String BLANCE="blance";
 	public final static String RELAX="relax";
 	public final static String PERFORMANCE="performance";
-	
+	public final static String BLANCE_RELAX_PERFORMANCE="blance_relax_performance";
 	public final static String OXTGEN="oxygen";
 	public final static int OXTGEN_OPEN=1;
-	public final static int OXTGEN_CLOSE=1;
-	public final static String BLANCE_RELAX_PERFORMANCE="blance_relax_performance";
+	public final static int OXTGEN_CLOSE=0;
+	
+	public final static String SWING="swing";
+	public final static int SWING_OPEN=1;
+	public final static int SWING_CLOSE=0;
+	public final static String LED="led";
+	public final static int LED_OPEN=1;
+	public final static int LED_CLOSE=0;
+	public final static String HEAT="heat";
+	public final static int HEAT_OPEN=1;
+	public final static int HEAT_CLOSE=0;
+	public final static String BLUETOOTH="bluetooth";
+	public final static int BLUETOOTH_OPEN=1;
+	public final static int BLUETOOTH_CLOSE=0;
+	public final static String ZERO="zero";
+	public final static int ZERO_OPEN=1;
+	public final static int ZERO_CLOSE=0;
 	//提供私有的构造方法
 	private MyPreference(){}
 	/**

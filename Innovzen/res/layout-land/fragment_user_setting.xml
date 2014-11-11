@@ -175,6 +175,7 @@
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
+        android:id="@+id/set_swing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_2"
@@ -185,7 +186,7 @@
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
-        android:id="@+id/oxygen"
+        android:id="@+id/set_oxygen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_3"
@@ -196,6 +197,7 @@
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
+        android:id="@+id/set_led"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_3"
@@ -206,6 +208,7 @@
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
+        android:id="@+id/set_heat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_3"

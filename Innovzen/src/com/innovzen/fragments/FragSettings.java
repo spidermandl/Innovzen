@@ -16,7 +16,7 @@ import com.innovzen.utils.MyPreference;
 public class FragSettings extends FragBase implements OnClickListener{
 
 	private TextView myMinutes;
-	private ImageView oxygen;
+	private ImageView oxygen,swing,led,heat,bluetooth;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +35,30 @@ public class FragSettings extends FragBase implements OnClickListener{
 			oxygen.setBackgroundResource(R.drawable.btn_o2_activated);
 		}else{
 			oxygen.setBackgroundResource(R.drawable.selector_icon_o2);
+		}
+		int Swing = MyPreference.getInstance(getActivity()).readInt(MyPreference.SWING);
+		if(Swing==MyPreference.SWING_OPEN){
+			swing.setBackgroundResource(R.drawable.btn_swing_activated);
+		}else{
+			swing.setBackgroundResource(R.drawable.selector_icon_swing);
+		}
+		int Led = MyPreference.getInstance(getActivity()).readInt(MyPreference.LED);
+		if(Led==MyPreference.LED_OPEN){
+			led.setBackgroundResource(R.drawable.btn_leds_activated);
+		}else{
+			led.setBackgroundResource(R.drawable.selector_icon_leds);
+		}
+		int Heat = MyPreference.getInstance(getActivity()).readInt(MyPreference.HEAT);
+		if(Heat==MyPreference.HEAT_OPEN){
+			heat.setBackgroundResource(R.drawable.btn_heat_activated);
+		}else{
+			heat.setBackgroundResource(R.drawable.selector_icon_heat);
+		}
+		int Bluetooth = MyPreference.getInstance(getActivity()).readInt(MyPreference.BLUETOOTH);
+		if(Bluetooth==MyPreference.BLUETOOTH_OPEN){
+			bluetooth.setBackgroundResource(R.drawable.btn_heat_activated);
+		}else{
+			bluetooth.setBackgroundResource(R.drawable.selector_icon_heat);
 		}
 	}
 	@Override
@@ -75,7 +99,10 @@ public class FragSettings extends FragBase implements OnClickListener{
 		view.findViewById(R.id.set_graphic).setOnClickListener(this);
 		view.findViewById(R.id.set_voice).setOnClickListener(this);
 		view.findViewById(R.id.set_history).setOnClickListener(this);
-		oxygen = (ImageView) view.findViewById(R.id.oxygen);
+		oxygen = (ImageView) view.findViewById(R.id.set_oxygen);
+		led = (ImageView) view.findViewById(R.id.set_led);
+		heat = (ImageView) view.findViewById(R.id.set_heat);
+		bluetooth = (ImageView) view.findViewById(R.id.set_bluetooth);
 	}
 	
 	@Override

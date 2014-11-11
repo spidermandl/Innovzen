@@ -372,7 +372,7 @@ public class BluetoothCommand {
 	 */
 	
 	
-	public void getCommand(byte[] bytes) {
+	/*public void getCommand(byte[] bytes) {
 	
 		switch (bytes[1]) {
 		case WAIT_BYTE:			
@@ -406,17 +406,60 @@ public class BluetoothCommand {
 			break;
 		}
 		
+	}*/
+	public void getCommand(byte[] bytes) {
+		
+		
+		//第四个字节
+		 byte[] array = new byte[8];  
+	        for (int i = 7; i >= 0; i--) {  
+	            array[i] = (byte)(bytes[4] & 1);  
+	            bytes[4] = (byte) (bytes[4] >> 1);  
+	        }  
+	       if(array[1]==1)  {
+	    	   MyPreference.getInstance(context).writeString(MyPreference.OXTGEN, MyPreference.OXTGEN_OPEN);
+	       }else{
+	    	   MyPreference.getInstance(context).writeString(MyPreference.OXTGEN, MyPreference.OXTGEN_CLOSE);
+	       }
+	       if(array[2]==1){
+	    	   MyPreference.getInstance(context).writeString(MyPreference.SWING, MyPreference.SWING_OPEN);
+	       }else{
+	    	   MyPreference.getInstance(context).writeString(MyPreference.SWING, MyPreference.SWING_CLOSE);
+	       }
+	       if(array[3]==1){
+	    	   MyPreference.getInstance(context).writeString(MyPreference.LED, MyPreference.LED_OPEN);
+	       }else{
+	    	   MyPreference.getInstance(context).writeString(MyPreference.LED, MyPreference.LED_CLOSE);
+	       }
+	      
+	       if(array[4]==1){
+	    	   MyPreference.getInstance(context).writeString(MyPreference.HEAT, MyPreference.HEAT_OPEN);
+	       }else{
+	    	   MyPreference.getInstance(context).writeString(MyPreference.HEAT, MyPreference.HEAT_CLOSE);
+	       }
+	       if(array[5]==1){
+	    	   MyPreference.getInstance(context).writeString(MyPreference.BLUETOOTH, MyPreference.BLUETOOTH_OPEN);
+	       }else{
+	    	   MyPreference.getInstance(context).writeString(MyPreference.BLUETOOTH, MyPreference.BLUETOOTH_CLOSE);
+	       }
+	       if(array[6]==0){
+	            if(array[7]==0){
+	          	   MyPreference.getInstance(context).writeString(MyPreference.ZERO, MyPreference.ZERO_CLOSE);
+	           }
+	       }else{
+	    	   MyPreference.getInstance(context).writeString(MyPreference.ZERO, MyPreference.ZERO_OPEN);
+	       }
 	}
 	 /** 
      * 把byte转为字符串的bit 
      */ 
-	/*public  byte[] getBooleanArray(byte b) {  
+	public  byte[] getBooleanArray(byte b) {  
         byte[] array = new byte[8];  
         for (int i = 7; i >= 0; i--) {  
             array[i] = (byte)(b & 1);  
             b = (byte) (b >> 1);  
         }  
         return array;  
-    }  */
+    }  
 
 }
