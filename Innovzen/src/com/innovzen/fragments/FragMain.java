@@ -36,15 +36,20 @@ public class FragMain extends FragBase implements OnClickListener{
 			//test
 			//super.activityListener.fragGoToSetting(true);
 			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.FIVE_MINUTES);
+			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.BLANCE);
 			super.activityListener.fragGoToAnimation(true);
 			
 			break;
 		case R.id.menu_relax:
+			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.RELAX);
+
 			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.TEN_MINUTES);
 			super.activityListener.fragGoToAnimation(true);
 			
 			break;
 		case R.id.menu_performance:
+			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.PERFORMANCE);
+
 			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.FIFTEEN_MINUTES);
 			super.activityListener.fragGoToAnimation(true);
 			

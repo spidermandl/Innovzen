@@ -96,7 +96,12 @@ public class AnimationPetals extends ExerciseAnimationBase {
 
 			// Set the left position of the petals
 			RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) petals_container.getLayoutParams();
-			params.leftMargin = (int) (Util.getScreenDimensions(mCtx)[0] * 0.2f);
+			/**
+			 * Desmond
+			 * ¶¯»­¿¿×ó
+			 */
+			params.leftMargin = 0;//(int) (Util.getScreenDimensions(mCtx)[0] * 0.2f);
+			//<Desmond>
 			petals_container.setLayoutParams(params);
 
 		} else { // PHONE

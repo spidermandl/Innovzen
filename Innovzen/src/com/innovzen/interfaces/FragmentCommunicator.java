@@ -7,12 +7,7 @@ import com.innovzen.entities.SoundGroup;
 
 public interface FragmentCommunicator {
   //<chy>fragGoToLanguage
-	//让机器运行
-	public void GoToBegin();
-	//让机器停止
-	public void GoToEnd();
-	//让机器暂停
-	public void GoToPause();
+
 	public void fragGoToSession(boolean addToBackstack);
 	public void fragGoToHelpNew(boolean addToBackstack);
 	public void fragGoToHistoryNew(boolean addToBackstack);
@@ -92,5 +87,8 @@ public interface FragmentCommunicator {
      * 建立蓝牙连接
      */
     public void fragConnectBluetooth();
-
+    /**
+     * 发送蓝牙数据
+     */
+    public void fragSendCommand(int[] commands);
 }
