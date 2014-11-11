@@ -185,6 +185,7 @@
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
+        android:id="@+id/oxygen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_mea_vertical_3"

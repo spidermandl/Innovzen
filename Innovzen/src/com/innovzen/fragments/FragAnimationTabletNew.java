@@ -75,10 +75,12 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		super.onView(view);
 		initialize(view);
 		initLefter(view);
-
+        initdata();
 		return view;
 
 	}
+
+	
 
 	@Override
 	public void onResume() {
@@ -190,7 +192,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				default:
 					break;
 				}
-				return false;
+				return true;
 			}
 		});
 		backRestDown.setOnTouchListener(new OnTouchListener() {			
@@ -208,7 +210,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				default:
 					break;
 				}
-				return false;
+				return true;
 			}
 		});
 		footUp.setOnTouchListener(new OnTouchListener() {			
@@ -226,7 +228,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				default:
 					break;
 				}
-				return false;
+				return true;
 			}
 		});
 		footDown.setOnTouchListener(new OnTouchListener() {			
@@ -244,7 +246,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				default:
 					break;
 				}
-				return false;
+				return true;
 			}
 		});
 		// </chy>

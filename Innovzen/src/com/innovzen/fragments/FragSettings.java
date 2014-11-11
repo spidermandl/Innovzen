@@ -16,6 +16,7 @@ import com.innovzen.utils.MyPreference;
 public class FragSettings extends FragBase implements OnClickListener{
 
 	private TextView myMinutes;
+	private ImageView oxygen;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,7 +26,16 @@ public class FragSettings extends FragBase implements OnClickListener{
 
 		init(view);
         initLefter(view);
+        initdata();
 		return view;
+	}
+	private void initdata() {
+		int Oxygen = MyPreference.getInstance(getActivity()).readInt(MyPreference.OXTGEN);
+		if(Oxygen==MyPreference.OXTGEN_OPEN){
+			oxygen.setBackgroundResource(R.drawable.btn_o2_activated);
+		}else{
+			oxygen.setBackgroundResource(R.drawable.selector_icon_o2);
+		}
 	}
 	@Override
 	public void onClick(View v) {
@@ -65,6 +75,7 @@ public class FragSettings extends FragBase implements OnClickListener{
 		view.findViewById(R.id.set_graphic).setOnClickListener(this);
 		view.findViewById(R.id.set_voice).setOnClickListener(this);
 		view.findViewById(R.id.set_history).setOnClickListener(this);
+		oxygen = (ImageView) view.findViewById(R.id.oxygen);
 	}
 	
 	@Override
