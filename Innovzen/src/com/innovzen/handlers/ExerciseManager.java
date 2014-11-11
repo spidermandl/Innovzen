@@ -216,7 +216,7 @@ public class ExerciseManager {
 
         if (showPlayBtnOverlay) {
             // Make the play button overlay visible
-            mFragAnimation.showPlayBtn();
+            //mFragAnimation.showPlayBtn();
         }
 
         resetValues();

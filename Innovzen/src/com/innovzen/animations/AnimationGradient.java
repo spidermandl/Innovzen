@@ -167,7 +167,13 @@ public class AnimationGradient extends ExerciseAnimationBase {
             // Not here. See in the view tree observer for the layout (below)
 
             // Set the left position of the petals
-            setGradientPosition((int) (Util.getScreenDimensions(mCtx)[0] * 0.15f), 0);
+        	/**
+        	 * Desmond
+        	 * 动画位置
+        	 */
+            //setGradientPosition((int) (Util.getScreenDimensions(mCtx)[0] * 0.15f), 0);
+            setGradientPosition(0, 0);
+            //</Desmond>
 
         } else { // PHONE
 
@@ -345,7 +351,13 @@ public class AnimationGradient extends ExerciseAnimationBase {
                     if (isFullscreen) {
                         setGradientPosition(0, 0);
                     } else {
-                        setGradientPosition((int) (layout.getWidth() * 0.15f), 0);
+                    	/**
+                    	 * Desmond
+                    	 * 动画位置
+                    	 */
+                        //setGradientPosition((int) (layout.getWidth() * 0.15f), 0);
+                        setGradientPosition(0, 0);
+                        //</Desmond>
                     }
 
                     initGradient(false);

@@ -12,9 +12,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
 import com.innovzen.utils.MyPreference;
+import com.innovzen.utils.PersistentUtil;
 
 public class FragTime extends FragBase implements OnClickListener {
 	private ImageView time_5min, time_10min, time_15min, time_20min,
@@ -25,7 +27,7 @@ public class FragTime extends FragBase implements OnClickListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_time, container, false);		
+		View view = inflater.inflate(R.layout.fragment_time, container, false);
 		init(view);
 
 		return view;
@@ -33,67 +35,73 @@ public class FragTime extends FragBase implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		
+
 		switch (v.getId()) {
 		case R.id.time_5min:
-               time_5min.setBackgroundResource(R.drawable.btn_5min_activated);
-               time_10min.setBackgroundResource(R.drawable.selector_time_10min);
-               time_15min.setBackgroundResource(R.drawable.selector_time_15min);
-               time_20min.setBackgroundResource(R.drawable.selector_time_20min);
-               time_25min.setBackgroundResource(R.drawable.selector_time_25min);
-               time_30min.setBackgroundResource(R.drawable.selector_time_30min);
-              MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.FIVE_MINUTES);
-   			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
+			time_5min.setBackgroundResource(R.drawable.btn_5min_activated);
+			time_10min.setBackgroundResource(R.drawable.selector_time_10min);
+			time_15min.setBackgroundResource(R.drawable.selector_time_15min);
+			time_20min.setBackgroundResource(R.drawable.selector_time_20min);
+			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
+			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
+			PersistentUtil.setInt(getActivity(), 5 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
+			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.FIVE_MINUTES);
+			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 			break;
 		case R.id.time_10min:
-			 time_5min.setBackgroundResource(R.drawable.selector_time_5min);
-             time_10min.setBackgroundResource(R.drawable.btn_10min_activated);
-             time_15min.setBackgroundResource(R.drawable.selector_time_15min);
-             time_20min.setBackgroundResource(R.drawable.selector_time_20min);
-             time_25min.setBackgroundResource(R.drawable.selector_time_25min);
-             time_30min.setBackgroundResource(R.drawable.selector_time_30min);
-             MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.TEN_MINUTES);
-             myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
+			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
+			time_10min.setBackgroundResource(R.drawable.btn_10min_activated);
+			time_15min.setBackgroundResource(R.drawable.selector_time_15min);
+			time_20min.setBackgroundResource(R.drawable.selector_time_20min);
+			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
+			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
+			PersistentUtil.setInt(getActivity(), 10 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
+			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.TEN_MINUTES);
+			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 			break;
 		case R.id.time_15min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
-            time_10min.setBackgroundResource(R.drawable.selector_time_10min);
-            time_15min.setBackgroundResource(R.drawable.btn_15min_activated);
-            time_20min.setBackgroundResource(R.drawable.selector_time_20min);
-            time_25min.setBackgroundResource(R.drawable.selector_time_25min);
-            time_30min.setBackgroundResource(R.drawable.selector_time_30min);
-            MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.FIFTEEN_MINUTES);
-            myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
+			time_10min.setBackgroundResource(R.drawable.selector_time_10min);
+			time_15min.setBackgroundResource(R.drawable.btn_15min_activated);
+			time_20min.setBackgroundResource(R.drawable.selector_time_20min);
+			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
+			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
+			PersistentUtil.setInt(getActivity(), 15 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
+			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.FIFTEEN_MINUTES);
+			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 			break;
 		case R.id.time_20min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
-            time_10min.setBackgroundResource(R.drawable.selector_time_10min);
-            time_15min.setBackgroundResource(R.drawable.selector_time_15min);
-            time_20min.setBackgroundResource(R.drawable.btn_20min_activated);
-            time_25min.setBackgroundResource(R.drawable.selector_time_25min);
-            time_30min.setBackgroundResource(R.drawable.selector_time_30min);
-            MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.TWENTY_MINUTES);
-            myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
+			time_10min.setBackgroundResource(R.drawable.selector_time_10min);
+			time_15min.setBackgroundResource(R.drawable.selector_time_15min);
+			time_20min.setBackgroundResource(R.drawable.btn_20min_activated);
+			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
+			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
+			PersistentUtil.setInt(getActivity(), 20 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
+			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.TWENTY_MINUTES);
+			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 			break;
 		case R.id.time_25min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
-            time_10min.setBackgroundResource(R.drawable.selector_time_10min);
-            time_15min.setBackgroundResource(R.drawable.selector_time_15min);
-            time_20min.setBackgroundResource(R.drawable.selector_time_20min);
-            time_25min.setBackgroundResource(R.drawable.btn_25min_activated);
-            time_30min.setBackgroundResource(R.drawable.selector_time_30min);
-            MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.TWENTY_FIVE_MINUTES);
-            myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
+			time_10min.setBackgroundResource(R.drawable.selector_time_10min);
+			time_15min.setBackgroundResource(R.drawable.selector_time_15min);
+			time_20min.setBackgroundResource(R.drawable.selector_time_20min);
+			time_25min.setBackgroundResource(R.drawable.btn_25min_activated);
+			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
+			PersistentUtil.setInt(getActivity(), 25 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
+			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.TWENTY_FIVE_MINUTES);
+			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 			break;
 		case R.id.time_30min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
-            time_10min.setBackgroundResource(R.drawable.selector_time_10min);
-            time_15min.setBackgroundResource(R.drawable.selector_time_15min);
-            time_20min.setBackgroundResource(R.drawable.selector_time_20min);
-            time_25min.setBackgroundResource(R.drawable.selector_time_25min);
-            time_30min.setBackgroundResource(R.drawable.btn_30min_activated);
-            MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.THIRTY_MINUTES);
-            myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
+			time_10min.setBackgroundResource(R.drawable.selector_time_10min);
+			time_15min.setBackgroundResource(R.drawable.selector_time_15min);
+			time_20min.setBackgroundResource(R.drawable.selector_time_20min);
+			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
+			time_30min.setBackgroundResource(R.drawable.btn_30min_activated);
+			PersistentUtil.setInt(getActivity(), 30 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
+			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.THIRTY_MINUTES);
+			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 			break;
 		default:
 			break;
@@ -119,26 +127,30 @@ public class FragTime extends FragBase implements OnClickListener {
 		time_30min = (ImageView) view.findViewById(R.id.time_30min);
 		time_30min.setOnClickListener(this);
 		time_5min.setBackgroundResource(R.drawable.btn_5min_activated);
-		String myTime =	MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME);
-		if(myTime==null||myTime.equals(MyPreference.FIVE_MINUTES)){
+		String myTime = MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME);
+		if (myTime == null || myTime.equals(MyPreference.FIVE_MINUTES)) {
 			time_5min.setBackgroundResource(R.drawable.btn_5min_activated);
-		}else if(myTime.equals(MyPreference.TEN_MINUTES)){
+		} else if (myTime.equals(MyPreference.TEN_MINUTES)) {
 			time_10min.setBackgroundResource(R.drawable.btn_10min_activated);
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
-		}else if(myTime.equals(MyPreference.FIFTEEN_MINUTES)){
+		} else if (myTime.equals(MyPreference.FIFTEEN_MINUTES)) {
 			time_15min.setBackgroundResource(R.drawable.btn_15min_activated);
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
-		}else if(myTime.equals(MyPreference.TWENTY_MINUTES)){
+		} else if (myTime.equals(MyPreference.TWENTY_MINUTES)) {
 			time_20min.setBackgroundResource(R.drawable.btn_20min_activated);
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
-		}else if(myTime.equals(MyPreference.TWENTY_FIVE_MINUTES)){
+		} else if (myTime.equals(MyPreference.TWENTY_FIVE_MINUTES)) {
 			time_25min.setBackgroundResource(R.drawable.btn_25min_activated);
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
-		}else if(myTime.equals(MyPreference.THIRTY_MINUTES)){
+		} else if (myTime.equals(MyPreference.THIRTY_MINUTES)) {
 			time_30min.setBackgroundResource(R.drawable.btn_30min_activated);
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
 		}
-		/*myTime=	MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME);*/
+		/*
+		 * myTime=
+		 * MyPreference.getInstance(this.getActivity()).readString(MyPreference
+		 * .TIME);
+		 */
 		myMinutes.setText(myTime);
 	}
 

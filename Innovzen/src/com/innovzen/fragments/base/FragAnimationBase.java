@@ -107,7 +107,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
     //protected DrawerRightHandler mDrawerHandler;
     //</Desmond>
     protected ImageView fullscreen_btn;
-    protected TextView animation_type;
+    //protected TextView animation_type;
     protected View play_overlay;
     protected View play_overlay_btn;
     protected RelativeLayout footer;
@@ -309,8 +309,8 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         // Get references
     	//<Desmond>
         //DrawerLayout drawer = (DrawerLayout) view.findViewById(R.id.drawer_layout);
-        //<Desmond>
-        animation_type = (TextView) view.findViewById(R.id.animation_type);
+        //animation_type = (TextView) view.findViewById(R.id.animation_type);
+    	//<Desmond>
         play_overlay = view.findViewById(R.id.animation_play_overlay);
         animation_parent_container = view.findViewById(R.id.animation_animation_container);
         play_overlay_btn = view.findViewById(R.id.animation_play_overlay_btn);
@@ -561,7 +561,9 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         }
 
         // Set the string
-        animation_type.setText(str);
+        //<Desmond>
+        //animation_type.setText(str);
+        //</Desmond>
     }
 
     /**

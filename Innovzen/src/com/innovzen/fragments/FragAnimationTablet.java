@@ -192,7 +192,7 @@ public class FragAnimationTablet extends FragAnimationBase implements OnClickLis
 
             header_buttons_container.setVisibility(View.GONE);
 
-            animation_type.setVisibility(View.INVISIBLE);
+            //animation_type.setVisibility(View.INVISIBLE);
 
             timer_footer_container.setVisibility(View.GONE);
 
@@ -202,7 +202,7 @@ public class FragAnimationTablet extends FragAnimationBase implements OnClickLis
 
             /* Make stuff appear */
 
-            animation_type.setVisibility(View.VISIBLE);
+            //animation_type.setVisibility(View.VISIBLE);
 
             header_buttons_container.setVisibility(View.VISIBLE);
 
