@@ -37,7 +37,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 */
 	private boolean mIsFooterTimersInvisible = true;
 
-	private View subtitle_container;
+	//private View subtitle_container;
 
 	private LinearLayout up;
 
@@ -157,7 +157,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		footDown = (ImageView) view.findViewById(R.id.main_animation_foot_down);
         myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		animation_play_overlay = (RelativeLayout) view.findViewById(R.id.animation_play_overlay);
-		subtitle_container = view.findViewById(R.id.animation_type);
+		//subtitle_container = view.findViewById(R.id.animation_type);
 		left_include = (LinearLayout) view.findViewById(R.id.left_include);
 		down = (LinearLayout) view.findViewById(R.id.main_mid_down_frame);
 		right = (LinearLayout) view.findViewById(R.id.main_right_frame);
@@ -293,7 +293,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private void toggleFullscreen() {
 		if (up.getVisibility() == View.VISIBLE) {
 
-			subtitle_container.setVisibility(View.GONE);
+			//subtitle_container.setVisibility(View.GONE);
 			up.setVisibility(View.GONE);
 			down.setVisibility(View.GONE);
 			right.setVisibility(View.GONE);
@@ -305,7 +305,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			
 		} else {
 
-			subtitle_container.setVisibility(View.VISIBLE);
+			//subtitle_container.setVisibility(View.VISIBLE);
 			up.setVisibility(View.VISIBLE);
 			down.setVisibility(View.VISIBLE);
 			right.setVisibility(View.VISIBLE);

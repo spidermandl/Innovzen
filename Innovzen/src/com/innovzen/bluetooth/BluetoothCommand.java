@@ -105,9 +105,6 @@ public class BluetoothCommand {
 	private Context context = null;
 
 	// 提供私有的构造方法
-	// 提供私有的构造方法
-	public BluetoothCommand() {
-	}
 
 	public BluetoothCommand(Context context, BluetoothService mBluetoothService) {
 		this.context = context;

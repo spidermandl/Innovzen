@@ -1,18 +1,17 @@
 package com.innovzen.fragments;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
 import com.innovzen.utils.MyPreference;
+import com.innovzen.utils.PersistentUtil;
 
 /**
  * 第一个主界面，启动机器，进入练习
@@ -35,21 +34,22 @@ public class FragMain extends FragBase implements OnClickListener{
 		case R.id.menu_balance:
 			//test
 			//super.activityListener.fragGoToSetting(true);
+			PersistentUtil.setInt(getActivity(), 5 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
 			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.FIVE_MINUTES);
 			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.BLANCE);
 			super.activityListener.fragGoToAnimation(true);
 			
 			break;
 		case R.id.menu_relax:
+			PersistentUtil.setInt(getActivity(), 10 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
 			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.RELAX);
-
 			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.TEN_MINUTES);
 			super.activityListener.fragGoToAnimation(true);
 			
 			break;
 		case R.id.menu_performance:
+			PersistentUtil.setInt(getActivity(), 15 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
 			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.PERFORMANCE);
-
 			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.FIFTEEN_MINUTES);
 			super.activityListener.fragGoToAnimation(true);
 			
@@ -71,7 +71,7 @@ public class FragMain extends FragBase implements OnClickListener{
 
 	@Override
 	public void init(View view) {
-	myMintues = (TextView) view.findViewById(R.id.myMinutes);
+		myMintues = (TextView) view.findViewById(R.id.myMinutes);
 		
 		view.findViewById(R.id.menu_balance).setOnClickListener(this);
 		view.findViewById(R.id.menu_mySession).setOnClickListener(this);

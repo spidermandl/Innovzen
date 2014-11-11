@@ -349,7 +349,7 @@ public class AnimationLungs extends ExerciseAnimationBase {
              * Desmond
              * ¶¯»­¿¿×ó
              */
-            params.leftMargin = 0;//(int) (Util.getScreenDimensions(mCtx)[0] * 0.2f);
+            params.leftMargin = 20;//(int) (Util.getScreenDimensions(mCtx)[0] * 0.2f);
             //</Desmond>
             lungs_and_bubbles_container.setLayoutParams(params);
 
