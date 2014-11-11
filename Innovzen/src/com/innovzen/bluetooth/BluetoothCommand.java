@@ -2,6 +2,8 @@ package com.innovzen.bluetooth;
 
 import java.util.Arrays;
 
+import com.innovzen.utils.MyPreference;
+
 import android.content.Context;
 
 
@@ -271,15 +273,56 @@ public class BluetoothCommand {
     	public static final byte KEY_WALK_PLACE12_DOWN_BYTE2=(byte) 01110010;
     	public static final byte KEY_WALK_PLACE12_retain_BYTE2=(byte) 01110011;
 	//////////d0 de df保留
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//字节3
+    	//靠背，小腿电动缸指示
+    	//小腿电动缸停止  靠背电动缸状态     保留04 05 06 07
+    	public static final byte FOOT_STOP_BACK_STOP_BYTE3=(byte) 00000000;
+    	public static final byte FOOT_STOP_BACK_UP_BYTE3=(byte) 00000001;	
+    	public static final byte FOOT_STOP_BACK_DOWN_BYTE3=(byte) 00000010;
+    	public static final byte FOOT_STOP_BACK_REACH_BYTE3=(byte) 00000011;
+	   //小腿电动缸升  靠背电动缸状态
+    	public static final byte FOOT_UP_BACK_STOP_BYTE3=(byte) 00001000;
+    	public static final byte FOOT_UP_BACK_UP_BYTE3=(byte) 00001001;	
+    	public static final byte FOOT_UP_BACK_DOWN_BYTE3=(byte) 00001010;
+    	public static final byte FOOT_UP_BACK_REACH_BYTE3=(byte) 00001011;
+	   //小腿电动缸降  靠背电动缸状态
+    	public static final byte FOOT_DOWN_BACK_STOP_BYTE3=(byte) 00010000;
+    	public static final byte FOOT_DOWN_BACK_UP_BYTE3=(byte) 00010001;	
+    	public static final byte FOOT_DOWN_BACK_DOWN_BYTE3=(byte) 00010010;
+    	public static final byte FOOT_DOWN_BACK_REACH_BYTE3=(byte) 00010011;
+    	 //小腿电动缸到限位  靠背电动缸状态
+    	public static final byte FOOT_REACH_BACK_STOP_BYTE3=(byte) 00011000;
+    	public static final byte FOOT_REACH_BACK_UP_BYTE3=(byte) 00011001;	
+    	public static final byte FOOT_REACH_BACK_DOWN_BYTE3=(byte) 00011010;
+    	public static final byte FOOT_REACH_BACK_REACH_BYTE3=(byte) 00011011;
+    	
+    	
+    	//字节4
+    	//Oxygen，Swing，Pulse，Heat，Bluetooth，Zero开启，关闭指示
+    	//其他关 Zero开启
+    	public static final byte O_S_P_H_B_Z_BYTE4=(byte) 00000000;   	
+    	public static final byte O_S_P_H_B_ZOPEN1_BYTE4=(byte) 00000001;
+    	public static final byte O_S_P_H_B_ZOPEN2_BYTE4=(byte) 00000010;
+    	public static final byte O_S_P_H_B_ZOPEN3_BYTE4=(byte) 00000011;
+    	//Bluetooth开启
+    	public static final byte O_S_P_H_BOPEN_Z_BYTE4=(byte) 00000100;   	
+    	public static final byte O_S_P_H_BOPEN_ZOPEN1_BYTE4=(byte) 00000101;
+    	public static final byte O_S_P_H_BOPEN_ZOPEN2_BYTE4=(byte) 00000110;
+    	public static final byte O_S_P_H_BOPEN_ZOPEN3_BYTE4=(byte) 00000111;
+    	//Heat开启
+    	public static final byte O_S_P_HOPEN_B_Z_BYTE4=(byte) 00001000;   	
+    	public static final byte O_S_P_HOPEN_B_ZOPEN1_BYTE4=(byte) 00001001;
+    	public static final byte O_S_P_HOPEN_B_ZOPEN2_BYTE4=(byte) 00001010;
+    	public static final byte O_S_P_HOPEN_B_ZOPEN3_BYTE4=(byte) 00001011;
+    	public static final byte O_S_P_HOPEN_BOPEN_Z_BYTE4=(byte) 00000100;   	
+    	public static final byte O_S_P_HOPEN_BOPEN_ZOPEN1_BYTE4=(byte) 00001101;
+    	public static final byte O_S_P_HOPEN_BOPEN_ZOPEN2_BYTE4=(byte) 00001110;
+    	public static final byte O_S_P_HOPEN_BOPEN_ZOPEN3_BYTE4=(byte) 00001111;
+    	//PULSE
+    	
+    	/////
+    	public static final byte OOPEN_S_P_H_B_Z_BYTE4=(byte) 01000000;
+    	////
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
 
@@ -338,7 +381,30 @@ public class BluetoothCommand {
 		default:
 			break;
 		}
-	        
+		switch (bytes[2]) {
+		case OOPEN_S_P_H_B_Z_BYTE4:
+			
+			break;
+
+		default:
+			break;
+		}
+		switch (bytes[3]) {
+		case OOPEN_S_P_H_B_Z_BYTE4:
+			
+			break;
+
+		default:
+			break;
+		} 
+		switch (bytes[4]) {
+		case OOPEN_S_P_H_B_Z_BYTE4:
+			MyPreference.getInstance(context).writeString(MyPreference.OXTGEN, MyPreference.OXTGEN_OPEN);
+			break;
+
+		default:
+			break;
+		}
 		
 	}
 	 /** 

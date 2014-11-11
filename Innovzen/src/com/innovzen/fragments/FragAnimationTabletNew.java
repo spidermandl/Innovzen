@@ -75,10 +75,12 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		super.onView(view);
 		initialize(view);
 		initLefter(view);
-
+        initdata();
 		return view;
 
 	}
+
+	
 
 	@Override
 	public void onResume() {

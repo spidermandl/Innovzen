@@ -39,7 +39,9 @@ public class MyPreference {
 	public final static String RELAX="relax";
 	public final static String PERFORMANCE="performance";
 	
-	
+	public final static String OXTGEN="oxygen";
+	public final static int OXTGEN_OPEN=1;
+	public final static int OXTGEN_CLOSE=1;
 	public final static String BLANCE_RELAX_PERFORMANCE="blance_relax_performance";
 	//提供私有的构造方法
 	private MyPreference(){}
