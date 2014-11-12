@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import com.innovzen.o2chair.R;
@@ -100,7 +98,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				switch (msg.arg1) {
 				case BluetoothService.STATE_CONNECTED:// 连接建立
 					//准备命令
-					
 					mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
 					break;
 				case BluetoothService.STATE_CONNECTING:// 正在建立连接
@@ -119,10 +116,29 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
-				if(mBluetoothCommand.getCommand(readBuf))
-				{
-					 FragAnimationTabletNew.
-				}
+	
+				/**
+				 * 判断是当前fragment是否是FragAnimationTabletNew
+				 */
+		        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+		        String curr_fragment_TAG = "";
+		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragAnimationTabletNew")) {
+		        	/**
+		        	 * 调用FragAnimationTabletNew里的handler发送动画启动
+		        	 * 
+		        	 */
+		        	   if(mBluetoothCommand.getCommand(readBuf)){
+		        		   Message msg1 = new Message();
+		        		   msg1.what=7;
+		        		   sendMessage(msg1);
+		        	   }
+		        }
+
+//				if(mBluetoothCommand.getCommand(readBuf))
+//				{
+//					
+//				}
+
 				//得到机器传过来的指令转为int
 			//	int receiveCommand =mBluetoothCommand.getCommand(readBuf, 0);
 				

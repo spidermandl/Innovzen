@@ -66,20 +66,20 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private ImageView footUp;
 
 	private ImageView footDown;
+	
+	 Handler myHandler = new Handler(){
+		@Override
+		public void handleMessage(Message msg1) {
+		 switch (msg1.what) {
+		   case 7:
+			overlayBtnPressed();
+			break;
 
-static Handler myHandler = new Handler(){
-	@Override
-	public void handleMessage(Message msg) {
-	   switch (msg.what) {
-	case value:
-		
-		break;
-
-	default:
-		break;
-	}
-	}
-};
+		default:
+			break;
+		}
+		}
+	};  
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -138,7 +138,7 @@ static Handler myHandler = new Handler(){
 			super.activityListener.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
 			
 			
-			overlayPlayBtnPressed();
+		//	overlayPlayBtnPressed();
 			
 			break;
 		// ÔÝÍ£
