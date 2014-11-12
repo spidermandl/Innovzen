@@ -76,7 +76,7 @@ public class JazzyViewPager extends ViewPager {
 		case ZoomOut:
 			setFadeEnabled(true);
 		}
-		ta.recycle();
+		ta.recycle(); 
 	}
 
 	public void setTransitionEffect(TransitionEffect effect) {

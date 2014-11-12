@@ -403,16 +403,17 @@ public class BluetoothCommand {
 	 */
 	public boolean getCommand(byte[] bytes) {
 
-		// 第四个字节
+		// 第7个字节
 		byte[] array = new byte[8];
 		for (int i = 7; i >= 0; i--) {
 			array[i] = (byte) (bytes[7] & 1);
-			bytes[4] = (byte) (bytes[7] >> 1);
+			bytes[7] = (byte) (bytes[7] >> 1);
 		}
-		if (array[1] == 1) {
+		if (array[0] == (byte)1) {
 			return true;
-		}
+		}else{
 		return false;
+		}
 		/* else {
 			MyPreference.getInstance(context).writeString(MyPreference.OXTGEN,
 					MyPreference.OXTGEN_CLOSE);

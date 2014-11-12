@@ -68,8 +68,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 	Handler animHandler = new Handler() {
 		@Override
-		public void handleMessage(Message msg1) {
-			switch (msg1.what) {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
 			case 7:
 				overlayBtnPressed();
 				break;
