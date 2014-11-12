@@ -121,7 +121,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				byte[] readBuf = (byte[]) msg.obj;
 				if(mBluetoothCommand.getCommand(readBuf))
 				{
-					
+					 FragAnimationTabletNew.
 				}
 				//得到机器传过来的指令转为int
 			//	int receiveCommand =mBluetoothCommand.getCommand(readBuf, 0);

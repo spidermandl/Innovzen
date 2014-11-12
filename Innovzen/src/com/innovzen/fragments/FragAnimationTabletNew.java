@@ -1,6 +1,8 @@
 package com.innovzen.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -65,7 +67,19 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 	private ImageView footDown;
 
+static Handler myHandler = new Handler(){
+	@Override
+	public void handleMessage(Message msg) {
+	   switch (msg.what) {
+	case value:
+		
+		break;
 
+	default:
+		break;
+	}
+	}
+};
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
