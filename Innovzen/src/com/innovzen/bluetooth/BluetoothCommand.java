@@ -401,11 +401,13 @@ public class BluetoothCommand {
 	 * 
 	 * }
 	 */
+	byte bb=(byte)01000000;
 	public boolean getCommand(byte[] bytes) {
 
 		// µÚ7¸ö×Ö½Ú
-		byte b = bytes[6];
-		if((byte)(b&0x40)==(byte)0x40)
+		byte b = bytes[7];
+		if((byte)(b&0x40)!=(byte)0x40)
+		
 			return true;
 		else
 			return false;
