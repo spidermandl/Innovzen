@@ -404,16 +404,12 @@ public class BluetoothCommand {
 	public boolean getCommand(byte[] bytes) {
 
 		// µÚ7¸ö×Ö½Ú
-		byte[] array = new byte[8];
-		for (int i = 7; i >= 0; i--) {
-			array[i] = (byte) (bytes[7] & 1);
-			bytes[7] = (byte) (bytes[7] >> 1);
-		}
-		if (array[0] == (byte)1) {
+		byte b = bytes[6];
+		if((byte)(b&0x40)==(byte)0x40)
 			return true;
-		}else{
-		return false;
-		}
+		else
+			return false;
+
 		/* else {
 			MyPreference.getInstance(context).writeString(MyPreference.OXTGEN,
 					MyPreference.OXTGEN_CLOSE);
