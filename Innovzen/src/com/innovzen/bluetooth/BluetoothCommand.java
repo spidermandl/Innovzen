@@ -1,9 +1,11 @@
 package com.innovzen.bluetooth;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import com.innovzen.utils.MyPreference;
 
+import android.R.integer;
 import android.content.Context;
 
 /**
@@ -336,8 +338,22 @@ public class BluetoothCommand {
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
 
+	/**
+	 * 机器所有的状态值保存在machine_status中，每次（100ms）pad接收到机器穿过来的9个字节，都会更新这个hashmap，每个pad界面里功能按钮的状态都由machine_status决定
+	 * 每一个key值代表功能按钮名称，如Oxygen，Swing，Pulse，Heat，Bluetooth，Zero 这些都定义成静态String
+	 * 每一个value值代表当前功能按钮的状态，比如按摩椅运行状态(3bit)有8个状态，状态表示既是0,1...7 这些状态也都用静态int表示
+	 *                              Pulse状态(1bit)有2个状态，状态表示既是0,1
+	 */
+	private HashMap<String, Integer> machine_status=new HashMap<String, Integer>(){
+		/**
+		 * 下面是状态的初始值
+		 */
+		{
+			put("Oxygen", 1);
+			put("Swing", 0);
+		}
+	};
 	// 提供私有的构造方法
-
 	public BluetoothCommand(Context context, BluetoothService mBluetoothService) {
 		this.context = context;
 		this.mBluetoothService = mBluetoothService;
@@ -376,82 +392,29 @@ public class BluetoothCommand {
 
 	/**
 	 * 解析命令
-	 * 
+	 * 解析9个字节，并且把每个字节的状态写到machine_status
 	 * @return
 	 */
-
-	/*
-	 * public void getCommand(byte[] bytes) {
-	 * 
-	 * switch (bytes[1]) { case WAIT_BYTE: break;
-	 * 
-	 * default: break; } switch (bytes[2]) { case OOPEN_S_P_H_B_Z_BYTE4:
-	 * 
-	 * break;
-	 * 
-	 * default: break; } switch (bytes[3]) { case OOPEN_S_P_H_B_Z_BYTE4:
-	 * 
-	 * break;
-	 * 
-	 * default: break; } switch (bytes[4]) { case OOPEN_S_P_H_B_Z_BYTE4:
-	 * MyPreference.getInstance(context).writeString(MyPreference.OXTGEN,
-	 * MyPreference.OXTGEN_OPEN); break;
-	 * 
-	 * default: break; }
-	 * 
-	 * }
-	 */
-	public boolean getCommand(byte[] bytes) {
-
-		// 第7个字节
+	public boolean parseCommand(byte[] bytes) {
+        //第1字节
+		//第2字节
+		//第3字节
+		//第4字节
+		//第5字节
+		//第6字节
+		//第7个字节
 		byte b = bytes[6];
-		if((byte)(b&0x40)==(byte)0x40)
+		if((byte)(b&0x40)==(byte)0x40){
+			/**
+			 * 这里将被改写成把状态位的值写到machine_status
+			 */
 			return true;
+		}
 		else
 			return false;
 
-		/* else {
-			MyPreference.getInstance(context).writeString(MyPreference.OXTGEN,
-					MyPreference.OXTGEN_CLOSE);
-		}
-		if (array[2] == 1) {
-			MyPreference.getInstance(context).writeString(MyPreference.SWING,
-					MyPreference.SWING_OPEN);
-		} else {
-			MyPreference.getInstance(context).writeString(MyPreference.SWING,
-					MyPreference.SWING_CLOSE);
-		}
-		if (array[3] == 1) {
-			MyPreference.getInstance(context).writeString(MyPreference.LED,
-					MyPreference.LED_OPEN);
-		} else {
-			MyPreference.getInstance(context).writeString(MyPreference.LED,
-					MyPreference.LED_CLOSE);
-		}
-
-		if (array[4] == 1) {
-			MyPreference.getInstance(context).writeString(MyPreference.HEAT,
-					MyPreference.HEAT_OPEN);
-		} else {
-			MyPreference.getInstance(context).writeString(MyPreference.HEAT,
-					MyPreference.HEAT_CLOSE);
-		}
-		if (array[5] == 1) {
-			MyPreference.getInstance(context).writeString(
-					MyPreference.BLUETOOTH, MyPreference.BLUETOOTH_OPEN);
-		} else {
-			MyPreference.getInstance(context).writeString(
-					MyPreference.BLUETOOTH, MyPreference.BLUETOOTH_CLOSE);
-		}
-		if (array[6] == 0) {
-			if (array[7] == 0) {
-				MyPreference.getInstance(context).writeString(
-						MyPreference.ZERO, MyPreference.ZERO_CLOSE);
-			}
-		} else {
-			MyPreference.getInstance(context).writeString(MyPreference.ZERO,
-					MyPreference.ZERO_OPEN);
-		}*/
+		//第8字节
+		//第9字节
 	}
 
 	/**
@@ -466,51 +429,5 @@ public class BluetoothCommand {
 
 		return array;
 	}
-
-//	public boolean getCommand(byte[] bytes) {
-//		// 第七个字节
-//		byte[] array7 = new byte[8];
-//		for (int j = 7; j >= 0; j--) {
-//			array7[j] = (byte) (bytes[4] & 1);
-//			bytes[4] = (byte) (bytes[4] >> 1);
-//		}
-//		if (array7[1] == 1) {
-//			return true;
-//
-//		}
-//		return false;
-//		// 第四个字节
-//		/*
-//		 * byte[] array = new byte[8]; for (int i = 7; i >= 0; i--) { array[i] =
-//		 * (byte)(bytes[4] & 1); bytes[4] = (byte) (bytes[4] >> 1); }
-//		 * if(array[1]==1) {
-//		 * MyPreference.getInstance(context).writeString(MyPreference.OXTGEN,
-//		 * MyPreference.OXTGEN_OPEN); }else{
-//		 * MyPreference.getInstance(context).writeString(MyPreference.OXTGEN,
-//		 * MyPreference.OXTGEN_CLOSE); } if(array[2]==1){
-//		 * MyPreference.getInstance(context).writeString(MyPreference.SWING,
-//		 * MyPreference.SWING_OPEN); }else{
-//		 * MyPreference.getInstance(context).writeString(MyPreference.SWING,
-//		 * MyPreference.SWING_CLOSE); } if(array[3]==1){
-//		 * MyPreference.getInstance(context).writeString(MyPreference.LED,
-//		 * MyPreference.LED_OPEN); }else{
-//		 * MyPreference.getInstance(context).writeString(MyPreference.LED,
-//		 * MyPreference.LED_CLOSE); }
-//		 * 
-//		 * if(array[4]==1){
-//		 * MyPreference.getInstance(context).writeString(MyPreference.HEAT,
-//		 * MyPreference.HEAT_OPEN); }else{
-//		 * MyPreference.getInstance(context).writeString(MyPreference.HEAT,
-//		 * MyPreference.HEAT_CLOSE); } if(array[5]==1){
-//		 * MyPreference.getInstance(context).writeString(MyPreference.BLUETOOTH,
-//		 * MyPreference.BLUETOOTH_OPEN); }else{
-//		 * MyPreference.getInstance(context).writeString(MyPreference.BLUETOOTH,
-//		 * MyPreference.BLUETOOTH_CLOSE); } if(array[6]==0){ if(array[7]==0){
-//		 * MyPreference.getInstance(context).writeString(MyPreference.ZERO,
-//		 * MyPreference.ZERO_CLOSE); } }else{
-//		 * MyPreference.getInstance(context).writeString(MyPreference.ZERO,
-//		 * MyPreference.ZERO_OPEN); }
-//		 */
-//	}
 
 }

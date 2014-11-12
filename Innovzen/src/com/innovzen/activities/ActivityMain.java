@@ -116,36 +116,30 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
-	
+				mBluetoothCommand.parseCommand(readBuf);
 				/**
 				 * 判断是当前fragment是否是FragAnimationTabletNew
 				 */
 		        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragAnimationTabletNew")) {
 		        	/**
-		        	 * 调用FragAnimationTabletNew里的handler发送动画启动
-		        	 * 
+		        	 * 这里更新  FragAnimationTabletNew里功能按钮的状态
+		        	 * 如按钮选中状态改变
+		        	 * 如动画播放和停止等
 		        	 */
-		        	   if(mBluetoothCommand.getCommand(readBuf)){
-		        		   if(IS_TABLET){
-		        			   ((FragAnimationTabletNew)currentFragment).sendStartAnimMessage(7);
-		        		   }
-		        	   }
+	        		 if(IS_TABLET){
+	        			 ((FragAnimationTabletNew)currentFragment).sendStartAnimMessage(7);
+	        		 }
+		        
 		        }
-
-//				if(mBluetoothCommand.getCommand(readBuf))
-//				{
-//					
-//				}
-
-				//得到机器传过来的指令转为int
-			//	int receiveCommand =mBluetoothCommand.getCommand(readBuf, 0);
-				
-				//存贮当前机器的指令状态
-		//	MyPreference.getInstance(getApplicationContext()).writeString(MyPreference.RECEIVE_COMMAND, receiveCommand);
-				
-				// construct a string from the valid bytes in the buffer
-				//String readMessage = new String(readBuf, 0, msg.arg1);
+				/**
+				 * 判断是当前fragment是否是FragSettings
+				 */
+		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragSettings")) {
+		        	/**
+		        	 * 功能同上
+		        	 */
+		        }
 				
 				break;
 			case MESSAGE_DEVICE_NAME:// 保存设备名称
@@ -698,7 +692,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 	@Override
 	public void fragGetCommand(byte[] bytes) {
-		mBluetoothCommand.getCommand(bytes);
+		mBluetoothCommand.parseCommand(bytes);
 		
 	}
 
