@@ -91,4 +91,8 @@ public interface FragmentCommunicator {
      * 发送蓝牙数据
      */
     public void fragSendCommand(int[] commands);
+    /**
+     * 接受蓝牙数据
+     */
+    public void fragGetCommand(byte[] bytes);
 }

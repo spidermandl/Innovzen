@@ -120,7 +120,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// ¿ªÊ¼
 		case R.id.main_animation_start:
-			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+			super.activityListener.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
+			
+			
 			overlayPlayBtnPressed();
 			
 			break;
@@ -181,10 +183,12 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			public boolean onTouch(View v, MotionEvent event) {
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
+					backRestUp.setBackgroundResource(R.drawable.btn_backrest_adjust_up_activated);
 					FragAnimationTabletNew.super.activityListener.fragSendCommand(BluetoothCommand.BACK_REST_UP_MACHINE_VALUES);
 					System.out.println("back up");
 					break;
 				case MotionEvent.ACTION_UP:
+					backRestUp.setBackgroundResource(R.drawable.btn_backrest_adjust_up);
 					FragAnimationTabletNew.super.activityListener.fragSendCommand(BluetoothCommand.BACK_REST_UP_STOP_MACHINE_VALUES);
 					System.out.println("back up stop");
 					break;
@@ -199,10 +203,12 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			public boolean onTouch(View v, MotionEvent event) {
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
+					backRestDown.setBackgroundResource(R.drawable.btn_backrest_adjust_down_activated);
 					FragAnimationTabletNew.super.activityListener.fragSendCommand(BluetoothCommand.BACK_REST_DOWN_MACHINE_VALUES);
 					System.out.println("back down");
 					break;
 				case MotionEvent.ACTION_UP:
+					backRestDown.setBackgroundResource(R.drawable.btn_backrest_adjust_down);
 					FragAnimationTabletNew.super.activityListener.fragSendCommand(BluetoothCommand.BACK_REST_DOWN_STOP_MACHINE_VALUES);
 					System.out.println("back down stop");
 					break;
@@ -217,10 +223,12 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			public boolean onTouch(View v, MotionEvent event) {
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
+					footUp.setBackgroundResource(R.drawable.btn_foot_adjust_up_activated);
 					FragAnimationTabletNew.super.activityListener.fragSendCommand(BluetoothCommand.FOOT_UP_MACHINE_VALUES);
 					System.out.println("foot up");
 					break;
 				case MotionEvent.ACTION_UP:
+					footUp.setBackgroundResource(R.drawable.btn_foot_adjust_up);
 					FragAnimationTabletNew.super.activityListener.fragSendCommand(BluetoothCommand.FOOT_UP_STOP_MACHINE_VALUES);
 					System.out.println("foot up stop");
 					break;
@@ -235,10 +243,12 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			public boolean onTouch(View v, MotionEvent event) {
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
+					footDown.setBackgroundResource(R.drawable.btn_foot_adjust_down_activated);
 					FragAnimationTabletNew.super.activityListener.fragSendCommand(BluetoothCommand.FOOT_DOWN_MACHINE_VALUES);
 					System.out.println("foot down");
 					break;
 				case MotionEvent.ACTION_UP:
+					footDown.setBackgroundResource(R.drawable.btn_foot_adjust_down);
 					FragAnimationTabletNew.super.activityListener.fragSendCommand(BluetoothCommand.FOOT_DOWN_STOP_MACHINE_VALUES);
 					System.out.println("foot down stop");
 					break;

@@ -9,12 +9,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.innovzen.bluetooth.BluetoothCommand;
+import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
 import com.innovzen.utils.MyPreference;
 
 public class FragSettings extends FragBase implements OnClickListener{
-
+//FragBase  ¸ÄÎª¼Ì³ÐFragAnimationBase
 	private TextView myMinutes;
 	private ImageView oxygen,swing,led,heat,bluetooth;
 
@@ -56,9 +58,9 @@ public class FragSettings extends FragBase implements OnClickListener{
 		}
 		int Bluetooth = MyPreference.getInstance(getActivity()).readInt(MyPreference.BLUETOOTH);
 		if(Bluetooth==MyPreference.BLUETOOTH_OPEN){
-			bluetooth.setBackgroundResource(R.drawable.btn_heat_activated);
+			bluetooth.setBackgroundResource(R.drawable.btn_bluetooth_activated);
 		}else{
-			bluetooth.setBackgroundResource(R.drawable.selector_icon_heat);
+			bluetooth.setBackgroundResource(R.drawable.selector_icon_bluetooth);
 		}
 	}
 	@Override
@@ -82,6 +84,18 @@ public class FragSettings extends FragBase implements OnClickListener{
 		case R.id.set_history:
 			super.activityListener.fragGoToHistoryNew(true);
 			break;
+		case R.id.set_oxygen:
+			super.activityListener.fragSendCommand(BluetoothCommand.OXYGEN_MACHINE_VALUES);
+			break;
+		case R.id.set_heat:
+			super.activityListener.fragSendCommand(BluetoothCommand.HEAT_MACHINE_VALUES);
+			break;
+		case R.id.set_swing:
+			super.activityListener.fragSendCommand(BluetoothCommand.SWING_MACHINE_VALUES);
+			break;
+		case R.id.set_led:
+			super.activityListener.fragSendCommand(BluetoothCommand.LED_MACHINE_VALUES);
+			break;
 		default:
 			break;
 		}
@@ -100,8 +114,13 @@ public class FragSettings extends FragBase implements OnClickListener{
 		view.findViewById(R.id.set_voice).setOnClickListener(this);
 		view.findViewById(R.id.set_history).setOnClickListener(this);
 		oxygen = (ImageView) view.findViewById(R.id.set_oxygen);
+		oxygen.setOnClickListener(this);
+		swing = (ImageView) view.findViewById(R.id.set_swing);
+		swing.setOnClickListener(this);
 		led = (ImageView) view.findViewById(R.id.set_led);
+		led.setOnClickListener(this);
 		heat = (ImageView) view.findViewById(R.id.set_heat);
+		heat.setOnClickListener(this);
 		bluetooth = (ImageView) view.findViewById(R.id.set_bluetooth);
 	}
 	
