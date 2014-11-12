@@ -121,16 +121,15 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				 * 判断是当前fragment是否是FragAnimationTabletNew
 				 */
 		        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-		        String curr_fragment_TAG = "";
 		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragAnimationTabletNew")) {
 		        	/**
 		        	 * 调用FragAnimationTabletNew里的handler发送动画启动
 		        	 * 
 		        	 */
 		        	   if(mBluetoothCommand.getCommand(readBuf)){
-		        		   Message msg1 = new Message();
-		        		   msg1.what=7;
-		        		   sendMessage(msg1);
+		        		   if(IS_TABLET){
+		        			   ((FragAnimationTabletNew)currentFragment).sendStartAnimMessage(7);
+		        		   }
 		        	   }
 		        }
 
