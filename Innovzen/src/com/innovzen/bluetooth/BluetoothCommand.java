@@ -104,6 +104,18 @@ public class BluetoothCommand {
 	// Zero gravityÃüÁî
 	public static int ZERO_GRAVITY_MACHINE_VALUES[] = { START_MACHINE,
 			ANDROID_TABLET, ZERO_GRAVITY, 0x11, END_MACHINE };
+	// OxygenÃüÁî
+		public static int OXYGEN_MACHINE_VALUES[] = { START_MACHINE,
+				ANDROID_TABLET, 0x1a, 0x11, END_MACHINE };
+// HeatÃüÁî
+	public static int HEAT_MACHINE_VALUES[] = { START_MACHINE,
+						ANDROID_TABLET, 0x1b, 0x11, END_MACHINE };
+				// LedÃüÁî
+				public static int LED_MACHINE_VALUES[] = { START_MACHINE,
+						ANDROID_TABLET, 0x1f, 0x11, END_MACHINE };
+				// SwingÃüÁî
+				public static int SWING_MACHINE_VALUES[] = { START_MACHINE,
+						ANDROID_TABLET, 0x19, 0x11, END_MACHINE };
 	/*
 	 * ×Ö½Ú1
 	 */
@@ -366,6 +378,7 @@ public class BluetoothCommand {
 
 	/**
 	 * ½âÎöÃüÁî
+	 * @return 
 	 */
 	
 	
@@ -404,11 +417,20 @@ public class BluetoothCommand {
 		}
 		
 	}*/
-	public void getCommand(byte[] bytes) {
-		
-		
+	public  boolean getCommand(byte[] bytes) {
+		//µÚÆß¸ö×Ö½Ú
+		 byte[] array7 = new byte[8];  
+	        for (int j = 7; j >= 0; j--) {  
+	            array7[j] = (byte)(bytes[4] & 1);  
+	            bytes[4] = (byte) (bytes[4] >> 1);  
+	        }  
+	        if(array7[1]==1)  {
+		    	  return true;
+		    
+		       }
+	        return false;
 		//µÚËÄ¸ö×Ö½Ú
-		 byte[] array = new byte[8];  
+		/* byte[] array = new byte[8];  
 	        for (int i = 7; i >= 0; i--) {  
 	            array[i] = (byte)(bytes[4] & 1);  
 	            bytes[4] = (byte) (bytes[4] >> 1);  
@@ -445,7 +467,7 @@ public class BluetoothCommand {
 	           }
 	       }else{
 	    	   MyPreference.getInstance(context).writeString(MyPreference.ZERO, MyPreference.ZERO_OPEN);
-	       }
+	       }*/
 	}
 	 /** 
      * °Ñbyte×ªÎª×Ö·û´®µÄbit 

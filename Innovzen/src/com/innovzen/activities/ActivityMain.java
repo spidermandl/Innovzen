@@ -89,6 +89,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	public static final int MESSAGE_DEVICE_NAME = 4;
 	public static final int MESSAGE_TOAST = 5;
 	
+	public static final Boolean FLAG=false;
+	
 	// The Handler that gets information back from the BluetoothChatService
 	private final Handler bluetoothHandler = new Handler() {
 		@Override
@@ -100,7 +102,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 					//准备命令
 					
 					mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
-					/*MyCommand(0xF0, 0x83, 0x01, 0x11, 0xF1);*/
 					break;
 				case BluetoothService.STATE_CONNECTING:// 正在建立连接
 
@@ -118,6 +119,10 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[]) msg.obj;
+				if(mBluetoothCommand.getCommand(readBuf))
+				{
+					
+				}
 				//得到机器传过来的指令转为int
 			//	int receiveCommand =mBluetoothCommand.getCommand(readBuf, 0);
 				
@@ -136,7 +141,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 			}
 		}
 	};
-
 
 	public BluetoothService getBluetoothService() {
 		return mBluetoothService;
@@ -675,6 +679,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragSendCommand(int[] commands) {
 		mBluetoothCommand.sendCommand(commands);
+	}
+
+	@Override
+	public void fragGetCommand(byte[] bytes) {
+		mBluetoothCommand.getCommand(bytes);
+		
 	}
 
 

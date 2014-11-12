@@ -121,7 +121,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// ¿ªÊ¼
 		case R.id.main_animation_start:
-			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+			super.activityListener.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
+			
+			
 			overlayPlayBtnPressed();
 			
 			break;
