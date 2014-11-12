@@ -75,10 +75,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		super.onView(view);
 		initialize(view);
 		initLefter(view);
-<<<<<<< HEAD
-        //initdata();
-=======
->>>>>>> 679b0ef2372627a0a92c6c59cebe0ea3ae85595a
 		return view;
 
 	}
