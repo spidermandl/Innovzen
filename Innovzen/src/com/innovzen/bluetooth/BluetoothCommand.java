@@ -346,7 +346,7 @@ public class BluetoothCommand {
 	 */
 	private HashMap<String, Integer> machine_status=new HashMap<String, Integer>(){
 		/**
-		 * 下面是状态的初始值
+		 * 下面是状态的初始值,如
 		 */
 		{
 			put("Oxygen", 1);
