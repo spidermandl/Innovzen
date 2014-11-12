@@ -53,7 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/animation_step_text" >
 
-            <include layout="@layout/reusable_circular_seekbar_small" />
+            <include layout="@layout/reusable_circular_seekbar_small"
+                android:visibility="invisible" />
         </RelativeLayout>
     </RelativeLayout>
 

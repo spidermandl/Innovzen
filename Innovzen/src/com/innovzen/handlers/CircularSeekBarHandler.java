@@ -284,4 +284,8 @@ public class CircularSeekBarHandler {
     public void reseStepType() {
         mCurStepType = -1;
     }
+    
+    public void setVisible(int visible){
+    	layout.setVisibility(visible);
+    }
 }
