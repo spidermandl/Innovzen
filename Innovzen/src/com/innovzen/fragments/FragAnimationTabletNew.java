@@ -64,9 +64,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				break;
 			case BluetoothCommand.PAUSE_STATUS:
 				if(value==1)//这个地方的1要和BluetoothCommand里的一个常量对应
-				endAnimationPressed();
+					endAnimationPressed();
 				break;
-			case BluetoothCommand.ZERO_STATUS:
+			case BluetoothCommand.ZERO_STATUS://控制Zero按键状态
 				if(value==BluetoothCommand.ZERO_STATUS_CLOSE){
 					zero.setBackgroundResource(R.drawable.selector_btn_gravity);
 				}else{
@@ -396,13 +396,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		msg.obj=value;
 		machineHandler.sendMessage(msg);
 	}
-	//控制Zero按键状态
-	public void changeZeroBackground(int status){
-		if(status==BluetoothCommand.ZERO_STATUS_CLOSE){
-			zero.setBackgroundResource(R.drawable.selector_btn_gravity);
-		}else{
-			zero.setBackgroundResource(R.drawable.btn_gravity_activated);
-		}
-	}
+
 
 }
