@@ -379,8 +379,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		animHandler.sendMessage(msg);
 	}
 	//¿ØÖÆZero°´¼ü×´Ì¬
-	public void changeZeroBackground(int change){
-		if(change==0){
+	public void changeZeroBackground(int status){
+		if(status==BluetoothCommand.ZERO_STATUS_CLOSE){
 			zero.setBackgroundResource(R.drawable.selector_btn_gravity);
 		}else{
 			zero.setBackgroundResource(R.drawable.btn_gravity_activated);
