@@ -161,6 +161,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		view.findViewById(R.id.main_animation_breathe_down).setOnClickListener(
 				this);
 		zero = (ImageView) view.findViewById(R.id.main_animation_zero);
+		zero.setOnClickListener(this);
 		backRestUp = (ImageView) view
 				.findViewById(R.id.main_animation_backrest_up);
 		backRestDown = (ImageView) view
