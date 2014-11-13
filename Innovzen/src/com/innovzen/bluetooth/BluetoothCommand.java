@@ -117,42 +117,47 @@ public class BluetoothCommand {
 	// Swing命令
 	public static int SWING_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
 			0x19, 0x11, END_MACHINE };
+	
+	
+	/**
+	 * 接受状态
+	 */
 	//按摩椅运行状态
-	public static final String MACHINE_RUN_STATUS="Machine_Run_Status";
+	public static final int MACHINE_RUN_STATUS=0xFFFF;
 	//按摩模式
-	public static final String MACHINE_MASSAGE_STATUS="Machine_Run_Status";
+	public static final int MACHINE_MASSAGE_STATUS=0xFFFE;
     //有无按键回应状态
-	public static final String BUTTON_STATUS="Button";
+	public static final int BUTTON_STATUS=0xFFFD;
     //方向状态
-	public static final String DIRECTION_STATUS="Direction";
+	public static final int DIRECTION_STATUS=0xFFFC;
 	//小腿电动缸状态
-	public static final String FOOT_STATUS="Foot";
+	public static final int FOOT_STATUS=0xFFFB;
 	//靠背电动缸状态
-	public static final String BACK_STATUS="Back";
+	public static final int BACK_STATUS=0xFFFA;
 	//行走位置状态
-	public static final String WALKING_POSITION_STATUS="Walking_Position";
+	public static final int WALKING_POSITION_STATUS=0xFFF9;
 	//Oxygen键状态
-	public static final String OXYGEN_STATUS="Oxygen";
+	public static final int OXYGEN_STATUS=0xFFF8;
 	//Swing键状态
-	public static final String SWING_STATUS="Swing";
+	public static final int SWING_STATUS=0xFFF7;
 	//Pulse键状态
-	public static final String PULSE_STATUS="Pulse";
+	public static final int PULSE_STATUS=0xFFF6;
 	//Heat键状态
-	public static final String HEAT_STATUS="Heat";
+	public static final int HEAT_STATUS=0xFFF5;
 	//Bluetooth键状态
-	public static final String BLUETOOTH_STATUS="Bluetooth";
+	public static final int BLUETOOTH_STATUS=0xFFF4;
 	//Zero键状态
-	public static final String ZERO_STATUS="Zero";
+	public static final int ZERO_STATUS=0xFFF3;
 	//Led键状态
-	public static final String LED_STATUS="Led";
+	public static final int LED_STATUS=0xFFF2;
 	//自动程序初始化完成状态
-	public static final String INIT_POSITION_STATUS="Init_Position";
+	public static final int INIT_POSITION_STATUS=0xFFF1;
 	//Pause状态
-	public static final String PAUSE_STATUS="Pause";
+	public static final int PAUSE_STATUS=0xFFF0;
 	//Buzzer状态
-	public static final String BUZZER_STATUS="Buzzer";
+	public static final int BUZZER_STATUS=0xFFEF;
 	//Breathe状态
-	public static final String BREATHE_STATUS="Breathe";
+	public static final int BREATHE_STATUS=0xFFEE;
 	//按摩椅运行 对应状态
 	public static final int MACHINE_RUN_STATUS_WAIT=0;
 	public static final int MACHINE_RUN_STATUS_COLLECT=1;
@@ -239,7 +244,7 @@ public class BluetoothCommand {
 	 * 每一个value值代表当前功能按钮的状态，比如按摩椅运行状态(3bit)有8个状态，状态表示既是0,1...7 这些状态也都用静态int表示
 	 *                              Pulse状态(1bit)有2个状态，状态表示既是0,1
 	 */
-	public HashMap<String, Integer> machine_status=new HashMap<String, Integer>(){
+	public HashMap<Integer, Integer> machine_status=new HashMap<Integer, Integer>(){
 		/**
 		 * 下面是状态的初始值,如
 		 */

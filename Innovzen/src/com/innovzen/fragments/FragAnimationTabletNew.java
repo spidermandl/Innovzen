@@ -53,17 +53,33 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 	private ImageView backRestUp,backRestDown,footUp,footDown,zero;
 
-	Handler animHandler = new Handler() {
+	Handler machineHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
+			int value=Integer.parseInt(msg.obj.toString());
 			switch (msg.what) {
-			//msg.what 返回1播放动画  返回2停止动画
-			case START_ANIMATION:
+			case BluetoothCommand.INIT_POSITION_STATUS:
+				//这个地方要和BluetoothCommand里的一个常量对应 
 				overlayBtnPressed();
 				break;
-			case END_ANIMATION:
+			case BluetoothCommand.PAUSE_STATUS:
+				if(value==1)//这个地方的1要和BluetoothCommand里的一个常量对应
 				endAnimationPressed();
 				break;
+			case BluetoothCommand.ZERO_STATUS:
+				if(value==BluetoothCommand.ZERO_STATUS_CLOSE){
+					zero.setBackgroundResource(R.drawable.selector_btn_gravity);
+				}else{
+					zero.setBackgroundResource(R.drawable.btn_gravity_activated);
+				}
+				break;
+//			//msg.what 返回1播放动画  返回2停止动画
+//			case START_ANIMATION:
+//				overlayBtnPressed();
+//				break;
+//			case END_ANIMATION:
+//				endAnimationPressed();
+//				break;
 			default:
 				break;
 			}
@@ -374,10 +390,11 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * 发送命令
 	 * @param command
 	 */
-	public void sendStartAnimMessage(int command){
+	public void sendMachineMessage(int command,Integer value){
 		Message msg=new Message();
 		msg.what=command;
-		animHandler.sendMessage(msg);
+		msg.obj=value;
+		machineHandler.sendMessage(msg);
 	}
 	//控制Zero按键状态
 	public void changeZeroBackground(int status){

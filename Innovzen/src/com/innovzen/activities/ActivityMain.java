@@ -128,14 +128,11 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		        	 * 如动画播放和停止等
 		        	 */
 	        		 if(IS_TABLET){    			
-	        			Integer initPosition= mBluetoothCommand.machine_status.get(mBluetoothCommand.INIT_POSITION_STATUS);
-	        			if(initPosition!=0){
-	        			 ((FragAnimationTabletNew)currentFragment).sendStartAnimMessage(FragAnimationTabletNew.START_ANIMATION);
-	        			}else{
-	        			((FragAnimationTabletNew)currentFragment).sendStartAnimMessage(FragAnimationTabletNew.END_ANIMATION);
-	        			}
-	        			 Integer zero =mBluetoothCommand.machine_status.get(mBluetoothCommand.ZERO_STATUS);      			 
-	        			((FragAnimationTabletNew)currentFragment).changeZeroBackground(zero);
+	        			Integer value= mBluetoothCommand.machine_status.get(mBluetoothCommand.INIT_POSITION_STATUS);
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.INIT_POSITION_STATUS,value);
+                        
+	        			value =mBluetoothCommand.machine_status.get(mBluetoothCommand.ZERO_STATUS);      			 
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.ZERO_STATUS,value);
 	        			 
 	        		 }
 		        
