@@ -130,7 +130,9 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	        		 if(IS_TABLET){    			
 	        			Integer initPosition= mBluetoothCommand.machine_status.get(mBluetoothCommand.INIT_POSITION_STATUS);
 	        			if(initPosition!=0){
-	        			 ((FragAnimationTabletNew)currentFragment).sendStartAnimMessage(7);
+	        			 ((FragAnimationTabletNew)currentFragment).sendStartAnimMessage(FragAnimationTabletNew.START_ANIMATION);
+	        			}else{
+	        			((FragAnimationTabletNew)currentFragment).sendStartAnimMessage(FragAnimationTabletNew.END_ANIMATION);
 	        			}
 	        			 Integer zero =mBluetoothCommand.machine_status.get(mBluetoothCommand.ZERO_STATUS);
 	        			 if(zero!=mBluetoothCommand.ZERO_STATUS_CLOSE){

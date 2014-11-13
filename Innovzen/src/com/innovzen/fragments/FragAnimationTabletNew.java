@@ -38,21 +38,14 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * set it to invisible or visibles
 	 */
 	private boolean mIsFooterTimersInvisible = true;
-
 	// private View subtitle_container;
-
-	private LinearLayout up;
-
-	private LinearLayout down;
-
-	private LinearLayout right, left_include;
-
+	private LinearLayout up,down,right,left_include;
 	private RelativeLayout animation_play_overlay;
 
 	private RelativeLayout anim_container;
-
 	private TextView myMinutes;
-
+    public static final int START_ANIMATION=1;
+    public static final int END_ANIMATION=2;
 	/**
 	 * 半屏动画 布局 全屏动画 布局
 	 */
@@ -64,10 +57,13 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
-			case 7:
+			//msg.what 返回1播放动画  返回2停止动画
+			case START_ANIMATION:
 				overlayBtnPressed();
 				break;
-
+			case END_ANIMATION:
+				endAnimationPressed();
+				break;
 			default:
 				break;
 			}
@@ -122,8 +118,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		case R.id.main_animation_stop:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
-			super.pauseExercise();
-
+		//	super.pauseExercise();
 			break;
 		// 开始
 		case R.id.main_animation_start:
@@ -153,7 +148,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					.fragSendCommand(BluetoothCommand.ZERO_GRAVITY_MACHINE_VALUES);
 			break;
 		}
-
 	}
 
 	/**
@@ -371,7 +365,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private void overlayPlayBtnPressed() {
 		super.overlayBtnPressed();
 	}
-	
+	//停止动画
+	private void endAnimationPressed() {
+		super.pauseExercise();
+	}
 	/**
 	 * 发送命令
 	 * @param command
