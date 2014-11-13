@@ -117,27 +117,119 @@ public class BluetoothCommand {
 	// Swing命令
 	public static int SWING_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
 			0x19, 0x11, END_MACHINE };
-	
+	//按摩椅运行状态
 	public static final String MACHINE_RUN_STATUS="Machine_Run_Status";
+	//按摩模式
 	public static final String MACHINE_MASSAGE_STATUS="Machine_Run_Status";
+    //有无按键回应状态
 	public static final String BUTTON_STATUS="Button";
+    //方向状态
 	public static final String DIRECTION_STATUS="Direction";
+	//小腿电动缸状态
 	public static final String FOOT_STATUS="Foot";
+	//靠背电动缸状态
 	public static final String BACK_STATUS="Back";
+	//行走位置状态
 	public static final String WALKING_POSITION_STATUS="Walking_Position";
+	//Oxygen键状态
 	public static final String OXYGEN_STATUS="Oxygen";
+	//Swing键状态
 	public static final String SWING_STATUS="Swing";
+	//Pulse键状态
 	public static final String PULSE_STATUS="Pulse";
+	//Heat键状态
 	public static final String HEAT_STATUS="Heat";
+	//Bluetooth键状态
 	public static final String BLUETOOTH_STATUS="Bluetooth";
+	//Zero键状态
 	public static final String ZERO_STATUS="Zero";
-	public static final String LED_STATUS="Led";	
+	//Led键状态
+	public static final String LED_STATUS="Led";
+	//自动程序初始化完成状态
 	public static final String INIT_POSITION_STATUS="Init_Position";
+	//Pause状态
 	public static final String PAUSE_STATUS="Pause";
+	//Buzzer状态
 	public static final String BUZZER_STATUS="Buzzer";
+	//Breathe状态
 	public static final String BREATHE_STATUS="Breathe";
-	
-	
+	//按摩椅运行 对应状态
+	public static final int MACHINE_RUN_STATUS_WAIT=0;
+	public static final int MACHINE_RUN_STATUS_COLLECT=1;
+	public static final int MACHINE_RUN_STATUS_RUNNING=2;
+	public static final int MACHINE_RUN_STATUS_PAUSE=3;
+	public static final int MACHINE_RUN_STATUS_RETAIN1=4;
+	public static final int MACHINE_RUN_STATUS_RETAIN2=5;
+	public static final int MACHINE_RUN_STATUS_RETAIN3=6;
+	public static final int MACHINE_RUN_STATUS_RETAIN4=7;
+	//按摩模式 对应状态
+	public static final int MODE_STATUS_NONE=0;
+	public static final int MODE_STATUS_BALANCE=1;
+	public static final int MODE_STATUS_RELAX=2;
+	public static final int MODE_STATUS_PERFORMANCE=3;
+	public static final int MODE_STATUS_MYSESSION1=4;
+	public static final int MODE_STATUS_MYSESSION2=5;
+	public static final int MODE_STATUS_MYSESSION3=6;
+	public static final int MODE_STATUS_MYSESSION4=7;
+	//行走位置计数 对应状态
+	public static final int WALKING_POSITION_STATUS_RETAIN0=0;
+	public static final int WALKING_POSITION_STATUS1=1;
+	public static final int WALKING_POSITION_STATUS2=2;
+	public static final int WALKING_POSITION_STATUS3=3;
+	public static final int WALKING_POSITION_STATUS4=4;
+	public static final int WALKING_POSITION_STATUS5=5;
+	public static final int WALKING_POSITION_STATUS6=6;
+	public static final int WALKING_POSITION_STATUS7=7;
+	public static final int WALKING_POSITION_STATUS8=8;
+	public static final int WALKING_POSITION_STATUS9=9;
+	public static final int WALKING_POSITION_STATUS10=10;
+	public static final int WALKING_POSITION_STATUS11=11;
+	public static final int WALKING_POSITION_STATUS12=12;
+	public static final int WALKING_POSITION_STATUS_RETAIN13=13;
+	public static final int WALKING_POSITION_STATUS_RETAIN14=14;
+	public static final int WALKING_POSITION_STATUS_RETAIN15=15;
+	//方向对应状态
+	public static final int DIRECTION_STATUS_STOP=0;
+	public static final int DIRECTION_STATUS_UP=1;
+	public static final int DIRECTION_STATUS_DOWN=2;
+	public static final int DIRECTION_STATUS_RETAIN=3;
+	//小腿电动缸 对应状态
+	public static final int FOOT_STATUS_STOP=0;
+	public static final int FOOT_STATUS_UP=1;
+	public static final int FOOT_STATUS_DOWN=2;
+	public static final int FOOT_STATUS_ARRIVE=3;
+	public static final int FOOT_STATUS_RETAIN0=4;
+	public static final int FOOT_STATUS_RETAIN1=5;
+	public static final int FOOT_STATUS_RETAIN2=6;
+	public static final int FOOT_STATUS_RETAIN3=7;
+	//靠背电动缸状态
+	public static final int BACK_STATUS_STOP=0;
+	public static final int BACK_STATUS_UP=1;
+	public static final int BACK_STATUS_DOWN=2;
+	public static final int BACK_STATUS_ARRIVE=3;
+	public static final int BACK_STATUS_RETAIN0=4;
+	public static final int BACK_STATUS_RETAIN1=5;
+	public static final int BACK_STATUS_RETAIN2=6;
+	public static final int BACK_STATUS_RETAIN3=7;
+	//Zero零重力  状态
+	public static final int ZERO_STATUS_CLOSE=0;
+	public static final int ZERO_STATUS_POSITION1=1;
+	public static final int ZERO_STATUS_POSITION2=2;
+	public static final int ZERO_STATUS_RETAIN0=4;
+	//Buzzer状态
+	public static final int BUZZER_STATUS_SIlENCE=0;
+	public static final int BUZZER_STATUS_SLOWLY=1;
+	public static final int BUZZER_STATUS_QUICKLY=2;
+	public static final int BUZZER_STATUS_SINGLE=3;
+	//Breathe状态
+	public static final int BREATHE_STATUS_RETAIN0=0;
+	public static final int BREATHE_STATUS_VIGOR1=1;
+	public static final int BREATHE_STATUS_VIGOR2=2;
+	public static final int BREATHE_STATUS_VIGOR3=3;
+	public static final int BREATHE_STATUS_VIGOR4=4;
+	public static final int BREATHE_STATUS_VIGOR5=5;
+	public static final int BREATHE_STATUS_RETAIN1=6;
+	public static final int BREATHE_STATUS_RETAIN2=7;
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
 
@@ -151,9 +243,27 @@ public class BluetoothCommand {
 		/**
 		 * 下面是状态的初始值,如
 		 */
-		{
-			put("OXYGEN_STATUS", 0);
-			put("SWING_STATUS", 0);
+		{   
+			put(MACHINE_RUN_STATUS, MACHINE_RUN_STATUS_WAIT);
+			put(MACHINE_MASSAGE_STATUS, MODE_STATUS_NONE);
+			put(BUTTON_STATUS, 0);
+			put(DIRECTION_STATUS, DIRECTION_STATUS_STOP);
+			put(WALKING_POSITION_STATUS, WALKING_POSITION_STATUS1);
+			put(FOOT_STATUS, FOOT_STATUS_STOP);
+			put(BACK_STATUS, BACK_STATUS_STOP);
+			put(INIT_POSITION_STATUS, 0);
+			put(PAUSE_STATUS, 0);
+			put(BUZZER_STATUS, BUZZER_STATUS_SIlENCE);
+			put(BREATHE_STATUS, BREATHE_STATUS_VIGOR1);
+			put(PULSE_STATUS, 0);
+			put(OXYGEN_STATUS, 0);
+			put(SWING_STATUS, 0);
+			put(LED_STATUS, 0);
+			put(HEAT_STATUS, 0);
+			put(LED_STATUS, 0);
+			put(BLUETOOTH_STATUS, 0);
+			
+			
 		}
 	};
 	// 提供私有的构造方法
