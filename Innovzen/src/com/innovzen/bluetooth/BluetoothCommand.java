@@ -117,220 +117,27 @@ public class BluetoothCommand {
 	// Swing命令
 	public static int SWING_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
 			0x19, 0x11, END_MACHINE };
-	/*
-	 * 字节1
-	 */
-	// 待机
-	public static final byte WAIT_BYTE = 00000000;
-	public static final byte WAIT_BALANCE_BYTE = (byte) 00000010;
-	public static final byte WAIT_RELAX_BYTE_ = (byte) 00000100;
-	public static final byte WAIT_PERFORMANCE_BYTE_ = (byte) 00000110;
-	public static final byte WAIT_MYSESSION1_BYTE_ = (byte) 00001000;
-	public static final byte WAIT_MYSESSION2_BYTE_ = (byte) 00001010;
-	public static final byte WAIT_MYSESSION3_BYTE_ = (byte) 00001100;
-	public static final byte WAIT_MYSESSION4_BYTE_ = (byte) 00001110;
-	// 收藏状态
-	public static final byte COLLECT_BYTE = (byte) 00010000;
-	public static final byte COLLECT_BALANCE_BYTE = (byte) 00010010;
-	public static final byte COLLECT_RELAX_BYTE = (byte) 00010100;
-	public static final byte COLLECT_RPERFORMANCE_BYTE = (byte) 00010110;
-	public static final byte COLLECT_MYSESSION1_BYTE = (byte) 00011000;
-	public static final byte COLLECT_MYSESSION2_BYTE = (byte) 00011010;
-	public static final byte COLLECT_MYSESSION3_BYTE = (byte) 00011100;
-	public static final byte COLLECT_MYSESSION4_BYTE = (byte) 00011110;
-	// 运行状态
-	public static final byte RUN_BYTE = (byte) 00100000;
-	public static final byte RUN_BALANCE_BYTE = (byte) 00100010;
-	public static final byte RUN_RELAX_BYTE = (byte) 00100100;
-	public static final byte RUN_PERFORMANCE_BYTE = (byte) 00100110;
-	public static final byte RUN_MYSESSION1_BYTE = (byte) 00101000;
-	public static final byte RUN_MYSESSION2_BYTE = (byte) 00101010;
-	public static final byte RUN_MYSESSION3_BYTE = (byte) 00101100;
-	public static final byte RUN_MYSESSION4_BYTE = (byte) 00101110;
-	// 暂停状态
-	public static final byte PAUSE_BYTE = (byte) 00110000;
-	public static final byte PAUSE_BALANCE_BYTE = (byte) 00110010;
-	public static final byte PAUSE_RELAX_BYTE = (byte) 00110100;
-	public static final byte PAUSE_PERFORMANCE_BYTE = (byte) 00110110;
-	public static final byte PAUSE_MYSESSION1_BYTE = (byte) 00111000;
-	public static final byte PAUSE_MYSESSION2_BYTE = (byte) 00111010;
-	public static final byte PAUSE_MYSESSION3_BYTE = (byte) 00111100;
-	public static final byte PAUSE_MYSESSION4_BYTE = (byte) 00111110;
-	// 04 05 06 07保留
-	/*
-	 * 字节2
-	 */
-	// 无按键回应
-	// 上下行走方向、及位置指示 00 0D 0E 0F 保留
-	// public static final byte WALK_BYTE2=(byte) 00000000;
-	// 位置1
-	public static final byte WALK_PLACE1_STOP_BYTE2 = (byte) 00000100;
-	public static final byte WALK_PLACE1_UP_BYTE2 = (byte) 00000101;
-	public static final byte WALK_PLACE1_DOWN_BYTE2 = (byte) 00000110;
-	public static final byte WALK_PLACE1_retain_BYTE2 = (byte) 00000111;
-	// 位置2
-	public static final byte WALK_PLACE2_STOP_BYTE2 = (byte) 00001000;
-	public static final byte WALK_PLACE2_UP_BYTE2 = (byte) 00001001;
-	public static final byte WALK_PLACE2_DOWN_BYTE2 = (byte) 00001010;
-	public static final byte WALK_PLACE2_retain_BYTE2 = (byte) 00001011;
-	// 位置3
-	public static final byte WALK_PLACE3_STOP_BYTE2 = (byte) 00001100;
-	public static final byte WALK_PLACE3_UP_BYTE2 = (byte) 00001101;
-	public static final byte WALK_PLACE3_DOWN_BYTE2 = (byte) 00001110;
-	public static final byte WALK_PLACE3_retain_BYTE2 = (byte) 00001111;
-	// 位置4
-	public static final byte WALK_PLACE4_STOP_BYTE2 = (byte) 00010000;
-	public static final byte WALK_PLACE4_UP_BYTE2 = (byte) 000100101;
-	public static final byte WALK_PLACE4_DOWN_BYTE2 = (byte) 000100110;
-	public static final byte WALK_PLACE4_retain_BYTE2 = (byte) 000100111;
-	// 位置5
-	public static final byte WALK_PLACE5_STOP_BYTE2 = (byte) 00010100;
-	public static final byte WALK_PLACE5_UP_BYTE2 = (byte) 00010101;
-	public static final byte WALK_PLACE5_DOWN_BYTE2 = (byte) 00010110;
-	public static final byte WALK_PLACE5_retain_BYTE2 = (byte) 00010111;
-	// 位置6
-	public static final byte WALK_PLACE6_STOP_BYTE2 = (byte) 00011000;
-	public static final byte WALK_PLACE6_UP_BYTE2 = (byte) 00011001;
-	public static final byte WALK_PLACE6_DOWN_BYTE2 = (byte) 00011010;
-	public static final byte WALK_PLACE6_retain_BYTE2 = (byte) 00011011;
-	// 位置7
-	public static final byte WALK_PLACE7_STOP_BYTE2 = (byte) 00011100;
-	public static final byte WALK_PLACE7_UP_BYTE2 = (byte) 00011101;
-	public static final byte WALK_PLACE7_DOWN_BYTE2 = (byte) 00011110;
-	public static final byte WALK_PLACE7_retain_BYTE2 = (byte) 00011111;
-	// 位置8
-	public static final byte WALK_PLACE8_STOP_BYTE2 = (byte) 00100000;
-	public static final byte WALK_PLACE8_UP_BYTE2 = (byte) 000100001;
-	public static final byte WALK_PLACE8_DOWN_BYTE2 = (byte) 00100010;
-	public static final byte WALK_PLACE8_retain_BYTE2 = (byte) 00100011;
-	// 位置9
-	public static final byte WALK_PLACE9_STOP_BYTE2 = (byte) 00100100;
-	public static final byte WALK_PLACE9_UP_BYTE2 = (byte) 000100101;
-	public static final byte WALK_PLACE9_DOWN_BYTE2 = (byte) 00100110;
-	public static final byte WALK_PLACE9_retain_BYTE2 = (byte) 00100111;
-	// 位置10
-	public static final byte WALK_PLACE10_STOP_BYTE2 = (byte) 00101000;
-	public static final byte WALK_PLACE10_UP_BYTE2 = (byte) 000101001;
-	public static final byte WALK_PLACE10_DOWN_BYTE2 = (byte) 00101010;
-	public static final byte WALK_PLACE10_retain_BYTE2 = (byte) 00101011;
-	// 位置11
-	public static final byte WALK_PLACE11_STOP_BYTE2 = (byte) 00101100;
-	public static final byte WALK_PLACE11_UP_BYTE2 = (byte) 000101101;
-	public static final byte WALK_PLACE11_DOWN_BYTE2 = (byte) 00101110;
-	public static final byte WALK_PLACE11_retain_BYTE2 = (byte) 00101111;
-	// 位置12
-	public static final byte WALK_PLACE12_STOP_BYTE2 = (byte) 00110000;
-	public static final byte WALK_PLACE12_UP_BYTE2 = (byte) 00110001;
-	public static final byte WALK_PLACE12_DOWN_BYTE2 = (byte) 00110010;
-	public static final byte WALK_PLACE12_retain_BYTE2 = (byte) 00110011;
-	// 有按键回应
-
-	// 位置1
-	public static final byte KEY_WALK_PLACE1_STOP_BYTE2 = (byte) 01000100;
-	public static final byte KEY_WALK_PLACE1_UP_BYTE2 = (byte) 01000101;
-	public static final byte KEY_WALK_PLACE1_DOWN_BYTE2 = (byte) 01000110;
-	public static final byte KEY_WALK_PLACE1_retain_BYTE2 = (byte) 01000111;
-	// 位置2
-	public static final byte KEY_WALK_PLACE2_STOP_BYTE2 = (byte) 01001000;
-	public static final byte KEY_WALK_PLACE2_UP_BYTE2 = (byte) 01001001;
-	public static final byte KEY_WALK_PLACE2_DOWN_BYTE2 = (byte) 01001010;
-	public static final byte KEY_WALK_PLACE2_retain_BYTE2 = (byte) 01001011;
-	// 位置3
-	public static final byte KEY_WALK_PLACE3_STOP_BYTE2 = (byte) 01001100;
-	public static final byte KEY_WALK_PLACE3_UP_BYTE2 = (byte) 01001101;
-	public static final byte KEY_WALK_PLACE3_DOWN_BYTE2 = (byte) 01001110;
-	public static final byte KEY_WALK_PLACE3_retain_BYTE2 = (byte) 01001111;
-	// 位置4
-	public static final byte KEY_WALK_PLACE4_STOP_BYTE2 = (byte) 01010000;
-	public static final byte KEY_WALK_PLACE4_UP_BYTE2 = (byte) 010100101;
-	public static final byte KEY_WALK_PLACE4_DOWN_BYTE2 = (byte) 010100110;
-	public static final byte KEY_WALK_PLACE4_retain_BYTE2 = (byte) 010100111;
-	// 位置5
-	public static final byte KEY_WALK_PLACE5_STOP_BYTE2 = (byte) 01010100;
-	public static final byte KEY_WALK_PLACE5_UP_BYTE2 = (byte) 01010101;
-	public static final byte KEY_WALK_PLACE5_DOWN_BYTE2 = (byte) 01010110;
-	public static final byte KEY_WALK_PLACE5_retain_BYTE2 = (byte) 01010111;
-	// 位置6
-	public static final byte KEY_WALK_PLACE6_STOP_BYTE2 = (byte) 01011000;
-	public static final byte KEY_WALK_PLACE6_UP_BYTE2 = (byte) 01011001;
-	public static final byte KEY_WALK_PLACE6_DOWN_BYTE2 = (byte) 01011010;
-	public static final byte KEY_WALK_PLACE6_retain_BYTE2 = (byte) 01011011;
-	// 位置7
-	public static final byte KEY_WALK_PLACE7_STOP_BYTE2 = (byte) 01011100;
-	public static final byte KEY_WALK_PLACE7_UP_BYTE2 = (byte) 01011101;
-	public static final byte KEY_WALK_PLACE7_DOWN_BYTE2 = (byte) 01011110;
-	public static final byte KEY_WALK_PLACE7_retain_BYTE2 = (byte) 01011111;
-	// 位置8
-	public static final byte KEY_WALK_PLACE8_STOP_BYTE2 = (byte) 01100000;
-	public static final byte KEY_WALK_PLACE8_UP_BYTE2 = (byte) 01100001;
-	public static final byte KEY_WALK_PLACE8_DOWN_BYTE2 = (byte) 01100010;
-	public static final byte KEY_WALK_PLACE8_retain_BYTE2 = (byte) 01100011;
-	// 位置9
-	public static final byte KEY_WALK_PLACE9_STOP_BYTE2 = (byte) 01100100;
-	public static final byte KEY_WALK_PLACE9_UP_BYTE2 = (byte) 01100101;
-	public static final byte KEY_WALK_PLACE9_DOWN_BYTE2 = (byte) 01100110;
-	public static final byte KEY_WALK_PLACE9_retain_BYTE2 = (byte) 00100111;
-	// 位置10
-	public static final byte KEY_WALK_PLACE10_STOP_BYTE2 = (byte) 01101000;
-	public static final byte KEY_WALK_PLACE10_UP_BYTE2 = (byte) 01101001;
-	public static final byte KEY_WALK_PLACE10_DOWN_BYTE2 = (byte) 01101010;
-	public static final byte KEY_WALK_PLACE10_retain_BYTE2 = (byte) 01101011;
-	// 位置11
-	public static final byte KEY_WALK_PLACE11_STOP_BYTE2 = (byte) 01101100;
-	public static final byte KEY_WALK_PLACE11_UP_BYTE2 = (byte) 01101101;
-	public static final byte KEY_WALK_PLACE11_DOWN_BYTE2 = (byte) 01101110;
-	public static final byte KEY_WALK_PLACE11_retain_BYTE2 = (byte) 01101111;
-	// 位置12
-	public static final byte KEY_WALK_PLACE12_STOP_BYTE2 = (byte) 01110000;
-	public static final byte KEY_WALK_PLACE12_UP_BYTE2 = (byte) 01110001;
-	public static final byte KEY_WALK_PLACE12_DOWN_BYTE2 = (byte) 01110010;
-	public static final byte KEY_WALK_PLACE12_retain_BYTE2 = (byte) 01110011;
-	// ////////d0 de df保留
-	// 字节3
-	// 靠背，小腿电动缸指示
-	// 小腿电动缸停止 靠背电动缸状态 保留04 05 06 07
-	public static final byte FOOT_STOP_BACK_STOP_BYTE3 = (byte) 00000000;
-	public static final byte FOOT_STOP_BACK_UP_BYTE3 = (byte) 00000001;
-	public static final byte FOOT_STOP_BACK_DOWN_BYTE3 = (byte) 00000010;
-	public static final byte FOOT_STOP_BACK_REACH_BYTE3 = (byte) 00000011;
-	// 小腿电动缸升 靠背电动缸状态
-	public static final byte FOOT_UP_BACK_STOP_BYTE3 = (byte) 00001000;
-	public static final byte FOOT_UP_BACK_UP_BYTE3 = (byte) 00001001;
-	public static final byte FOOT_UP_BACK_DOWN_BYTE3 = (byte) 00001010;
-	public static final byte FOOT_UP_BACK_REACH_BYTE3 = (byte) 00001011;
-	// 小腿电动缸降 靠背电动缸状态
-	public static final byte FOOT_DOWN_BACK_STOP_BYTE3 = (byte) 00010000;
-	public static final byte FOOT_DOWN_BACK_UP_BYTE3 = (byte) 00010001;
-	public static final byte FOOT_DOWN_BACK_DOWN_BYTE3 = (byte) 00010010;
-	public static final byte FOOT_DOWN_BACK_REACH_BYTE3 = (byte) 00010011;
-	// 小腿电动缸到限位 靠背电动缸状态
-	public static final byte FOOT_REACH_BACK_STOP_BYTE3 = (byte) 00011000;
-	public static final byte FOOT_REACH_BACK_UP_BYTE3 = (byte) 00011001;
-	public static final byte FOOT_REACH_BACK_DOWN_BYTE3 = (byte) 00011010;
-	public static final byte FOOT_REACH_BACK_REACH_BYTE3 = (byte) 00011011;
-
-	// 字节4
-	// Oxygen，Swing，Pulse，Heat，Bluetooth，Zero开启，关闭指示
-	// 其他关 Zero开启
-	public static final byte O_S_P_H_B_Z_BYTE4 = (byte) 00000000;
-	public static final byte O_S_P_H_B_ZOPEN1_BYTE4 = (byte) 00000001;
-	public static final byte O_S_P_H_B_ZOPEN2_BYTE4 = (byte) 00000010;
-	public static final byte O_S_P_H_B_ZOPEN3_BYTE4 = (byte) 00000011;
-	// Bluetooth开启
-	public static final byte O_S_P_H_BOPEN_Z_BYTE4 = (byte) 00000100;
-	public static final byte O_S_P_H_BOPEN_ZOPEN1_BYTE4 = (byte) 00000101;
-	public static final byte O_S_P_H_BOPEN_ZOPEN2_BYTE4 = (byte) 00000110;
-	public static final byte O_S_P_H_BOPEN_ZOPEN3_BYTE4 = (byte) 00000111;
-	public static final String MACHINE_RUN_STATUS="machine_run_status";
-	public static final String MACHINE_MASSAGE_STATUS="machine_run_status";
-
+	
+	public static final String MACHINE_RUN_STATUS="Machine_Run_Status";
+	public static final String MACHINE_MASSAGE_STATUS="Machine_Run_Status";
+	public static final String BUTTON_STATUS="Button";
+	public static final String DIRECTION_STATUS="Direction";
+	public static final String FOOT_STATUS="Foot";
+	public static final String BACK_STATUS="Back";
+	public static final String WALKING_POSITION_STATUS="Walking_Position";
 	public static final String OXYGEN_STATUS="Oxygen";
 	public static final String SWING_STATUS="Swing";
 	public static final String PULSE_STATUS="Pulse";
 	public static final String HEAT_STATUS="Heat";
 	public static final String BLUETOOTH_STATUS="Bluetooth";
 	public static final String ZERO_STATUS="Zero";
-	public static final String LED_STATUS="Led";
+	public static final String LED_STATUS="Led";	
+	public static final String INIT_POSITION_STATUS="Init_Position";
+	public static final String PAUSE_STATUS="Pause";
+	public static final String BUZZER_STATUS="Buzzer";
+	public static final String BREATHE_STATUS="Breathe";
+	
+	
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
 
@@ -345,7 +152,7 @@ public class BluetoothCommand {
 		 * 下面是状态的初始值,如
 		 */
 		{
-			put("OXYGEN_STATUS", 1);
+			put("OXYGEN_STATUS", 0);
 			put("SWING_STATUS", 0);
 		}
 	};
@@ -385,39 +192,6 @@ public class BluetoothCommand {
 		}
 		mBluetoothService.write(src);
 	}
-
-	
-//<<<<<<< HEAD
-
-	/*
-	 * public void getCommand(byte[] bytes) {
-	 * 
-	 * switch (bytes[1]) { case WAIT_BYTE: break;
-	 * 
-	 * default: break; } switch (bytes[2]) { case OOPEN_S_P_H_B_Z_BYTE4:
-	 * 
-	 * break;
-	 * 
-	 * default: break; } switch (bytes[3]) { case OOPEN_S_P_H_B_Z_BYTE4:
-	 * 
-	 * break;
-	 * 
-	 * default: break; } switch (bytes[4]) { case OOPEN_S_P_H_B_Z_BYTE4:
-	 * MyPreference.getInstance(context).writeString(MyPreference.OXTGEN,
-	 * MyPreference.OXTGEN_OPEN); break;
-	 * 
-	 * default: break; }
-	 * 
-	 * }
-	 */
-	/*byte bb=(byte)01000000;
-	public boolean getCommand(byte[] bytes) {
-
-		// 第7个字节
-		byte b = bytes[7];
-		if((byte)(b&0x40)!=(byte)0x40)*/
-		
-//=======
 	/**
 	 * 解析命令
 	 * 解析9个字节，并且把每个字节的状态写到machine_status
@@ -426,21 +200,86 @@ public class BluetoothCommand {
 	public boolean parseCommand(byte[] bytes) {
         //第1字节	
 		//第2字节
+		/**
+		 * 字节1
+		 */
 		byte b1 = bytes[1];
-		machine_status.put(MACHINE_RUN_STATUS, (b1&0x70)>>4);
-		machine_status.put(MACHINE_MASSAGE_STATUS, (b1&0x0e)>>1);
+		//取第6 5 4位的状态
+		machine_status.put(MACHINE_RUN_STATUS, (b1&0x70)>>3);
+		//取第3 2 1位的状态
+		machine_status.put(MACHINE_MASSAGE_STATUS, (b1&0x0e)>>0);
+		/**
+		 * 字节2
+		 */
 		byte b2 =bytes[2];
-		//machine_status.put("", value);
-		//第3字节
+		//取第6位的状态
+		machine_status.put(BUTTON_STATUS,(b2&0x40)>>5);
+		//取第5 4 3 2位的状态
+		machine_status.put(WALKING_POSITION_STATUS,(b2&0x3c)>>1);
+		//取第1 0位的状态
+		machine_status.put(DIRECTION_STATUS,(b2&0x03)>>0);
+		/**
+		 * 字节3
+		 */
+		byte b3 = bytes[3];
+		//取第5 4 3位的状态
+		machine_status.put(FOOT_STATUS,(b3&0x38)>>2);
+		//取第2 1 0位的状态
+		machine_status.put(BACK_STATUS,(b3&0x07)>>2);
+		/**
+		 * 字节4
+		 */
+		byte b4 = bytes[4];
+		//取第6位的状态
+		machine_status.put(OXYGEN_STATUS,(b4&0x40)>>5);
+		//取第5位的状态
+		machine_status.put(SWING_STATUS,(b4&0x20)>>4);
+		//取第4位的状态
+		machine_status.put(LED_STATUS,(b4&0x10)>>3);
+		//取第3位的状态
+		machine_status.put(HEAT_STATUS,(b4&0x08)>>2);
+		//取第2位的状态
+		machine_status.put(BLUETOOTH_STATUS,(b4&0x04)>>1);
+		//取第1 0位的状态
+		machine_status.put(ZERO_STATUS,(b4&0x03)>>0);
+		/**
+		 * 字节5
+		 */
+		byte b5 = bytes[5];
+		//取第6位的状态
+		machine_status.put(PULSE_STATUS,(b5&0x40)>>5);
+		/**
+		 * 字节6
+		 */
+		byte b6 = bytes[6];
+		//取第6位的状态
+		machine_status.put(PULSE_STATUS,(b6&0x40)>>5);
+		/**
+		 * 字节7
+		 */
+		byte b7 = bytes[7];
+		//取第6位的状态
+		machine_status.put(INIT_POSITION_STATUS,(b7&0x40)>>5);
+		//取第5位的状态
+		machine_status.put(PAUSE_STATUS,(b7&0x20)>>4);
+		//取第4 3位的状态
+		machine_status.put(BUZZER_STATUS,(b7&0x18)>>2);
+		//取第2 1 0位的状态
+		machine_status.put(BREATHE_STATUS,(b7&0x07));
+		
+		return true;
+	}
+
+	/*	//第3字节
 		//第4字节
 		//第5字节
 		//第6字节
 		//第7个字节
 		byte b = bytes[6];
 		if((byte)(b&0x40)==(byte)0x40){
-			/**
+			*//**
 			 * 这里将被改写成把状态位的值写到machine_status
-			 */
+			 *//*
 
 		//取第六位的状态
 		machine_status.put("", (b&0x40)>>5);
@@ -452,10 +291,8 @@ public class BluetoothCommand {
 
 		//第8字节
 		//第9字节
-		}
-		return true;
-	}
-
+		 * }
+*/	
 	/**
 	 * 把byte转为字符串的bit
 	 */
