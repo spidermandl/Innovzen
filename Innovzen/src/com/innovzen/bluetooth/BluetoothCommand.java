@@ -239,7 +239,7 @@ public class BluetoothCommand {
 	 * 每一个value值代表当前功能按钮的状态，比如按摩椅运行状态(3bit)有8个状态，状态表示既是0,1...7 这些状态也都用静态int表示
 	 *                              Pulse状态(1bit)有2个状态，状态表示既是0,1
 	 */
-	private HashMap<String, Integer> machine_status=new HashMap<String, Integer>(){
+	public HashMap<String, Integer> machine_status=new HashMap<String, Integer>(){
 		/**
 		 * 下面是状态的初始值,如
 		 */
@@ -262,7 +262,7 @@ public class BluetoothCommand {
 			put(HEAT_STATUS, 0);
 			put(LED_STATUS, 0);
 			put(BLUETOOTH_STATUS, 0);
-			
+			put(ZERO_STATUS, ZERO_STATUS_CLOSE);
 			
 		}
 	};

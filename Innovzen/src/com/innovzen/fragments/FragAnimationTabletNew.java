@@ -58,13 +58,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 */
 	private RelativeLayout.LayoutParams inAnimLayoutParam, fullAnimLayoutParam;
 
-	private ImageView backRestUp;
-
-	private ImageView backRestDown;
-
-	private ImageView footUp;
-
-	private ImageView footDown;
+	private ImageView backRestUp,backRestDown,footUp,footDown,zero;
 
 	Handler animHandler = new Handler() {
 		@Override
@@ -79,7 +73,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			}
 		}
 	};
-
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -173,7 +166,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				this);
 		view.findViewById(R.id.main_animation_breathe_down).setOnClickListener(
 				this);
-		view.findViewById(R.id.main_animation_zero).setOnClickListener(this);
+		zero = (ImageView) view.findViewById(R.id.main_animation_zero);
 		backRestUp = (ImageView) view
 				.findViewById(R.id.main_animation_backrest_up);
 		backRestDown = (ImageView) view
@@ -387,6 +380,14 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		Message msg=new Message();
 		msg.what=command;
 		animHandler.sendMessage(msg);
+	}
+	//¿ØÖÆZero°´¼ü×´Ì¬
+	public void changeZeroBackground(int change){
+		if(change==0){
+			zero.setBackgroundResource(R.drawable.selector_btn_gravity);
+		}else{
+			zero.setBackgroundResource(R.drawable.btn_gravity_activated);
+		}
 	}
 
 }

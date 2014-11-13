@@ -127,8 +127,15 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		        	 * 如按钮选中状态改变
 		        	 * 如动画播放和停止等
 		        	 */
-	        		 if(IS_TABLET){
+	        		 if(IS_TABLET){    			
+	        			Integer initPosition= mBluetoothCommand.machine_status.get(mBluetoothCommand.INIT_POSITION_STATUS);
+	        			if(initPosition!=0){
 	        			 ((FragAnimationTabletNew)currentFragment).sendStartAnimMessage(7);
+	        			}
+	        			 Integer zero =mBluetoothCommand.machine_status.get(mBluetoothCommand.ZERO_STATUS);
+	        			 if(zero!=mBluetoothCommand.ZERO_STATUS_CLOSE){
+	        				 ((FragAnimationTabletNew)currentFragment).changeZeroBackground(zero);
+	        			 }
 	        		 }
 		        
 		        }
