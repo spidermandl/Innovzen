@@ -321,7 +321,9 @@ public class BluetoothCommand {
 	public static final byte O_S_P_H_BOPEN_ZOPEN1_BYTE4 = (byte) 00000101;
 	public static final byte O_S_P_H_BOPEN_ZOPEN2_BYTE4 = (byte) 00000110;
 	public static final byte O_S_P_H_BOPEN_ZOPEN3_BYTE4 = (byte) 00000111;
-	
+	public static final String MACHINE_RUN_STATUS="machine_run_status";
+	public static final String MACHINE_MASSAGE_STATUS="machine_run_status";
+
 	public static final String OXYGEN_STATUS="Oxygen";
 	public static final String SWING_STATUS="Swing";
 	public static final String PULSE_STATUS="Pulse";
@@ -422,8 +424,13 @@ public class BluetoothCommand {
 	 * @return
 	 */
 	public boolean parseCommand(byte[] bytes) {
-        //第1字节
+        //第1字节	
 		//第2字节
+		byte b1 = bytes[1];
+		machine_status.put(MACHINE_RUN_STATUS, (b1&0x70)>>4);
+		machine_status.put(MACHINE_MASSAGE_STATUS, (b1&0x0e)>>1);
+		byte b2 =bytes[2];
+		//machine_status.put("", value);
 		//第3字节
 		//第4字节
 		//第5字节
@@ -434,14 +441,19 @@ public class BluetoothCommand {
 			/**
 			 * 这里将被改写成把状态位的值写到machine_status
 			 */
-// c88dfc18ebfa4a7581a765228c881c5917f22ed0
-			return true;
-		}
-		else
-			return false;
+
+		//取第六位的状态
+		machine_status.put("", (b&0x40)>>5);
+        //取第五位的状态
+		machine_status.put("", (b&0x20)>>4);
+        //取第三和四位的状态
+		machine_status.put("", (b&0x18)>>2);
+
 
 		//第8字节
 		//第9字节
+		}
+		return true;
 	}
 
 	/**
