@@ -321,20 +321,14 @@ public class BluetoothCommand {
 	public static final byte O_S_P_H_BOPEN_ZOPEN1_BYTE4 = (byte) 00000101;
 	public static final byte O_S_P_H_BOPEN_ZOPEN2_BYTE4 = (byte) 00000110;
 	public static final byte O_S_P_H_BOPEN_ZOPEN3_BYTE4 = (byte) 00000111;
-	// Heat开启
-	public static final byte O_S_P_HOPEN_B_Z_BYTE4 = (byte) 00001000;
-	public static final byte O_S_P_HOPEN_B_ZOPEN1_BYTE4 = (byte) 00001001;
-	public static final byte O_S_P_HOPEN_B_ZOPEN2_BYTE4 = (byte) 00001010;
-	public static final byte O_S_P_HOPEN_B_ZOPEN3_BYTE4 = (byte) 00001011;
-	public static final byte O_S_P_HOPEN_BOPEN_Z_BYTE4 = (byte) 00000100;
-	public static final byte O_S_P_HOPEN_BOPEN_ZOPEN1_BYTE4 = (byte) 00001101;
-	public static final byte O_S_P_HOPEN_BOPEN_ZOPEN2_BYTE4 = (byte) 00001110;
-	public static final byte O_S_P_HOPEN_BOPEN_ZOPEN3_BYTE4 = (byte) 00001111;
-	// PULSE
-
-	// ///
-	public static final byte OOPEN_S_P_H_B_Z_BYTE4 = (byte) 01000000;
-	// //
+	
+	public static final String OXYGEN_STATUS="Oxygen";
+	public static final String SWING_STATUS="Swing";
+	public static final String PULSE_STATUS="Pulse";
+	public static final String HEAT_STATUS="Heat";
+	public static final String BLUETOOTH_STATUS="Bluetooth";
+	public static final String ZERO_STATUS="Zero";
+	public static final String LED_STATUS="Led";
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
 
@@ -349,8 +343,8 @@ public class BluetoothCommand {
 		 * 下面是状态的初始值,如
 		 */
 		{
-			put("Oxygen", 1);
-			put("Swing", 0);
+			put("OXYGEN_STATUS", 1);
+			put("SWING_STATUS", 0);
 		}
 	};
 	// 提供私有的构造方法
@@ -390,12 +384,8 @@ public class BluetoothCommand {
 		mBluetoothService.write(src);
 	}
 
-	/**
-	 * 解析命令
-	 * 解析9个字节，并且把每个字节的状态写到machine_status
-	 * @return
-	 */
-<<<<<<< HEAD
+	
+//<<<<<<< HEAD
 
 	/*
 	 * public void getCommand(byte[] bytes) {
@@ -418,14 +408,19 @@ public class BluetoothCommand {
 	 * 
 	 * }
 	 */
-	byte bb=(byte)01000000;
+	/*byte bb=(byte)01000000;
 	public boolean getCommand(byte[] bytes) {
 
 		// 第7个字节
 		byte b = bytes[7];
-		if((byte)(b&0x40)!=(byte)0x40)
+		if((byte)(b&0x40)!=(byte)0x40)*/
 		
-=======
+//=======
+	/**
+	 * 解析命令
+	 * 解析9个字节，并且把每个字节的状态写到machine_status
+	 * @return
+	 */
 	public boolean parseCommand(byte[] bytes) {
         //第1字节
 		//第2字节
