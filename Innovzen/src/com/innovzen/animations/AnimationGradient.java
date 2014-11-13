@@ -3,6 +3,7 @@ package com.innovzen.animations;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
@@ -231,7 +232,6 @@ public class AnimationGradient extends ExerciseAnimationBase {
                 }
 
                 mIsLayoutDrawn = true;
-
                 return true;
             }
         });
@@ -266,7 +266,6 @@ public class AnimationGradient extends ExerciseAnimationBase {
                 }
 
                 mIsTextDrawn = true;
-
                 return true;
             }
         });
