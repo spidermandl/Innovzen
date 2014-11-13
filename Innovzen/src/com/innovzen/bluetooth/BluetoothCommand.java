@@ -404,17 +404,17 @@ public class BluetoothCommand {
 		//第6字节
 		//第7个字节
 		byte b = bytes[6];
-		if((byte)(b&0x40)==(byte)0x40){
-			/**
-			 * 这里将被改写成把状态位的值写到machine_status
-			 */
-			return true;
-		}
-		else
-			return false;
+		//取第六位的状态
+		machine_status.put("", (b&0x40)>>5);
+        //取第五位的状态
+		machine_status.put("", (b&0x20)>>4);
+        //取第三和四位的状态
+		machine_status.put("", (b&0x18)>>2);
 
 		//第8字节
 		//第9字节
+		
+		return true;
 	}
 
 	/**
