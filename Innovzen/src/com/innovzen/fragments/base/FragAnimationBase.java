@@ -25,6 +25,7 @@ import com.innovzen.handlers.DrawerRightHandler;
 import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.handlers.ExerciseManager;
 import com.innovzen.handlers.FooterHandler;
+import com.innovzen.handlers.SyncExerciseManager;
 import com.innovzen.interfaces.FragmentOnBackPressInterface;
 import com.innovzen.ui.AnimationFactory;
 import com.innovzen.utils.LocalDbUtil;
@@ -127,6 +128,9 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
 //一个标志来指示方法animationCountdown是否应该继续,开始另一个1秒延迟
     /** A flag to indicate whether the method animationCountdown should continue and start another 1 sec delay */
     protected boolean mContinueCountdown = false;
+    
+    /**判断动画是否正在运行*/
+    protected boolean isAnimationRunning=false;
 
     /** The current second on which the countdown is on */
     protected int mCurCountdownSecond = 0;
@@ -374,7 +378,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
          */
         int voiceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_VOICE);
         int ambianceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
-        mExerciseManager = new ExerciseManager(this, animationHandler, super.activityListener, times, voiceSoundId, ambianceSoundId);
+        mExerciseManager = new SyncExerciseManager(this, animationHandler, super.activityListener, times, voiceSoundId, ambianceSoundId);
 
         /*
          * Based on the exercise type index, load the appropriate string in the "subtitle" section
@@ -419,6 +423,8 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         // Because we can cancel the start, we should wait and not
         if (mContinueCountdown) {
 
+        	isAnimationRunning=true;
+        	
             // Set the new value of the countdown
             countdown_tv.setText(mCurCountdownSecond + "");
 
@@ -432,7 +438,11 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
                     // If we've just finished "animating" second 1, then the next step is to stop and start the exercise
                     if (mCurCountdownSecond == 1) {
 
+                    	/**
+                    	 * Desmond
+                    	 */
                         startExercise();
+                    	//</Desmond>
 
                     } else {
 
@@ -456,6 +466,8 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
      */
     protected void pauseExercise() {
 
+    	isAnimationRunning=false;
+    	
         // In case we're counting down, set this flag so the method animateCountdown will know to stop
         mContinueCountdown = false;
 

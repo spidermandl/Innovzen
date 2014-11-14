@@ -7,6 +7,7 @@ import com.innovzen.utils.MyPreference;
 
 import android.R.integer;
 import android.content.Context;
+import android.util.Log;
 
 /**
  * 蓝牙命令
@@ -63,13 +64,13 @@ public class BluetoothCommand {
 	// 暂停
 	public static int PAUSE_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
 			PAUSE, 0x11, END_MACHINE };
-	// Blance命令
+	// Blance发送启动动画命令
 	public static int BLANCE_MACHINE_VALUES[] = { START_MACHINE,
 			ANDROID_TABLET, BALANCE, 0x11, END_MACHINE };
-	// Relax命令
+	// Relax发送启动动画命令
 	public static int RELAX_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
 			RELAX, 0x11, END_MACHINE };
-	// Performance命令
+	// Performance发送启动动画命令
 	public static int PERFORMANCE_MACHINE_VALUES[] = { START_MACHINE,
 			ANDROID_TABLET, PERFORMANCE, 0x11, END_MACHINE };
 	// breathe +命令
@@ -235,6 +236,11 @@ public class BluetoothCommand {
 	public static final int BREATHE_STATUS_VIGOR5=5;
 	public static final int BREATHE_STATUS_RETAIN1=6;
 	public static final int BREATHE_STATUS_RETAIN2=7;
+	
+	//机器初始化状态
+	public static final int INIT_POSITION_STATUS_INVALID=0;
+	public static final int INIT_POSITION_STATUS_VALID=1;
+	
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
 
@@ -307,6 +313,38 @@ public class BluetoothCommand {
 		}
 		mBluetoothService.write(src);
 	}
+	
+	private String printHX(byte b){
+		StringBuffer str=new StringBuffer();
+		int temp=(b&0x80)>>7;
+		str.append(temp);
+		temp=(b&0x40)>>6;
+		str.append(temp);
+		temp=(b&0x20)>>5;
+		str.append(temp);
+		temp=(b&0x10)>>4;
+		str.append(temp);
+		temp=(b&0x08)>>3;
+		str.append(temp);
+		temp=(b&0x04)>>2;
+		str.append(temp);
+		temp=(b&0x02)>>1;
+		str.append(temp);
+		temp=(b&0x01)>>0;
+		str.append(temp);
+		
+		return str.toString();
+	}
+	
+	public void printCommand(byte[] bytes){
+		StringBuffer print=new StringBuffer();
+		for(int i=0;i<bytes.length;i++){
+			print.append(printHX(bytes[i]))
+			.append(" ");
+		}
+		print.append("\r\n");
+		Log.e("返回指令", print.toString());
+	}
 	/**
 	 * 解析命令
 	 * 解析9个字节，并且把每个字节的状态写到machine_status
@@ -320,17 +358,17 @@ public class BluetoothCommand {
 		 */
 		byte b1 = bytes[1];
 		//取第6 5 4位的状态
-		machine_status.put(MACHINE_RUN_STATUS, (b1&0x70)>>3);
+		machine_status.put(MACHINE_RUN_STATUS, (b1&0x70)>>4);
 		//取第3 2 1位的状态
-		machine_status.put(MACHINE_MASSAGE_STATUS, (b1&0x0e)>>0);
+		machine_status.put(MACHINE_MASSAGE_STATUS, (b1&0x0e)>>1);
 		/**
 		 * 字节2
 		 */
 		byte b2 =bytes[2];
 		//取第6位的状态
-		machine_status.put(BUTTON_STATUS,(b2&0x40)>>5);
+		machine_status.put(BUTTON_STATUS,(b2&0x40)>>6);
 		//取第5 4 3 2位的状态
-		machine_status.put(WALKING_POSITION_STATUS,(b2&0x3c)>>1);
+		machine_status.put(WALKING_POSITION_STATUS,(b2&0x3c)>>2);
 		//取第1 0位的状态
 		machine_status.put(DIRECTION_STATUS,(b2&0x03)>>0);
 		/**
@@ -338,50 +376,51 @@ public class BluetoothCommand {
 		 */
 		byte b3 = bytes[3];
 		//取第5 4 3位的状态
-		machine_status.put(FOOT_STATUS,(b3&0x38)>>2);
+		machine_status.put(FOOT_STATUS,(b3&0x38)>>3);
 		//取第2 1 0位的状态
-		machine_status.put(BACK_STATUS,(b3&0x07)>>2);
+		machine_status.put(BACK_STATUS,(b3&0x07)>>0);
 		/**
 		 * 字节4
 		 */
 		byte b4 = bytes[4];
 		//取第6位的状态
-		machine_status.put(OXYGEN_STATUS,(b4&0x40)>>5);
+		machine_status.put(OXYGEN_STATUS,(b4&0x40)>>6);
 		//取第5位的状态
-		machine_status.put(SWING_STATUS,(b4&0x20)>>4);
+		machine_status.put(SWING_STATUS,(b4&0x20)>>5);
 		//取第4位的状态
-		machine_status.put(LED_STATUS,(b4&0x10)>>3);
+		machine_status.put(LED_STATUS,(b4&0x10)>>4);
 		//取第3位的状态
-		machine_status.put(HEAT_STATUS,(b4&0x08)>>2);
+		machine_status.put(HEAT_STATUS,(b4&0x08)>>3);
 		//取第2位的状态
-		machine_status.put(BLUETOOTH_STATUS,(b4&0x04)>>1);
+		machine_status.put(BLUETOOTH_STATUS,(b4&0x04)>>2);
 		//取第1 0位的状态
-		machine_status.put(ZERO_STATUS,(b4&0x03)>>0);
+		machine_status.put(ZERO_STATUS,(b4&0x03)>>1);
 		/**
 		 * 字节5
 		 */
 		byte b5 = bytes[5];
 		//取第6位的状态
-		machine_status.put(PULSE_STATUS,(b5&0x40)>>5);
+		machine_status.put(PULSE_STATUS,(b5&0x40)>>6);
 		/**
 		 * 字节6
 		 */
 		byte b6 = bytes[6];
 		//取第6位的状态
-		machine_status.put(PULSE_STATUS,(b6&0x40)>>5);
+		machine_status.put(PULSE_STATUS,(b6&0x40)>>6);
 		/**
 		 * 字节7
 		 */
 		byte b7 = bytes[7];
 		//取第6位的状态
-		machine_status.put(INIT_POSITION_STATUS,(b7&0x40)>>5);
+		machine_status.put(INIT_POSITION_STATUS,(b7&0x40)>>6);
 		//取第5位的状态
-		machine_status.put(PAUSE_STATUS,(b7&0x20)>>4);
+		machine_status.put(PAUSE_STATUS,(b7&0x20)>>5);
 		//取第4 3位的状态
-		machine_status.put(BUZZER_STATUS,(b7&0x18)>>2);
+		machine_status.put(BUZZER_STATUS,(b7&0x18)>>3);
 		//取第2 1 0位的状态
 		machine_status.put(BREATHE_STATUS,(b7&0x07));
 		
+		Log.e("第八字节", printHX(b7));
 		return true;
 	}
 

@@ -1,5 +1,6 @@
 package com.innovzen.activities;
 
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.innovzen.o2chair.R;
@@ -127,13 +129,23 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		        	 * 如按钮选中状态改变
 		        	 * 如动画播放和停止等
 		        	 */
-	        		 if(IS_TABLET){    			
+	        		 if(IS_TABLET){    	
+	        			//mBluetoothCommand.printCommand(readBuf);
+	        			//初始位
 	        			Integer value= mBluetoothCommand.machine_status.get(mBluetoothCommand.INIT_POSITION_STATUS);
-	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.INIT_POSITION_STATUS,value);
-                        
-	        			value =mBluetoothCommand.machine_status.get(mBluetoothCommand.ZERO_STATUS);      			 
-	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.ZERO_STATUS,value);
-	        			 
+	        			//Log.e("INIT_POSITION_STATUS", value+"");
+	        			HashMap<Integer, Integer> map=new HashMap<Integer, Integer>();
+	        			map.put(mBluetoothCommand.INIT_POSITION_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.INIT_POSITION_STATUS));
+	        			map.put(mBluetoothCommand.DIRECTION_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.DIRECTION_STATUS));
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.INIT_POSITION_STATUS,map);
+                        //零重力
+	        			map.put(mBluetoothCommand.ZERO_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.ZERO_STATUS));      			 
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.ZERO_STATUS,map);
+	        			//动画行位比例
+	        			map.put(mBluetoothCommand.WALKING_POSITION_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.WALKING_POSITION_STATUS));
+	        			map.put(mBluetoothCommand.DIRECTION_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.DIRECTION_STATUS));
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.WALKING_POSITION_STATUS,map);
+	    
 	        		 }
 		        
 		        }
