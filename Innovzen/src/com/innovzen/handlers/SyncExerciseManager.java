@@ -3,7 +3,9 @@ package com.innovzen.handlers;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 
+import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
+import com.innovzen.entities.SoundItem;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.interfaces.FragmentCommunicator;
 
@@ -14,6 +16,8 @@ import com.innovzen.interfaces.FragmentCommunicator;
  */
 public class SyncExerciseManager extends ExerciseManager{
 
+	private float mFraction;
+	
 	public SyncExerciseManager(FragAnimationBase fragmentAnimation,
 			ExerciseAnimationHandler animationHandler,
 			FragmentCommunicator soundHandler, ExerciseTimes times,
@@ -68,6 +72,11 @@ public class SyncExerciseManager extends ExerciseManager{
 	}
 	
 	@Override
+	public void start(float fraction) {
+		mFraction=fraction;
+		start();
+	}
+	@Override
 	public void startValueAnimator(float start, float end,
 			AnimatorUpdateListener updateListener, int duration) {
         // Cancel and reset any previously started animations and/or set values
@@ -79,8 +88,8 @@ public class SyncExerciseManager extends ExerciseManager{
         mValueAnimator = ValueAnimator.ofFloat(start, end);
         mValueAnimator.addUpdateListener(updateListener);
         mValueAnimator.setDuration(duration);
-
-        updateListener.onAnimationUpdate(mValueAnimator);
+		
+        startAppropriateExerciseType(mFraction);
 	}
 	
 	@Override
@@ -121,25 +130,122 @@ public class SyncExerciseManager extends ExerciseManager{
 	
 	@Override
 	protected void inhale(float fraction, float globalFraction) {
-		// TODO Auto-generated method stub
-		super.inhale(fraction, globalFraction);
+		// Start appropriate sounds
+        playSounds(SoundItem.INSPIREZ, mTimes.inhale);
+
+        // Set the volume of the ambiance sound
+        setAmbianceVolume(fraction);
+
+        // Render animation frame
+        mAnimationHandler.inhale(fraction, globalFraction);
+
+        // If step animation ended
+        if (fraction == 1f) {
+            // Set the flag to point to the next appropriate step
+            mCurExercise = EXERCISE_HOLD_INHALE;
+
+//            // Restart the value animator
+//            if (mTimes.holdInhale == 1000) {
+//                startValueAnimator(2000); // HACK. FORCE IT TO BE AT LEAST 2 SEC
+//            } else {
+//                startValueAnimator(mTimes.holdInhale);
+//            }
+
+            // Reset the flag that indicates if we've started the sounds for the new step
+            mPlayedSounds = false;
+
+        }
 	}
 	
 	@Override
 	protected void holdExhale(float fraction, float globalFraction) {
-		// TODO Auto-generated method stub
-		super.holdExhale(fraction, globalFraction);
+		if (mTimes.holdExhale > 0) {
+            // Start appropriate sounds
+            playSounds(SoundItem.RETENEZ, mTimes.holdExhale);
+
+            // Set the volume of the ambiance sound
+            setAmbianceVolume(fraction);
+        }
+
+        // Render animation frame
+        mAnimationHandler.holdExhale(fraction, globalFraction);
+
+        // If step animation ended
+        if (fraction == 1f) {
+            // Set the flag to point to the next appropriate step
+            mCurExercise = EXERCISE_INHALE;
+
+            // Restart the value animator
+            //startValueAnimator(mTimes.inhale);
+
+            // Reset the flag that indicates if we've started the sounds for the new step
+            mPlayedSounds = false;
+
+        }
 	}
 	
 	@Override
 	protected void exhale(float fraction, float globalFraction) {
-		// TODO Auto-generated method stub
-		super.exhale(fraction, globalFraction);
+		// Start appropriate sounds
+        playSounds(SoundItem.EXPIREZ, mTimes.exhale);
+
+        // Set the volume of the ambiance sound
+        setAmbianceVolume(fraction);
+
+        // Render animation frame
+        mAnimationHandler.exhale(fraction, globalFraction);
+
+        // If step animation ended
+        if (fraction == 1f) {
+
+            // Check if the entire exercise is done. If so, then stop here
+            if (globalFraction == 1f) {
+
+                reset(true);
+
+                return;
+            }
+
+            // Set the flag to point to the next appropriate step
+            mCurExercise = EXERCISE_HOLD_EXHALE;
+
+            // Restart the value animator
+            if (mTimes.holdExhale == 1000) {
+                startValueAnimator(2000); // HACK. FORCE IT TO BE AT LEAST 2 SEC
+            } else {
+                startValueAnimator(mTimes.holdExhale);
+            }
+
+            // Reset the flag that indicates if we've started the sounds for the new step
+            mPlayedSounds = false;
+
+        }
 	}
 	
 	@Override
 	protected void holdInhale(float fraction, float globalFraction) {
-		// TODO Auto-generated method stub
-		super.holdInhale(fraction, globalFraction);
+		if (mTimes.holdInhale > 0) {
+            // Start appropriate sounds
+            playSounds(SoundItem.RETENEZ, mTimes.holdInhale);
+
+            // Set the volume of the ambiance sound
+            setAmbianceVolume(fraction);
+        }
+
+        // Render animation frame
+        mAnimationHandler.holdInhale(fraction, globalFraction);
+
+        // If step animation ended
+        if (fraction == 1f) {
+            // Set the flag to point to the next appropriate step
+            mCurExercise = EXERCISE_EXHALE;
+
+            // Restart the value animator
+            startValueAnimator(mTimes.exhale);
+
+            // Reset the flag that indicates if we've started the sounds for the new step
+            mPlayedSounds = false;
+
+        }
 	}
 }

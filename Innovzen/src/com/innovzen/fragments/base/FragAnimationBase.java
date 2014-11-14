@@ -378,8 +378,13 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
          */
         int voiceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_VOICE);
         int ambianceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
-        mExerciseManager = new SyncExerciseManager(this, animationHandler, super.activityListener, times, voiceSoundId, ambianceSoundId);
-
+        mExerciseManager = 
+        		/**
+        		 * Desmond
+        		 */
+        		//new ExerciseManager(this, animationHandler, super.activityListener, times, voiceSoundId, ambianceSoundId);
+        		new SyncExerciseManager(this, animationHandler, super.activityListener, times, voiceSoundId, ambianceSoundId);
+        //</Desmond>
         /*
          * Based on the exercise type index, load the appropriate string in the "subtitle" section
          */

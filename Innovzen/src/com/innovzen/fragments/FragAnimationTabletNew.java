@@ -91,8 +91,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					switch (direction) {
 					case BluetoothCommand.DIRECTION_STATUS_DOWN:
 						walkingStatus=1-map.get(BluetoothCommand.WALKING_POSITION_STATUS)/12;
-					
-						mExerciseManager.start();
+						walkingStatus=walkingStatus<0?0:walkingStatus;
+						walkingStatus=walkingStatus>1?1:walkingStatus;
+						mExerciseManager.start(walkingStatus);
 						break;
 					case BluetoothCommand.DIRECTION_STATUS_RETAIN:
 
@@ -102,12 +103,13 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 						break;
 					case BluetoothCommand.DIRECTION_STATUS_UP:
 						walkingStatus=map.get(BluetoothCommand.WALKING_POSITION_STATUS)/12;
+						walkingStatus=walkingStatus<0?0:walkingStatus;
+						walkingStatus=walkingStatus>1?1:walkingStatus;
+						mExerciseManager.start(walkingStatus);
 						break;
 					default:
 						break;
 					}
-					walkingStatus=walkingStatus<0?0:walkingStatus;
-					walkingStatus=walkingStatus>1?1:walkingStatus;
 
 				}
 				break;

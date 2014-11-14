@@ -192,7 +192,9 @@ public class ExerciseManager {
 
     }
 
-    
+    public void start(float fraction){
+    	start();
+    }
     /**
      * Stops everything in its tracks.
      * 
@@ -517,7 +519,7 @@ public class ExerciseManager {
      *            current step duration. Value in milliseconds
      * @author MAB
      */
-    private void playSounds(int soundType, int curStepDuration) {
+    protected void playSounds(int soundType, int curStepDuration) {
 
         if (!mPlayedSounds) {
 
@@ -543,7 +545,7 @@ public class ExerciseManager {
      * @param stepTimeFraction
      * @author MAB
      */
-    private void setAmbianceVolume(float stepTimeFraction) {
+    protected void setAmbianceVolume(float stepTimeFraction) {
         if (mSoundHandler != null) {
 
             // In case the voice sound is turned on as well, limit the ambiance to half of it's volume
