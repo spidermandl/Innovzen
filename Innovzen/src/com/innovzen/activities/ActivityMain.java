@@ -145,7 +145,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	        			map.put(mBluetoothCommand.WALKING_POSITION_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.WALKING_POSITION_STATUS));
 	        			map.put(mBluetoothCommand.DIRECTION_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.DIRECTION_STATUS));
 	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.WALKING_POSITION_STATUS,map);
-	    
+	        			map.put(mBluetoothCommand.PAUSE_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.PAUSE_STATUS));
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.PAUSE_STATUS,map);
 	        		 }
 		        
 		        }
@@ -160,6 +161,16 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		        		HashMap<Integer, Integer> map=new HashMap<Integer, Integer>();
 		        		map.put(mBluetoothCommand.OXYGEN_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.OXYGEN_STATUS));
 		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.OXYGEN_STATUS,map);
+		        		map.put(mBluetoothCommand.LED_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.LED_STATUS));
+		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.LED_STATUS,map);
+		        		map.put(mBluetoothCommand.SWING_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.SWING_STATUS));
+		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.SWING_STATUS,map);
+		        		map.put(mBluetoothCommand.HEAT_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.HEAT_STATUS));
+		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.HEAT_STATUS,map);
+		        		map.put(mBluetoothCommand.BLUETOOTH_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.BLUETOOTH_STATUS));
+		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.BLUETOOTH_STATUS,map);
+		        		map.put(mBluetoothCommand.PULSE_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.PULSE_STATUS));
+		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.PULSE_STATUS,map);
 		        	}
 		        }
 				

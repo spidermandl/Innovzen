@@ -55,7 +55,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 */
 	private RelativeLayout.LayoutParams inAnimLayoutParam, fullAnimLayoutParam;
 
-	private ImageView backRestUp,backRestDown,footUp,footDown,zero;
+	private ImageView backRestUp,backRestDown,footUp,footDown,zero,pause;
 
 	Handler machineHandler = new Handler() {
 		@Override
@@ -72,9 +72,14 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					overlayBtnPressed();
 				break;
 			case BluetoothCommand.PAUSE_STATUS:
-				if(map.get(BluetoothCommand.PAUSE_STATUS)!=null&&map.get(BluetoothCommand.PAUSE_STATUS)==1)//这个地方的1要和BluetoothCommand里的一个常量对应
+				if(map.get(BluetoothCommand.PAUSE_STATUS)!=null&&map.get(BluetoothCommand.PAUSE_STATUS)==BluetoothCommand.PAUSE_STATUS_OFF)//这个地方的1要和BluetoothCommand里的一个常量对应
+				{
+					pause.setBackgroundResource(R.drawable.selector_btn_pause);
+				}else{
 					endAnimationPressed();
-				break;
+					pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
+				}
+					break;
 			case BluetoothCommand.ZERO_STATUS://控制Zero按键状态
 				if(map.get(BluetoothCommand.ZERO_STATUS)!=null&&map.get(BluetoothCommand.ZERO_STATUS)==BluetoothCommand.ZERO_STATUS_CLOSE){
 					int valuesss = map.get(BluetoothCommand.ZERO_STATUS);
@@ -246,7 +251,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		view.findViewById(R.id.main_animation_help).setOnClickListener(this);
 		// <chy> settins监听事件
 		view.findViewById(R.id.animation_fullscreen).setOnClickListener(this);
-		view.findViewById(R.id.main_animation_pause).setOnClickListener(this);
+		pause =(ImageView) view.findViewById(R.id.main_animation_pause);
+		pause.setOnClickListener(this);
 		view.findViewById(R.id.main_animation_start).setOnClickListener(this);
 		view.findViewById(R.id.main_animation_stop).setOnClickListener(this);
 		view.findViewById(R.id.animation_play_overlay_btn).setOnClickListener(

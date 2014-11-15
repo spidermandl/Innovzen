@@ -243,6 +243,24 @@ public class BluetoothCommand {
 	//Oxygen初始化状态
 	public static final int OXYGEN_STATUS_OFF=0;
 	public static final int OXYGEN_STATUS_ON=1;
+	//Led初始化状态
+	public static final int LED_STATUS_OFF=0;
+	public static final int LED_STATUS_ON=1;
+	//Swing初始化状态
+	public static final int SWING_STATUS_OFF=0;
+	public static final int SWING_STATUS_ON=1;
+	//Heat初始化状态
+	public static final int HEAT_STATUS_OFF=0;
+	public static final int HEAT_STATUS_ON=1;
+	//Bluetooth初始化状态
+	public static final int BLUETOOTH_STATUS_OFF=0;
+	public static final int BLUETOOTH_STATUS_ON=1;
+	//Pulse初始化状态
+	public static final int PULSE_STATUS_OFF=0;
+	public static final int PULSE_STATUS_ON=1;
+	//Pause初始化状态
+	public static final int PAUSE_STATUS_OFF=0;
+	public static final int PAUSE_STATUS_ON=1;
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
 
@@ -264,17 +282,17 @@ public class BluetoothCommand {
 			put(WALKING_POSITION_STATUS, WALKING_POSITION_STATUS1);
 			put(FOOT_STATUS, FOOT_STATUS_STOP);
 			put(BACK_STATUS, BACK_STATUS_STOP);
-			put(INIT_POSITION_STATUS, 0);
-			put(PAUSE_STATUS, INIT_POSITION_STATUS_INVALID);
+			put(INIT_POSITION_STATUS, INIT_POSITION_STATUS_INVALID);
+			put(PAUSE_STATUS,PAUSE_STATUS_OFF);
 			put(BUZZER_STATUS, BUZZER_STATUS_SIlENCE);
 			put(BREATHE_STATUS, BREATHE_STATUS_VIGOR1);
-			put(PULSE_STATUS, 0);
+			put(PULSE_STATUS, PULSE_STATUS_OFF);
 			put(OXYGEN_STATUS, OXYGEN_STATUS_OFF);
-			put(SWING_STATUS, 0);
-			put(LED_STATUS, 0);
-			put(HEAT_STATUS, 0);
-			put(LED_STATUS, 0);
-			put(BLUETOOTH_STATUS, 0);
+			put(SWING_STATUS, SWING_STATUS_OFF);
+			put(LED_STATUS, LED_STATUS_OFF);
+			put(HEAT_STATUS, HEAT_STATUS_OFF);
+			put(LED_STATUS, LED_STATUS_OFF);
+			put(BLUETOOTH_STATUS, BLUETOOTH_STATUS_OFF);
 			put(ZERO_STATUS, ZERO_STATUS_CLOSE);
 			
 		}

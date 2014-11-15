@@ -22,7 +22,7 @@ import com.innovzen.utils.MyPreference;
 public class FragSettings extends FragBase implements OnClickListener{
 //FragBase  ¸ÄÎª¼Ì³ÐFragAnimationBase
 	private TextView myMinutes;
-	private ImageView oxygen,swing,led,heat,bluetooth;
+	private ImageView oxygen,swing,led,heat,bluetooth,pulse;
 
 	Handler machineHandler = new Handler() {
 		@Override
@@ -34,9 +34,44 @@ public class FragSettings extends FragBase implements OnClickListener{
 					oxygen.setBackgroundResource(R.drawable.selector_icon_o2);
 				}else{
 					oxygen.setBackgroundResource(R.drawable.btn_o2_activated);
-				}
+				}				
+				break;	
+			case BluetoothCommand.LED_STATUS:
+				if(map.get(BluetoothCommand.LED_STATUS)!=null&&map.get(BluetoothCommand.LED_STATUS)==BluetoothCommand.LED_STATUS_OFF){
+					led.setBackgroundResource(R.drawable.selector_icon_leds);
+				}else{
+					led.setBackgroundResource(R.drawable.btn_leds_activated);
+				}	
+				break;
+			case BluetoothCommand.SWING_STATUS:
+				if(map.get(BluetoothCommand.SWING_STATUS)!=null&&map.get(BluetoothCommand.SWING_STATUS)==BluetoothCommand.SWING_STATUS_OFF){
+					swing.setBackgroundResource(R.drawable.selector_icon_swing);
+				}else{
+					swing.setBackgroundResource(R.drawable.btn_swing_activated);
+				}	
+				break;
+			case BluetoothCommand.HEAT_STATUS:
+				if(map.get(BluetoothCommand.HEAT_STATUS)!=null&&map.get(BluetoothCommand.HEAT_STATUS)==BluetoothCommand.HEAT_STATUS_OFF){
+					heat.setBackgroundResource(R.drawable.selector_icon_heat);
+				}else{
+					heat.setBackgroundResource(R.drawable.btn_heat_activated);
+				}	
+				break;
+			case BluetoothCommand.BLUETOOTH_STATUS:
+				if(map.get(BluetoothCommand.BLUETOOTH_STATUS)!=null&&map.get(BluetoothCommand.BLUETOOTH_STATUS)==BluetoothCommand.BLUETOOTH_STATUS_OFF){
+					heat.setBackgroundResource(R.drawable.selector_icon_heat);
+				}else{
+					heat.setBackgroundResource(R.drawable.btn_heat_activated);
+				}	
+				break;
+			case BluetoothCommand.PULSE_STATUS:
+				if(map.get(BluetoothCommand.PULSE_STATUS)!=null&&map.get(BluetoothCommand.PULSE_STATUS)==BluetoothCommand.PULSE_STATUS_OFF){
+					pulse.setBackgroundResource(R.drawable.selector_icon_pulse);
+				}else{
+					pulse.setBackgroundResource(R.drawable.btn_pulse_activated);
+				}	
+				break;
 				
-				break;		
 			}
 		}
 	};
@@ -147,6 +182,8 @@ public class FragSettings extends FragBase implements OnClickListener{
 		heat.setOnClickListener(this);
 		bluetooth = (ImageView) view.findViewById(R.id.set_bluetooth);
 		bluetooth.setOnClickListener(this);
+		pulse = (ImageView) view.findViewById(R.id.set_pulse);
+		pulse.setOnClickListener(this);
 	}
 	
 	@Override
