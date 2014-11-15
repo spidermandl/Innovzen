@@ -154,8 +154,13 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				 */
 		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragSettings")) {
 		        	/**
-		        	 * 功能同上
+		        	 * 这里更新  FragSetting里功能按钮的状态	        	
 		        	 */
+		        	if(IS_TABLET){
+		        		HashMap<Integer, Integer> map=new HashMap<Integer, Integer>();
+		        		map.put(mBluetoothCommand.OXYGEN_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.OXYGEN_STATUS));
+		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.OXYGEN_STATUS,map);
+		        	}
 		        }
 				
 				break;

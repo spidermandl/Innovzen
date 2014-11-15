@@ -1,6 +1,10 @@
 package com.innovzen.fragments;
 
+import java.util.HashMap;
+
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +24,22 @@ public class FragSettings extends FragBase implements OnClickListener{
 	private TextView myMinutes;
 	private ImageView oxygen,swing,led,heat,bluetooth;
 
+	Handler machineHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			HashMap<Integer, Integer> map = (HashMap<Integer, Integer>)msg.obj;
+			switch (msg.what) {
+			case BluetoothCommand.OXYGEN_STATUS:
+				if(map.get(BluetoothCommand.OXYGEN_STATUS)!=null&&map.get(BluetoothCommand.OXYGEN_STATUS)==BluetoothCommand.OXYGEN_STATUS_OFF){
+					oxygen.setBackgroundResource(R.drawable.selector_icon_o2);
+				}else{
+					oxygen.setBackgroundResource(R.drawable.btn_o2_activated);
+				}
+				
+				break;		
+			}
+		}
+	};
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -96,6 +116,10 @@ public class FragSettings extends FragBase implements OnClickListener{
 		case R.id.set_led:
 			super.activityListener.fragSendCommand(BluetoothCommand.LED_MACHINE_VALUES);
 			break;
+		case R.id.set_bluetooth:
+			super.activityListener.fragConnectBluetooth();
+			
+			break;
 		default:
 			break;
 		}
@@ -122,6 +146,7 @@ public class FragSettings extends FragBase implements OnClickListener{
 		heat = (ImageView) view.findViewById(R.id.set_heat);
 		heat.setOnClickListener(this);
 		bluetooth = (ImageView) view.findViewById(R.id.set_bluetooth);
+		bluetooth.setOnClickListener(this);
 	}
 	
 	@Override
@@ -130,6 +155,16 @@ public class FragSettings extends FragBase implements OnClickListener{
 		leftTop.setBackgroundResource(R.drawable.selector_btn_back);
 		leftMid.setBackgroundResource(R.drawable.banner_settings);
 		leftBottom.setBackgroundResource(R.drawable.selector_btn_volume);
+	}
+	/**
+	 * ∑¢ÀÕ√¸¡Ó
+	 * @param command
+	 */
+	public void sendMachineMessage(int command,HashMap<Integer, Integer> bundle){
+		Message msg=new Message();
+		msg.what=command;
+		msg.obj=bundle;
+		machineHandler.sendMessage(msg);
 	}
 
 }

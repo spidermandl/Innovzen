@@ -76,7 +76,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					endAnimationPressed();
 				break;
 			case BluetoothCommand.ZERO_STATUS://¿ØÖÆZero°´¼ü×´Ì¬
-				if(map.get(BluetoothCommand.ZERO_STATUS_CLOSE)!=null&&map.get(BluetoothCommand.ZERO_STATUS_CLOSE)==BluetoothCommand.ZERO_STATUS_CLOSE){
+				if(map.get(BluetoothCommand.ZERO_STATUS)!=null&&map.get(BluetoothCommand.ZERO_STATUS)==BluetoothCommand.ZERO_STATUS_CLOSE){
+					int valuesss = map.get(BluetoothCommand.ZERO_STATUS);
+					System.out.println(valuesss);
 					zero.setBackgroundResource(R.drawable.selector_btn_gravity);
 				}else{
 					zero.setBackgroundResource(R.drawable.btn_gravity_activated);

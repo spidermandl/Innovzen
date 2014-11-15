@@ -240,7 +240,9 @@ public class BluetoothCommand {
 	//机器初始化状态
 	public static final int INIT_POSITION_STATUS_INVALID=0;
 	public static final int INIT_POSITION_STATUS_VALID=1;
-	
+	//Oxygen初始化状态
+	public static final int OXYGEN_STATUS_OFF=0;
+	public static final int OXYGEN_STATUS_ON=1;
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
 
@@ -263,11 +265,11 @@ public class BluetoothCommand {
 			put(FOOT_STATUS, FOOT_STATUS_STOP);
 			put(BACK_STATUS, BACK_STATUS_STOP);
 			put(INIT_POSITION_STATUS, 0);
-			put(PAUSE_STATUS, 0);
+			put(PAUSE_STATUS, INIT_POSITION_STATUS_INVALID);
 			put(BUZZER_STATUS, BUZZER_STATUS_SIlENCE);
 			put(BREATHE_STATUS, BREATHE_STATUS_VIGOR1);
 			put(PULSE_STATUS, 0);
-			put(OXYGEN_STATUS, 0);
+			put(OXYGEN_STATUS, OXYGEN_STATUS_OFF);
 			put(SWING_STATUS, 0);
 			put(LED_STATUS, 0);
 			put(HEAT_STATUS, 0);
@@ -394,7 +396,7 @@ public class BluetoothCommand {
 		//取第2位的状态
 		machine_status.put(BLUETOOTH_STATUS,(b4&0x04)>>2);
 		//取第1 0位的状态
-		machine_status.put(ZERO_STATUS,(b4&0x03)>>1);
+		machine_status.put(ZERO_STATUS,(b4&0x03)>>0);
 		/**
 		 * 字节5
 		 */
@@ -420,7 +422,7 @@ public class BluetoothCommand {
 		//取第2 1 0位的状态
 		machine_status.put(BREATHE_STATUS,(b7&0x07));
 		
-		Log.e("第八字节", printHX(b7));
+		Log.e("第5字节", printHX(b4));
 		return true;
 	}
 
