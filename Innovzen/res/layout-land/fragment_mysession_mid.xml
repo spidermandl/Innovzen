@@ -5,147 +5,188 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/background"
-    android:gravity="center_horizontal"
-     >
- <com.innovzen.ui.MeasureView
+    android:gravity="center_horizontal" >
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_left_vertical_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-          android:layout_alignParentLeft="true"    
+        android:layout_alignParentLeft="true"
         layout:orientation="true"
         layout:rate_down="21"
         layout:rate_up="1" />
-  <com.innovzen.ui.MeasureView
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_left_vertical_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" 
-        android:layout_below="@id/mid_left_vertical_1"   
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/mid_left_vertical_1"
         layout:orientation="true"
         layout:rate_down="21"
         layout:rate_up="2" />
-   <com.innovzen.ui.MeasureView
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_left_vertical_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" 
-        android:layout_below="@id/mid_left_vertical_2"   
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/mid_left_vertical_2"
         layout:orientation="true"
         layout:rate_down="21"
         layout:rate_up="3" />
+
     <com.innovzen.ui.MeasureView
         android:id="@+id/mid_left_vertical_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" 
-        android:layout_below="@id/mid_left_vertical_3"   
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/mid_left_vertical_3"
         layout:orientation="true"
         layout:rate_down="21"
         layout:rate_up="12" />
-       <com.innovzen.ui.MeasureView
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_left_vertical_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" 
-        android:layout_below="@id/mid_left_vertical_4"   
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/mid_left_vertical_4"
         layout:orientation="true"
         layout:rate_down="21"
         layout:rate_up="3" />
-      <com.innovzen.ui.MeasureView
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" 
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/mid_left_vertical_1"
         layout:orientation="false"
         layout:rate_down="55"
-        layout:rate_up="2" />   
-       <com.innovzen.ui.MeasureView
+        layout:rate_up="2" />
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" 
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/mid_top_horizontal_1"
         layout:orientation="false"
         layout:rate_down="55"
-        layout:rate_up="12" /> 
-         <com.innovzen.ui.MeasureView
+        layout:rate_up="12" />
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" 
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/mid_top_horizontal_2"
         layout:orientation="false"
         layout:rate_down="55"
-        layout:rate_up="1" /> 
-         <com.innovzen.ui.MeasureView
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" 
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/mid_top_horizontal_3"
         layout:orientation="false"
         layout:rate_down="55"
-        layout:rate_up="12" /> 
-         <com.innovzen.ui.MeasureView
+        layout:rate_up="12" />
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" 
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/mid_top_horizontal_4"
         layout:orientation="false"
         layout:rate_down="55"
-        layout:rate_up="1" /> 
-         <com.innovzen.ui.MeasureView
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" 
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/mid_top_horizontal_5"
         layout:orientation="false"
         layout:rate_down="55"
-        layout:rate_up="12" /> 
-         <com.innovzen.ui.MeasureView
+        layout:rate_up="12" />
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" 
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/mid_top_horizontal_6"
         layout:orientation="false"
         layout:rate_down="55"
-        layout:rate_up="11" /> 
-         <com.innovzen.ui.MeasureView
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" 
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/mid_top_horizontal_7"
         layout:orientation="false"
         layout:rate_down="55"
-        layout:rate_up="12" /> 
-          <com.innovzen.ui.MeasureView
+        layout:rate_up="12" />
+
+    <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" 
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/mid_top_horizontal_8"
         layout:orientation="false"
         layout:rate_down="55"
-        layout:rate_up="2" /> 
-  
-       
-  
+        layout:rate_up="2" />
 
-        <ImageView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/mid_top_horizontal_2"
-            android:layout_alignRight="@id/mid_top_horizontal_2"
-            android:layout_alignTop="@id/mid_left_vertical_2"
-            android:layout_alignBottom="@id/mid_left_vertical_2"
-            android:background="@drawable/selector_icon_beginner"
-            />
-		
-    
-    
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_2"
+        android:layout_alignLeft="@id/mid_top_horizontal_2"
+        android:layout_alignRight="@id/mid_top_horizontal_2"
+        android:layout_alignTop="@id/mid_left_vertical_2"
+        android:background="@drawable/selector_icon_beginner" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_2"
+        android:layout_alignLeft="@id/mid_top_horizontal_3"
+        android:layout_alignRight="@id/mid_top_horizontal_4"
+        android:layout_alignTop="@id/mid_left_vertical_2"
+        android:background="@drawable/selector_icon_intermadiate" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_2"
+        android:layout_alignLeft="@id/mid_top_horizontal_5"
+        android:layout_alignRight="@id/mid_top_horizontal_6"
+        android:layout_alignTop="@id/mid_left_vertical_2"
+        android:background="@drawable/selector_icon_pro" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_2"
+        android:layout_alignLeft="@id/mid_top_horizontal_7"
+        android:layout_alignRight="@id/mid_top_horizontal_8"
+        android:layout_alignTop="@id/mid_left_vertical_2"
+        android:background="@drawable/selector_icon_customise" />
+     <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_4"
+        android:layout_alignLeft="@id/mid_top_horizontal_2"
+        android:layout_alignRight="@id/mid_top_horizontal_8"
+        android:layout_alignTop="@id/mid_left_vertical_4"
+        android:background="@drawable/time_beginner" />
 </RelativeLayout>

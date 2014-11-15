@@ -75,6 +75,7 @@
         android:padding="@dimen/grid_half_gap"
         />
       <ImageView
+          android:id="@+id/session_setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/top_horizontal_3"
@@ -84,7 +85,7 @@
         android:padding="@dimen/grid_half_gap"
          />
        <ImageView
-           android:id="@+id/top4"
+        android:id="@+id/session_help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/top_horizontal_4"
@@ -99,7 +100,7 @@
         android:layout_alignLeft="@id/top_horizontal_5"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@id/top_horizontal_5"
-        android:layout_alignBottom="@id/top4"
+        android:layout_alignBottom="@id/session_help"
         android:background="@drawable/selector_btn_gravity"
         android:padding="@dimen/grid_half_gap"
          />
