@@ -59,7 +59,8 @@ public class FragMain extends FragBase implements OnClickListener{
 			break;
 		case R.id.left_top:
 			//super.activityListener.fragConnectBluetooth();
-			
+			//¹Ø±Õ³ÌÐò
+			getActivity().finish();
 			break;
 		case R.id.left_bottom:
 			super.activityListener.fragGoToHelpNew(true);

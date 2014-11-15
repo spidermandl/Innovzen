@@ -590,6 +590,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	public List<SoundGroup> fragGetAmbiance() {
 		if (mSoundHandler != null) {
 			return mSoundHandler.getAmbiance();
+			
 		}
 
 		return null;

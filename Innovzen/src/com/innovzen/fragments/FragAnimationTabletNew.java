@@ -380,7 +380,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		super.initLefter(view);
 		myMinutes.setText(MyPreference.getInstance(this.getActivity())
 				.readString(MyPreference.TIME));
-
+         
 		leftTop.setBackgroundResource(R.drawable.selector_btn_back);
 		// 根据不同的按钮点击进入动画界面，leftmid显示不同的背景
 		String midBackground = MyPreference.getInstance(this.getActivity())
