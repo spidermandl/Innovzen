@@ -109,7 +109,7 @@
             android:layout_marginBottom="30dip"
             android:background="@drawable/icon_volum_less" />
         
-        <com.innovzen.fragments.VerticalSeekBar
+        <com.innovzen.ui.VerticalSeekBar
             android:id="@+id/mySeekBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

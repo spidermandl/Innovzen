@@ -322,7 +322,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
       //header = view.findViewById(R.id.reusable_header);
       //<Desmond>
         fullscreen_btn = (ImageView) view.findViewById(R.id.animation_fullscreen);
-    dummy_white_background_for_fullscreen = view.findViewById(R.id.animation_dummy_white_view_for_fullscreen);
+        dummy_white_background_for_fullscreen = view.findViewById(R.id.animation_dummy_white_view_for_fullscreen);
         countdown_tv = (TextView) view.findViewById(R.id.animation_countdown);
 
         // Set event listeners
@@ -382,8 +382,8 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         		/**
         		 * Desmond
         		 */
-        		//new ExerciseManager(this, animationHandler, super.activityListener, times, voiceSoundId, ambianceSoundId);
-        		new SyncExerciseManager(this, animationHandler, super.activityListener, times, voiceSoundId, ambianceSoundId);
+        		new ExerciseManager(this, animationHandler, super.activityListener, times, voiceSoundId, ambianceSoundId);
+        		//new SyncExerciseManager(this, animationHandler, super.activityListener, times, voiceSoundId, ambianceSoundId);
         //</Desmond>
         /*
          * Based on the exercise type index, load the appropriate string in the "subtitle" section
@@ -406,14 +406,29 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
     //加入动画 播放动画
     protected void animatePlayButton() {
 
-        AnimationFactory animFactory = new AnimationFactory();
+//        AnimationFactory animFactory = new AnimationFactory();
+//
+//        AnimationSet animSet = new AnimationSet(true);
+//        animSet.addAnimation(animFactory.getScaleAnimation(PLAY_BTN_ANIM_DURATION, PLAY_BTN_TO_SCALE, PLAY_BTN_TO_SCALE));
+//        animSet.addAnimation(animFactory.getFadeOutAnimation(PLAY_BTN_ANIM_DURATION));
+//        animSet.setAnimationListener(mPlayAnimListener);
+//
+//        play_overlay.startAnimation(animSet);
+        
+        // Hide the view immediately
+        hidePlayBtn();
 
-        AnimationSet animSet = new AnimationSet(true);
-        animSet.addAnimation(animFactory.getScaleAnimation(PLAY_BTN_ANIM_DURATION, PLAY_BTN_TO_SCALE, PLAY_BTN_TO_SCALE));
-        animSet.addAnimation(animFactory.getFadeOutAnimation(PLAY_BTN_ANIM_DURATION));
-        animSet.setAnimationListener(mPlayAnimListener);
+        // Set the flag so we'll know in the animateCountdown to start animating
+        mContinueCountdown = true;
 
-        play_overlay.startAnimation(animSet);
+        // Set the initial value of the countdown
+        mCurCountdownSecond = 3;
+
+        // Hide countdown in case it's visible
+        countdown_tv.setVisibility(View.VISIBLE);
+
+        // Start and animate the countdown
+        animateCountdown();
     }
 
     /**

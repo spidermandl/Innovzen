@@ -327,7 +327,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	/**
 	 * Desmond 判断蓝牙设备是否开启
 	 */
-	private boolean isBlueToothSetup() {
+	public boolean isBlueToothSetup() {
 		// 判断有无蓝牙设备
 		if (mBluetoothAdapter == null) {
 			Toast.makeText(this, R.string.bt_not_enabled_leaving, 1000).show();

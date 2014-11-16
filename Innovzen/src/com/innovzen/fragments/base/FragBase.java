@@ -16,9 +16,9 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.innovzen.fragments.VerticalSeekBar;
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.o2chair.R;
+import com.innovzen.ui.VerticalSeekBar;
 
 /**
  * fragment 父类 所有fragment共有属性
