@@ -70,6 +70,14 @@ public abstract class FragBase extends Fragment {
 		maxVolume = audiomanage.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 						
         volum_less = (ImageView) view.findViewById(R.id.volum_less);
+        volum_less.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				seekBar.setProgress(0);
+				
+			}
+		});
 		leftTop = (ImageView) view.findViewById(R.id.left_top);
 		leftMid = (LinearLayout) view.findViewById(R.id.left_mid);
 		leftBottom = (ImageView) view.findViewById(R.id.left_bottom);
@@ -115,8 +123,13 @@ public abstract class FragBase extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				getActivity().onBackPressed();
-
+				if(voice_progressbar.getVisibility()==View.VISIBLE){
+					voice_progressbar.setVisibility(View.INVISIBLE);
+					leftMid.setVisibility(View.VISIBLE);
+					leftBottom.setVisibility(View.VISIBLE);
+				}else{
+				   getActivity().onBackPressed();
+				}
 			}
 		});
 		// µã»÷ÇÐ»»Í¼Æ¬

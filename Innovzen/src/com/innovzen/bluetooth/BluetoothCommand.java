@@ -118,8 +118,24 @@ public class BluetoothCommand {
 	// Swing√¸¡Ó
 	public static int SWING_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
 			0x19, 0x11, END_MACHINE };
-	
-	
+	//5min√¸¡Ó
+	public static int TIME5_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
+		FIVE_MIN, 0x11, END_MACHINE };
+	//10min√¸¡Ó
+	public static int TIME10_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
+		TEN_MIN, 0x11, END_MACHINE };
+	//15min√¸¡Ó
+	public static int TIME15_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
+		FIFTEEN_MIN, 0x11, END_MACHINE };
+	//20min√¸¡Ó
+	public static int TIME20_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
+		TWENTY_MIN, 0x11, END_MACHINE };
+	//25min√¸¡Ó
+	public static int TIME25_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
+		TWENTY_FIVE_MIN, 0x11, END_MACHINE };
+	//30min√¸¡Ó
+	public static int TIME30_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
+		THIRTY_MIN, 0x11, END_MACHINE };
 	/**
 	 * Ω” ‹◊¥Ã¨
 	 */

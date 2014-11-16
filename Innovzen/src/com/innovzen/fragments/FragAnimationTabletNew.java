@@ -372,6 +372,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		}
 		super.countdown_tv.setPadding(
 				Util.getScreenDimensions(getActivity())[0] / 3, 0, 0, 0);
+		
 
 	}
 
@@ -380,7 +381,22 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		super.initLefter(view);
 		myMinutes.setText(MyPreference.getInstance(this.getActivity())
 				.readString(MyPreference.TIME));
-         
+		//像机器发送时间命令
+       if(myMinutes.equals(MyPreference.FIVE_MINUTES)){
+    	   super.activityListener.fragSendCommand(BluetoothCommand.TIME5_MACHINE_VALUES);
+       }else if(myMinutes.equals(MyPreference.TEN_MINUTES)){    	  
+    	   super.activityListener.fragSendCommand(BluetoothCommand.TIME10_MACHINE_VALUES);      	   
+       }else if(myMinutes.equals(MyPreference.FIFTEEN_MINUTES)){    	  
+    	   super.activityListener.fragSendCommand(BluetoothCommand.TIME15_MACHINE_VALUES);      	   
+       }else if(myMinutes.equals(MyPreference.TWENTY_MINUTES)){    	  
+    	   super.activityListener.fragSendCommand(BluetoothCommand.TIME20_MACHINE_VALUES);      	   
+       }else if(myMinutes.equals(MyPreference.TWENTY_FIVE_MINUTES)){    	  
+    	   super.activityListener.fragSendCommand(BluetoothCommand.TIME25_MACHINE_VALUES);      	   
+       }else if(myMinutes.equals(MyPreference.THIRTY_MINUTES)){    	  
+    	   super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);      	   
+       }
+       
+       
 		leftTop.setBackgroundResource(R.drawable.selector_btn_back);
 		// 根据不同的按钮点击进入动画界面，leftmid显示不同的背景
 		String midBackground = MyPreference.getInstance(this.getActivity())

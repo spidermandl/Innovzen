@@ -189,4 +189,12 @@
         android:layout_alignRight="@id/mid_top_horizontal_8"
         android:layout_alignTop="@id/mid_left_vertical_4"
         android:background="@drawable/time_beginner" />
+     <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_5"
+        android:layout_alignLeft="@id/mid_top_horizontal_2"
+        android:layout_alignRight="@id/mid_top_horizontal_8"
+        android:layout_alignTop="@id/mid_left_vertical_5"
+        android:background="@drawable/time_beginner" />
 </RelativeLayout>
