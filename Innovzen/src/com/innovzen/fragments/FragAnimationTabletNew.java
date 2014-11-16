@@ -185,9 +185,17 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// ¿ªÊ¼
 		case R.id.main_animation_start:
+			String blance_relax_performance=MyPreference.getInstance(getActivity()).readString(MyPreference.BLANCE_RELAX_PERFORMANCE);
+		if(blance_relax_performance.equals(MyPreference.BLANCE)){
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
-
+		}else if(blance_relax_performance.equals(MyPreference.RELAX)){
+			super.activityListener
+			.fragSendCommand(BluetoothCommand.RELAX_MACHINE_VALUES);
+		}else if(blance_relax_performance.equals(MyPreference.PERFORMANCE)){
+			super.activityListener
+			.fragSendCommand(BluetoothCommand.PERFORMANCE_MACHINE_VALUES);
+		}
 			// overlayPlayBtnPressed();
 
 			break;
