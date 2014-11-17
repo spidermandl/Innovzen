@@ -44,9 +44,9 @@ public class BluetoothCommand {
 	public static final int ZERO_GRAVITY = 0x1d;
 	public static final int BLUETOOTH_ON_OFF = 0x17;
 	public static final int TIME_MACHINE = 0x1e;
-	public static final int SWING = 0x19;
+	public static final int SWING = 0x1c;
 	public static final int OXYGEN = 0x1a;
-	public static final int LEDS = 0x1f;
+	public static final int LEDS = 0x17;
 	public static final int HEAT = 0x1b;
 	public static final int BRGINNER = 0x26;
 	public static final int INTERMEDIATE = 0x27;
@@ -114,10 +114,10 @@ public class BluetoothCommand {
 			0x1b, 0x11, END_MACHINE };
 	// Led命令
 	public static int LED_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
-			0x1f, 0x11, END_MACHINE };
+		LEDS, 0x11, END_MACHINE };
 	// Swing命令
 	public static int SWING_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
-			0x19, 0x11, END_MACHINE };
+		SWING, 0x11, END_MACHINE };
 	//5min命令
 	public static int TIME5_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
 		FIVE_MIN, 0x11, END_MACHINE };
@@ -136,6 +136,8 @@ public class BluetoothCommand {
 	//30min命令
 	public static int TIME30_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
 		THIRTY_MIN, 0x11, END_MACHINE };
+	public static int BLUETOOTH_MACHINE_VALUES[] = { START_MACHINE, ANDROID_TABLET,
+		BLUETOOTH_ON_OFF, 0x11, END_MACHINE };
 	/**
 	 * 接受状态
 	 */
@@ -456,7 +458,7 @@ public class BluetoothCommand {
 		//取第2 1 0位的状态
 		machine_status.put(BREATHE_STATUS,(b7&0x07));
 		
-		Log.e("第5字节", printHX(b4));
+		Log.e("第8字节", printHX(b7));
 		return true;
 	}
 
