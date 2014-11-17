@@ -10,12 +10,21 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
+import com.innovzen.utils.MyPreference;
 
 public class FragSession extends FragBase implements OnClickListener {
 
+
+	private ImageView back;
+	private ImageView setting;
+	private ImageView help;
+	private TextView min;
+	private ImageView zero;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,12 +37,37 @@ public class FragSession extends FragBase implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		
+		switch (v.getId()) {
+		case R.id.session_back:
+			getActivity().onBackPressed();
+			break;
+		case R.id.session_setting:
+			super.activityListener.fragGoToSetting(true);
+			break;
+		case R.id.session_help:
+			super.activityListener.fragGoToHelpNew(true);
+			break;
+		case R.id.session_zero:
+			super.activityListener.fragSendCommand(BluetoothCommand.ZERO_GRAVITY_MACHINE_VALUES);
+			break;
+		default:
+			break;
+		}
 	}
 
 	@Override
 	public void init(View view) {
-		
+		back = (ImageView) view.findViewById(R.id.session_back);
+		back.setOnClickListener(this);
+		setting = (ImageView) view.findViewById(R.id.session_setting);
+		setting.setOnClickListener(this);
+		help = (ImageView) view.findViewById(R.id.session_help);
+		help.setOnClickListener(this);
+		zero = (ImageView) view.findViewById(R.id.session_zero);
+		zero.setOnClickListener(this);
+		min = (TextView) view.findViewById(R.id.session_min);
+		String myTime = MyPreference.getInstance(getActivity()).readString(MyPreference.TIME);
+		min.setText(myTime);
 	}
 
 }

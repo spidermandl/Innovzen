@@ -1,97 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- chy My session界面 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:layout="http://schemas.android.com/apk/res/com.innovzen.o2chair"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/background"
-    android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:gravity="center_horizontal" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_left_vertical_1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:background="#63A3BC"
-        android:orientation="horizontal"
-        android:weightSum="4" >
-<ImageView 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    
-    />
+        android:layout_alignParentLeft="true"
+        layout:orientation="true"
+        layout:rate_down="21"
+        layout:rate_up="1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Intermadiate"
-             android:textSize="20sp"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Pro"
-             android:textSize="20sp"
-            android:textColor="#FFFFFF" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Customise"
-             android:textSize="20sp"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
-    <LinearLayout 
-         android:layout_width="match_parent"
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_left_vertical_2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal"
-        android:weightSum="4" 
-        >
-            <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Max 30 sec"
-            android:textColor="#FF000000"
-            />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/mid_left_vertical_1"
+        layout:orientation="true"
+        layout:rate_down="21"
+        layout:rate_up="2" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Max 30 sec"
-            android:textColor="#FF000000"
-             />
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_left_vertical_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/mid_left_vertical_2"
+        layout:orientation="true"
+        layout:rate_down="21"
+        layout:rate_up="3" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Max 30 sec"
-            android:textColor="#FF000000"
-            />
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_left_vertical_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/mid_left_vertical_3"
+        layout:orientation="true"
+        layout:rate_down="21"
+        layout:rate_up="12" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Max 30 sex"
-            android:textColor="#FF000000"
-            />
-        
-    </LinearLayout>
-    
-</LinearLayout>
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_left_vertical_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/mid_left_vertical_4"
+        layout:orientation="true"
+        layout:rate_down="21"
+        layout:rate_up="3" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_left_vertical_1"
+        layout:orientation="false"
+        layout:rate_down="55"
+        layout:rate_up="2" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_1"
+        layout:orientation="false"
+        layout:rate_down="55"
+        layout:rate_up="12" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_2"
+        layout:orientation="false"
+        layout:rate_down="55"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_3"
+        layout:orientation="false"
+        layout:rate_down="55"
+        layout:rate_up="12" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_4"
+        layout:orientation="false"
+        layout:rate_down="55"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_5"
+        layout:orientation="false"
+        layout:rate_down="55"
+        layout:rate_up="12" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_6"
+        layout:orientation="false"
+        layout:rate_down="55"
+        layout:rate_up="1" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_7"
+        layout:orientation="false"
+        layout:rate_down="55"
+        layout:rate_up="12" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_8"
+        layout:orientation="false"
+        layout:rate_down="55"
+        layout:rate_up="2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_2"
+        android:layout_alignLeft="@id/mid_top_horizontal_2"
+        android:layout_alignRight="@id/mid_top_horizontal_2"
+        android:layout_alignTop="@id/mid_left_vertical_2"
+        android:background="@drawable/selector_icon_beginner" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_2"
+        android:layout_alignLeft="@id/mid_top_horizontal_3"
+        android:layout_alignRight="@id/mid_top_horizontal_4"
+        android:layout_alignTop="@id/mid_left_vertical_2"
+        android:background="@drawable/selector_icon_intermadiate" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_2"
+        android:layout_alignLeft="@id/mid_top_horizontal_5"
+        android:layout_alignRight="@id/mid_top_horizontal_6"
+        android:layout_alignTop="@id/mid_left_vertical_2"
+        android:background="@drawable/selector_icon_pro" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_2"
+        android:layout_alignLeft="@id/mid_top_horizontal_7"
+        android:layout_alignRight="@id/mid_top_horizontal_8"
+        android:layout_alignTop="@id/mid_left_vertical_2"
+        android:background="@drawable/selector_icon_customise" />
+     <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_4"
+        android:layout_alignLeft="@id/mid_top_horizontal_2"
+        android:layout_alignRight="@id/mid_top_horizontal_8"
+        android:layout_alignTop="@id/mid_left_vertical_4"
+        android:background="@drawable/time_beginner" />
+     <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_5"
+        android:layout_alignLeft="@id/mid_top_horizontal_2"
+        android:layout_alignRight="@id/mid_top_horizontal_8"
+        android:layout_alignTop="@id/mid_left_vertical_5"
+        android:background="@drawable/time_beginner" />
+</RelativeLayout>

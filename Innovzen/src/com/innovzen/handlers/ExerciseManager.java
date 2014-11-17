@@ -1,5 +1,7 @@
 package com.innovzen.handlers;
 
+import java.security.KeyStore.ProtectionParameter;
+
 import adapters.AdapterSound;
 import android.animation.ValueAnimator;
 import android.text.Html;
@@ -18,54 +20,54 @@ public class ExerciseManager {
     public static final int EXERCISE_HOLD_EXHALE = 3;
 
     // Hold the fragment animation reference (so we can access methods/attributes more easily)
-    private FragAnimationBase mFragAnimation;
+    protected FragAnimationBase mFragAnimation;
 
     // Hold the 4 time values for the exercise
-    private ExerciseTimes mTimes;
+    protected ExerciseTimes mTimes;
 
     // Hold the animation handler
-    private ExerciseAnimationHandler mAnimationHandler;
+    protected ExerciseAnimationHandler mAnimationHandler;
 
     // Hold the fragment-activity communicator. Used mostly for the sound management
-    private FragmentCommunicator mSoundHandler;
+    protected FragmentCommunicator mSoundHandler;
 
     // Hold the current exercise type being run
-    private int mCurExercise = -1;
+    protected int mCurExercise = -1;
 
     // A flag to incidate whether the animation has been paused. If this is false, then it means that by starting the animation it will start from the beginning
-    private boolean hasPreviouslyBeenPaused = false;
+    protected boolean hasPreviouslyBeenPaused = false;
 
     // Hold the value animator
-    private ValueAnimator mValueAnimator;
+    protected ValueAnimator mValueAnimator;
 
     // Hold the fraction value received from the last time the value animator update listener was called
-    private float mLastFraction = -1;
+    protected float mLastFraction = -1;
 
     // Keep the timestamp when the animation had been started the very first time
-    private long mFirstStartAnimationTimestamp = -1;
+    protected long mFirstStartAnimationTimestamp = -1;
 
     // Keep the timestamp when the animation had been paused
-    private long mPausedAnimationTimestamp = -1;
+    protected long mPausedAnimationTimestamp = -1;
 
     // Hold the id of the voice and ambiance sounds selected by the user in the sound picker screen
-    private int mVoiceSoundId = -1;
-    private int mAmbianceSoundId = -1;
+    protected int mVoiceSoundId = -1;
+    protected int mAmbianceSoundId = -1;
 
     // Hold a flag to indicate whether we've started to play the sounds for the new step
     // Reset this flag every time a step is finished
-    private boolean mPlayedSounds = false;
+    protected boolean mPlayedSounds = false;
 
     /** The volume of the ambiance sound */
-    private float mAmbianceVolume = -1;
+    protected float mAmbianceVolume = -1;
 
     /**
      * The power used in calculating the ambiance sound based on the step time fraction.<br/>
      * It can be either 0.5f (meaning the ambiance sound will go just to half it's max sound) or 1f (ambiance sound will be maxed out)
      */
-    private float mAmbianceSoundFormulaPower = 1f;
+    protected float mAmbianceSoundFormulaPower = 1f;
 
     // Hold the inhale/exhale animation
-    private ValueAnimator.AnimatorUpdateListener mValueAnimatorListener = new ValueAnimator.AnimatorUpdateListener() {
+    protected ValueAnimator.AnimatorUpdateListener mValueAnimatorListener = new ValueAnimator.AnimatorUpdateListener() {
 
         @Override
         public void onAnimationUpdate(ValueAnimator animation) {
@@ -108,7 +110,7 @@ public class ExerciseManager {
      *            the amount of time already passed from the start of the current exercise step<br/>
      * @author MAB
      */
-    private void startAppropriateExerciseType(float fraction) {
+    protected void startAppropriateExerciseType(float fraction) {
 
         // Keep the fraction value. We'll need this for accurately keeping track of the globalTimeFraction
         mLastFraction = fraction;
@@ -190,6 +192,9 @@ public class ExerciseManager {
 
     }
 
+    public void start(float fraction){
+    	start();
+    }
     /**
      * Stops everything in its tracks.
      * 
@@ -329,7 +334,7 @@ public class ExerciseManager {
      *            the amount (as a fraction, %) already passed from the total time allocated for the exercise
      * @author MAB
      */
-    private void inhale(float fraction, float globalFraction) {
+    protected void inhale(float fraction, float globalFraction) {
 
         // Start appropriate sounds
         playSounds(SoundItem.INSPIREZ, mTimes.inhale);
@@ -368,7 +373,7 @@ public class ExerciseManager {
      *            the amount (as a fraction, %) already passed from the total time allocated for the exercise
      * @author MAB
      */
-    private void holdInhale(float fraction, float globalFraction) {
+    protected void holdInhale(float fraction, float globalFraction) {
 
         if (mTimes.holdInhale > 0) {
             // Start appropriate sounds
@@ -404,7 +409,7 @@ public class ExerciseManager {
      *            the amount (as a fraction, %) already passed from the total time allocated for the exercise
      * @author MAB
      */
-    private void exhale(float fraction, float globalFraction) {
+    protected void exhale(float fraction, float globalFraction) {
 
         // Start appropriate sounds
         playSounds(SoundItem.EXPIREZ, mTimes.exhale);
@@ -452,7 +457,7 @@ public class ExerciseManager {
      *            the amount (as a fraction, %) already passed from the total time allocated for the exercise
      * @author MAB
      */
-    private void holdExhale(float fraction, float globalFraction) {
+    protected void holdExhale(float fraction, float globalFraction) {
 
         if (mTimes.holdExhale > 0) {
             // Start appropriate sounds
@@ -484,7 +489,7 @@ public class ExerciseManager {
      * 
      * @author MAB
      */
-    private void readjustFirstStartTimestamp() {
+    protected void readjustFirstStartTimestamp() {
 
         // Get the current timestamp
         long curTimestamp = System.currentTimeMillis();
@@ -514,7 +519,7 @@ public class ExerciseManager {
      *            current step duration. Value in milliseconds
      * @author MAB
      */
-    private void playSounds(int soundType, int curStepDuration) {
+    protected void playSounds(int soundType, int curStepDuration) {
 
         if (!mPlayedSounds) {
 
@@ -540,7 +545,7 @@ public class ExerciseManager {
      * @param stepTimeFraction
      * @author MAB
      */
-    private void setAmbianceVolume(float stepTimeFraction) {
+    protected void setAmbianceVolume(float stepTimeFraction) {
         if (mSoundHandler != null) {
 
             // In case the voice sound is turned on as well, limit the ambiance to half of it's volume

@@ -401,6 +401,8 @@ public class BluetoothService {
         public void run() {
             Log.i(TAG, "BEGIN mConnectedThread");
             byte[] buffer = new byte[1024];
+            byte[] senders=new byte[9];
+            int index=0;
             int bytes;
 
             // Keep listening to the InputStream while connected
@@ -408,10 +410,27 @@ public class BluetoothService {
                 try {
                     // Read from the InputStream
                     bytes = mmInStream.read(buffer);
-
-                    // Send the obtained bytes to the UI Activity
-                    mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer)
-                            .sendToTarget();
+                    for(int i=0;i<bytes;i++){
+	                    if((buffer[i]&0xFF)==0xF0){
+	                    	index=0;
+	                    }
+	                    if((buffer[i]&0xFF)!=0xF0&&index==0){
+	                    	continue;
+	                    }
+	                    if(((buffer[i]&0xFF)==0xF1&&index!=8)||(buffer[i]&0xFF)!=0xF1&&index==8){
+	                    	index=0;
+	                    	continue;
+	                    }
+	                    senders[index]=buffer[i];
+	                    // Send the obtained bytes to the UI Activity
+	                    if(index==8){
+	                    	mHandler.obtainMessage(MESSAGE_READ, senders.length, -1, senders)
+	                            .sendToTarget();
+	                    	index=0;
+	                    }else{
+	                    	index++;
+	                    }
+                    }
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
                     connectionLost();

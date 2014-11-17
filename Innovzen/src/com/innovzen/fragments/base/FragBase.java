@@ -16,9 +16,9 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.innovzen.fragments.VerticalSeekBar;
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.o2chair.R;
+import com.innovzen.ui.VerticalSeekBar;
 
 /**
  * fragment 父类 所有fragment共有属性
@@ -70,6 +70,14 @@ public abstract class FragBase extends Fragment {
 		maxVolume = audiomanage.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 						
         volum_less = (ImageView) view.findViewById(R.id.volum_less);
+        volum_less.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				seekBar.setProgress(0);
+				
+			}
+		});
 		leftTop = (ImageView) view.findViewById(R.id.left_top);
 		leftMid = (LinearLayout) view.findViewById(R.id.left_mid);
 		leftBottom = (ImageView) view.findViewById(R.id.left_bottom);
@@ -115,8 +123,13 @@ public abstract class FragBase extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				getActivity().onBackPressed();
-
+				if(voice_progressbar.getVisibility()==View.VISIBLE){
+					voice_progressbar.setVisibility(View.INVISIBLE);
+					leftMid.setVisibility(View.VISIBLE);
+					leftBottom.setVisibility(View.VISIBLE);
+				}else{
+				   getActivity().onBackPressed();
+				}
 			}
 		});
 		// 点击切换图片

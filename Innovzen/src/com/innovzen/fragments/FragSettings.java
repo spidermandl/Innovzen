@@ -1,6 +1,10 @@
 package com.innovzen.fragments;
 
+import java.util.HashMap;
+
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +22,59 @@ import com.innovzen.utils.MyPreference;
 public class FragSettings extends FragBase implements OnClickListener{
 //FragBase  ¸ÄÎª¼Ì³ÐFragAnimationBase
 	private TextView myMinutes;
-	private ImageView oxygen,swing,led,heat,bluetooth;
+	private ImageView oxygen,swing,led,heat,bluetooth,pulse;
 
+	Handler machineHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			HashMap<Integer, Integer> map = (HashMap<Integer, Integer>)msg.obj;
+			switch (msg.what) {
+			case BluetoothCommand.OXYGEN_STATUS:
+				if(map.get(BluetoothCommand.OXYGEN_STATUS)!=null&&map.get(BluetoothCommand.OXYGEN_STATUS)==BluetoothCommand.OXYGEN_STATUS_OFF){
+					oxygen.setBackgroundResource(R.drawable.selector_icon_o2);
+				}else{
+					oxygen.setBackgroundResource(R.drawable.btn_o2_activated);
+				}				
+				break;	
+			case BluetoothCommand.LED_STATUS:
+				if(map.get(BluetoothCommand.LED_STATUS)!=null&&map.get(BluetoothCommand.LED_STATUS)==BluetoothCommand.LED_STATUS_OFF){
+					led.setBackgroundResource(R.drawable.selector_icon_leds);
+				}else{
+					led.setBackgroundResource(R.drawable.btn_leds_activated);
+				}	
+				break;
+			case BluetoothCommand.SWING_STATUS:
+				if(map.get(BluetoothCommand.SWING_STATUS)!=null&&map.get(BluetoothCommand.SWING_STATUS)==BluetoothCommand.SWING_STATUS_OFF){
+					swing.setBackgroundResource(R.drawable.selector_icon_swing);
+				}else{
+					swing.setBackgroundResource(R.drawable.btn_swing_activated);
+				}	
+				break;
+			case BluetoothCommand.HEAT_STATUS:
+				if(map.get(BluetoothCommand.HEAT_STATUS)!=null&&map.get(BluetoothCommand.HEAT_STATUS)==BluetoothCommand.HEAT_STATUS_OFF){
+					heat.setBackgroundResource(R.drawable.selector_icon_heat);
+				}else{
+					heat.setBackgroundResource(R.drawable.btn_heat_activated);
+				}	
+				break;
+			case BluetoothCommand.BLUETOOTH_STATUS:
+				if(map.get(BluetoothCommand.BLUETOOTH_STATUS)!=null&&map.get(BluetoothCommand.BLUETOOTH_STATUS)==BluetoothCommand.BLUETOOTH_STATUS_OFF){
+					bluetooth.setBackgroundResource(R.drawable.selector_icon_bluetooth);
+				}else{
+					bluetooth.setBackgroundResource(R.drawable.btn_bluetooth_activated);
+				}	
+				break;
+			case BluetoothCommand.PULSE_STATUS:
+				if(map.get(BluetoothCommand.PULSE_STATUS)!=null&&map.get(BluetoothCommand.PULSE_STATUS)==BluetoothCommand.PULSE_STATUS_OFF){
+					pulse.setBackgroundResource(R.drawable.selector_icon_pulse);
+				}else{
+					pulse.setBackgroundResource(R.drawable.btn_pulse_activated);
+				}	
+				break;
+				
+			}
+		}
+	};
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -96,6 +151,10 @@ public class FragSettings extends FragBase implements OnClickListener{
 		case R.id.set_led:
 			super.activityListener.fragSendCommand(BluetoothCommand.LED_MACHINE_VALUES);
 			break;
+		case R.id.set_bluetooth:
+			super.activityListener.fragConnectBluetooth();
+			
+			break;
 		default:
 			break;
 		}
@@ -122,6 +181,9 @@ public class FragSettings extends FragBase implements OnClickListener{
 		heat = (ImageView) view.findViewById(R.id.set_heat);
 		heat.setOnClickListener(this);
 		bluetooth = (ImageView) view.findViewById(R.id.set_bluetooth);
+		bluetooth.setOnClickListener(this);
+		pulse = (ImageView) view.findViewById(R.id.set_pulse);
+		pulse.setOnClickListener(this);
 	}
 	
 	@Override
@@ -130,6 +192,16 @@ public class FragSettings extends FragBase implements OnClickListener{
 		leftTop.setBackgroundResource(R.drawable.selector_btn_back);
 		leftMid.setBackgroundResource(R.drawable.banner_settings);
 		leftBottom.setBackgroundResource(R.drawable.selector_btn_volume);
+	}
+	/**
+	 * ·¢ËÍÃüÁî
+	 * @param command
+	 */
+	public void sendMachineMessage(int command,HashMap<Integer, Integer> bundle){
+		Message msg=new Message();
+		msg.what=command;
+		msg.obj=bundle;
+		machineHandler.sendMessage(msg);
 	}
 
 }

@@ -57,6 +57,7 @@
         layout:rate_up="9" />
 
     <ImageView
+        android:id="@+id/session_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/top_horizontal_1"

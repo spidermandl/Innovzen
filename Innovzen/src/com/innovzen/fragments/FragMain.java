@@ -58,7 +58,9 @@ public class FragMain extends FragBase implements OnClickListener{
 			super.activityListener.fragGoToSession(true);
 			break;
 		case R.id.left_top:
-			super.activityListener.fragConnectBluetooth();
+			//super.activityListener.fragConnectBluetooth();
+			//¹Ø±Õ³ÌÐò
+			getActivity().finish();
 			break;
 		case R.id.left_bottom:
 			super.activityListener.fragGoToHelpNew(true);
@@ -86,5 +88,6 @@ public class FragMain extends FragBase implements OnClickListener{
 		leftMid.setBackgroundResource(R.drawable.banner_choose_exercise);
 		leftBottom.setBackgroundResource(R.drawable.selector_btn_help);
 	}
+	
 
 }
