@@ -116,8 +116,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				//µÃµ½
 				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
 					//mytime1 = System.currentTimeMillis();
-					if(mBC!=null&&mBC.getInhaleTimeError()==0)
-						mBC.setInhaleTimeError(System.currentTimeMillis());
+//					if(mBC!=null&&mBC.getInhaleTimeError()==0)
+//						mBC.setInhaleTimeError(System.currentTimeMillis());
 					
 				}
 				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS12){
