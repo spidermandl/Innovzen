@@ -59,7 +59,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private RelativeLayout.LayoutParams inAnimLayoutParam, fullAnimLayoutParam;
 
 	private ImageView backRestUp, backRestDown, footUp, footDown, zero, pause;
-	long mytime2 = 0;
+	
 	Handler machineHandler = new Handler() {
 
 		@Override
@@ -111,19 +111,30 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				}
 				break;
 
-			case BluetoothCommand.WALKING_POSITION_STATUS:
+			case BluetoothCommand.WALKING_POSITION_STATUS://行位控制信号
 				BluetoothCommand mBC=BluetoothCommand.getInstance();
-				//得到
-				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
-					//mytime1 = System.currentTimeMillis();
-//					if(mBC!=null&&mBC.getInhaleTimeError()==0)
-//						mBC.setInhaleTimeError(System.currentTimeMillis());
+				
+				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS)!=null
+						&&map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
+					//第一个信号
+					if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
+						if(mBC!=null)
+							mBC.setInhaleTimeStart(System.currentTimeMillis());
+					}else if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
+						if(mBC!=null)
+							mBC.setExhaleTimeStart(System.currentTimeMillis());
+					}
 					
 				}
 				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS12){
-					//mytime12 = System.currentTimeMillis();
-					if(mBC!=null)
-						mBC.setInhaleTimeError(System.currentTimeMillis());
+					//最后一个信号
+					if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
+						if(mBC!=null)
+							mBC.setInhaleTimeEnd(System.currentTimeMillis());
+					}else if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
+						if(mBC!=null)
+							mBC.setExhaleTimeEnd(System.currentTimeMillis());
+					}
 					
 				}
 				break;
