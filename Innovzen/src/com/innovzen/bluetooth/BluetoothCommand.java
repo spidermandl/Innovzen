@@ -14,7 +14,8 @@ import android.util.Log;
 public class BluetoothCommand {
 
 	/* BluetoothService */
-
+	public static BluetoothCommand instance;
+    public static long SUBTIME=0;
 	/**
 	 * 发送命令相关字节
 	 */
@@ -278,6 +279,10 @@ public class BluetoothCommand {
 	//Pause初始化状态
 	public static final int PAUSE_STATUS_OFF=0;
 	public static final int PAUSE_STATUS_ON=1;
+	
+	//同步时间误差
+	private long inhaleTimeError;
+	private long exhaleTimeError;
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
 
@@ -314,10 +319,16 @@ public class BluetoothCommand {
 			
 		}
 	};
+	
+	public static BluetoothCommand getInstance(){
+		return instance;
+	}
+	
 	// 提供私有的构造方法
 	public BluetoothCommand(Context context, BluetoothService mBluetoothService) {
 		this.context = context;
 		this.mBluetoothService = mBluetoothService;
+		instance=this;
 	}
 
 	/**
@@ -457,7 +468,7 @@ public class BluetoothCommand {
 		//取第2 1 0位的状态
 		machine_status.put(BREATHE_STATUS,(b7&0x07));
 		
-		Log.e("第3字节", printHX(b2));
+		//Log.e("第99       8字节", printHX(b7));
 		return true;
 	}
 
@@ -495,6 +506,22 @@ public class BluetoothCommand {
 		}
 
 		return array;
+	}
+
+	public long getInhaleTimeError() {
+		return inhaleTimeError;
+	}
+
+	public void setInhaleTimeError(long inhaleTimeError) {
+		this.inhaleTimeError = inhaleTimeError;
+	}
+
+	public long getExhaleTimeError() {
+		return exhaleTimeError;
+	}
+
+	public void setExhaleTimeError(long exhaleTimeError) {
+		this.exhaleTimeError = exhaleTimeError;
 	}
 
 }

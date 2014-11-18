@@ -61,8 +61,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private ImageView backRestUp, backRestDown, footUp, footDown, zero, pause;
 	long mytime2 = 0;
 	Handler machineHandler = new Handler() {
-		private long subTime;
-		private int exhaleTime;
+
+		private long mytime1;
+		private long mytime12;
 
 		@Override
 		public void handleMessage(Message msg) {
@@ -117,20 +118,18 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				//得到
 				
 				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
-					long mytime = System.currentTimeMillis();
+					mytime1 = System.currentTimeMillis();
 					
-					if (mytime2 == 0) {
-						mytime2 = mytime;
-					} else {
-						subTime = mytime - mytime2;
-						//因为当为之位12时 会一直返回时间，所以加上大于7000毫秒过滤
-						if(subTime>7000){
-						mExerciseManager.subtime=subTime;			
-						mytime2=mytime;
-						}
-					}
-					Log.e("------------", ""+subTime+""+mytime);
 					
+				}
+				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS12){
+					mytime12 = System.currentTimeMillis();
+				}
+				if(mytime12>mytime1){
+				BluetoothCommand.SUBTIME=mytime12-mytime1;
+				BluetoothCommand mBC=BluetoothCommand.getInstance();
+				if(mBC!=null)
+					mBC.setInhaleTimeError(BluetoothCommand.SUBTIME);
 				}
 				break;
 			/*

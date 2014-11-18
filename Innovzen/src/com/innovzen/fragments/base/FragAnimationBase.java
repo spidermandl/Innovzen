@@ -46,7 +46,6 @@ import com.innovzen.utils.PersistentUtil;
  */
 
 public class FragAnimationBase extends FragBase implements FragmentOnBackPressInterface {
-public static long subtime=0;
     /** The delay between each value of the countdown */ 
     private static final int COUNTDOWN_DELAY = 1000; // 1 sec
 
@@ -122,7 +121,7 @@ public static long subtime=0;
 
     /** Hold the object that handles the exercise time keeper */
     protected ExerciseManager mExerciseManager;
-    //protected SyncExerciseManager mExerciseManager;
+    
     /** Hold the selected animation by the user */
     protected int mSelectedExerciseAnimationType = -1;
 //一个标志来指示方法animationCountdown是否应该继续,开始另一个1秒延迟

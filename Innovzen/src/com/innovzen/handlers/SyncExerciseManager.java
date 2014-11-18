@@ -1,12 +1,7 @@
 package com.innovzen.handlers;
 
-import android.animation.ValueAnimator;
-import android.animation.ValueAnimator.AnimatorUpdateListener;
-import android.util.Log;
-
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
-import com.innovzen.entities.SoundItem;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.interfaces.FragmentCommunicator;
 
@@ -16,7 +11,6 @@ import com.innovzen.interfaces.FragmentCommunicator;
  * 实现同步功能exercise动画
  */
 public class SyncExerciseManager extends ExerciseManager{
-	 public static long subtime=0;
 //	private float mFraction;
 	
 	public SyncExerciseManager(FragAnimationBase fragmentAnimation,
@@ -29,45 +23,42 @@ public class SyncExerciseManager extends ExerciseManager{
 	}
 
     // Hold the inhale/exhale animation
-	
-    protected ValueAnimator.AnimatorUpdateListener mValueAnimatorListener = new ValueAnimator.AnimatorUpdateListener() {
-
-        @Override
-        public void onAnimationUpdate(ValueAnimator animation) {
-
-        	switch (mCurExercise) {
-	            case EXERCISE_INHALE:
-	            	/**
-	            	 * 获取最近一次12行位的时间
-	            	         如果当前时间减去这个时间和差小于mTimes.inhale 说明按摩椅运动快了，那么直接调用startAppropriateExerciseType(1f);
-	            	      如果当前时间减去这个时间和差大于mTimes.inhale并且animation.getAnimatedFraction() 这个值为1f， 说明本轮按摩椅运动慢了，那么就等待，以100ms为单位等待
-	            	 */
-	            	if(subtime!=0&&subtime<mTimes.inhale){
-	            		startAppropriateExerciseType(10f);
-	            	}else if(subtime>mTimes.inhale&&animation.getAnimatedFraction()==1f){
-	            		
-	            	}
-	            	
-              //  if(BluetoothCommand.WALKING_POSITION_STATUS12)
-	            	System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-	                break;
-	            case EXERCISE_HOLD_INHALE:
-	                break;
-	            case EXERCISE_EXHALE:
-	            	if(subtime!=0&&subtime<mTimes.exhale){
-	            		startAppropriateExerciseType(1f);
-	            	}else if(subtime>mTimes.exhale&&animation.getAnimatedFraction()==1f){
-	            		
-	            	}
-	                break;
-	            case EXERCISE_HOLD_EXHALE:
-	                break;
-        	}
-            startAppropriateExerciseType(animation.getAnimatedFraction());
-            Log.e("动画补间", animation.getAnimatedFraction()+"");
-
-        }
-    };
+	@Override
+	protected void startAppropriateExerciseType(float fraction) {
+		switch (mCurExercise) {
+        case EXERCISE_INHALE:
+        	/**
+        	 * 获取最近一次12行位的时间
+        	         如果当前时间减去这个时间和差小于mTimes.inhale 说明按摩椅运动快了，那么直接调用startAppropriateExerciseType(1f);
+        	      如果当前时间减去这个时间和差大于mTimes.inhale并且animation.getAnimatedFraction() 这个值为1f， 说明本轮按摩椅运动慢了，那么就等待，以100ms为单位等待
+        	 */
+        	long subtime=BluetoothCommand.getInstance()==null?0:BluetoothCommand.getInstance().getInhaleTimeError();
+        	if(subtime!=0&&subtime<mTimes.inhale*1000){
+        		//long a = mTimes.inhale;
+        		fraction=1f;
+        		break;
+        	}/*else if(subtime>mTimes.inhale&&fraction==1f){
+        		
+        	}*/
+        	
+      //  if(BluetoothCommand.WALKING_POSITION_STATUS12)
+        	System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            break;
+        case EXERCISE_HOLD_INHALE:
+            break;
+        case EXERCISE_EXHALE:
+        	/*subtime=BluetoothCommand.getInstance()==null?0:BluetoothCommand.getInstance().getExhaleTimeError();
+        	if(subtime!=0&&subtime<mTimes.exhale){
+        		startAppropriateExerciseType(1f);
+        	}else if(subtime>mTimes.exhale&&fraction==1f){
+        		
+        	}*/
+            break;
+        case EXERCISE_HOLD_EXHALE:
+            break;
+		}
+		super.startAppropriateExerciseType(fraction);
+	}
     
 //	@Override
 //	public void start() {
