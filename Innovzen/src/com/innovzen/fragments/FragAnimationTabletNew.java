@@ -65,6 +65,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			switch (msg.what) {
 			case BluetoothCommand.INIT_POSITION_STATUS:
 				// 这个地方要和BluetoothCommand里的一个常量对应
+				/////////正常动画
 				if (!isAnimationRunning
 						&& map.get(BluetoothCommand.INIT_POSITION_STATUS) != null
 						&& map.get(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_VALID
@@ -72,6 +73,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 						&& (map.get(BluetoothCommand.DIRECTION_STATUS) == BluetoothCommand.DIRECTION_STATUS_UP || map
 								.get(BluetoothCommand.DIRECTION_STATUS) == BluetoothCommand.DIRECTION_STATUS_DOWN))
 					overlayBtnPressed();
+				
 				break;
 			case BluetoothCommand.PAUSE_STATUS:
 				if (map.get(BluetoothCommand.PAUSE_STATUS) != null
