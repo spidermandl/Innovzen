@@ -81,8 +81,9 @@ public class ExerciseManager {
             	 */
             	long b=subtime;
             	if(subtime!=0&&subtime<mTimes.inhale){
-            		long a = mTimes.inhale;
-            		startAppropriateExerciseType(1f);
+            		int a = mTimes.inhale;
+            		startAppropriateExerciseType(10f);
+            		Log.e("subtime-------À²À²À²À²À²À²À²À²À²-=========----------", "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
             	}else if(subtime>mTimes.inhale&&animation.getAnimatedFraction()==1f){
             		
             	}
@@ -103,7 +104,7 @@ public class ExerciseManager {
                 break;
     	}
         startAppropriateExerciseType(animation.getAnimatedFraction());
-        Log.e("¶¯»­²¹¼ä", animation.getAnimatedFraction()+"");
+       // Log.e("¶¯»­²¹¼ä", animation.getAnimatedFraction()+"");
 
     
            /* startAppropriateExerciseType(animation.getAnimatedFraction());
