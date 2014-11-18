@@ -1,5 +1,7 @@
 package com.innovzen.handlers;
 
+import android.util.Log;
+
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
@@ -34,6 +36,7 @@ public class SyncExerciseManager extends ExerciseManager{
         	 */
         	long subtime=BluetoothCommand.getInstance()==null?0:BluetoothCommand.getInstance().getInhaleTimeError();
         	if(subtime!=0&&subtime<mTimes.inhale*1000){
+        		Log.e("************", subtime+"");
         		//long a = mTimes.inhale;
         		fraction=1f;
         		break;
