@@ -113,6 +113,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 			case BluetoothCommand.WALKING_POSITION_STATUS:
 				//µÃµ½
+				
 				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
 					long mytime = System.currentTimeMillis();
 					
@@ -121,7 +122,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					} else {
 						subTime = mytime - mytime2;
 						if(subTime>2){
-						mExerciseManager.subtime=subTime;						
+						mExerciseManager.subtime=subTime;			
 						mytime2=mytime;
 						}
 					}

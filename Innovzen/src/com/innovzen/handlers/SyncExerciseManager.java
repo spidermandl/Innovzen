@@ -16,7 +16,7 @@ import com.innovzen.interfaces.FragmentCommunicator;
  * 实现同步功能exercise动画
  */
 public class SyncExerciseManager extends ExerciseManager{
-
+	 public static long subtime=0;
 //	private float mFraction;
 	
 	public SyncExerciseManager(FragAnimationBase fragmentAnimation,
@@ -43,7 +43,7 @@ public class SyncExerciseManager extends ExerciseManager{
 	            	      如果当前时间减去这个时间和差大于mTimes.inhale并且animation.getAnimatedFraction() 这个值为1f， 说明本轮按摩椅运动慢了，那么就等待，以100ms为单位等待
 	            	 */
 	            	if(subtime!=0&&subtime<mTimes.inhale){
-	            		startAppropriateExerciseType(1f);
+	            		startAppropriateExerciseType(10f);
 	            	}else if(subtime>mTimes.inhale&&animation.getAnimatedFraction()==1f){
 	            		
 	            	}

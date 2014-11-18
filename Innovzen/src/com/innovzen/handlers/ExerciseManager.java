@@ -13,7 +13,7 @@ import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.interfaces.FragmentCommunicator;
 
 public class ExerciseManager {
-    public static long subtime=0;
+   
     // Hold the types of exercises
     public static final int EXERCISE_INHALE = 0;
     public static final int EXERCISE_HOLD_INHALE = 1;
@@ -174,6 +174,7 @@ public class ExerciseManager {
             switch (mCurExercise) {
                 case EXERCISE_INHALE:
                     // Play sounds for the inhale part
+                	
                     startValueAnimator(mTimes.inhale);
                     break;
                 case EXERCISE_HOLD_INHALE:
