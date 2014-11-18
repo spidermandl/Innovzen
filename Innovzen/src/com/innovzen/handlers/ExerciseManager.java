@@ -5,6 +5,7 @@ import java.security.KeyStore.ProtectionParameter;
 import adapters.AdapterSound;
 import android.animation.ValueAnimator;
 import android.text.Html;
+import android.util.Log;
 
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.entities.SoundItem;
@@ -73,6 +74,7 @@ public class ExerciseManager {
         public void onAnimationUpdate(ValueAnimator animation) {
 
             startAppropriateExerciseType(animation.getAnimatedFraction());
+            //Log.e("¶¯»­²¹¼ä", animation.getAnimatedFraction()+"");
 
         }
     };
