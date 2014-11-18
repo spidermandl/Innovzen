@@ -66,13 +66,17 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			case BluetoothCommand.INIT_POSITION_STATUS:
 				// 这个地方要和BluetoothCommand里的一个常量对应
 				/////////正常动画
-				if (!isAnimationRunning
+				/*if (!isAnimationRunning
 						&& map.get(BluetoothCommand.INIT_POSITION_STATUS) != null
 						&& map.get(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_VALID
 						&& map.get(BluetoothCommand.DIRECTION_STATUS) != null
 						&& (map.get(BluetoothCommand.DIRECTION_STATUS) == BluetoothCommand.DIRECTION_STATUS_UP || map
-								.get(BluetoothCommand.DIRECTION_STATUS) == BluetoothCommand.DIRECTION_STATUS_DOWN))
+								.get(BluetoothCommand.DIRECTION_STATUS) == BluetoothCommand.DIRECTION_STATUS_DOWN))*/
+				if (!isAnimationRunning
+						&& map.get(BluetoothCommand.INIT_POSITION_STATUS) != null
+						&& map.get(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_VALID)
 					overlayBtnPressed();
+				//isAnimationRunning=true;
 				
 				break;
 			case BluetoothCommand.PAUSE_STATUS:
@@ -80,6 +84,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 						&& map.get(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_OFF)// 这个地方的1要和BluetoothCommand里的一个常量对应
 				{
 					pause.setBackgroundResource(R.drawable.selector_btn_pause);
+				//	isAnimationRunning=false;
 				} else {
 					endAnimationPressed();
 					pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
@@ -95,7 +100,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					zero.setBackgroundResource(R.drawable.btn_gravity_activated);
 				}
 				break;
-			case BluetoothCommand.WALKING_POSITION_STATUS:// 动画行为
+		/*	case BluetoothCommand.WALKING_POSITION_STATUS:// 动画行为
 				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) != null
 						&& map.get(BluetoothCommand.DIRECTION_STATUS) != null) {
 
@@ -127,7 +132,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					}
 
 				}
-				break;
+				break;*/
 			// //msg.what 返回1播放动画 返回2停止动画
 			// case START_ANIMATION:
 			// overlayBtnPressed();
