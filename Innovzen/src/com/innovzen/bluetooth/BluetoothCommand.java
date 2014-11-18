@@ -281,8 +281,8 @@ public class BluetoothCommand {
 	public static final int PAUSE_STATUS_ON=1;
 	
 	//同步时间误差
-	private long inhaleTimeError;
-	private long exhaleTimeError;
+	private long inhaleTimeError=0;
+	private long exhaleTimeError=0;
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
 

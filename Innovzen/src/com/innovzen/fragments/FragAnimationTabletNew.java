@@ -62,9 +62,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	long mytime2 = 0;
 	Handler machineHandler = new Handler() {
 
-		private long mytime1;
-		private long mytime12;
-
 		@Override
 		public void handleMessage(Message msg) {
 			HashMap<Integer, Integer> map = (HashMap<Integer, Integer>) msg.obj;
@@ -115,21 +112,19 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				break;
 
 			case BluetoothCommand.WALKING_POSITION_STATUS:
+				BluetoothCommand mBC=BluetoothCommand.getInstance();
 				//µÃµ½
-				
 				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
-					mytime1 = System.currentTimeMillis();
-					
+					//mytime1 = System.currentTimeMillis();
+					if(mBC!=null&&mBC.getInhaleTimeError()==0)
+						mBC.setInhaleTimeError(System.currentTimeMillis());
 					
 				}
 				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS12){
-					mytime12 = System.currentTimeMillis();
-				}
-				if(mytime12>mytime1){
-				BluetoothCommand.SUBTIME=mytime12-mytime1;
-				BluetoothCommand mBC=BluetoothCommand.getInstance();
-				if(mBC!=null)
-					mBC.setInhaleTimeError(BluetoothCommand.SUBTIME);
+					//mytime12 = System.currentTimeMillis();
+					if(mBC!=null)
+						mBC.setInhaleTimeError(System.currentTimeMillis());
+					
 				}
 				break;
 			/*

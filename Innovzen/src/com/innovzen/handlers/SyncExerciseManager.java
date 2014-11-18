@@ -1,5 +1,8 @@
 package com.innovzen.handlers;
 
+import android.os.Handler;
+import android.os.Message;
+
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
@@ -12,6 +15,18 @@ import com.innovzen.interfaces.FragmentCommunicator;
  */
 public class SyncExerciseManager extends ExerciseManager{
 //	private float mFraction;
+	private Handler waitHandler=null;
+	private Runnable waitRunnable=new Runnable() {
+		public void run() {
+			long subtime=BluetoothCommand.getInstance()==null?0:BluetoothCommand.getInstance().getInhaleTimeError();
+        	if(subtime!=0&&subtime<mTimes.inhale*60*1000){
+        		//long a = mTimes.inhale;
+        		waitHandler.sendEmptyMessage(0);
+        	}else{
+        		waitHandler.post(waitRunnable);
+        	}
+		}
+	};
 	
 	public SyncExerciseManager(FragAnimationBase fragmentAnimation,
 			ExerciseAnimationHandler animationHandler,
@@ -25,6 +40,7 @@ public class SyncExerciseManager extends ExerciseManager{
     // Hold the inhale/exhale animation
 	@Override
 	protected void startAppropriateExerciseType(float fraction) {
+		boolean isContinue=true;
 		switch (mCurExercise) {
         case EXERCISE_INHALE:
         	/**
@@ -33,16 +49,25 @@ public class SyncExerciseManager extends ExerciseManager{
         	      如果当前时间减去这个时间和差大于mTimes.inhale并且animation.getAnimatedFraction() 这个值为1f， 说明本轮按摩椅运动慢了，那么就等待，以100ms为单位等待
         	 */
         	long subtime=BluetoothCommand.getInstance()==null?0:BluetoothCommand.getInstance().getInhaleTimeError();
-        	if(subtime!=0&&subtime<mTimes.inhale*1000){
+        	if(subtime!=0&&subtime<mTimes.inhale*60*1000){
         		//long a = mTimes.inhale;
         		fraction=1f;
         		break;
-        	}/*else if(subtime>mTimes.inhale&&fraction==1f){
-        		
-        	}*/
+        	}else if(subtime>mTimes.inhale*60*1000&&fraction==1f){
+        		if(waitHandler!=null){
+	        		waitHandler=new Handler(){
+	        			@Override
+	        			public void handleMessage(Message msg) {
+	        				SyncExerciseManager.super.startAppropriateExerciseType(1f);
+	        				waitHandler=null;
+	        			}
+	        		};
+	        		waitHandler.postDelayed(waitRunnable, 100); // 1 sec
+	        		isContinue=false;
+        		}
+
+        	}
         	
-      //  if(BluetoothCommand.WALKING_POSITION_STATUS12)
-        	System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             break;
         case EXERCISE_HOLD_INHALE:
             break;
@@ -57,7 +82,9 @@ public class SyncExerciseManager extends ExerciseManager{
         case EXERCISE_HOLD_EXHALE:
             break;
 		}
-		super.startAppropriateExerciseType(fraction);
+		
+		if(isContinue)
+			super.startAppropriateExerciseType(fraction);
 	}
     
 //	@Override
