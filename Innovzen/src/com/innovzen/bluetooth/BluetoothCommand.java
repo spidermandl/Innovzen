@@ -1,11 +1,7 @@
 package com.innovzen.bluetooth;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
-import com.innovzen.utils.MyPreference;
-
-import android.R.integer;
 import android.content.Context;
 import android.util.Log;
 
@@ -19,6 +15,9 @@ public class BluetoothCommand {
 
 	/* BluetoothService */
 
+	/**
+	 * 发送命令相关字节
+	 */
 	// 启动机器
 	public static final int START_MACHINE = 0xF0;
 	// 安卓平板显示手控器
