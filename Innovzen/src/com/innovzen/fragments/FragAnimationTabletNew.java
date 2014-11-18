@@ -87,7 +87,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 						&& map.get(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_VALID)
 					overlayBtnPressed();
 				// isAnimationRunning=true;
-
+				/*if (!isAnimationRunning
+						&& map.get(BluetoothCommand.WALKING_POSITION_STATUS)==BluetoothCommand.WALKING_POSITION_STATUS1)
+					overlayBtnPressed();*/
 				break;
 			case BluetoothCommand.PAUSE_STATUS:
 				if (map.get(BluetoothCommand.PAUSE_STATUS) != null
@@ -121,7 +123,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 						mytime2 = mytime;
 					} else {
 						subTime = mytime - mytime2;
-						if(subTime>2){
+						//因为当为之位12时 会一直返回时间，所以加上大于7000毫秒过滤
+						if(subTime>7000){
 						mExerciseManager.subtime=subTime;			
 						mytime2=mytime;
 						}

@@ -121,8 +121,8 @@ public static long subtime=0;
     protected FooterHandler mFooterHandler;
 
     /** Hold the object that handles the exercise time keeper */
-   // protected ExerciseManager mExerciseManager;
-    protected SyncExerciseManager mExerciseManager;
+    protected ExerciseManager mExerciseManager;
+    //protected SyncExerciseManager mExerciseManager;
     /** Hold the selected animation by the user */
     protected int mSelectedExerciseAnimationType = -1;
 //一个标志来指示方法animationCountdown是否应该继续,开始另一个1秒延迟
