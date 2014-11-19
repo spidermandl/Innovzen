@@ -16,27 +16,80 @@ import com.innovzen.interfaces.FragmentCommunicator;
  * 实现同步功能exercise动画
  */
 public class SyncExerciseManager extends ExerciseManager{
-//	private float mFraction;
+	/**
+	 * 延迟发送message时间
+	 */
+    private static final int DELAY_TIME=100;
 	/**
 	 * 等待机器传送最后位行指令
+	 * waitHandler的实例只能有一份，当isRunning为true时，此时正在进行等待状态
 	 */
-	private Handler waitHandler=null;
+	private WaitHandler waitHandler=new WaitHandler();
 	
 	/**
 	 * 等待线程处理方法
 	 */
 	private Runnable waitRunnable=new Runnable() {
 		public void run() {
-			long subtime=BluetoothCommand.getInstance()==null?0:System.currentTimeMillis()-BluetoothCommand.getInstance().getInhaleTimeError();
-        	if(subtime!=0&&subtime<mTimes.inhale*60*1000){
-        		//long a = mTimes.inhale;
-        		waitHandler.sendEmptyMessage(0);
-        	}else{
-        		waitHandler.post(waitRunnable);
-        	}
+			long subtime;
+			switch (mCurExercise) {
+			case EXERCISE_INHALE:
+				subtime=BluetoothCommand.getInstance()==null?0:
+					System.currentTimeMillis()-BluetoothCommand.getInstance().getInhaleTimeEnd();
+	        	if(subtime!=0&&subtime<mTimes.inhale*60*1000){
+	        		//long a = mTimes.inhale;
+	        		waitHandler.sendEmptyMessage(0);
+	        	}else{
+	        		waitHandler.postDelayed(waitRunnable,DELAY_TIME);
+	        	}
+				break;
+			case EXERCISE_HOLD_INHALE:
+				subtime=BluetoothCommand.getInstance()==null?0:
+					System.currentTimeMillis()-BluetoothCommand.getInstance().getExhaleTimeStart();
+	        	if(subtime!=0&&subtime<mTimes.holdInhale*60*1000){
+	        		//long a = mTimes.inhale;
+	        		waitHandler.sendEmptyMessage(0);
+	        	}else{
+	        		waitHandler.postDelayed(waitRunnable,DELAY_TIME);
+	        	}
+				break;
+			case EXERCISE_HOLD_EXHALE:
+				subtime=BluetoothCommand.getInstance()==null?0:
+					System.currentTimeMillis()-BluetoothCommand.getInstance().getExhaleTimeEnd();
+	        	if(subtime!=0&&subtime<mTimes.exhale*60*1000){
+	        		//long a = mTimes.inhale;
+	        		waitHandler.sendEmptyMessage(0);
+	        	}else{
+	        		waitHandler.postDelayed(waitRunnable,DELAY_TIME);
+	        	}
+				break;
+			case EXERCISE_EXHALE:
+				subtime=BluetoothCommand.getInstance()==null?0:
+					System.currentTimeMillis()-BluetoothCommand.getInstance().getInhaleTimeStart();
+	        	if(subtime!=0&&subtime<mTimes.holdExhale*60*1000){
+	        		//long a = mTimes.inhale;
+	        		waitHandler.sendEmptyMessage(0);
+	        	}else{
+	        		waitHandler.postDelayed(waitRunnable,DELAY_TIME);
+	        	}
+				break;
+
+			default:
+				break;
+			}
+
 		}
 	};
 	
+	/**
+	 * 构造函数
+	 * @param fragmentAnimation
+	 * @param animationHandler
+	 * @param soundHandler
+	 * @param times
+	 * @param voiceSoundId
+	 * @param ambianceSoundId
+	 */
 	public SyncExerciseManager(FragAnimationBase fragmentAnimation,
 			ExerciseAnimationHandler animationHandler,
 			FragmentCommunicator soundHandler, ExerciseTimes times,
@@ -46,10 +99,13 @@ public class SyncExerciseManager extends ExerciseManager{
 		// TODO Auto-generated constructor stub
 	}
 
-    // Hold the inhale/exhale animation
+    /**
+     * 矫正时间同步
+     */
 	@Override
 	protected void startAppropriateExerciseType(float fraction) {
-		boolean isContinue=true;
+		boolean isContinue=true;//机器运动滞后则置为false
+		long subtime;
 		switch (mCurExercise) {
         case EXERCISE_INHALE:
         	/**
@@ -58,40 +114,78 @@ public class SyncExerciseManager extends ExerciseManager{
         	      如果当前时间减去这个时间和差大于mTimes.inhale并且animation.getAnimatedFraction() 这个值为1f， 说明本轮按摩椅运动慢了，那么就等待，以100ms为单位等待
         	 */
 
-        	long subtime=BluetoothCommand.getInstance()==null?0:System.currentTimeMillis()-BluetoothCommand.getInstance().getInhaleTimeError();
-
-        	if(subtime!=0&&subtime<mTimes.inhale*60*1000){
+        	subtime=BluetoothCommand.getInstance()==null?0:
+        		System.currentTimeMillis()-BluetoothCommand.getInstance().getInhaleTimeEnd();
+        	if(subtime!=0&&subtime<mTimes.inhale*60*1000){//机器运动超前
 
         		//long a = mTimes.inhale;
         		fraction=1f;
         		break;
-        	}else if(subtime>mTimes.inhale*60*1000&&fraction==1f){
-        		if(waitHandler!=null){
-	        		waitHandler=new Handler(){
-	        			@Override
-	        			public void handleMessage(Message msg) {
-	        				SyncExerciseManager.super.startAppropriateExerciseType(1f);
-	        				waitHandler=null;
-	        			}
-	        		};
-	        		waitHandler.postDelayed(waitRunnable, 100); // 1 sec
-	        		isContinue=false;
+        	}else if(subtime>mTimes.inhale*60*1000&&fraction==1f){//机器运动滞后
+        		if(!waitHandler.isWaiting()){
+	        		waitHandler.setWaiting(true);
+	        		waitHandler.postDelayed(waitRunnable, DELAY_TIME); // 1 ms
         		}
-
+	        	isContinue=false;
+        	}else{//正常运作状态
+        		
         	}
         	
             break;
         case EXERCISE_HOLD_INHALE:
+        	subtime=BluetoothCommand.getInstance()==null?0:
+        		System.currentTimeMillis()-BluetoothCommand.getInstance().getExhaleTimeStart();
+        	if(subtime!=0&&subtime<mTimes.holdInhale*60*1000){//机器运动超前
+        		//long a = mTimes.inhale;
+        		fraction=1f;
+        		break;
+        	}else if(subtime>mTimes.holdInhale*60*1000&&fraction==1f){//机器运动滞后
+        		if(!waitHandler.isWaiting()){
+	        		waitHandler.setWaiting(true);
+	        		waitHandler.postDelayed(waitRunnable, DELAY_TIME); // 1 ms
+        		}
+	        	isContinue=false;
+        	}else{//正常运作状态
+        		
+        	}
             break;
         case EXERCISE_EXHALE:
-        	/*subtime=BluetoothCommand.getInstance()==null?0:BluetoothCommand.getInstance().getExhaleTimeError();
-        	if(subtime!=0&&subtime<mTimes.exhale){
-        		startAppropriateExerciseType(1f);
-        	}else if(subtime>mTimes.exhale&&fraction==1f){
+        	subtime=BluetoothCommand.getInstance()==null?0:
+        		System.currentTimeMillis()-BluetoothCommand.getInstance().getExhaleTimeEnd();
+        	if(subtime!=0&&subtime<mTimes.exhale*60*1000){//机器运动超前
+        		//long a = mTimes.inhale;
+        		fraction=1f;
+        		break;
+        	}else if(subtime>mTimes.exhale*60*1000&&fraction==1f){//机器运动滞后
+        		if(!waitHandler.isWaiting()){
+	        		waitHandler.setWaiting(true);
+	        		waitHandler.postDelayed(waitRunnable, DELAY_TIME); // 1 ms
+        		}
+        		isContinue=false;
+
+        	}else{//正常运作状态
         		
-        	}*/
+        	}
+        	
             break;
         case EXERCISE_HOLD_EXHALE:
+        	subtime=BluetoothCommand.getInstance()==null?0:
+        		System.currentTimeMillis()-BluetoothCommand.getInstance().getInhaleTimeStart();
+        	if(subtime!=0&&subtime<mTimes.holdExhale*60*1000){//机器运动超前
+        		//long a = mTimes.inhale;
+        		fraction=1f;
+        		break;
+        	}else if(subtime>mTimes.holdExhale*60*1000&&fraction==1f){//机器运动滞后
+        		if(!waitHandler.isWaiting()){
+	        		waitHandler.setWaiting(true);
+	        		waitHandler.postDelayed(waitRunnable, DELAY_TIME); // 1 ms
+        		}
+        		isContinue=false;
+
+        	}else{//正常运作状态
+        		
+        	}
+        	
             break;
 		}
 		
@@ -99,6 +193,27 @@ public class SyncExerciseManager extends ExerciseManager{
 			super.startAppropriateExerciseType(fraction);
 	}
     
+	/**
+	 * 等待Handler
+	 * @author desmond.duan
+	 *
+	 */
+	class WaitHandler extends Handler{
+		private boolean isWaiting=false;//判断线程是否在执行
+		@Override
+		public void handleMessage(Message msg) {
+			SyncExerciseManager.super.startAppropriateExerciseType(1f);
+			isWaiting=false;
+		}
+		
+		public boolean isWaiting() {
+			return isWaiting;
+		}
+		public void setWaiting(boolean isWaiting) {
+			this.isWaiting = isWaiting;
+		}
+	}
+	
 //	@Override
 //	public void start() {
 //		// Reset the flag that indicates if we're started the sounds for the new step

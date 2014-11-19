@@ -281,8 +281,11 @@ public class BluetoothCommand {
 	public static final int PAUSE_STATUS_ON=1;
 	
 	//同步时间误差
-	private long inhaleTimeError=0;
-	private long exhaleTimeError=0;
+	private long inhaleTimeStart=0;//吸气开始时间
+	private long inhaleTimeEnd=0;//吸气结束时间
+	private long exhaleTimeStart=0;//呼气开始时间
+	private long exhaleTimeEnd=0;//呼气结束时间
+	
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
 
@@ -468,7 +471,7 @@ public class BluetoothCommand {
 		//取第2 1 0位的状态
 		machine_status.put(BREATHE_STATUS,(b7&0x07));
 		
-		Log.e("第7字节", printHX(b6));
+		Log.e("第8字节", printHX(b7)+"-------第3字节--------"+printHX(b2));
 		return true;
 	}
 
@@ -508,20 +511,37 @@ public class BluetoothCommand {
 		return array;
 	}
 
-	public long getInhaleTimeError() {
-		return inhaleTimeError;
+	public long getInhaleTimeStart() {
+		return inhaleTimeStart;
 	}
 
-	public void setInhaleTimeError(long inhaleTimeError) {
-		this.inhaleTimeError = inhaleTimeError;
+	public void setInhaleTimeStart(long inhaleTimeStart) {
+		this.inhaleTimeStart = inhaleTimeStart;
 	}
 
-	public long getExhaleTimeError() {
-		return exhaleTimeError;
+	public long getInhaleTimeEnd() {
+		return inhaleTimeEnd;
 	}
 
-	public void setExhaleTimeError(long exhaleTimeError) {
-		this.exhaleTimeError = exhaleTimeError;
+	public void setInhaleTimeEnd(long inhaleTimeEnd) {
+		this.inhaleTimeEnd = inhaleTimeEnd;
 	}
+
+	public long getExhaleTimeStart() {
+		return exhaleTimeStart;
+	}
+
+	public void setExhaleTimeStart(long exhaleTimeStart) {
+		this.exhaleTimeStart = exhaleTimeStart;
+	}
+
+	public long getExhaleTimeEnd() {
+		return exhaleTimeEnd;
+	}
+
+	public void setExhaleTimeEnd(long exhaleTimeEnd) {
+		this.exhaleTimeEnd = exhaleTimeEnd;
+	}
+
 
 }

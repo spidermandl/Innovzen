@@ -400,7 +400,7 @@ public class BluetoothService {
 
         public void run() {
             Log.i(TAG, "BEGIN mConnectedThread");
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[2048];
             byte[] senders=new byte[9];
             int index=0;
             int bytes;
