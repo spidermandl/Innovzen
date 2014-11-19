@@ -409,6 +409,7 @@ public class BluetoothService {
             while (true) {
                 try {
                     // Read from the InputStream
+                	long tStamp = System.currentTimeMillis();
                     bytes = mmInStream.read(buffer);
                     for(int i=0;i<bytes;i++){
 	                    if((buffer[i]&0xFF)==0xF0){
@@ -431,6 +432,7 @@ public class BluetoothService {
 	                    	index++;
 	                    }
                     }
+                    Log.e("读取单位是时间计算", bytes+"-------------------"+(System.currentTimeMillis()-tStamp)+"毫秒");
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
                     connectionLost();
