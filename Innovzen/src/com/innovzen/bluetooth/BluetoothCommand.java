@@ -468,7 +468,7 @@ public class BluetoothCommand {
 		//取第2 1 0位的状态
 		machine_status.put(BREATHE_STATUS,(b7&0x07));
 		
-		//Log.e("第99       8字节", printHX(b7));
+		Log.e("第7字节", printHX(b6));
 		return true;
 	}
 

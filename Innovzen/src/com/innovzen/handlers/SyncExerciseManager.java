@@ -17,10 +17,17 @@ import com.innovzen.interfaces.FragmentCommunicator;
  */
 public class SyncExerciseManager extends ExerciseManager{
 //	private float mFraction;
+	/**
+	 * 等待机器传送最后位行指令
+	 */
 	private Handler waitHandler=null;
+	
+	/**
+	 * 等待线程处理方法
+	 */
 	private Runnable waitRunnable=new Runnable() {
 		public void run() {
-			long subtime=BluetoothCommand.getInstance()==null?0:BluetoothCommand.getInstance().getInhaleTimeError();
+			long subtime=BluetoothCommand.getInstance()==null?0:System.currentTimeMillis()-BluetoothCommand.getInstance().getInhaleTimeError();
         	if(subtime!=0&&subtime<mTimes.inhale*60*1000){
         		//long a = mTimes.inhale;
         		waitHandler.sendEmptyMessage(0);
@@ -50,7 +57,8 @@ public class SyncExerciseManager extends ExerciseManager{
         	         如果当前时间减去这个时间和差小于mTimes.inhale 说明按摩椅运动快了，那么直接调用startAppropriateExerciseType(1f);
         	      如果当前时间减去这个时间和差大于mTimes.inhale并且animation.getAnimatedFraction() 这个值为1f， 说明本轮按摩椅运动慢了，那么就等待，以100ms为单位等待
         	 */
-        	long subtime=BluetoothCommand.getInstance()==null?0:BluetoothCommand.getInstance().getInhaleTimeError();
+
+        	long subtime=BluetoothCommand.getInstance()==null?0:System.currentTimeMillis()-BluetoothCommand.getInstance().getInhaleTimeError();
 
         	if(subtime!=0&&subtime<mTimes.inhale*60*1000){
 
