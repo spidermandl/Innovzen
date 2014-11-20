@@ -432,7 +432,7 @@ public class BluetoothService {
 	                    	index++;
 	                    }
                     }
-                    Log.e("读取单位是时间计算", bytes+"-------------------"+(System.currentTimeMillis()-tStamp)+"毫秒");
+                    //Log.e("读取单位时间", bytes+"-------------------"+(System.currentTimeMillis()-tStamp)+"毫秒");
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
                     connectionLost();

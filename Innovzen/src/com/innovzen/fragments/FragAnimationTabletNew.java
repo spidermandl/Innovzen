@@ -2,11 +2,11 @@ package com.innovzen.fragments;
 
 import java.util.HashMap;
 
-import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,10 +20,8 @@ import android.widget.TextView;
 import android.widget.RelativeLayout;
 
 import com.innovzen.activities.ActivityMain;
-import com.innovzen.animations.AnimationGradient;
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.fragments.base.FragAnimationBase;
-import com.innovzen.handlers.ExerciseManager;
 import com.innovzen.o2chair.R;
 import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.Util;
@@ -60,122 +58,135 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 	private ImageView backRestUp, backRestDown, footUp, footDown, zero, pause;
 	
-	Handler machineHandler = new Handler() {
-
+	/**
+	 * 机器复位状态
+	 */
+	private static final int INVALID=0;//游离状态
+	private static final int RESETING=1;//正在复位，第8字节第七位为0
+	private static final int RESETED=2;//复位成功
+	/**
+	 * 当前机器复位状态
+	 */
+	private int resetStatus=INVALID;
+	
+	/**
+	 * 复位检测线程
+	 */
+	private ResetHandler resetHandler = new ResetHandler();
+	/**
+	 * 对应于复位检测
+	 */
+	private Runnable resetRunnable=new Runnable() {
 		@Override
-		public void handleMessage(Message msg) {
-			HashMap<Integer, Integer> map = (HashMap<Integer, Integer>) msg.obj;
-			switch (msg.what) {
-			case BluetoothCommand.INIT_POSITION_STATUS:
-				// 这个地方要和BluetoothCommand里的一个常量对应
-				// ///////正常动画
-				/*
-				 * if (!isAnimationRunning &&
-				 * map.get(BluetoothCommand.INIT_POSITION_STATUS) != null &&
-				 * map.get(BluetoothCommand.INIT_POSITION_STATUS) ==
-				 * BluetoothCommand.INIT_POSITION_STATUS_VALID &&
-				 * map.get(BluetoothCommand.DIRECTION_STATUS) != null &&
-				 * (map.get(BluetoothCommand.DIRECTION_STATUS) ==
-				 * BluetoothCommand.DIRECTION_STATUS_UP || map
-				 * .get(BluetoothCommand.DIRECTION_STATUS) ==
-				 * BluetoothCommand.DIRECTION_STATUS_DOWN))
-				 */
-				if (!isAnimationRunning
-						&& map.get(BluetoothCommand.INIT_POSITION_STATUS) != null
-						&& map.get(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_VALID)
-					overlayBtnPressed();
-				// isAnimationRunning=true;
-				/*if (!isAnimationRunning
-						&& map.get(BluetoothCommand.WALKING_POSITION_STATUS)==BluetoothCommand.WALKING_POSITION_STATUS1)
-					overlayBtnPressed();*/
-				break;
-			case BluetoothCommand.PAUSE_STATUS:
-				if (map.get(BluetoothCommand.PAUSE_STATUS) != null
-						&& map.get(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_OFF)// 这个地方的1要和BluetoothCommand里的一个常量对应
-				{
-					pause.setBackgroundResource(R.drawable.selector_btn_pause);
-					// isAnimationRunning=false;
-				} else {
-					endAnimationPressed();
-					pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
+		public void run() {
+			BluetoothCommand mBC=BluetoothCommand.getInstance();
+			if(mBC!=null){
+				if(mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS)==BluetoothCommand.INIT_POSITION_STATUS_INVALID){
+					//复位状态为0
+					resetStatus=RESETING;
+					resetHandler.postDelayed(resetRunnable, BluetoothCommand.DELAY_TIME);
+				}else if(mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS)==BluetoothCommand.INIT_POSITION_STATUS_VALID){
+					//复位状态为1
+					resetStatus=RESETED;
+					resetHandler.sendEmptyMessage(0);
+					SparseIntArray map=new SparseIntArray();
+        			map.put(BluetoothCommand.INIT_POSITION_STATUS,mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS));
+        			map.put(BluetoothCommand.DIRECTION_STATUS,mBC.getValue(BluetoothCommand.DIRECTION_STATUS));
+        			sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);
 				}
-				break;
-			case BluetoothCommand.ZERO_STATUS:// 控制Zero按键状态
-				if (map.get(BluetoothCommand.ZERO_STATUS) != null
-						&& map.get(BluetoothCommand.ZERO_STATUS) == BluetoothCommand.ZERO_STATUS_CLOSE) {
-					int valuesss = map.get(BluetoothCommand.ZERO_STATUS);
-					System.out.println(valuesss);
-					zero.setBackgroundResource(R.drawable.selector_btn_gravity);
-				} else {
-					zero.setBackgroundResource(R.drawable.btn_gravity_activated);
-				}
-				break;
-
-			case BluetoothCommand.WALKING_POSITION_STATUS://行位控制信号
-				BluetoothCommand mBC=BluetoothCommand.getInstance();
-				
-				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS)!=null
-						&&map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
-					//第一个信号
-					if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
-						if(mBC!=null)
-							mBC.setInhaleTimeStart(System.currentTimeMillis());
-					}else if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
-						if(mBC!=null)
-							mBC.setExhaleTimeStart(System.currentTimeMillis());
-					}
-					
-				}
-				if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS12){
-					//最后一个信号
-					if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
-						if(mBC!=null)
-							mBC.setInhaleTimeEnd(System.currentTimeMillis());
-					}else if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
-						if(mBC!=null)
-							mBC.setExhaleTimeEnd(System.currentTimeMillis());
-					}
-					
-				}
-				break;
-			/*
-			 * case BluetoothCommand.WALKING_POSITION_STATUS:// 动画行为 if
-			 * (map.get(BluetoothCommand.WALKING_POSITION_STATUS) != null &&
-			 * map.get(BluetoothCommand.DIRECTION_STATUS) != null) {
-			 * 
-			 * int direction = map.get(BluetoothCommand.DIRECTION_STATUS); int
-			 * walkingStatus = 0; switch (direction) { case
-			 * BluetoothCommand.DIRECTION_STATUS_DOWN: walkingStatus = 1 - map
-			 * .get(BluetoothCommand.WALKING_POSITION_STATUS) / 12;
-			 * walkingStatus = walkingStatus < 0 ? 0 : walkingStatus;
-			 * walkingStatus = walkingStatus > 1 ? 1 : walkingStatus;
-			 * mExerciseManager.start(walkingStatus); break; case
-			 * BluetoothCommand.DIRECTION_STATUS_RETAIN:
-			 * 
-			 * break; case BluetoothCommand.DIRECTION_STATUS_STOP:
-			 * 
-			 * break; case BluetoothCommand.DIRECTION_STATUS_UP: walkingStatus =
-			 * map .get(BluetoothCommand.WALKING_POSITION_STATUS) / 12;
-			 * walkingStatus = walkingStatus < 0 ? 0 : walkingStatus;
-			 * walkingStatus = walkingStatus > 1 ? 1 : walkingStatus;
-			 * mExerciseManager.start(walkingStatus); break; default: break; }
-			 * 
-			 * } break;
-			 */
-			// //msg.what 返回1播放动画 返回2停止动画
-			// case START_ANIMATION:
-			// overlayBtnPressed();
-			// break;
-			// case END_ANIMATION:
-			// endAnimationPressed();
-			// break;
-			default:
-				break;
 			}
 		}
 	};
+	
+	
+	/**
+	 * 接受机器指令handler
+	 */
+	@Override
+	protected void handlerMachineMessage(Message msg) {
+		SparseIntArray map = (SparseIntArray) msg.obj;
+		switch (msg.what) {
+		case BluetoothCommand.INIT_POSITION_STATUS:
+			// 这个地方要和BluetoothCommand里的一个常量对应
+			///////正常动画
+			if ((!isAnimationRunning)&&isReseted()){
+				Log.e("******************************startanimation", System.currentTimeMillis()+"");
+				overlayBtnPressed();
+			}
+			break;
+		case BluetoothCommand.PAUSE_STATUS:
+			if (map.get(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_OFF)// 这个地方的1要和BluetoothCommand里的一个常量对应
+			{
+				pause.setBackgroundResource(R.drawable.selector_btn_pause);
+				// isAnimationRunning=false;
+			} else {
+				endAnimationPressed();
+				pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
+			}
+			break;
+		case BluetoothCommand.ZERO_STATUS:// 控制Zero按键状态
+			if (map.get(BluetoothCommand.ZERO_STATUS) == BluetoothCommand.ZERO_STATUS_CLOSE) {
+				int valuesss = map.get(BluetoothCommand.ZERO_STATUS);
+				System.out.println(valuesss);
+				zero.setBackgroundResource(R.drawable.selector_btn_gravity);
+			} else {
+				zero.setBackgroundResource(R.drawable.btn_gravity_activated);
+			}
+			break;
 
-//	ValueAnimator.AnimatorUpdateListener 
+		case BluetoothCommand.WALKING_POSITION_STATUS://行位控制信号
+			BluetoothCommand mBC=BluetoothCommand.getInstance();
+			
+			if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
+				//第一个信号
+				if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
+					Log.e("第一个信号上行", System.currentTimeMillis()+"");
+					if(mBC!=null)
+						mBC.setInhaleTimeStart(System.currentTimeMillis());
+				}else if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
+					Log.e("第一个信号上行", System.currentTimeMillis()+"");
+					if(mBC!=null)
+						mBC.setExhaleTimeStart(System.currentTimeMillis());
+				}
+				
+			}
+			if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS12){
+				//最后一个信号
+				if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
+					if(mBC!=null)
+						mBC.setInhaleTimeEnd(System.currentTimeMillis());
+				}else if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
+					if(mBC!=null)
+						mBC.setExhaleTimeEnd(System.currentTimeMillis());
+				}
+				
+			}
+			break;
+		
+		default:
+			break;
+		}
+	
+	};
+
+	/**
+	 * 判断机器是否复位
+	 * @return
+	 */
+    public boolean isReseted(){
+    	if(resetStatus==INVALID){
+    		if(!resetHandler.isWaiting()){
+    			resetHandler.postDelayed(resetRunnable, 200);
+    			resetHandler.setWaiting(true);
+    		}
+    		return false;
+    	}else if(resetStatus==RESETING)
+    		return false;
+    	else if(resetStatus==RESETED)
+    		return true;
+    	
+    	return false;
+    }
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -246,7 +257,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 							.fragSendCommand(BluetoothCommand.PERFORMANCE_MACHINE_VALUES);
 				}
 			} else {
-				overlayPlayBtnPressed();
+				//overlayPlayBtnPressed();
 			}
 
 			break;
@@ -514,17 +525,26 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private void endAnimationPressed() {
 		super.pauseExercise();
 	}
-
+	
 	/**
-	 * 发送命令
-	 * 
-	 * @param command
+	 * 复位检测线程
+	 * @author Desmond Duan
+	 *
 	 */
-	public void sendMachineMessage(int command, HashMap<Integer, Integer> bundle) {
-		Message msg = new Message();
-		msg.what = command;
-		msg.obj = bundle;
-		machineHandler.sendMessage(msg);
+	class ResetHandler extends Handler{
+		private boolean isWaiting=false;//判断线程是否在执行
+		@Override
+		public void handleMessage(Message msg) {
+			isWaiting=false;
+		}
+		
+		public boolean isWaiting() {
+			return isWaiting;
+		}
+		public void setWaiting(boolean isWaiting) {
+			this.isWaiting = isWaiting;
+		}
 	}
+	
 
 }

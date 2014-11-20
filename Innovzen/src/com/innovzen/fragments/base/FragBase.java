@@ -5,7 +5,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -51,6 +54,15 @@ public abstract class FragBase extends Fragment {
 	private AudioManager audiomanage;
 	private ImageView volum_less;
 
+	/**
+	 * 接受机器指令handler
+	 */
+	protected Handler machineHandler=new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			handlerMachineMessage(msg);
+		};
+	};
 
 	/**
 	 * Does proper initializations after inflating the view
@@ -168,4 +180,22 @@ public abstract class FragBase extends Fragment {
 
 	}
 
+	/**
+	 * 处理机器指令
+	 * @param msg
+	 */
+	protected void handlerMachineMessage(Message msg){
+		
+	}
+	/**
+	 * 发送命令
+	 * 
+	 * @param command
+	 */
+	public void sendMachineMessage(int command, SparseIntArray bundle) {
+		Message msg = new Message();
+		msg.what = command;
+		msg.obj = bundle;
+		machineHandler.sendMessage(msg);
+	}
 }

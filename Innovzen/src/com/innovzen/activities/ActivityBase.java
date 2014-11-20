@@ -27,7 +27,7 @@ public class ActivityBase extends FragmentActivity {
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
-
+        
         // Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
