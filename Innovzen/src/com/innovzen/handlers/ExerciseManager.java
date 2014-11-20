@@ -74,7 +74,7 @@ public class ExerciseManager {
 
          	
 	        startAppropriateExerciseType(animation.getAnimatedFraction());
-	        Log.e("动画补间", animation.getAnimatedFraction()+"");
+	        //Log.e("动画补间", animation.getAnimatedFraction()+"");
 
 
         }

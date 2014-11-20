@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import android.content.Context;
 import android.util.Log;
+import android.util.SparseIntArray;
 
 /**
  * 蓝牙命令
@@ -16,6 +17,12 @@ public class BluetoothCommand {
 	/* BluetoothService */
 	public static BluetoothCommand instance;
     public static long SUBTIME=0;
+    /**
+     * 相关常亮
+     */
+	
+	//延迟发送message时间
+    public static final int DELAY_TIME=100;
 	/**
 	 * 发送命令相关字节
 	 */
@@ -295,7 +302,7 @@ public class BluetoothCommand {
 	 * 每一个value值代表当前功能按钮的状态，比如按摩椅运行状态(3bit)有8个状态，状态表示既是0,1...7 这些状态也都用静态int表示
 	 *                              Pulse状态(1bit)有2个状态，状态表示既是0,1
 	 */
-	public HashMap<Integer, Integer> machine_status=new HashMap<Integer, Integer>(){
+	private SparseIntArray machine_status=new SparseIntArray(){
 		/**
 		 * 下面是状态的初始值,如
 		 */
@@ -322,6 +329,15 @@ public class BluetoothCommand {
 			
 		}
 	};
+	
+	/**
+	 * 获取value值
+	 * @param key
+	 * @return
+	 */
+	public Integer getValue(Integer key){
+		return machine_status.get(key);
+	}
 	
 	public static BluetoothCommand getInstance(){
 		return instance;
@@ -471,7 +487,7 @@ public class BluetoothCommand {
 		//取第2 1 0位的状态
 		machine_status.put(BREATHE_STATUS,(b7&0x07));
 		
-		//Log.e("第8字节", printHX(b7)+"-------第3字节--------"+printHX(b2));
+		//Log.e("第8字节", printHX(b7)+"-------第3字节--------"+printHX(b2)+"  "+System.currentTimeMillis());
 		return true;
 	}
 
