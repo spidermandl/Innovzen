@@ -87,7 +87,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					//复位状态为0
 					resetStatus=RESETING;
 					resetHandler.postDelayed(resetRunnable, BluetoothCommand.DELAY_TIME);
-					//Log.e("复位状态为0", System.currentTimeMillis()+"");
+					Log.e("复位状态为0", System.currentTimeMillis()+"");
 				}else if(mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS)==BluetoothCommand.INIT_POSITION_STATUS_VALID){
 					//复位状态为1
 					resetStatus=RESETED;

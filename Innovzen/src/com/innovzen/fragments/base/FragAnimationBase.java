@@ -144,6 +144,9 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
 
     /** Hold the inhale, hold_inhale, exhale, hold_exhale values for the animation. Values in miliseconds. */
     protected ExerciseTimes mTimes = new ExerciseTimes();
+    
+    /**∂Øª≠view*/
+    protected ExerciseAnimationHandler animationHandler;
 
     /** Hold the animation event listener for the play animation overlay */
     //∂Øª≠…Ë÷√
@@ -369,7 +372,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
          * Init the animation handler
          */
         // Instantiate an animation handler
-        ExerciseAnimationHandler animationHandler = new ExerciseAnimationHandler(getActivity(), animation_parent_container, mSelectedExerciseAnimationType);
+        animationHandler = new ExerciseAnimationHandler(getActivity(), animation_parent_container, mSelectedExerciseAnimationType);
         animationHandler.configure(times);
 
         /*
