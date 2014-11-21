@@ -287,11 +287,6 @@ public class BluetoothCommand {
 	public static final int PAUSE_STATUS_OFF=0;
 	public static final int PAUSE_STATUS_ON=1;
 	
-	//同步时间误差
-	private long inhaleTimeStart=0;//吸气开始时间
-	private long inhaleTimeEnd=0;//吸气结束时间
-	private long exhaleTimeStart=0;//呼气开始时间
-	private long exhaleTimeEnd=0;//呼气结束时间
 	
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
@@ -525,38 +520,6 @@ public class BluetoothCommand {
 		}
 
 		return array;
-	}
-
-	public long getInhaleTimeStart() {
-		return inhaleTimeStart;
-	}
-
-	public void setInhaleTimeStart(long inhaleTimeStart) {
-		this.inhaleTimeStart = inhaleTimeStart;
-	}
-
-	public long getInhaleTimeEnd() {
-		return inhaleTimeEnd;
-	}
-
-	public void setInhaleTimeEnd(long inhaleTimeEnd) {
-		this.inhaleTimeEnd = inhaleTimeEnd;
-	}
-
-	public long getExhaleTimeStart() {
-		return exhaleTimeStart;
-	}
-
-	public void setExhaleTimeStart(long exhaleTimeStart) {
-		this.exhaleTimeStart = exhaleTimeStart;
-	}
-
-	public long getExhaleTimeEnd() {
-		return exhaleTimeEnd;
-	}
-
-	public void setExhaleTimeEnd(long exhaleTimeEnd) {
-		this.exhaleTimeEnd = exhaleTimeEnd;
 	}
 
 
