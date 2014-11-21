@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
-import com.innovzen.utils.MyMediaPlayer;
 import com.innovzen.utils.MyPreference;
 
 public class FragMusic extends FragBase implements OnClickListener{
@@ -37,7 +36,7 @@ public class FragMusic extends FragBase implements OnClickListener{
 
         return view;
     }
-	MyMediaPlayer mediaPlay = new MyMediaPlayer();
+	//MyMediaPlayer mediaPlay = new MyMediaPlayer();
 	@Override
 	public void onClick(View v) {
 
@@ -48,17 +47,17 @@ public class FragMusic extends FragBase implements OnClickListener{
 			music3.setBackgroundResource(R.drawable.selector_music_angelic);
 			music4.setBackgroundResource(R.drawable.selector_music_ithaca);
 			music5.setBackgroundResource(R.drawable.selector_music_silence); 
-			   MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC1);	   			
-			   mediaPlay.play(getActivity(), MyMediaPlayer.AQUATIC);
-			   break;
+			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC1);	   			
+			//mediaPlay.play(getActivity(), MyMediaPlayer.AQUATIC);
+		    break;
 		case R.id.music2:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
 			music2.setBackgroundResource(R.drawable.btn_bondi_music_activated);
 			music3.setBackgroundResource(R.drawable.selector_music_angelic);
 			music4.setBackgroundResource(R.drawable.selector_music_ithaca);
 			music5.setBackgroundResource(R.drawable.selector_music_silence); 
-			   MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC2);	   			
-			   mediaPlay.play(getActivity(), MyMediaPlayer.BONDIBREATH);
+			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC2);	   			
+		    //mediaPlay.play(getActivity(), MyMediaPlayer.BONDIBREATH);
 			break;
 		case R.id.music3:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -67,7 +66,7 @@ public class FragMusic extends FragBase implements OnClickListener{
 			music4.setBackgroundResource(R.drawable.selector_music_ithaca);
 			music5.setBackgroundResource(R.drawable.selector_music_silence); 
 			   MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC3);	   			
-			   mediaPlay.play(getActivity(), MyMediaPlayer.ANGELICORGAN);
+			//mediaPlay.play(getActivity(), MyMediaPlayer.ANGELICORGAN);
 			break;
 		case R.id.music4:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -76,7 +75,7 @@ public class FragMusic extends FragBase implements OnClickListener{
 			music4.setBackgroundResource(R.drawable.btn_ithaca_music_activated);
 			music5.setBackgroundResource(R.drawable.selector_music_silence); 
 			   MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC4);	   			
-			   mediaPlay.play(getActivity(), MyMediaPlayer.ITHACAVOX);
+			//mediaPlay.play(getActivity(), MyMediaPlayer.ITHACAVOX);
 			break;
 		case R.id.music5:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -84,12 +83,12 @@ public class FragMusic extends FragBase implements OnClickListener{
 			music3.setBackgroundResource(R.drawable.selector_music_angelic);
 			music4.setBackgroundResource(R.drawable.selector_music_ithaca);
 			music5.setBackgroundResource(R.drawable.btn_silence_music_activated); 
-			   MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC5);	   			
-			   mediaPlay.play(getActivity(), MyMediaPlayer.SILENCE);
+			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.MUSIC, MyPreference.SELECT_MUSIC5);	   			
+		    //mediaPlay.play(getActivity(), MyMediaPlayer.SILENCE);
 			  
 			break;
 		case R.id.left_top:
-			 mediaPlay.play(getActivity(), MyMediaPlayer.SILENCE);
+		    //mediaPlay.play(getActivity(), MyMediaPlayer.SILENCE);
 			getActivity().onBackPressed();
 			break;
 		default:
