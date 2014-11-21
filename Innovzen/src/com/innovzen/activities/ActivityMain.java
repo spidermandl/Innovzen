@@ -95,7 +95,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	
 	public static final Boolean FLAG=false;
 	
-	private LimitRunnable limRunnable=new LimitRunnable();
 	
 	// The Handler that gets information back from the BluetoothChatService
 	private final Handler bluetoothHandler = new Handler() {
@@ -148,18 +147,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.ZERO_STATUS,map);
 	        			/**
 	        			 * 动画行位比例
-	        			 * 获取上下行限
 	        			 */
 	        			//Log.e("行位 数值对比", mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS)+" "+mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS));
-	        			int position_status=mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS);
-	        			if(position_status==BluetoothCommand.WALKING_POSITION_STATUS11){
-	        				limRunnable.addLim(position_status);
-	        			}else if(position_status==BluetoothCommand.WALKING_POSITION_STATUS2){
-	        				limRunnable.addLim(position_status);
-	        			}
-	        			if(mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_STOP){
-	        				limRunnable.addLim(0);
-	        			}
+	        			map.put(BluetoothCommand.WALKING_POSITION_STATUS,mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS));
+	        			map.put(BluetoothCommand.DIRECTION_STATUS,mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS));
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.WALKING_POSITION_STATUS,map);
+	        			
 //	        			if (mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
 //	        				//第一个信号
 //	        				if(mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
@@ -765,78 +758,5 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		
 	}
 
-	/**
-	 * 分析上下位限
-	 * @author Desmond Duan
-	 *
-	 */
-    class LimitRunnable implements Runnable{
-
-    	/**
-    	 * 达到上下限之前的位数
-    	 * 多线程操作
-    	 */
-    	private ArrayList<Integer> befLimArray;
-    	public LimitRunnable() {
-    		befLimArray=new ArrayList<Integer>();
-		}
-    	
-    	/**
-    	 * 增加
-    	 * @param bef
-    	 */
-    	public void addLim(int bef){
-    		int size=Collections.synchronizedList(befLimArray).size();
-    		if(size==0||bef!=Collections.synchronizedList(befLimArray).get(size-1)){
-    			Collections.synchronizedList(befLimArray).add(bef);
-    			if(size==0){
-    				trigger();
-    			}
-    		}
-    	}
-    	
-    	private void trigger(){
-    		bluetoothHandler.postDelayed(limRunnable, BluetoothCommand.DELAY_TIME/2);
-    	}
-    	
-		@Override
-		public void run() {
-			if(Collections.synchronizedList(befLimArray).size()==0)
-				return;
-			int beforeLim=Collections.synchronizedList(befLimArray).get(0);
-			if(beforeLim==0){
-				if(mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_STOP){
-					//处于停滞位
-					if(mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS)==BluetoothCommand.WALKING_POSITION_STATUS12){
-						//下行开始
-						Log.e("下行 开始", System.currentTimeMillis()+"");
-						mBluetoothCommand.setExhaleTimeStart(System.currentTimeMillis());
-					}else if(mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS)==BluetoothCommand.WALKING_POSITION_STATUS1){
-						//上行开始
-						Log.e("上行 开始", System.currentTimeMillis()+"");
-						mBluetoothCommand.setInhaleTimeStart(System.currentTimeMillis());
-					}
-					Collections.synchronizedList(befLimArray).remove(0);
-				}
-			}else if(beforeLim==BluetoothCommand.WALKING_POSITION_STATUS11){
-				//上行结束
-				if(mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS)==BluetoothCommand.WALKING_POSITION_STATUS12){
-					Log.e("上行 结束", System.currentTimeMillis()+"");
-					Collections.synchronizedList(befLimArray).remove(0);
-					mBluetoothCommand.setInhaleTimeEnd(System.currentTimeMillis());
-				}
-				
-			}else if(beforeLim==BluetoothCommand.WALKING_POSITION_STATUS2){
-				//下行结束
-				if(mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS)==BluetoothCommand.WALKING_POSITION_STATUS1){
-					Log.e("下行结束", System.currentTimeMillis()+"");
-					Collections.synchronizedList(befLimArray).remove(0);
-					mBluetoothCommand.setExhaleTimeEnd(System.currentTimeMillis());
-				}
-			}
-			bluetoothHandler.postDelayed(LimitRunnable.this, BluetoothCommand.DELAY_TIME/2);
-
-		}
-    	
-    }
+	
 }

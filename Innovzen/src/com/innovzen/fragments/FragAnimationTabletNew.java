@@ -1,6 +1,5 @@
 package com.innovzen.fragments;
 
-import java.util.HashMap;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -70,9 +69,20 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private int resetStatus=INVALID;
 	
 	/**
+	 * 位限检测线程
+	 */
+	private SingletonHandler limHandler = new SingletonHandler();
+	
+	/**
 	 * 复位检测线程
 	 */
-	private ResetHandler resetHandler = new ResetHandler();
+	private SingletonHandler resetHandler = new SingletonHandler();
+	
+	/**
+	 * 对应于位限检测线程
+	 */
+	//private LimitRunnable limRunnable=new LimitRunnable();
+	
 	/**
 	 * 对应于复位检测
 	 */
@@ -85,6 +95,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					//复位状态为0
 					resetStatus=RESETING;
 					resetHandler.postDelayed(resetRunnable, BluetoothCommand.DELAY_TIME);
+					//Log.e("复位状态为0", System.currentTimeMillis()+"");
 				}else if(mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS)==BluetoothCommand.INIT_POSITION_STATUS_VALID){
 					//复位状态为1
 					resetStatus=RESETED;
@@ -93,6 +104,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
         			map.put(BluetoothCommand.INIT_POSITION_STATUS,mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS));
         			map.put(BluetoothCommand.DIRECTION_STATUS,mBC.getValue(BluetoothCommand.DIRECTION_STATUS));
         			sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);
+        			Log.e("复位状态为1", System.currentTimeMillis()+"");
 				}
 			}
 		}
@@ -134,33 +146,50 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			}
 			break;
 
-		case BluetoothCommand.WALKING_POSITION_STATUS://行位控制信号
-			BluetoothCommand mBC=BluetoothCommand.getInstance();
+		case BluetoothCommand.WALKING_POSITION_STATUS:
+			//行位控制信号
+//			if (isReseted()){
+//				int position_status=map.get(BluetoothCommand.WALKING_POSITION_STATUS);
+//				if(position_status==BluetoothCommand.WALKING_POSITION_STATUS11){//11
+//					limRunnable.setCurrentLim(position_status);
+//				}else if(position_status==BluetoothCommand.WALKING_POSITION_STATUS2){//2
+//					limRunnable.setCurrentLim(position_status);
+//				}else if(
+//						(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_STOP
+//						&&position_status==BluetoothCommand.WALKING_POSITION_STATUS1)//1
+//						||
+//						(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_STOP
+//						&&position_status==BluetoothCommand.WALKING_POSITION_STATUS12)){//12
+//					limRunnable.setCurrentLim(0);
+//				}
+//			}
 			
-			if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
-				//第一个信号
-				if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
-					Log.e("第一个信号上行", System.currentTimeMillis()+"");
-					if(mBC!=null)
-						mBC.setInhaleTimeStart(System.currentTimeMillis());
-				}else if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
-					Log.e("第一个信号上行", System.currentTimeMillis()+"");
-					if(mBC!=null)
-						mBC.setExhaleTimeStart(System.currentTimeMillis());
-				}
-				
-			}
-			if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS12){
-				//最后一个信号
-				if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
-					if(mBC!=null)
-						mBC.setInhaleTimeEnd(System.currentTimeMillis());
-				}else if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
-					if(mBC!=null)
-						mBC.setExhaleTimeEnd(System.currentTimeMillis());
-				}
-				
-			}
+//			BluetoothCommand mBC=BluetoothCommand.getInstance();
+//			
+//			if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
+//				//第一个信号
+//				if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
+//					Log.e("第一个信号上行", System.currentTimeMillis()+"");
+//					if(mBC!=null)
+//						mBC.setInhaleTimeStart(System.currentTimeMillis());
+//				}else if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
+//					Log.e("第一个信号上行", System.currentTimeMillis()+"");
+//					if(mBC!=null)
+//						mBC.setExhaleTimeStart(System.currentTimeMillis());
+//				}
+//				
+//			}
+//			if (map.get(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS12){
+//				//最后一个信号
+//				if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
+//					if(mBC!=null)
+//						mBC.setInhaleTimeEnd(System.currentTimeMillis());
+//				}else if(map.get(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
+//					if(mBC!=null)
+//						mBC.setExhaleTimeEnd(System.currentTimeMillis());
+//				}
+//				
+//			}
 			break;
 		
 		default:
@@ -527,11 +556,11 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	}
 	
 	/**
-	 * 复位检测线程
+	 * 单例线程
 	 * @author Desmond Duan
 	 *
 	 */
-	class ResetHandler extends Handler{
+	class SingletonHandler extends Handler{
 		private boolean isWaiting=false;//判断线程是否在执行
 		@Override
 		public void handleMessage(Message msg) {
@@ -546,5 +575,86 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		}
 	}
 	
+	/**
+	 * 分析上下位限
+	 * @author Desmond Duan
+	 *
+	 */
+//    class LimitRunnable implements Runnable{
+//
+//    	/**
+//    	 * 达到上下限之前的位数
+//    	 * 多线程操作
+//    	 */
+//    	private int befLimit;
+//    	
+//    	public LimitRunnable() {
+//    		
+//		}
+//    	
+//    	/**
+//    	 * 增加
+//    	 * @param bef
+//    	 */
+//    	public void setCurrentLim(int bef){
+//    		if(!limHandler.isWaiting()){
+//    			befLimit=bef;
+//    			//limHandler.postDelayed(this,BluetoothCommand.DELAY_TIME/2);
+//    			limHandler.post(this);
+//    			limHandler.setWaiting(true);
+//    		}
+//    	}
+//    	
+//    	
+//		@Override
+//		public void run() {
+//			BluetoothCommand mBC=BluetoothCommand.getInstance();
+//			if(mBC!=null){
+//				if(befLimit==0){
+//					//处于停滞位
+//					if(mBC.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){
+//						//下行开始
+//						Log.e("333333333333333333333下行 开始", System.currentTimeMillis()+"");
+//						mBC.setExhaleTimeStart(System.currentTimeMillis());
+//						limHandler.setWaiting(false);
+//					}else if(mBC.getValue(BluetoothCommand.WALKING_POSITION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){
+//						//上行开始
+//						Log.e("11111111111111111 上行 开始", System.currentTimeMillis()+"");
+//						mBC.setInhaleTimeStart(System.currentTimeMillis());
+//						limHandler.setWaiting(false);
+//					}else{
+//						Log.e("0000000000000000000等待", System.currentTimeMillis()+"");
+//						limHandler.postDelayed(this, BluetoothCommand.DELAY_TIME/2);
+//					}
+//						
+//				}else if(befLimit==BluetoothCommand.WALKING_POSITION_STATUS11){
+//					//上行结束
+//					if(mBC.getValue(BluetoothCommand.WALKING_POSITION_STATUS)==BluetoothCommand.WALKING_POSITION_STATUS12||
+//							mBC.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_STOP){
+//						Log.e("22222222222222222上行 结束", System.currentTimeMillis()+"");
+//						mBC.setInhaleTimeEnd(System.currentTimeMillis());
+//						limHandler.setWaiting(false);
+//					}else{
+//						Log.e("22222222222222222上行 结束等待", System.currentTimeMillis()+"");
+//						limHandler.postDelayed(this, BluetoothCommand.DELAY_TIME/2);
+//					}
+//					
+//				}else if(befLimit==BluetoothCommand.WALKING_POSITION_STATUS2){
+//					//下行结束
+//					if(mBC.getValue(BluetoothCommand.WALKING_POSITION_STATUS)==BluetoothCommand.WALKING_POSITION_STATUS1||
+//							mBC.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_STOP){
+//						Log.e("4444444444444444444444下行结束", System.currentTimeMillis()+"");
+//						mBC.setExhaleTimeEnd(System.currentTimeMillis());
+//						limHandler.setWaiting(false);
+//					}else{
+//						Log.e("4444444444444444444444下行 结束等待", System.currentTimeMillis()+"");
+//						limHandler.postDelayed(this, BluetoothCommand.DELAY_TIME/2);
+//					}
+//				}
+//				
+//			}
+//		}
+//    	
+//    }
 
 }
