@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.o2chair.R;
 import com.innovzen.ui.VerticalSeekBar;
+import com.innovzen.utils.MyPreference;
 
 /**
  * fragment 父类 所有fragment共有属性
@@ -63,6 +64,7 @@ public abstract class FragBase extends Fragment {
 			handlerMachineMessage(msg);
 		};
 	};
+	private int lastVolumeValue;
 
 	/**
 	 * Does proper initializations after inflating the view
@@ -80,14 +82,18 @@ public abstract class FragBase extends Fragment {
 	protected void initLefter(View view) {
 		audiomanage = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);						
 		maxVolume = audiomanage.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-						
+		lastVolumeValue = MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME);
+			
         volum_less = (ImageView) view.findViewById(R.id.volum_less);
         volum_less.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				seekBar.setProgress(0);
-				
+				if(lastVolumeValue!=maxVolume/2){
+					seekBar.setProgress(lastVolumeValue);		
+				}else{
+				seekBar.setProgress(maxVolume/2);
+				}
 			}
 		});
 		leftTop = (ImageView) view.findViewById(R.id.left_top);
@@ -96,7 +102,8 @@ public abstract class FragBase extends Fragment {
 		voice_progressbar = (RelativeLayout) view.findViewById(R.id.voice_progressbar);
 		seekBar = (VerticalSeekBar) view.findViewById(R.id.mySeekBar);
 		seekBar.setMax(maxVolume);
-		seekBar.setProgress(currentVolume);
+		
+		
 	//	seekBar.setProgressDrawable(d)
 		
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -109,11 +116,13 @@ public abstract class FragBase extends Fragment {
 				audiomanage.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
 				currentVolume = audiomanage.getStreamVolume(AudioManager.STREAM_MUSIC);
                 seekBar.setProgress(currentVolume);
+            
                 if(progress==0){
                 	volum_less.setBackgroundResource(R.drawable.icon_no_volum);
                 }else{
                 	volum_less.setBackgroundResource(R.drawable.icon_volum_less);
                 }
+              
 				
 			}
 
@@ -125,11 +134,11 @@ public abstract class FragBase extends Fragment {
 
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				// TODO Auto-generated method stub
+				 MyPreference.getInstance(getActivity()).writeString(MyPreference.LAST_VOLUME, currentVolume);
 				
 			}
 		});
-	
+		
 		// 点击返回上一个fragment
 		leftTop.setOnClickListener(new OnClickListener() {
 

@@ -720,6 +720,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 	@Override
 	public void fragGoToVoice(boolean addToBackstack) {
+		//navigateTo(FragVoice.class, null, addToBackstack);
 		navigateTo(FragVoice.class, null, addToBackstack);
 
 	}

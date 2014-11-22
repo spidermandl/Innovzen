@@ -26,23 +26,25 @@ public class MyMediaPlayer {
 	public void play(Context context, int musicName) {
 		player1 = MediaPlayer.create(context, R.raw.innovzen_aquaticsunbeam_expir);
 		player2 = MediaPlayer.create(context, R.raw.innovzen_bondibreath_expir);
-		player3 = MediaPlayer
-				.create(context, R.raw.innovzen_angelicorgan_expir);
+		player3 = MediaPlayer.create(context, R.raw.innovzen_angelicorgan_expir);
 		player4 = MediaPlayer.create(context, R.raw.innovzen_ithacavox_expir);
 		
 
 		switch (musicName) {
 		case AQUATIC:
-			player2.stop();
-			player3.stop();
-			player4.stop();
+			
 			player1.start();
+			
+			//player2.stop();
+			//player3.stop();
+			//player4.stop();
 			break;
 		case BONDIBREATH:
+		
+			//player2.start();
 			player1.stop();
-			player3.stop();
-			player4.stop();
-			player2.start();
+			//player3.stop();
+			//player4.stop();
 			break;
 		case ANGELICORGAN:
 			player1.stop();
@@ -61,9 +63,6 @@ public class MyMediaPlayer {
 			player2.stop();
 			player3.stop();
 			player4.stop();
-			break;
-
-		default:
 			break;
 		}
 	}

@@ -21,7 +21,7 @@ import com.innovzen.handlers.SubheaderHandler;
 import com.innovzen.utils.PersistentUtil;
 
 public class FragSoundPicker extends FragBase implements OnClickListener, OnItemClickListener {
-
+      
     // Hold shared pref keys
     public static final String PERSIST_SELECTED_VOICE = "selected_voice";
     public static final String PERSIST_SELECTED_AMBIANCE = "selected_ambiance";
@@ -40,7 +40,7 @@ public class FragSoundPicker extends FragBase implements OnClickListener, OnItem
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sound_picker, container, false);
-
+        
         init(view);
 
         return view;
@@ -132,7 +132,7 @@ public class FragSoundPicker extends FragBase implements OnClickListener, OnItem
          * Get AND in case it's -1, then set the default selected sounds (voice and ambiance)
          */
         // Voice
-        int selectedVoiceSoundId = PersistentUtil.getInt(getActivity(), PERSIST_SELECTED_VOICE);
+		int selectedVoiceSoundId = PersistentUtil.getInt(getActivity(), PERSIST_SELECTED_VOICE);
         if (selectedVoiceSoundId == -1) {
             selectedVoiceSoundId = mAdapterVoices.getFirstSoundId();
             PersistentUtil.setInt(getActivity(), selectedVoiceSoundId, PERSIST_SELECTED_VOICE);
@@ -154,7 +154,7 @@ public class FragSoundPicker extends FragBase implements OnClickListener, OnItem
 
         // Set event listeners
         view.findViewById(R.id.sound_picker_validate_btn).setOnClickListener(this);
-
+ 
     }
 
 }
