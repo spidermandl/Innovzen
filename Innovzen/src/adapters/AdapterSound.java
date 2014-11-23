@@ -23,7 +23,7 @@ public class AdapterSound extends BaseAdapter {
     // Hold layout inflater
     private Resources mRes;
     private LayoutInflater mInflater;
-    public List<SoundGroup> mSounds = new ArrayList<SoundGroup>();
+    private List<SoundGroup> mSounds = new ArrayList<SoundGroup>();
 
     // Hold the ID of the item currently selected
     private int mSelectedItemId = -1;
