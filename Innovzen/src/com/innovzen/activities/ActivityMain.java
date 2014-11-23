@@ -552,7 +552,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 	@Override
 	public void fragGoToSoundPicker(boolean addToBackstack) {
-		navigateTo(FragSoundPicker.class, null, addToBackstack);
+		//navigateTo(FragSoundPicker.class, null, addToBackstack);
+		navigateTo(FragVoice.class, null, addToBackstack);
 	}
 
 	@Override
@@ -720,8 +721,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 	@Override
 	public void fragGoToVoice(boolean addToBackstack) {
-		//navigateTo(FragVoice.class, null, addToBackstack);
 		navigateTo(FragVoice.class, null, addToBackstack);
+		//avigateTo(FragSoundPicker.class, null, addToBackstack);
 
 	}
 
