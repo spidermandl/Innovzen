@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.innovzen.activities.ActivityMain;
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
@@ -103,7 +104,8 @@ public class FragSettings extends FragBase implements OnClickListener{
 			break;
 		case R.id.set_bluetooth:
 			super.activityListener.fragConnectBluetooth();
-			
+			//super.activityListener.fragSendCommand(BluetoothCommand.BLUETOOTH_MACHINE_VALUES);
+			//super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 			break;
 		default:
 			break;

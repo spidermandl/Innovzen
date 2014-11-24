@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.util.SparseIntArray;
 
 /**
  * This class does all the work for setting up and managing Bluetooth
@@ -425,6 +426,10 @@ public class BluetoothService {
 	                    senders[index]=buffer[i];
 	                    // Send the obtained bytes to the UI Activity
 	                    if(index==8){
+	                    	
+	                    	BluetoothCommand m = new BluetoothCommand();
+	                    	//m.parseCommand(bytes)
+	                    	
 	                    	mHandler.obtainMessage(MESSAGE_READ, senders.length, -1, senders)
 	                            .sendToTarget();
 	                    	index=0;
@@ -448,6 +453,7 @@ public class BluetoothService {
 				e.printStackTrace();
 			}
         }*/
+        
         /**
          * Write to the connected OutStream.
          * @param buffer  The bytes to write
@@ -472,4 +478,28 @@ public class BluetoothService {
             }
         }
     }
+    
+	/**
+	 * 接受机器指令handler
+	 */
+   /* protected Handler machineHandler=new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			handlerMachineMessage(msg);
+		};
+	};
+	@Override
+	protected void handlerMachineMessage(Message msg) {
+		SparseIntArray map = (SparseIntArray) msg.obj;
+		switch (msg.what) {
+		case BluetoothCommand.INIT_POSITION_STATUS:
+		}
+	}
+	public void sendMachineMessage(int command, SparseIntArray bundle) {
+		Message msg = new Message();
+		msg.what = command;
+		msg.obj = bundle;
+		machineHandler.sendMessage(msg);
+	}*/
+	
 }

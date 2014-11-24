@@ -344,6 +344,9 @@ public class BluetoothCommand {
 		this.mBluetoothService = mBluetoothService;
 		instance=this;
 	}
+	public BluetoothCommand(){
+		super();
+	}
 
 	/**
 	 * 对外提供的初始化方法
@@ -483,6 +486,7 @@ public class BluetoothCommand {
 		machine_status.put(BREATHE_STATUS,(b7&0x07));
 		
 		//Log.e("第8字节", printHX(b7)+"-------第3字节--------"+printHX(b2)+"  "+System.currentTimeMillis());
+		Log.e("第2字节",printHX(b1)+"");
 		return true;
 	}
 

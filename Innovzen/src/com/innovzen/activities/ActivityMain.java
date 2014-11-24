@@ -139,6 +139,10 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	        			//初始位
 	        			 //Log.e("INIT_POSITION_STATUS", value+"");
 	        			SparseIntArray map=new SparseIntArray();
+	        			//机器运行状态
+	        			map.put(BluetoothCommand.MACHINE_RUN_STATUS, mBluetoothCommand.getValue(BluetoothCommand.MACHINE_MASSAGE_STATUS));
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.MACHINE_RUN_STATUS,map);
+
 	        			map.put(BluetoothCommand.INIT_POSITION_STATUS,mBluetoothCommand.getValue(BluetoothCommand.INIT_POSITION_STATUS));
 	        			map.put(BluetoothCommand.DIRECTION_STATUS,mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS));
 	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);
@@ -748,6 +752,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		isBlueToothSetup();
 
 	}
+	
 
 	@Override
 	public void fragSendCommand(int[] commands) {
@@ -757,6 +762,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragGetCommand(byte[] bytes) {
 		mBluetoothCommand.parseCommand(bytes);
+		
+	}
+
+	@Override
+	public void fragCloseBluetooth() {
+		mBluetoothService.stop();
 		
 	}
 

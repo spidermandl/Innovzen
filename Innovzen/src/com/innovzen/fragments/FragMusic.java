@@ -190,6 +190,9 @@ public class FragMusic extends FragBase implements OnClickListener {
 			break;
 		case R.id.left_top:
 			// mediaPlay.play(getActivity(), MyMediaPlayer.SILENCE);
+			
+			super.activityListener.fragStopAmbiancePlayer();
+			super.activityListener.fragStopVoicePlayer();
 			getActivity().onBackPressed();
 			break;
 		default:
@@ -201,11 +204,11 @@ public class FragMusic extends FragBase implements OnClickListener {
 	@Override
 	public void init(View view) {
 		initLefter(view);
-
 		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		myMinutes.setText(MyPreference.getInstance(this.getActivity())
 				.readString(MyPreference.TIME));
 		left_top = (ImageView) view.findViewById(R.id.left_top);
+		
 		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
 		left_top.setBackgroundResource(R.drawable.selector_btn_back);
 		left_mid.setBackgroundResource(R.drawable.banner_music);
@@ -219,7 +222,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 		music3.setOnClickListener(this);
 		music4.setOnClickListener(this);
 		music5.setOnClickListener(this);
-
+		left_top.setOnClickListener(this);
 		mAdapterAmbiance = new AdapterSound(getActivity(),
 				super.activityListener.fragGetAmbiance());
 
