@@ -43,6 +43,7 @@ public abstract class FragBase extends Fragment {
 	protected FragmentCommunicator activityListener;
 	private ImageView iv;
 	private int maxVolume;
+	private int lastVolumeValue;
     private int currentVolume;
 	/**
 	 * desmond ½çÃæ×ó²à¿ØÖÆÀ¸
@@ -64,7 +65,6 @@ public abstract class FragBase extends Fragment {
 			handlerMachineMessage(msg);
 		};
 	};
-	private int lastVolumeValue;
 
 	/**
 	 * Does proper initializations after inflating the view
