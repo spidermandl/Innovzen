@@ -426,9 +426,9 @@ public class BluetoothService {
 	                    senders[index]=buffer[i];
 	                    // Send the obtained bytes to the UI Activity
 	                    if(index==8){
-	                    	
-	                    	BluetoothCommand m = new BluetoothCommand();
-	                    	//m.parseCommand(bytes)
+	                    	BluetoothCommand mDB=BluetoothCommand.getInstance();
+	                    	if(mDB!=null)
+	                    		mDB.parseCommand(senders);//直接解析数据
 	                    	
 	                    	mHandler.obtainMessage(MESSAGE_READ, senders.length, -1, senders)
 	                            .sendToTarget();
@@ -478,28 +478,5 @@ public class BluetoothService {
             }
         }
     }
-    
-	/**
-	 * 接受机器指令handler
-	 */
-   /* protected Handler machineHandler=new Handler(){
-		@Override
-		public void handleMessage(Message msg) {
-			handlerMachineMessage(msg);
-		};
-	};
-	@Override
-	protected void handlerMachineMessage(Message msg) {
-		SparseIntArray map = (SparseIntArray) msg.obj;
-		switch (msg.what) {
-		case BluetoothCommand.INIT_POSITION_STATUS:
-		}
-	}
-	public void sendMachineMessage(int command, SparseIntArray bundle) {
-		Message msg = new Message();
-		msg.what = command;
-		msg.obj = bundle;
-		machineHandler.sendMessage(msg);
-	}*/
 	
 }

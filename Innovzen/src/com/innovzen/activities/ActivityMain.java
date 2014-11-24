@@ -121,9 +121,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				String writeMessage = new String(writeBuf);
 				System.out.println(writeMessage);
 				break;
-			case MESSAGE_READ:
-				byte[] readBuf = (byte[]) msg.obj;
-				mBluetoothCommand.parseCommand(readBuf);
+			case MESSAGE_READ:				
+				/**
+				 * 解析步骤可以在收到数据后立马解析
+				 */
+				//byte[] readBuf = (byte[]) msg.obj;
+				//mBluetoothCommand.parseCommand(readBuf);
 				/**
 				 * 判断是当前fragment是否是FragAnimationTabletNew
 				 */
@@ -377,6 +380,26 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		if (mBluetoothService.getState() != BluetoothService.STATE_CONNECTED) {
 			bluetoothDialog = FragBluetoothDialog.newInstance("", "");
 			bluetoothDialog.show(this.getSupportFragmentManager(), "");
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * 判断蓝牙有无连接
+	 * @return
+	 */
+	public boolean isBlueToothConnected(){
+		// 判断有无蓝牙设备
+		if (mBluetoothAdapter == null) {
+			return false;
+		}
+		// 判断蓝牙是否开启
+		if (!mBluetoothAdapter.isEnabled()) {
+			return false;
+		}
+		// 判断蓝牙通信是否建立
+		if (mBluetoothService.getState() != BluetoothService.STATE_CONNECTED) {
 			return false;
 		}
 		return true;
@@ -750,7 +773,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragConnectBluetooth() {
 		isBlueToothSetup();
-
 	}
 	
 
