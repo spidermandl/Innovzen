@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.innovzen.entities.SoundItem;
 import com.innovzen.fragments.base.FragBase;
@@ -21,6 +23,7 @@ public class FragVoice extends FragBase implements OnClickListener {
 	public static final String PERSIST_SELECTED_VOICE = "selected_voice";
 
 	private AdapterSound mAdapterVoices;
+	private TextView myMinutes;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -130,10 +133,15 @@ public class FragVoice extends FragBase implements OnClickListener {
 		man_voice = (ImageView) view.findViewById(R.id.man_voice);
 		woman_voice = (ImageView) view.findViewById(R.id.woman_voice);
 		silence_voice = (ImageView) view.findViewById(R.id.silence_voice);
+		LinearLayout left_mid =(LinearLayout) view.findViewById(R.id.left_mid);
+		
+		left_mid.setBackgroundResource(R.drawable.banner_voice);
+		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		man_voice.setOnClickListener(this);
 		woman_voice.setOnClickListener(this);
 		silence_voice.setOnClickListener(this);
-
+		myMinutes.setText(MyPreference.getInstance(this.getActivity())
+				.readString(MyPreference.TIME));
 		// Voice
 		int selectedVoiceSoundId = PersistentUtil.getInt(getActivity(),
 				PERSIST_SELECTED_VOICE);

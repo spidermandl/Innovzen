@@ -89,11 +89,9 @@ public abstract class FragBase extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				if(lastVolumeValue!=maxVolume/2){
-					seekBar.setProgress(lastVolumeValue);		
-				}else{
-				seekBar.setProgress(maxVolume/2);
-				}
+				
+				seekBar.setProgress(0);
+				
 			}
 		});
 		leftTop = (ImageView) view.findViewById(R.id.left_top);
@@ -103,7 +101,11 @@ public abstract class FragBase extends Fragment {
 		seekBar = (VerticalSeekBar) view.findViewById(R.id.mySeekBar);
 		seekBar.setMax(maxVolume);
 		
-		
+		if(lastVolumeValue==maxVolume/2||lastVolumeValue==0){
+			seekBar.setProgress(maxVolume/2);
+			}else{
+				seekBar.setProgress(lastVolumeValue);
+			}
 	//	seekBar.setProgressDrawable(d)
 		
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -161,6 +163,10 @@ public abstract class FragBase extends Fragment {
 				leftMid.setVisibility(View.INVISIBLE);
 				leftBottom.setVisibility(View.INVISIBLE);
 				voice_progressbar.setVisibility(View.VISIBLE);
+				
+				
+				
+			
 			}
 		});
 		
