@@ -333,7 +333,10 @@ public class BluetoothCommand {
 	public Integer getValue(Integer key){
 		return machine_status.get(key);
 	}
-	
+	/**
+	 * »ñÈ¡BluetoothCommandµ¥Àý
+	 * @return
+	 */
 	public static BluetoothCommand getInstance(){
 		return instance;
 	}
@@ -343,9 +346,6 @@ public class BluetoothCommand {
 		this.context = context;
 		this.mBluetoothService = mBluetoothService;
 		instance=this;
-	}
-	public BluetoothCommand(){
-		super();
 	}
 
 	/**
