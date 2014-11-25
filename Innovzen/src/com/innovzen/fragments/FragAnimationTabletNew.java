@@ -1,5 +1,6 @@
 package com.innovzen.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,8 +15,8 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.innovzen.activities.ActivityMain;
 import com.innovzen.bluetooth.BluetoothCommand;
@@ -125,7 +126,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		case BluetoothCommand.INIT_POSITION_STATUS:
 			// 这个地方要和BluetoothCommand里的一个常量对应
 			// /////正常动画
-			if ((!isAnimationRunning) && isReseted()) {
+			if ((!isAnimationRunning) && isReseted(false)) {
 				Log.e("******************************startanimation",
 						System.currentTimeMillis() + "");
 				overlayBtnPressed();
@@ -178,22 +179,27 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 	/**
 	 * 判断机器是否复位
-	 * 
+	 * isLog 是否显示提示
 	 * @return
 	 */
-	public boolean isReseted() {
+	public boolean isReseted(boolean isLog) {
 		if (resetStatus == INVALID) {
 			if (!resetHandler.isWaiting()) {
 				resetHandler.postDelayed(resetRunnable, 200);
 				resetHandler.setWaiting(true);
 			}
+			if(isLog)
+				Toast.makeText(getActivity(), "The machine has not started,please press the rebooting botton", 1000).show();
 			return false;
-		} else if (resetStatus == RESETING)
+		} else if (resetStatus == RESETING){
+			if(isLog)
+				Toast.makeText(getActivity(), "The machine is reseting now", 1000).show();
 			return false;
+		}
 		else if (resetStatus == RESETED)
 			
 			return true;
-		
+
 		return false;
 	}
 
@@ -270,7 +276,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 开始
 		case R.id.main_animation_start:
-			/*if(wait){//只有机器复位才能播放动画
+			if(isReseted(true)){//只有机器复位才能播放动画
 				String blance_relax_performance = 
 						MyPreference.getInstance(getActivity()).readString(MyPreference.BLANCE_RELAX_PERFORMANCE);
 				if (blance_relax_performance.equals(MyPreference.BLANCE)) {
@@ -284,9 +290,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 							.fragSendCommand(BluetoothCommand.PERFORMANCE_MACHINE_VALUES);
 				}
 				 
-			}*/
-			super.activityListener
-			.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
+			}
 			break;
 		// 暂停
 		case R.id.main_animation_pause:
