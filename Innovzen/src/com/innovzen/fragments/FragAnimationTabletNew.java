@@ -14,7 +14,6 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import android.widget.RelativeLayout;
 
@@ -39,8 +38,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private boolean closePower = false;
 	// 是否处于待机状态
 	private boolean wait = false;
-	//动画是否在运行
-	private boolean isRunning=false;
 	//蓝牙是否可以被关闭
 	private boolean closeBluetooth=false;
 	// Hold view references
@@ -128,7 +125,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				Log.e("******************************startanimation",
 						System.currentTimeMillis() + "");
 				overlayBtnPressed();
-				isRunning=true;
 			}
 			if (map.get(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_VALID) {
 				closePower = true;
@@ -217,7 +213,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		switch (v.getId()) {
 		case R.id.animation_pause_btn:
 			super.pauseExercise();
-			isRunning=false;
 			break;
 		case R.id.animation_help_btn:
 			super.activityListener.fragGoToHelp(true);
@@ -249,13 +244,12 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					isPowerOn=true;
 					super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 				}
-				if(closePower==true&&isPowerOn==true&&isRunning){//如果机器已经初始化完毕，并且正在运动 并且动画正在运行 则按一下按钮就关闭机器
+				if(closePower==true&&isPowerOn==true&&isAnimationRunning){//如果机器已经初始化完毕，并且正在运动 并且动画正在运行 则按一下按钮就关闭机器
 					super.pauseExercise();
 					super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 					isPowerOn=false;
 					closeBluetooth=true;//把蓝牙设置成可关闭
 				}
-				
 			}		
 				
 			break;
