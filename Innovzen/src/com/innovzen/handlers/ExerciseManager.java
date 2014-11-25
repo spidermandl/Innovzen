@@ -1,11 +1,8 @@
 package com.innovzen.handlers;
 
-import java.security.KeyStore.ProtectionParameter;
 
 import adapters.AdapterSound;
 import android.animation.ValueAnimator;
-import android.text.Html;
-import android.util.Log;
 
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.entities.SoundItem;
@@ -74,7 +71,7 @@ public class ExerciseManager {
 
          	
 	        startAppropriateExerciseType(animation.getAnimatedFraction());
-	        Log.e("动画补间", animation.getAnimatedFraction()+"");
+	        //Log.e("动画补间", animation.getAnimatedFraction()+"");
 
 
         }

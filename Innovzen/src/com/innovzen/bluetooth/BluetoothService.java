@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.util.SparseIntArray;
 
 /**
  * This class does all the work for setting up and managing Bluetooth
@@ -425,6 +426,12 @@ public class BluetoothService {
 	                    senders[index]=buffer[i];
 	                    // Send the obtained bytes to the UI Activity
 	                    if(index==8){
+
+	                    	BluetoothCommand mDB=BluetoothCommand.getInstance();
+	                    	if(mDB!=null)
+	                    		mDB.parseCommand(senders);//直接解析数据
+	                    	
+
 	                    	mHandler.obtainMessage(MESSAGE_READ, senders.length, -1, senders)
 	                            .sendToTarget();
 	                    	index=0;
@@ -432,7 +439,7 @@ public class BluetoothService {
 	                    	index++;
 	                    }
                     }
-                    Log.e("读取单位是时间计算", bytes+"-------------------"+(System.currentTimeMillis()-tStamp)+"毫秒");
+                    //Log.e("读取单位时间", bytes+"-------------------"+(System.currentTimeMillis()-tStamp)+"毫秒");
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
                     connectionLost();
@@ -448,6 +455,7 @@ public class BluetoothService {
 				e.printStackTrace();
 			}
         }*/
+        
         /**
          * Write to the connected OutStream.
          * @param buffer  The bytes to write
@@ -472,4 +480,6 @@ public class BluetoothService {
             }
         }
     }
+
+	
 }

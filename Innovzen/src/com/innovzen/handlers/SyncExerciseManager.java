@@ -3,6 +3,7 @@ package com.innovzen.handlers;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 
 import com.innovzen.bluetooth.BluetoothCommand;
@@ -16,15 +17,37 @@ import com.innovzen.interfaces.FragmentCommunicator;
  * 实现同步功能exercise动画
  */
 public class SyncExerciseManager extends ExerciseManager{
+
 	/**
-	 * 延迟发送message时间
+	 * 通讯事件补偿
 	 */
-    private static final int DELAY_TIME=100;
+	static final int DELTA_TIME=500;
 	/**
 	 * 等待机器传送最后位行指令
 	 * waitHandler的实例只能有一份，当isRunning为true时，此时正在进行等待状态
 	 */
-	private WaitHandler waitHandler=new WaitHandler();
+	private WaitHandler waitHandler=new WaitHandler(),//等待线程，等代时间戳达到相位
+	           exhaleHoldHandler=new WaitHandler(),//呼气屏住等待线程
+	           inhaleExerciseHandler = new WaitHandler(),//吸气等待线程
+	           inhaleHoldHandler=new WaitHandler(),//吸气屏住线程
+	           exhaleExerciseHandler = new WaitHandler();//呼气等待线程
+	
+	/**
+	 * 校验相位和方向
+	 */
+	private PositionCheckRunnable 
+	           exhaleHoldRunnable=new PositionCheckRunnable(EXERCISE_HOLD_EXHALE),//呼气屏住等待逻辑
+	           inhaleExerciseRunnable = new PositionCheckRunnable(EXERCISE_INHALE),//吸气等待逻辑
+	           inhaleHoldRunnable=new PositionCheckRunnable(EXERCISE_HOLD_INHALE),//吸气屏住等待逻辑
+	           exhaleExerciseRunnable = new PositionCheckRunnable(EXERCISE_EXHALE);//呼气等待逻辑
+	
+	/**
+	 * 同步时间误差
+	 */
+	private long inhaleTimeStart=0,//吸气开始时间
+			     inhaleTimeEnd=0,//吸气结束时间
+			     exhaleTimeStart=0,//呼气开始时间
+			     exhaleTimeEnd=0;//呼气结束时间
 	
 	/**
 	 * 等待线程处理方法
@@ -35,42 +58,47 @@ public class SyncExerciseManager extends ExerciseManager{
 			switch (mCurExercise) {
 			case EXERCISE_INHALE:
 				subtime=BluetoothCommand.getInstance()==null?0:
-					System.currentTimeMillis()-BluetoothCommand.getInstance().getInhaleTimeEnd();
-	        	if(subtime!=0&&subtime<mTimes.inhale*60*1000){
+					(System.currentTimeMillis()-inhaleTimeEnd);
+	        	if(subtime!=0&&subtime<mTimes.inhale+DELTA_TIME){
 	        		//long a = mTimes.inhale;
+	        		Log.e("inhale 等待成功", subtime+"");
 	        		waitHandler.sendEmptyMessage(0);
 	        	}else{
-	        		waitHandler.postDelayed(waitRunnable,DELAY_TIME);
+	        		Log.e("inhale 没等到", subtime+"");
+	        		waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
 	        	}
 				break;
 			case EXERCISE_HOLD_INHALE:
 				subtime=BluetoothCommand.getInstance()==null?0:
-					System.currentTimeMillis()-BluetoothCommand.getInstance().getExhaleTimeStart();
-	        	if(subtime!=0&&subtime<mTimes.holdInhale*60*1000){
-	        		//long a = mTimes.inhale;
+					(System.currentTimeMillis()-exhaleTimeStart);
+	        	if(subtime!=0&&subtime<mTimes.holdInhale){
+	        		Log.e("EXERCISE_HOLD_INHALE 等待成功", subtime+"");
 	        		waitHandler.sendEmptyMessage(0);
 	        	}else{
-	        		waitHandler.postDelayed(waitRunnable,DELAY_TIME);
-	        	}
-				break;
-			case EXERCISE_HOLD_EXHALE:
-				subtime=BluetoothCommand.getInstance()==null?0:
-					System.currentTimeMillis()-BluetoothCommand.getInstance().getExhaleTimeEnd();
-	        	if(subtime!=0&&subtime<mTimes.exhale*60*1000){
-	        		//long a = mTimes.inhale;
-	        		waitHandler.sendEmptyMessage(0);
-	        	}else{
-	        		waitHandler.postDelayed(waitRunnable,DELAY_TIME);
+	        		Log.e("EXERCISE_HOLD_INHALE 没等到", subtime+"");
+	        		waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
 	        	}
 				break;
 			case EXERCISE_EXHALE:
 				subtime=BluetoothCommand.getInstance()==null?0:
-					System.currentTimeMillis()-BluetoothCommand.getInstance().getInhaleTimeStart();
-	        	if(subtime!=0&&subtime<mTimes.holdExhale*60*1000){
-	        		//long a = mTimes.inhale;
+					(System.currentTimeMillis()-exhaleTimeEnd);
+	        	if(subtime!=0&&subtime<mTimes.exhale+DELTA_TIME){
+	        		Log.e("exhale 等待成功", subtime+"");
 	        		waitHandler.sendEmptyMessage(0);
 	        	}else{
-	        		waitHandler.postDelayed(waitRunnable,DELAY_TIME);
+	        		Log.e("exhale 没等到", subtime+"");
+	        		waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
+	        	}
+				break;
+			case EXERCISE_HOLD_EXHALE:
+				subtime=BluetoothCommand.getInstance()==null?0:
+					(System.currentTimeMillis()-inhaleTimeStart);
+	        	if(subtime!=0&&subtime<mTimes.holdExhale){
+	        		Log.e("EXERCISE_HOLD_EXHALE 等待成功", subtime+"");
+	        		waitHandler.sendEmptyMessage(0);
+	        	}else{
+	        		Log.e("EXERCISE_HOLD_EXHALE 没等到", subtime+"");
+	        		waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
 	        	}
 				break;
 
@@ -115,34 +143,35 @@ public class SyncExerciseManager extends ExerciseManager{
         	 */
 
         	subtime=BluetoothCommand.getInstance()==null?0:
-        		System.currentTimeMillis()-BluetoothCommand.getInstance().getInhaleTimeEnd();
-        	if(subtime!=0&&subtime<mTimes.inhale*60*1000){//机器运动超前
+        		(System.currentTimeMillis()-inhaleTimeEnd);
+        	if(subtime!=0&&subtime<mTimes.inhale+DELTA_TIME){//机器运动超前
 
         		//long a = mTimes.inhale;
+        		//Log.e("INHALE 超前", subtime+"");
         		fraction=1f;
         		break;
-        	}else if(subtime>mTimes.inhale*60*1000&&fraction==1f){//机器运动滞后
+        	}else if(subtime>mTimes.inhale+DELTA_TIME&&fraction==1f){//机器运动滞后
+        		//Log.e("INHALE 滞后", subtime+"");
         		if(!waitHandler.isWaiting()){
 	        		waitHandler.setWaiting(true);
-	        		waitHandler.postDelayed(waitRunnable, DELAY_TIME); // 1 ms
+	        		waitHandler.postDelayed(waitRunnable, BluetoothCommand.DELAY_TIME); // 1 ms
         		}
 	        	isContinue=false;
         	}else{//正常运作状态
-        		
+        		//Log.e("INHALE 正常运作状态", "fraction"+fraction);
         	}
         	
             break;
         case EXERCISE_HOLD_INHALE:
         	subtime=BluetoothCommand.getInstance()==null?0:
-        		System.currentTimeMillis()-BluetoothCommand.getInstance().getExhaleTimeStart();
-        	if(subtime!=0&&subtime<mTimes.holdInhale*60*1000){//机器运动超前
-        		//long a = mTimes.inhale;
+        		(System.currentTimeMillis()-exhaleTimeStart);
+        	if(subtime!=0&&subtime<mTimes.holdInhale){//机器运动超前
         		fraction=1f;
         		break;
-        	}else if(subtime>mTimes.holdInhale*60*1000&&fraction==1f){//机器运动滞后
+        	}else if(subtime>mTimes.holdInhale&&fraction==1f){//机器运动滞后
         		if(!waitHandler.isWaiting()){
 	        		waitHandler.setWaiting(true);
-	        		waitHandler.postDelayed(waitRunnable, DELAY_TIME); // 1 ms
+	        		waitHandler.postDelayed(waitRunnable, BluetoothCommand.DELAY_TIME); // 1 ms
         		}
 	        	isContinue=false;
         	}else{//正常运作状态
@@ -151,15 +180,14 @@ public class SyncExerciseManager extends ExerciseManager{
             break;
         case EXERCISE_EXHALE:
         	subtime=BluetoothCommand.getInstance()==null?0:
-        		System.currentTimeMillis()-BluetoothCommand.getInstance().getExhaleTimeEnd();
-        	if(subtime!=0&&subtime<mTimes.exhale*60*1000){//机器运动超前
-        		//long a = mTimes.inhale;
+        		(System.currentTimeMillis()-exhaleTimeEnd);
+        	if(subtime!=0&&subtime<mTimes.exhale+DELTA_TIME){//机器运动超前
         		fraction=1f;
         		break;
-        	}else if(subtime>mTimes.exhale*60*1000&&fraction==1f){//机器运动滞后
+        	}else if(subtime>mTimes.exhale+DELTA_TIME&&fraction==1f){//机器运动滞后
         		if(!waitHandler.isWaiting()){
 	        		waitHandler.setWaiting(true);
-	        		waitHandler.postDelayed(waitRunnable, DELAY_TIME); // 1 ms
+	        		waitHandler.postDelayed(waitRunnable, BluetoothCommand.DELAY_TIME); // 1 ms
         		}
         		isContinue=false;
 
@@ -170,15 +198,14 @@ public class SyncExerciseManager extends ExerciseManager{
             break;
         case EXERCISE_HOLD_EXHALE:
         	subtime=BluetoothCommand.getInstance()==null?0:
-        		System.currentTimeMillis()-BluetoothCommand.getInstance().getInhaleTimeStart();
-        	if(subtime!=0&&subtime<mTimes.holdExhale*60*1000){//机器运动超前
-        		//long a = mTimes.inhale;
+        		(System.currentTimeMillis()-inhaleTimeStart);
+        	if(subtime!=0&&subtime<mTimes.holdExhale){//机器运动超前
         		fraction=1f;
         		break;
-        	}else if(subtime>mTimes.holdExhale*60*1000&&fraction==1f){//机器运动滞后
+        	}else if(subtime>mTimes.holdExhale&&fraction==1f){//机器运动滞后
         		if(!waitHandler.isWaiting()){
 	        		waitHandler.setWaiting(true);
-	        		waitHandler.postDelayed(waitRunnable, DELAY_TIME); // 1 ms
+	        		waitHandler.postDelayed(waitRunnable, BluetoothCommand.DELAY_TIME); // 1 ms
         		}
         		isContinue=false;
 
@@ -214,107 +241,140 @@ public class SyncExerciseManager extends ExerciseManager{
 		}
 	}
 	
-//	@Override
-//	public void start() {
-//		// Reset the flag that indicates if we're started the sounds for the new step
-//        mPlayedSounds = false;
-//
-//        // If the animation has not been previously started and then paused
-//        if (!hasPreviouslyBeenPaused) {
-//            // Reset everything, just to be sure
-//            reset(false);
-//
-//            // Keep the current timestamp
-//            mFirstStartAnimationTimestamp = System.currentTimeMillis();
-//
-//            // Start with inhale
-//            startValueAnimator(mTimes.inhale);
-//
-//        } else { // Otherwise the animation has been running and we're just restarting it
-//
-//            // Adjust the globalTimeOffset because of the pause
-//            readjustFirstStartTimestamp();
-//
-//            // Restart the last step
-//            switch (mCurExercise) {
-//                case EXERCISE_INHALE:
-//                    // Play sounds for the inhale part
-//                    startValueAnimator(mTimes.inhale);
-//                    break;
-//                case EXERCISE_HOLD_INHALE:
-//                    // Play sounds for the inhale part
-//                    startValueAnimator(mTimes.holdInhale);
-//                    break;
-//                case EXERCISE_EXHALE:
-//                    // Play sounds for the inhale part
-//                    startValueAnimator(mTimes.exhale);
-//                    break;
-//                case EXERCISE_HOLD_EXHALE:
-//                    // Play sounds for the inhale part
-//                    startValueAnimator(mTimes.holdExhale);
-//                    break;
-//            }
-//
-//        }
-//	}
-//	
-//	@Override
-//	public void start(float fraction) {
-//		mFraction=fraction;
-//		start();
-//	}
-//	@Override
-//	public void startValueAnimator(float start, float end,
-//			AnimatorUpdateListener updateListener, int duration) {
-//        // Cancel and reset any previously started animations and/or set values
-//        if (mValueAnimator != null) {
-//            mValueAnimator.cancel();
-//            mValueAnimator.removeAllListeners();
-//        }
-//
-//        mValueAnimator = ValueAnimator.ofFloat(start, end);
-//        mValueAnimator.addUpdateListener(updateListener);
-//        mValueAnimator.setDuration(duration);
-//		
-//        startAppropriateExerciseType(mFraction);
-//	}
-//	
-//	@Override
-//	public void startValueAnimator(int duration) {
-//		// TODO Auto-generated method stub
-//		super.startValueAnimator(duration);
-//	}
-//	
-//	@Override
-//	protected void startAppropriateExerciseType(float fraction) {
-//		// Keep the fraction value. We'll need this for accurately keeping track of the globalTimeFraction
-//        mLastFraction = fraction;
-//
-//        // Calculate the globalTimeFraction (how much time has passed for the exercise time)
-//        // (now - start) / (end - start) OR (now - start) / ((start + duration) - start)
-//        float globalFraction = (float) ((System.currentTimeMillis() - mFirstStartAnimationTimestamp));
-//        globalFraction /= (float) ((mFirstStartAnimationTimestamp + mTimes.exerciseDuration) - mFirstStartAnimationTimestamp);
-//
-//        // In case the fraction is more than 1 (which means we've shot over the ending time of the entire exercise), just bring it back to (limit it to max) 100%
-//        globalFraction = (globalFraction > 1f) ? 1f : globalFraction;
-//
-//        // Depending on the current exercise step, call the appropriate method
-//        switch (mCurExercise) {
-//            case EXERCISE_INHALE:
-//                inhale(fraction, globalFraction);
-//                break;
-//            case EXERCISE_HOLD_INHALE:
-//                holdInhale(fraction, globalFraction);
-//                break;
-//            case EXERCISE_EXHALE:
-//                exhale(fraction, globalFraction);
-//                break;
-//            case EXERCISE_HOLD_EXHALE:
-//                holdExhale(fraction, globalFraction);
-//                break;
-//        }
-//	}
-//	
+	@Override
+	public void start() {
+		inhaleExerciseHandler.setWaiting(true);
+		inhaleExerciseHandler.post(inhaleExerciseRunnable);
+		inhaleHoldHandler.setWaiting(true);
+		inhaleHoldHandler.post(inhaleHoldRunnable);
+		exhaleExerciseHandler.setWaiting(true);
+		exhaleExerciseHandler.post(exhaleExerciseRunnable);
+		exhaleHoldHandler.setWaiting(true);
+		exhaleHoldHandler.post(exhaleHoldRunnable);
+		super.start();
+	}
+	
+	@Override
+	public void pause(boolean showPlayBtnOverlay) {
+//		inhaleExerciseHandler.setWaiting(false);
+//		inhaleHoldHandler.setWaiting(false);
+//		exhaleExerciseHandler.setWaiting(false);
+//		exhaleHoldHandler.setWaiting(false);
+		super.pause(showPlayBtnOverlay);
+	}
+	
+	/**
+	 * 相位限等待逻辑
+	 * @author Desmond Duan
+	 *
+	 */
+	class PositionCheckRunnable implements Runnable{
+
+		int exerciseType;
+		int lastPositison=BluetoothCommand.WALKING_POSITION_STATUS5;
+		int lastDirection=BluetoothCommand.DIRECTION_STATUS_RETAIN;
+		
+		PositionCheckRunnable(int type){
+			exerciseType=type;
+		}
+		@Override
+		public void run() {
+			switch (exerciseType) {
+			case EXERCISE_INHALE:
+				if(!inhaleExerciseHandler.isWaiting()){
+				}else{
+					BluetoothCommand mBC=BluetoothCommand.getInstance();
+					if(mBC!=null){
+						int currentPos=mBC.getValue(BluetoothCommand.WALKING_POSITION_STATUS);
+						int currentDir=mBC.getValue(BluetoothCommand.DIRECTION_STATUS);
+						if((lastPositison==BluetoothCommand.WALKING_POSITION_STATUS11&&currentPos==BluetoothCommand.WALKING_POSITION_STATUS12)||
+								(lastDirection==BluetoothCommand.DIRECTION_STATUS_UP&&currentDir==BluetoothCommand.DIRECTION_STATUS_STOP)){
+//						if((lastPositison==BluetoothCommand.WALKING_POSITION_STATUS12&&currentPos==BluetoothCommand.WALKING_POSITION_STATUS11)||
+//									(lastDirection==BluetoothCommand.DIRECTION_STATUS_STOP&&currentDir==BluetoothCommand.DIRECTION_STATUS_DOWN)){	
+							/**
+							 * 相位由11跳12 或方向位由上限跳为停止
+							 */
+							inhaleTimeEnd=System.currentTimeMillis();
+						}
+						lastPositison=currentPos;
+						lastDirection=currentDir;
+					}
+					inhaleExerciseHandler.postDelayed(inhaleExerciseRunnable, BluetoothCommand.DELAY_TIME/2);
+				}
+				break;
+			case EXERCISE_HOLD_INHALE:
+				if(!inhaleHoldHandler.isWaiting()){
+				}else{
+					BluetoothCommand mBC=BluetoothCommand.getInstance();
+					if(mBC!=null){
+						int currentPos=mBC.getValue(BluetoothCommand.WALKING_POSITION_STATUS);
+						int currentDir=mBC.getValue(BluetoothCommand.DIRECTION_STATUS);
+						if((lastPositison==BluetoothCommand.WALKING_POSITION_STATUS12&&currentPos==BluetoothCommand.WALKING_POSITION_STATUS11)||
+								(lastDirection==BluetoothCommand.DIRECTION_STATUS_STOP&&currentDir==BluetoothCommand.DIRECTION_STATUS_DOWN)){
+							/**
+							 * 相位由12跳11 或方向位由停止跳为下限
+							 */
+							exhaleTimeStart=System.currentTimeMillis();
+						}
+						lastPositison=currentPos;
+						lastDirection=currentDir;
+					}
+					inhaleExerciseHandler.postDelayed(inhaleHoldRunnable, BluetoothCommand.DELAY_TIME/2);
+				}
+				break;
+			case EXERCISE_EXHALE:
+				if(!exhaleExerciseHandler.isWaiting()){
+				}else{
+					BluetoothCommand mBC=BluetoothCommand.getInstance();
+					if(mBC!=null){
+						int currentPos=mBC.getValue(BluetoothCommand.WALKING_POSITION_STATUS);
+						int currentDir=mBC.getValue(BluetoothCommand.DIRECTION_STATUS);
+						if((lastPositison==BluetoothCommand.WALKING_POSITION_STATUS2&&currentPos==BluetoothCommand.WALKING_POSITION_STATUS1)||
+								(lastDirection==BluetoothCommand.DIRECTION_STATUS_DOWN&&currentDir==BluetoothCommand.DIRECTION_STATUS_STOP)){
+//						if((lastPositison==BluetoothCommand.WALKING_POSITION_STATUS1&&currentPos==BluetoothCommand.WALKING_POSITION_STATUS2)||
+//									(lastDirection==BluetoothCommand.DIRECTION_STATUS_STOP&&currentDir==BluetoothCommand.DIRECTION_STATUS_UP)){
+							/**
+							 * 相位由2跳1 或方向位由下限跳为停止
+							 */
+							exhaleTimeEnd=System.currentTimeMillis();
+						}
+						lastPositison=currentPos;
+						lastDirection=currentDir;
+					}
+					inhaleExerciseHandler.postDelayed(exhaleExerciseRunnable, BluetoothCommand.DELAY_TIME/2);
+				}
+				break;
+			case EXERCISE_HOLD_EXHALE:
+				if(!exhaleHoldHandler.isWaiting()){
+				}else{
+					BluetoothCommand mBC=BluetoothCommand.getInstance();
+					if(mBC!=null){
+						int currentPos=mBC.getValue(BluetoothCommand.WALKING_POSITION_STATUS);
+						int currentDir=mBC.getValue(BluetoothCommand.DIRECTION_STATUS);
+						if((lastPositison==BluetoothCommand.WALKING_POSITION_STATUS1&&currentPos==BluetoothCommand.WALKING_POSITION_STATUS2)||
+								(lastDirection==BluetoothCommand.DIRECTION_STATUS_STOP&&currentDir==BluetoothCommand.DIRECTION_STATUS_UP)){
+							/**
+							 * 相位由1跳2 或方向位由停止跳为上限
+							 */
+							inhaleTimeStart=System.currentTimeMillis();
+						}
+						lastPositison=currentPos;
+						lastDirection=currentDir;
+					}
+					exhaleHoldHandler.postDelayed(exhaleHoldRunnable, BluetoothCommand.DELAY_TIME/2);
+				}
+				break;
+
+			default:
+				break;
+			}
+			
+		}
+		
+	}
+	/**
+	 * 略过屏气动画
+	 */
 //	@Override
 //	protected void inhale(float fraction, float globalFraction) {
 //		// Start appropriate sounds
@@ -329,41 +389,10 @@ public class SyncExerciseManager extends ExerciseManager{
 //        // If step animation ended
 //        if (fraction == 1f) {
 //            // Set the flag to point to the next appropriate step
-//            mCurExercise = EXERCISE_HOLD_INHALE;
-//
-////            // Restart the value animator
-////            if (mTimes.holdInhale == 1000) {
-////                startValueAnimator(2000); // HACK. FORCE IT TO BE AT LEAST 2 SEC
-////            } else {
-////                startValueAnimator(mTimes.holdInhale);
-////            }
-//
-//            // Reset the flag that indicates if we've started the sounds for the new step
-//            mPlayedSounds = false;
-//
-//        }
-//	}
-//	
-//	@Override
-//	protected void holdExhale(float fraction, float globalFraction) {
-//		if (mTimes.holdExhale > 0) {
-//            // Start appropriate sounds
-//            playSounds(SoundItem.RETENEZ, mTimes.holdExhale);
-//
-//            // Set the volume of the ambiance sound
-//            setAmbianceVolume(fraction);
-//        }
-//
-//        // Render animation frame
-//        mAnimationHandler.holdExhale(fraction, globalFraction);
-//
-//        // If step animation ended
-//        if (fraction == 1f) {
-//            // Set the flag to point to the next appropriate step
-//            mCurExercise = EXERCISE_INHALE;
+//            mCurExercise = EXERCISE_EXHALE;
 //
 //            // Restart the value animator
-//            //startValueAnimator(mTimes.inhale);
+//            startValueAnimator(mTimes.exhale);
 //
 //            // Reset the flag that indicates if we've started the sounds for the new step
 //            mPlayedSounds = false;
@@ -394,41 +423,10 @@ public class SyncExerciseManager extends ExerciseManager{
 //            }
 //
 //            // Set the flag to point to the next appropriate step
-//            mCurExercise = EXERCISE_HOLD_EXHALE;
+//            mCurExercise = EXERCISE_INHALE;
 //
 //            // Restart the value animator
-//            if (mTimes.holdExhale == 1000) {
-//                startValueAnimator(2000); // HACK. FORCE IT TO BE AT LEAST 2 SEC
-//            } else {
-//                startValueAnimator(mTimes.holdExhale);
-//            }
-//
-//            // Reset the flag that indicates if we've started the sounds for the new step
-//            mPlayedSounds = false;
-//
-//        }
-//	}
-//	
-//	@Override
-//	protected void holdInhale(float fraction, float globalFraction) {
-//		if (mTimes.holdInhale > 0) {
-//            // Start appropriate sounds
-//            playSounds(SoundItem.RETENEZ, mTimes.holdInhale);
-//
-//            // Set the volume of the ambiance sound
-//            setAmbianceVolume(fraction);
-//        }
-//
-//        // Render animation frame
-//        mAnimationHandler.holdInhale(fraction, globalFraction);
-//
-//        // If step animation ended
-//        if (fraction == 1f) {
-//            // Set the flag to point to the next appropriate step
-//            mCurExercise = EXERCISE_EXHALE;
-//
-//            // Restart the value animator
-//            startValueAnimator(mTimes.exhale);
+//            startValueAnimator(mTimes.inhale);
 //
 //            // Reset the flag that indicates if we've started the sounds for the new step
 //            mPlayedSounds = false;

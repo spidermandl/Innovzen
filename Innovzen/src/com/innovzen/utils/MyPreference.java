@@ -16,6 +16,9 @@ public class MyPreference {
 	private static Context globleContext;//全局context
 	
 	private final static String INNOVZEN_PREFERENCE="INNOVZEN_PREFERENCE";
+	//记录声音上一次的大小
+	public final static String LAST_VOLUME="last volume";
+	//public final static int LAST_VOLUME_VALUE=
 	//记录Voice键状态
 	public final static String VOICE="voice";
 	public final static String MAN_VOICE="Man voice";

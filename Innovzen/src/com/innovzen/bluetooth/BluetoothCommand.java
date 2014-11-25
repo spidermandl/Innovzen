@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import android.content.Context;
 import android.util.Log;
+import android.util.SparseIntArray;
 
 /**
  * 蓝牙命令
@@ -16,6 +17,12 @@ public class BluetoothCommand {
 	/* BluetoothService */
 	public static BluetoothCommand instance;
     public static long SUBTIME=0;
+    /**
+     * 相关常亮
+     */
+	
+	//延迟发送message时间
+    public static final int DELAY_TIME=100;
 	/**
 	 * 发送命令相关字节
 	 */
@@ -280,11 +287,6 @@ public class BluetoothCommand {
 	public static final int PAUSE_STATUS_OFF=0;
 	public static final int PAUSE_STATUS_ON=1;
 	
-	//同步时间误差
-	private long inhaleTimeStart=0;//吸气开始时间
-	private long inhaleTimeEnd=0;//吸气结束时间
-	private long exhaleTimeStart=0;//呼气开始时间
-	private long exhaleTimeEnd=0;//呼气结束时间
 	
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
@@ -295,7 +297,7 @@ public class BluetoothCommand {
 	 * 每一个value值代表当前功能按钮的状态，比如按摩椅运行状态(3bit)有8个状态，状态表示既是0,1...7 这些状态也都用静态int表示
 	 *                              Pulse状态(1bit)有2个状态，状态表示既是0,1
 	 */
-	public HashMap<Integer, Integer> machine_status=new HashMap<Integer, Integer>(){
+	private SparseIntArray machine_status=new SparseIntArray(){
 		/**
 		 * 下面是状态的初始值,如
 		 */
@@ -323,6 +325,18 @@ public class BluetoothCommand {
 		}
 	};
 	
+	/**
+	 * 获取value值
+	 * @param key
+	 * @return
+	 */
+	public Integer getValue(Integer key){
+		return machine_status.get(key);
+	}
+	/**
+	 * 获取BluetoothCommand单例
+	 * @return
+	 */
 	public static BluetoothCommand getInstance(){
 		return instance;
 	}
@@ -471,7 +485,8 @@ public class BluetoothCommand {
 		//取第2 1 0位的状态
 		machine_status.put(BREATHE_STATUS,(b7&0x07));
 		
-		//Log.e("第8字节", printHX(b7)+"-------第3字节--------"+printHX(b2));
+		//Log.e("第8字节", printHX(b7)+"-------第3字节--------"+printHX(b2)+"  "+System.currentTimeMillis());
+		Log.e("第2字节",printHX(b1)+"");
 		return true;
 	}
 
@@ -509,38 +524,6 @@ public class BluetoothCommand {
 		}
 
 		return array;
-	}
-
-	public long getInhaleTimeStart() {
-		return inhaleTimeStart;
-	}
-
-	public void setInhaleTimeStart(long inhaleTimeStart) {
-		this.inhaleTimeStart = inhaleTimeStart;
-	}
-
-	public long getInhaleTimeEnd() {
-		return inhaleTimeEnd;
-	}
-
-	public void setInhaleTimeEnd(long inhaleTimeEnd) {
-		this.inhaleTimeEnd = inhaleTimeEnd;
-	}
-
-	public long getExhaleTimeStart() {
-		return exhaleTimeStart;
-	}
-
-	public void setExhaleTimeStart(long exhaleTimeStart) {
-		this.exhaleTimeStart = exhaleTimeStart;
-	}
-
-	public long getExhaleTimeEnd() {
-		return exhaleTimeEnd;
-	}
-
-	public void setExhaleTimeEnd(long exhaleTimeEnd) {
-		this.exhaleTimeEnd = exhaleTimeEnd;
 	}
 
 

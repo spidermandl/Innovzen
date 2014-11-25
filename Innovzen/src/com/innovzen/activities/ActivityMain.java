@@ -1,5 +1,8 @@
 package com.innovzen.activities;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,6 +14,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.util.SparseIntArray;
 import android.widget.Toast;
 
 import com.innovzen.o2chair.R;
@@ -90,6 +95,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	
 	public static final Boolean FLAG=false;
 	
+	
 	// The Handler that gets information back from the BluetoothChatService
 	private final Handler bluetoothHandler = new Handler() {
 		@Override
@@ -115,12 +121,19 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				String writeMessage = new String(writeBuf);
 				System.out.println(writeMessage);
 				break;
-			case MESSAGE_READ:
-				byte[] readBuf = (byte[]) msg.obj;
-				mBluetoothCommand.parseCommand(readBuf);
+
+			case MESSAGE_READ:				
+				/**
+				 * 解析步骤可以在收到数据后立马解析
+				 */
+				//byte[] readBuf = (byte[]) msg.obj;
+				//mBluetoothCommand.parseCommand(readBuf);
+
 				/**
 				 * 判断是当前fragment是否是FragAnimationTabletNew
 				 */
+				
+				
 		        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragAnimationTabletNew")) {
 		        	/**
@@ -131,21 +144,49 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	        		 if(IS_TABLET){    	
 	        			//mBluetoothCommand.printCommand(readBuf);
 	        			//初始位
-	        			Integer value= mBluetoothCommand.machine_status.get(mBluetoothCommand.INIT_POSITION_STATUS);
-	        			//Log.e("INIT_POSITION_STATUS", value+"");
-	        			HashMap<Integer, Integer> map=new HashMap<Integer, Integer>();
-	        			map.put(mBluetoothCommand.INIT_POSITION_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.INIT_POSITION_STATUS));
-	        			map.put(mBluetoothCommand.DIRECTION_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.DIRECTION_STATUS));
-	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.INIT_POSITION_STATUS,map);
+	        			 //Log.e("INIT_POSITION_STATUS", value+"");
+	        			SparseIntArray map=new SparseIntArray();
+	        			//机器运行状态
+	        			map.put(BluetoothCommand.MACHINE_RUN_STATUS, mBluetoothCommand.getValue(BluetoothCommand.MACHINE_MASSAGE_STATUS));
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.MACHINE_RUN_STATUS,map);
+
+	        			map.put(BluetoothCommand.INIT_POSITION_STATUS,mBluetoothCommand.getValue(BluetoothCommand.INIT_POSITION_STATUS));
+	        			map.put(BluetoothCommand.DIRECTION_STATUS,mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS));
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);
                         //零重力
-	        			map.put(mBluetoothCommand.ZERO_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.ZERO_STATUS));      			 
-	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.ZERO_STATUS,map);
-	        			//动画行位比例
-	        			map.put(mBluetoothCommand.WALKING_POSITION_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.WALKING_POSITION_STATUS));
-	        			map.put(mBluetoothCommand.DIRECTION_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.DIRECTION_STATUS));
-	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.WALKING_POSITION_STATUS,map);
-	        			map.put(mBluetoothCommand.PAUSE_STATUS,mBluetoothCommand.machine_status.get(mBluetoothCommand.PAUSE_STATUS));
-	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(mBluetoothCommand.PAUSE_STATUS,map);
+	        			map.put(BluetoothCommand.ZERO_STATUS,mBluetoothCommand.getValue(BluetoothCommand.ZERO_STATUS));      			 
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.ZERO_STATUS,map);
+	        			/**
+	        			 * 动画行位比例
+	        			 */
+	        			//Log.e("行位 数值对比", mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS)+" "+mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS));
+	        			map.put(BluetoothCommand.WALKING_POSITION_STATUS,mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS));
+	        			map.put(BluetoothCommand.DIRECTION_STATUS,mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS));
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.WALKING_POSITION_STATUS,map);
+	        			
+//	        			if (mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
+//	        				//第一个信号
+//	        				if(mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
+//	        					Log.e("上行 第一个信号", System.currentTimeMillis()+"");
+//	        					mBluetoothCommand.setInhaleTimeStart(System.currentTimeMillis());
+//	        				}else if(mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
+//	        					Log.e("下行 第一个信号", System.currentTimeMillis()+"");
+//	        					mBluetoothCommand.setExhaleTimeStart(System.currentTimeMillis());
+//	        				}
+//	        				
+//	        			}
+//	        			if (mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS12){
+//	        				//最后一个信号
+//	        				if(mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
+//	        					Log.e("上行 最后个信号", System.currentTimeMillis()+"");
+//	        					mBluetoothCommand.setInhaleTimeEnd(System.currentTimeMillis());
+//	        				}else if(mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
+//	        					Log.e("下行 最后个信号", System.currentTimeMillis()+"");
+//	        					mBluetoothCommand.setExhaleTimeEnd(System.currentTimeMillis());
+//	        				}
+//	        				
+//	        			}
+	        			
 	        		 }
 		        
 		        }
@@ -157,19 +198,19 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		        	 * 这里更新  FragSetting里功能按钮的状态	        	
 		        	 */
 		        	if(IS_TABLET){
-		        		HashMap<Integer, Integer> map=new HashMap<Integer, Integer>();
-		        		map.put(mBluetoothCommand.OXYGEN_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.OXYGEN_STATUS));
-		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.OXYGEN_STATUS,map);
-		        		map.put(mBluetoothCommand.LED_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.LED_STATUS));
-		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.LED_STATUS,map);
-		        		map.put(mBluetoothCommand.SWING_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.SWING_STATUS));
-		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.SWING_STATUS,map);
-		        		map.put(mBluetoothCommand.HEAT_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.HEAT_STATUS));
-		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.HEAT_STATUS,map);
-		        		map.put(mBluetoothCommand.BLUETOOTH_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.BLUETOOTH_STATUS));
-		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.BLUETOOTH_STATUS,map);
-		        		map.put(mBluetoothCommand.PULSE_STATUS, mBluetoothCommand.machine_status.get(mBluetoothCommand.PULSE_STATUS));
-		        		((FragSettings)currentFragment).sendMachineMessage(mBluetoothCommand.PULSE_STATUS,map);
+		        		SparseIntArray map=new SparseIntArray();
+		        		map.put(BluetoothCommand.OXYGEN_STATUS, mBluetoothCommand.getValue(BluetoothCommand.OXYGEN_STATUS));
+		        		((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.OXYGEN_STATUS,map);
+		        		map.put(BluetoothCommand.LED_STATUS, mBluetoothCommand.getValue(BluetoothCommand.LED_STATUS));
+		        		((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.LED_STATUS,map);
+		        		map.put(BluetoothCommand.SWING_STATUS, mBluetoothCommand.getValue(BluetoothCommand.SWING_STATUS));
+		        		((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.SWING_STATUS,map);
+		        		map.put(BluetoothCommand.HEAT_STATUS, mBluetoothCommand.getValue(BluetoothCommand.HEAT_STATUS));
+		        		((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.HEAT_STATUS,map);
+		        		map.put(BluetoothCommand.BLUETOOTH_STATUS, mBluetoothCommand.getValue(BluetoothCommand.BLUETOOTH_STATUS));
+		        		((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.BLUETOOTH_STATUS,map);
+		        		map.put(BluetoothCommand.PULSE_STATUS, mBluetoothCommand.getValue(BluetoothCommand.PULSE_STATUS));
+		        		((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.PULSE_STATUS,map);
 		        	}
 		        }
 				
@@ -334,8 +375,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		}
 		// 判断蓝牙是否开启
 		if (!mBluetoothAdapter.isEnabled()) {
-			Intent enableIntent = new Intent(
-					BluetoothAdapter.ACTION_REQUEST_ENABLE);
+			Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
 			this.startActivityForResult(enableIntent,
 					ActivityMain.REQUEST_ENABLE_BT);
 			return false;
@@ -344,6 +384,26 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		if (mBluetoothService.getState() != BluetoothService.STATE_CONNECTED) {
 			bluetoothDialog = FragBluetoothDialog.newInstance("", "");
 			bluetoothDialog.show(this.getSupportFragmentManager(), "");
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * 判断蓝牙有无连接
+	 * @return
+	 */
+	public boolean isBlueToothConnected(){
+		// 判断有无蓝牙设备
+		if (mBluetoothAdapter == null) {
+			return false;
+		}
+		// 判断蓝牙是否开启
+		if (!mBluetoothAdapter.isEnabled()) {
+			return false;
+		}
+		// 判断蓝牙通信是否建立
+		if (mBluetoothService.getState() != BluetoothService.STATE_CONNECTED) {
 			return false;
 		}
 		return true;
@@ -523,7 +583,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 	@Override
 	public void fragGoToSoundPicker(boolean addToBackstack) {
-		navigateTo(FragSoundPicker.class, null, addToBackstack);
+		//navigateTo(FragSoundPicker.class, null, addToBackstack);
+		navigateTo(FragVoice.class, null, addToBackstack);
 	}
 
 	@Override
@@ -692,6 +753,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragGoToVoice(boolean addToBackstack) {
 		navigateTo(FragVoice.class, null, addToBackstack);
+		//avigateTo(FragSoundPicker.class, null, addToBackstack);
 
 	}
 
@@ -715,8 +777,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragConnectBluetooth() {
 		isBlueToothSetup();
-
 	}
+	
 
 	@Override
 	public void fragSendCommand(int[] commands) {
@@ -729,5 +791,11 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		
 	}
 
+	@Override
+	public void fragCloseBluetooth() {
+		mBluetoothService.stop();
+		
+	}
 
+	
 }

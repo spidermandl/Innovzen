@@ -95,4 +95,8 @@ public interface FragmentCommunicator {
      * 接受蓝牙数据
      */
     public void fragGetCommand(byte[] bytes);
+    /**
+     * 关闭蓝牙
+     */
+    public void fragCloseBluetooth();
 }
