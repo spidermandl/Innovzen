@@ -123,6 +123,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				break;
 
 			case MESSAGE_READ:				
+				
+				if(BluetoothCommand.INIT_POSITION_STATUS==BluetoothCommand.INIT_POSITION_STATUS_VALID){
+					Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+					
+				}
+				
 				/**
 				 * 解析步骤可以在收到数据后立马解析
 				 */
@@ -149,7 +155,9 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	        			//机器运行状态
 	        			map.put(BluetoothCommand.MACHINE_RUN_STATUS, mBluetoothCommand.getValue(BluetoothCommand.MACHINE_MASSAGE_STATUS));
 	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.MACHINE_RUN_STATUS,map);
-
+                        //机器暂停状态
+	        			map.put(BluetoothCommand.PAUSE_STATUS, mBluetoothCommand.getValue(BluetoothCommand.PAUSE_STATUS));
+	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.PAUSE_STATUS,map);
 	        			map.put(BluetoothCommand.INIT_POSITION_STATUS,mBluetoothCommand.getValue(BluetoothCommand.INIT_POSITION_STATUS));
 	        			map.put(BluetoothCommand.DIRECTION_STATUS,mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS));
 	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);
@@ -216,7 +224,16 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 		        	}
 		        }
-				
+		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragHelpNew")) {
+		        	/**
+		        	 * 这里更新  FragSetting里功能按钮的状态	        	
+		        	 */
+		        	if(IS_TABLET){
+		        		SparseIntArray map=new SparseIntArray();
+		        		  map.put(BluetoothCommand.INIT_POSITION_STATUS, mBluetoothCommand.getValue(BluetoothCommand.INIT_POSITION_STATUS));
+			        		((FragHelpNew)currentFragment).sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);
+		        	}
+		        }
 				break;
 			case MESSAGE_DEVICE_NAME:// 保存设备名称
 				// save the connected device's name
@@ -226,7 +243,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 			}
 		}
 	};
-
+	
 	public BluetoothService getBluetoothService() {
 		return mBluetoothService;
 	}

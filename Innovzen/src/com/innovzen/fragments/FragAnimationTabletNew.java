@@ -121,6 +121,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	/**
 	 * 接受机器指令handler
 	 */
+
 	@Override
 	protected void handlerMachineMessage(Message msg) {
 		SparseIntArray map = (SparseIntArray) msg.obj;
@@ -143,7 +144,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		case BluetoothCommand.PAUSE_STATUS:
 			if (map.get(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_OFF)// 这个地方的1要和BluetoothCommand里的一个常量对应
-			{
+			{    
 				pause.setBackgroundResource(R.drawable.selector_btn_pause);
 				// isAnimationRunning=false;
 			} else {
@@ -175,6 +176,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			if(map.get(BluetoothCommand.MACHINE_RUN_STATUS)==BluetoothCommand.MACHINE_RUN_STATUS_PAUSE){
 				countDown=false;
 			}
+		
 		default:
 			break;
 		}
@@ -302,7 +304,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
 			countDown=false;
-			super.pauseExercise();
+			//super.pauseExercise();
 			//如果机器处于暂停状态 countdown_tv就设置为隐藏   知道机器关机为止设置为可见
 			/*if(countDown==false){
 				countdown_tv.setVisibility(View.INVISIBLE);
