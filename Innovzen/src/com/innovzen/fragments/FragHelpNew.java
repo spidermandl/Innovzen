@@ -117,7 +117,7 @@ public class FragHelpNew extends FragBase implements OnCustomClickListener, Frag
 		switch (msg.what) {
 		case BluetoothCommand.INIT_POSITION_STATUS:
 			if(map.get(BluetoothCommand.INIT_POSITION_STATUS)==BluetoothCommand.INIT_POSITION_STATUS_VALID){
-				FragAnimationBase.countDown=false;
+				//FragAnimationBase.countDown=false;
 			}
 			break;
 		}

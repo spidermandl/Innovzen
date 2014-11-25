@@ -193,9 +193,6 @@ public class FragSettings extends FragBase implements OnClickListener{
 			}	
 			break;
 		case BluetoothCommand.INIT_POSITION_STATUS:
-			if(map.get(BluetoothCommand.INIT_POSITION_STATUS)==BluetoothCommand.INIT_POSITION_STATUS_VALID){
-				FragAnimationBase.countDown=false;
-			}
 			break;
 			
 		}

@@ -1,5 +1,6 @@
 package com.innovzen.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,9 +15,8 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.innovzen.activities.ActivityMain;
 import com.innovzen.bluetooth.BluetoothCommand;
@@ -39,8 +39,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private boolean closePower = false;
 	// 是否处于待机状态
 	private boolean wait = false;
-	//动画是否在运行
-	private boolean isRunning=false;
 	//蓝牙是否可以被关闭
 	private boolean closeBluetooth=false;
 	//动画是否重新倒计时
@@ -129,11 +127,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		case BluetoothCommand.INIT_POSITION_STATUS:
 			// 这个地方要和BluetoothCommand里的一个常量对应
 			// /////正常动画
-			if ((!isAnimationRunning) && isReseted()) {
+			if ((!isAnimationRunning) && isReseted(false)) {
 				Log.e("******************************startanimation",
 						System.currentTimeMillis() + "");
 				overlayBtnPressed();
-				isRunning=true;
 			}
 			if (map.get(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_VALID) {
 				closePower = true;
@@ -146,7 +143,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			if (map.get(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_OFF)// 这个地方的1要和BluetoothCommand里的一个常量对应
 			{    
 				pause.setBackgroundResource(R.drawable.selector_btn_pause);
-				// isAnimationRunning=false;
 			} else {
 				endAnimationPressed();
 				pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
@@ -174,7 +170,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				wait=false;
 			}
 			if(map.get(BluetoothCommand.MACHINE_RUN_STATUS)==BluetoothCommand.MACHINE_RUN_STATUS_PAUSE){
-				countDown=false;
+				
 			}
 		
 		default:
@@ -185,22 +181,27 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 	/**
 	 * 判断机器是否复位
-	 * 
+	 * isLog 是否显示提示
 	 * @return
 	 */
-	public boolean isReseted() {
+	public boolean isReseted(boolean isLog) {
 		if (resetStatus == INVALID) {
 			if (!resetHandler.isWaiting()) {
 				resetHandler.postDelayed(resetRunnable, 200);
 				resetHandler.setWaiting(true);
 			}
+			if(isLog)
+				Toast.makeText(getActivity(), "The machine has not started,please press the rebooting botton", 1000).show();
 			return false;
-		} else if (resetStatus == RESETING)
+		} else if (resetStatus == RESETING){
+			if(isLog)
+				Toast.makeText(getActivity(), "The machine is reseting now", 1000).show();
 			return false;
+		}
 		else if (resetStatus == RESETED)
 			
 			return true;
-		
+
 		return false;
 	}
 
@@ -228,7 +229,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		switch (v.getId()) {
 		case R.id.animation_pause_btn:
 			super.pauseExercise();
-			isRunning=false;
 			break;
 		case R.id.animation_help_btn:
 			super.activityListener.fragGoToHelp(true);
@@ -252,8 +252,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 结束
 		case R.id.main_animation_stop:
-			countDown=true;
-			
 		/*	if(closeBluetooth==true){  //如果蓝牙boolean变量被设置为true，那么再按一下按钮就关闭蓝牙
 				super.activityListener.fragCloseBluetooth();
 				closeBluetooth=false;
@@ -262,12 +260,13 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					isPowerOn=true;
 					super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 				}
-				if(closePower==true&&isPowerOn==true&&isRunning){//如果机器已经初始化完毕，并且正在运动 并且动画正在运行 则按一下按钮就关闭机器
+				if(closePower==true&&isPowerOn==true&&isAnimationRunning){//如果机器已经初始化完毕，并且正在运动 并且动画正在运行 则按一下按钮就关闭机器
 					super.pauseExercise();
 					super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 					isPowerOn=false;
 					//closeBluetooth=true;//把蓝牙设置成可关闭
 				}
+
 				//当关机后设置倒计时可显示  下次再播放动画就可以有倒计时
 				if(countDown==true){
 					countdown_tv.setVisibility(View.VISIBLE);
@@ -279,7 +278,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 开始
 		case R.id.main_animation_start:
-			/*if(wait){//只有机器复位才能播放动画
+			if(isReseted(true)){//只有机器复位才能播放动画
 				String blance_relax_performance = 
 						MyPreference.getInstance(getActivity()).readString(MyPreference.BLANCE_RELAX_PERFORMANCE);
 				if (blance_relax_performance.equals(MyPreference.BLANCE)) {
@@ -293,18 +292,15 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 							.fragSendCommand(BluetoothCommand.PERFORMANCE_MACHINE_VALUES);
 				}
 				 
-			}*/
-			super.activityListener
-			.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
+			}
 			break;
 		// 暂停
 		case R.id.main_animation_pause:
-			// if(ISPOWERON==true){
-		//	super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
-			countDown=false;
-			//super.pauseExercise();
+
+			super.pauseExercise();
+
 			//如果机器处于暂停状态 countdown_tv就设置为隐藏   知道机器关机为止设置为可见
 			/*if(countDown==false){
 				countdown_tv.setVisibility(View.INVISIBLE);
