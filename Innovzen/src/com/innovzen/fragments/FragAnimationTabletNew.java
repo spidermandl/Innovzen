@@ -40,6 +40,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private boolean wait = false;
 	//蓝牙是否可以被关闭
 	private boolean closeBluetooth=false;
+	//动画是否重新倒计时
+	//private boolean countDown=true;
+	
 	// Hold view references
 	private View mView;
 
@@ -110,6 +113,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			}
 		}
 	};
+	private TextView countdown_tv;
 
 	/**
 	 * 接受机器指令handler
@@ -137,7 +141,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			if (map.get(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_OFF)// 这个地方的1要和BluetoothCommand里的一个常量对应
 			{
 				pause.setBackgroundResource(R.drawable.selector_btn_pause);
-				// isAnimationRunning=false;
 			} else {
 				endAnimationPressed();
 				pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
@@ -159,8 +162,13 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		case BluetoothCommand.MACHINE_RUN_STATUS:
 			if (map.get(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_WAIT) {
 				wait = true;
-			} else {
-				wait = false;
+				//countDown=true;
+			} 
+			if(map.get(BluetoothCommand.MACHINE_RUN_STATUS)==BluetoothCommand.MACHINE_RUN_STATUS_RUNNING){
+				wait=false;
+			}
+			if(map.get(BluetoothCommand.MACHINE_RUN_STATUS)==BluetoothCommand.MACHINE_RUN_STATUS_PAUSE){
+				
 			}
 		default:
 			break;
@@ -236,11 +244,11 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 结束
 		case R.id.main_animation_stop:
-			if(closeBluetooth==true){  //如果蓝牙boolean变量被设置为true，那么再按一下按钮就关闭蓝牙
+		/*	if(closeBluetooth==true){  //如果蓝牙boolean变量被设置为true，那么再按一下按钮就关闭蓝牙
 				super.activityListener.fragCloseBluetooth();
 				closeBluetooth=false;
-			}else{
-				if(isPowerOn==false&&wait==true){//如果机器处于待机状态按一下开机
+			}else{*/
+			/*	if(isPowerOn==false&&wait==true){//如果机器处于待机状态按一下开机
 					isPowerOn=true;
 					super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 				}
@@ -248,14 +256,21 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					super.pauseExercise();
 					super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 					isPowerOn=false;
-					closeBluetooth=true;//把蓝牙设置成可关闭
+					//closeBluetooth=true;//把蓝牙设置成可关闭
 				}
-			}		
+
+				//当关机后设置倒计时可显示  下次再播放动画就可以有倒计时
+				if(countDown==true){
+					countdown_tv.setVisibility(View.VISIBLE);
+				}*/
+			super.pauseExercise();
+			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+			//}		
 				
 			break;
 		// 开始
 		case R.id.main_animation_start:
-			if(isReseted()){//只有机器复位才能播放动画
+			/*if(wait){//只有机器复位才能播放动画
 				String blance_relax_performance = 
 						MyPreference.getInstance(getActivity()).readString(MyPreference.BLANCE_RELAX_PERFORMANCE);
 				if (blance_relax_performance.equals(MyPreference.BLANCE)) {
@@ -269,16 +284,21 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 							.fragSendCommand(BluetoothCommand.PERFORMANCE_MACHINE_VALUES);
 				}
 				 
-			}
-			
+			}*/
+			super.activityListener
+			.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
 			break;
 		// 暂停
 		case R.id.main_animation_pause:
-			// if(ISPOWERON==true){
-			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
 			super.pauseExercise();
+			//如果机器处于暂停状态 countdown_tv就设置为隐藏   知道机器关机为止设置为可见
+			/*if(countDown==false){
+				countdown_tv.setVisibility(View.INVISIBLE);
+			}else{
+				countdown_tv.setVisibility(View.VISIBLE);
+			}*/
 			/*
 			 * }else{
 			 * 
@@ -312,6 +332,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 */
 	private void initialize(View view) {
 	
+		countdown_tv = (TextView) view.findViewById(R.id.animation_countdown);
+		
 		closeBluetooth = ((ActivityMain)this.getActivity()).isBlueToothConnected();
 		view.findViewById(R.id.main_animation_breathe_up).setOnClickListener(
 				this);

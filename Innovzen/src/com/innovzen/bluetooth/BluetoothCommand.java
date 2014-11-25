@@ -417,6 +417,7 @@ public class BluetoothCommand {
 	 */
 	public boolean parseCommand(byte[] bytes) {
         //第1字节	
+		byte b0 = bytes[0];
 		//第2字节
 		/**
 		 * 字节1
