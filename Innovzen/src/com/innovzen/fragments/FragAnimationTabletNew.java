@@ -250,6 +250,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 结束
 		case R.id.main_animation_stop:
+			countDown=true;
+			
 		/*	if(closeBluetooth==true){  //如果蓝牙boolean变量被设置为true，那么再按一下按钮就关闭蓝牙
 				super.activityListener.fragCloseBluetooth();
 				closeBluetooth=false;

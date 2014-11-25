@@ -192,6 +192,11 @@ public class FragSettings extends FragBase implements OnClickListener{
 				pulse.setBackgroundResource(R.drawable.btn_pulse_activated);
 			}	
 			break;
+		case BluetoothCommand.INIT_POSITION_STATUS:
+			if(map.get(BluetoothCommand.INIT_POSITION_STATUS)==BluetoothCommand.INIT_POSITION_STATUS_VALID){
+				FragAnimationBase.countDown=false;
+			}
+			break;
 			
 		}
 	}
