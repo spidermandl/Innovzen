@@ -46,6 +46,9 @@ import com.innovzen.utils.PersistentUtil;
  */
 
 public class FragAnimationBase extends FragBase implements FragmentOnBackPressInterface {
+	//321 是否显示
+	public static boolean countDown=true;
+	
     /** The delay between each value of the countdown */ 
     private static final int COUNTDOWN_DELAY = 1000; // 1 sec
 
@@ -173,6 +176,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
             mCurCountdownSecond = 3;
 
             // Hide countdown in case it's visible
+           
             countdown_tv.setVisibility(View.VISIBLE);
 
             // Start and animate the countdown
@@ -427,8 +431,12 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         mCurCountdownSecond = 3;
 
         // Hide countdown in case it's visible
+        //<chy>  countDown来控制是否倒计时
+        if(countDown){
         countdown_tv.setVisibility(View.VISIBLE);
-
+        }else{
+        	countdown_tv.setVisibility(View.INVISIBLE);
+        }
         // Start and animate the countdown
         animateCountdown();
     }
