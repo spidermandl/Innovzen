@@ -122,11 +122,15 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				System.out.println(writeMessage);
 				break;
 			case MESSAGE_READ:
+				
 				byte[] readBuf = (byte[]) msg.obj;
 				mBluetoothCommand.parseCommand(readBuf);
+				//mBluetoothService.getBuffer(readBuf);
 				/**
 				 * 判断是当前fragment是否是FragAnimationTabletNew
 				 */
+				
+				
 		        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragAnimationTabletNew")) {
 		        	/**

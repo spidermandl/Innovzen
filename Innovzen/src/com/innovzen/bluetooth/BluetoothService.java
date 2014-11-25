@@ -427,9 +427,9 @@ public class BluetoothService {
 	                    // Send the obtained bytes to the UI Activity
 	                    if(index==8){
 	                    	
-	                    	BluetoothCommand m = new BluetoothCommand();
+	                    	//BluetoothCommand m = new BluetoothCommand();
 	                    	//m.parseCommand(bytes)
-	                    	
+	                    	//m.parseCommand(readBuf);
 	                    	mHandler.obtainMessage(MESSAGE_READ, senders.length, -1, senders)
 	                            .sendToTarget();
 	                    	index=0;
@@ -478,7 +478,12 @@ public class BluetoothService {
             }
         }
     }
+    byte[] readBuf=null;
     
+     public   byte[] getBuffer(byte[] buffer){	
+    	this.readBuf=buffer;
+    	return readBuf;
+    }
 	/**
 	 * 接受机器指令handler
 	 */
