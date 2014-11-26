@@ -225,7 +225,7 @@ public class ExerciseManager {
             //mFragAnimation.showPlayBtn();
         }
 
-        resetValues();
+        //resetValues();
 
     }
 
@@ -572,6 +572,10 @@ public class ExerciseManager {
             mTimes = times;
             mAnimationHandler.configure(times);
         }
+    }
+    
+    public boolean hasBeenPaused(){
+    	return hasPreviouslyBeenPaused;
     }
 
 }

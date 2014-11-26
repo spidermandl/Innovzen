@@ -3,12 +3,16 @@ package com.innovzen.fragments;
 import adapters.AdapterHelp;
 import com.innovzen.o2chair.R;
 import android.os.Bundle;
+import android.os.Message;
+import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.innovzen.bluetooth.BluetoothCommand;
+import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.interfaces.FragmentOnBackPressInterface;
 import com.innovzen.utils.CustomClickListener.OnCustomClickListener;
@@ -107,4 +111,17 @@ public class FragHelpNew extends FragBase implements OnCustomClickListener, Frag
 
         return false;
     }
+    @Override
+	protected void handlerMachineMessage(Message msg) {
+		SparseIntArray map = (SparseIntArray)msg.obj;
+		switch (msg.what) {
+		case BluetoothCommand.INIT_POSITION_STATUS:
+			if(map.get(BluetoothCommand.INIT_POSITION_STATUS)==BluetoothCommand.INIT_POSITION_STATUS_VALID){
+				//FragAnimationBase.countDown=false;
+			}
+			break;
+		}
+    }
+		
+    
 }

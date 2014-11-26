@@ -40,7 +40,7 @@ public class MyPreference {
 	public final static String FIFTEEN_MINUTES="15min";
 	public final static String TWENTY_MINUTES="20min";
 	public final static String TWENTY_FIVE_MINUTES="25min";
-	public final static String THIRTY_MINUTES="25min";
+	public final static String THIRTY_MINUTES="30min";
 	
 	public final static String RECEIVE_COMMAND="receive command";
 	//记录从哪个键位进入动画界面

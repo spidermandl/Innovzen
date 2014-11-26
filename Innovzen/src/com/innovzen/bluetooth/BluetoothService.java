@@ -426,10 +426,12 @@ public class BluetoothService {
 	                    senders[index]=buffer[i];
 	                    // Send the obtained bytes to the UI Activity
 	                    if(index==8){
+
 	                    	BluetoothCommand mDB=BluetoothCommand.getInstance();
 	                    	if(mDB!=null)
 	                    		mDB.parseCommand(senders);//直接解析数据
 	                    	
+
 	                    	mHandler.obtainMessage(MESSAGE_READ, senders.length, -1, senders)
 	                            .sendToTarget();
 	                    	index=0;
@@ -478,5 +480,6 @@ public class BluetoothService {
             }
         }
     }
+
 	
 }

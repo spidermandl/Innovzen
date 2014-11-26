@@ -19,6 +19,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.innovzen.bluetooth.check.BluetoothCheck;
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.o2chair.R;
 import com.innovzen.ui.VerticalSeekBar;
@@ -56,6 +57,10 @@ public abstract class FragBase extends Fragment {
 	private AudioManager audiomanage;
 	private ImageView volum_less;
 
+	/**
+	 * fragement 监测线程
+	 */
+	protected BluetoothCheck mBluetoothCheck;
 	/**
 	 * 接受机器指令handler
 	 */
@@ -213,4 +218,5 @@ public abstract class FragBase extends Fragment {
 		msg.obj = bundle;
 		machineHandler.sendMessage(msg);
 	}
+	
 }
