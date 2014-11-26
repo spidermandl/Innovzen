@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.innovzen.o2chair.R;
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.bluetooth.BluetoothService;
+import com.innovzen.bluetooth.check.BluetoothCheck;
+import com.innovzen.bluetooth.check.ResetCheck;
 import com.innovzen.entities.SoundGroup;
 import com.innovzen.fragments.FragAnimationPhone;
 import com.innovzen.fragments.FragAnimationPicker;
@@ -95,6 +97,10 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	
 	public static final Boolean FLAG=false;
 	
+	/**
+	 * 复位状态线程
+	 */
+	private BluetoothCheck mResetCheck;
 	
 	// The Handler that gets information back from the BluetoothChatService
 	private final Handler bluetoothHandler = new Handler() {
@@ -123,12 +129,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				break;
 
 			case MESSAGE_READ:				
-				
-				if(BluetoothCommand.INIT_POSITION_STATUS==BluetoothCommand.INIT_POSITION_STATUS_VALID){
-					Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
-					
-				}
-				
 				/**
 				 * 解析步骤可以在收到数据后立马解析
 				 */
@@ -138,8 +138,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				/**
 				 * 判断是当前fragment是否是FragAnimationTabletNew
 				 */
-				
-				
 		        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragAnimationTabletNew")) {
 		        	/**
@@ -172,29 +170,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	        			map.put(BluetoothCommand.DIRECTION_STATUS,mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS));
 	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.WALKING_POSITION_STATUS,map);
 	        			
-//	        			if (mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS1) {
-//	        				//第一个信号
-//	        				if(mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
-//	        					Log.e("上行 第一个信号", System.currentTimeMillis()+"");
-//	        					mBluetoothCommand.setInhaleTimeStart(System.currentTimeMillis());
-//	        				}else if(mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
-//	        					Log.e("下行 第一个信号", System.currentTimeMillis()+"");
-//	        					mBluetoothCommand.setExhaleTimeStart(System.currentTimeMillis());
-//	        				}
-//	        				
-//	        			}
-//	        			if (mBluetoothCommand.getValue(BluetoothCommand.WALKING_POSITION_STATUS) == BluetoothCommand.WALKING_POSITION_STATUS12){
-//	        				//最后一个信号
-//	        				if(mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_UP){//上行
-//	        					Log.e("上行 最后个信号", System.currentTimeMillis()+"");
-//	        					mBluetoothCommand.setInhaleTimeEnd(System.currentTimeMillis());
-//	        				}else if(mBluetoothCommand.getValue(BluetoothCommand.DIRECTION_STATUS)==BluetoothCommand.DIRECTION_STATUS_DOWN){//下行
-//	        					Log.e("下行 最后个信号", System.currentTimeMillis()+"");
-//	        					mBluetoothCommand.setExhaleTimeEnd(System.currentTimeMillis());
-//	        				}
-//	        				
-//	        			}
-	        			
 	        		 }
 		        
 		        }
@@ -225,9 +200,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		        	}
 		        }
 		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragHelpNew")) {
-		        	/**
-		        	 * 这里更新  FragSetting里功能按钮的状态	        	
-		        	 */
+		        	
 		        	if(IS_TABLET){
 		        		SparseIntArray map=new SparseIntArray();
 		        		  map.put(BluetoothCommand.INIT_POSITION_STATUS, mBluetoothCommand.getValue(BluetoothCommand.INIT_POSITION_STATUS));
@@ -256,6 +229,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		// Load the sound information
 		loadSoundInfo();
 		initBluetooth();
+		initCheckThreads();
 		// By default go to the main menu fragment
 		// <chy>
 		// super.navigateTo(FragMainMenu.class);
@@ -437,6 +411,15 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		mBluetoothService = new BluetoothService(this, bluetoothHandler);
 		mBluetoothCommand = new BluetoothCommand(this,mBluetoothService);
+	}
+	
+	private void initCheckThreads(){
+		mResetCheck=new BluetoothCheck<ResetCheck>();
+		mResetCheck.setCheck(new ResetCheck());
+	}
+	
+	public BluetoothCheck getResetCheck(){
+		return mResetCheck;
 	}
 
 	/**
