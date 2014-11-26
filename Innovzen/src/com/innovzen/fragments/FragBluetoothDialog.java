@@ -5,8 +5,10 @@ import java.util.Set;
 import com.innovzen.activities.ActivityMain;
 import com.innovzen.o2chair.R;
 
+import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -114,7 +116,6 @@ public class FragBluetoothDialog extends DialogFragment {
 		public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
 			// Cancel discovery because it's costly and we're about to connect
 			mBluetoothAdapter.cancelDiscovery();
-
 			// Get the device MAC address, which is the last 17 chars in the
 			// View
 			String info = ((TextView) v).getText().toString();
@@ -125,10 +126,35 @@ public class FragBluetoothDialog extends DialogFragment {
 			// Attempt to connect to the device
 			((ActivityMain) FragBluetoothDialog.this.getActivity())
 					.getBluetoothService().connect(device);
-			FragBluetoothDialog.this.dismiss();
+			
+			mBluetoothAdapter.getProfileProxy(
+					FragBluetoothDialog.this.getActivity(), 
+					proxyListener, 
+					BluetoothProfile.A2DP);
+		    FragBluetoothDialog.this.dismiss();
 		}
 	};
 
+	private BluetoothProfile.ServiceListener proxyListener = new BluetoothProfile.ServiceListener(){
+
+		@Override
+		public void onServiceConnected(int profile, BluetoothProfile proxy) {
+			// TODO Auto-generated method stub
+
+			BluetoothA2dp p=(BluetoothA2dp)proxy;
+			//p.isA2dpPlaying(device)
+			
+		}
+
+		@Override
+		public void onServiceDisconnected(int profile) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	};
+
+		
 	/**
 	 * Start device discover with the BluetoothAdapter 开始 发现新蓝牙设备
 	 */
