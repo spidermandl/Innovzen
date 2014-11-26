@@ -103,7 +103,7 @@ public class ResetCheck extends CheckBase {
 	 */
 	public boolean isReseted(boolean isLog) {
 		if (resetStatus == INVALID) {
-			if (!resetHandler.isWaiting()&&trigger) {
+			if (!resetHandler.isWaiting()) {
 				resetHandler.postDelayed(resetRunnable, BluetoothCommand.DELAY_TIME*2);
 				resetHandler.setWaiting(true);
 			}
@@ -123,7 +123,8 @@ public class ResetCheck extends CheckBase {
 	
 	@Override
 	public void initlize() {
-		trigger=false;
+		dynStatus=INITIAL;
+		resetStatus=INVALID;
 		super.initlize();
 	}
 	

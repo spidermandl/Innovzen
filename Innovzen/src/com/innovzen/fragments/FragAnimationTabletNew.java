@@ -65,7 +65,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	/**
 	 * 接受机器指令handler
 	 */
-
 	@Override
 	protected void handlerMachineMessage(Message msg) {
 		SparseIntArray map = (SparseIntArray) msg.obj;
@@ -157,35 +156,18 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 结束
 		case R.id.main_animation_stop:
-			if(!((ActivityMain)getActivity()).isBlueToothConnected()){
-				//如果蓝牙没有连接
-				Toast.makeText(getActivity(), "please setup bluetooth panel through setting panel", 1000);
-				break;
-			}
-			switch (mBluetoothCheck.startOrStop(true)) {
-			case ResetCheck.INITIAL:
-				super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
-				break;
-			case ResetCheck.RESETED_UP:	
-				if(mBluetoothCheck.isReseted(false)){
-					super.pauseExercise();
-					super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
-				}
-				break;
-			case ResetCheck.RESETED_DOWN:
-				/**
-				 * 关闭程序
-				 */
-				Toast.makeText(getActivity(), "close the program", 1000);
-				break;
-			default:
-				break;
-			}
-			//}		
-				
+			super.pauseExercise();
+			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+//			/**
+//			 * 关闭程序
+//			 */	
 			break;
 		// 开始
 		case R.id.main_animation_start:
+			if(!((ActivityMain)getActivity()).isBlueToothConnected()){//如果蓝牙没有连接
+				Toast.makeText(getActivity(), "please setup bluetooth panel through setting panel", 1000);
+				break;
+			}
 			if(mBluetoothCheck.isReseted(true)){//只有机器复位才能播放动画
 				String blance_relax_performance = 
 						MyPreference.getInstance(getActivity()).readString(MyPreference.BLANCE_RELAX_PERFORMANCE);
@@ -200,6 +182,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 							.fragSendCommand(BluetoothCommand.PERFORMANCE_MACHINE_VALUES);
 				}
 				 
+			}else{
+				Toast.makeText(getActivity(), "The machine is initializing...", 1000);
 			}
 			break;
 		// 暂停
