@@ -278,6 +278,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 开始
 		case R.id.main_animation_start:
+			String mytime=MyPreference.getInstance(getActivity()).readString(MyPreference.TIME);
+			if(mytim)
 			if(isReseted(true)){//只有机器复位才能播放动画
 				String blance_relax_performance = 
 						MyPreference.getInstance(getActivity()).readString(MyPreference.BLANCE_RELAX_PERFORMANCE);
