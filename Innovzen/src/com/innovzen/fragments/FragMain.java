@@ -6,7 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.innovzen.activities.ActivityMain;
+import com.innovzen.bluetooth.check.ResetCheck;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
@@ -34,6 +37,11 @@ public class FragMain extends FragBase implements OnClickListener{
 		case R.id.menu_balance:
 			//test
 			//super.activityListener.fragGoToSetting(true);
+			if(((ActivityMain)getActivity()).getResetCheck().isReseted(false)&&
+					((ActivityMain)getActivity()).getResetCheck().startOrStop(false)==ResetCheck.RESETED_UP){
+				Toast.makeText(getActivity(), "The machine is closing", 1000);
+				break;
+			}
 			PersistentUtil.setInt(getActivity(), 5 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
 			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.FIVE_MINUTES);
 			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.BLANCE);
@@ -41,6 +49,11 @@ public class FragMain extends FragBase implements OnClickListener{
 			
 			break;
 		case R.id.menu_relax:
+			if(((ActivityMain)getActivity()).getResetCheck().isReseted(false)&&
+					((ActivityMain)getActivity()).getResetCheck().startOrStop(false)==ResetCheck.RESETED_UP){
+				Toast.makeText(getActivity(), "The machine is closing", 1000);
+				break;
+			}
 			PersistentUtil.setInt(getActivity(), 10 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
 			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.RELAX);
 			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.TEN_MINUTES);
@@ -48,6 +61,11 @@ public class FragMain extends FragBase implements OnClickListener{
 			
 			break;
 		case R.id.menu_performance:
+			if(((ActivityMain)getActivity()).getResetCheck().isReseted(false)&&
+					((ActivityMain)getActivity()).getResetCheck().startOrStop(false)==ResetCheck.RESETED_UP){
+				Toast.makeText(getActivity(), "The machine is closing", 1000);
+				break;
+			}
 			PersistentUtil.setInt(getActivity(), 15 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
 			 MyPreference.getInstance(this.getActivity()).writeString(MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.PERFORMANCE);
 			MyPreference.getInstance(this.getActivity()).writeString(MyPreference.TIME, MyPreference.FIFTEEN_MINUTES);

@@ -199,6 +199,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 		        	}
 		        }
+		        //FragHelpNew
 		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragHelpNew")) {
 		        	
 		        	if(IS_TABLET){
