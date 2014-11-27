@@ -22,6 +22,7 @@ public class SyncExerciseManager extends ExerciseManager{
 	 * 通讯事件补偿
 	 */
 	static final int DELTA_TIME=500;
+	
 	/**
 	 * 等待机器传送最后位行指令
 	 * waitHandler的实例只能有一份，当isRunning为true时，此时正在进行等待状态
@@ -60,45 +61,65 @@ public class SyncExerciseManager extends ExerciseManager{
 				subtime=BluetoothCommand.getInstance()==null?0:
 					(System.currentTimeMillis()-inhaleTimeEnd);
 	        	if(subtime!=0&&subtime<mTimes.inhale+DELTA_TIME){
-	        		//long a = mTimes.inhale;
-	        		Log.e("inhale 等待成功", subtime+"");
+	        		//Log.e("inhale 等待成功", subtime+"");
 	        		waitHandler.sendEmptyMessage(0);
 	        	}else{
-	        		Log.e("inhale 没等到", subtime+"");
-	        		waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
+	        		//Log.e("inhale 没等到", subtime+"");
+	        		boolean shutOff=BluetoothCommand.getInstance()==null?false:
+	        			(BluetoothCommand.getInstance().getValue(BluetoothCommand.MACHINE_RUN_STATUS)==BluetoothCommand.MACHINE_RUN_STATUS_COLLECT?true:false);
+	        		
+	        		if(!shutOff)
+	        			waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
+	        		else
+	        			waitHandler.setWaiting(false);
 	        	}
 				break;
 			case EXERCISE_HOLD_INHALE:
 				subtime=BluetoothCommand.getInstance()==null?0:
 					(System.currentTimeMillis()-exhaleTimeStart);
 	        	if(subtime!=0&&subtime<mTimes.holdInhale){
-	        		Log.e("EXERCISE_HOLD_INHALE 等待成功", subtime+"");
+	        		//Log.e("EXERCISE_HOLD_INHALE 等待成功", subtime+"");
 	        		waitHandler.sendEmptyMessage(0);
 	        	}else{
-	        		Log.e("EXERCISE_HOLD_INHALE 没等到", subtime+"");
-	        		waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
+	        		//Log.e("EXERCISE_HOLD_INHALE 没等到", subtime+"");
+	        		boolean shutOff=BluetoothCommand.getInstance()==null?false:
+	        			(BluetoothCommand.getInstance().getValue(BluetoothCommand.MACHINE_RUN_STATUS)==BluetoothCommand.MACHINE_RUN_STATUS_COLLECT?true:false);
+	        		if(!shutOff)
+	        			waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
+	        		else
+	        			waitHandler.setWaiting(false);
 	        	}
 				break;
 			case EXERCISE_EXHALE:
 				subtime=BluetoothCommand.getInstance()==null?0:
 					(System.currentTimeMillis()-exhaleTimeEnd);
 	        	if(subtime!=0&&subtime<mTimes.exhale+DELTA_TIME){
-	        		Log.e("exhale 等待成功", subtime+"");
+	        		//Log.e("exhale 等待成功", subtime+"");
 	        		waitHandler.sendEmptyMessage(0);
 	        	}else{
-	        		Log.e("exhale 没等到", subtime+"");
-	        		waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
+	        		//Log.e("exhale 没等到", subtime+"");
+	        		boolean shutOff=BluetoothCommand.getInstance()==null?false:
+	        			(BluetoothCommand.getInstance().getValue(BluetoothCommand.MACHINE_RUN_STATUS)==BluetoothCommand.MACHINE_RUN_STATUS_COLLECT?true:false);
+	        		if(!shutOff)
+	        			waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
+	        		else
+	        			waitHandler.setWaiting(false);
 	        	}
 				break;
 			case EXERCISE_HOLD_EXHALE:
 				subtime=BluetoothCommand.getInstance()==null?0:
 					(System.currentTimeMillis()-inhaleTimeStart);
 	        	if(subtime!=0&&subtime<mTimes.holdExhale){
-	        		Log.e("EXERCISE_HOLD_EXHALE 等待成功", subtime+"");
+	        		//Log.e("EXERCISE_HOLD_EXHALE 等待成功", subtime+"");
 	        		waitHandler.sendEmptyMessage(0);
 	        	}else{
-	        		Log.e("EXERCISE_HOLD_EXHALE 没等到", subtime+"");
-	        		waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
+	        		//Log.e("EXERCISE_HOLD_EXHALE 没等到", subtime+"");
+	        		boolean shutOff=BluetoothCommand.getInstance()==null?false:
+	        			(BluetoothCommand.getInstance().getValue(BluetoothCommand.MACHINE_RUN_STATUS)==BluetoothCommand.MACHINE_RUN_STATUS_COLLECT?true:false);
+	        		if(!shutOff)
+	        			waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
+	        		else
+	        			waitHandler.setWaiting(false);
 	        	}
 				break;
 
@@ -243,6 +264,7 @@ public class SyncExerciseManager extends ExerciseManager{
 	
 	@Override
 	public void start() {
+		Log.e("--------------------------------打开动画", "on");
 		inhaleExerciseHandler.setWaiting(true);
 		inhaleExerciseHandler.post(inhaleExerciseRunnable);
 		inhaleHoldHandler.setWaiting(true);
@@ -260,6 +282,7 @@ public class SyncExerciseManager extends ExerciseManager{
 //		inhaleHoldHandler.setWaiting(false);
 //		exhaleExerciseHandler.setWaiting(false);
 //		exhaleHoldHandler.setWaiting(false);
+		Log.e("--------------------------------关闭动画", "off");
 		super.pause(showPlayBtnOverlay);
 	}
 	

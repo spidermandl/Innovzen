@@ -38,7 +38,7 @@ public class CheckBase implements CheckInterface{
 		// TODO Auto-generated method stub
 		
 	}
-
+   
 	@Override
 	public int startOrStop(boolean isLog) {
 		// TODO Auto-generated method stub
@@ -49,6 +49,12 @@ public class CheckBase implements CheckInterface{
 	public void stopThreads() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public  int closeOrNot() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

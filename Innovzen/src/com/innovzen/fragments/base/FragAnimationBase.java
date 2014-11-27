@@ -450,6 +450,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         	isAnimationRunning=true;
         	
             // Set the new value of the countdown
+        	countdown_tv.setVisibility(View.VISIBLE);
             countdown_tv.setText(mCurCountdownSecond + "");
 
             // Start a delay of 1 second

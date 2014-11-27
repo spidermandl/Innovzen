@@ -79,6 +79,12 @@ public class BluetoothCheck<T extends CheckBase> implements CheckInterface {
 		checker.setUiHandler(frag);
 	}
 
+	@Override
+	public int closeOrNot() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 
 }

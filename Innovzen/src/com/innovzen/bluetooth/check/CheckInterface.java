@@ -36,4 +36,8 @@ public interface CheckInterface {
 	 * 停止所有线程
 	 */
 	public void stopThreads();
+	/**
+	 * 判断机器是否关闭
+	 */
+	public int  closeOrNot();
 }
