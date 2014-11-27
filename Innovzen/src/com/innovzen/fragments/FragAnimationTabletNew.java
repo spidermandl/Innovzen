@@ -36,7 +36,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	
 	// Hold view references
 	private View mView;
-    private boolean initTime=false;
+    //private boolean initTime=false;
 
 	/**
 	 * Hold this state so we'll know when we come back from fullscreen to either
@@ -158,13 +158,13 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 结束
 		case R.id.main_animation_stop:
-
+          if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){
 			super.pauseExercise();
 			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
-			mBluetoothCheck.startOrStop(false);
-//			/**
-//			 * 关闭程序
-//			 */	
+          }
+			/**
+		     * 关闭程序
+			 */	
 
 			break;
 		// 开始
@@ -174,9 +174,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				Toast.makeText(getActivity(), "please setup bluetooth panel through setting panel", 1000).show();
 				break;
 			}
-			if(mBluetoothCheck.startOrStop(true)!=ResetCheck.RESETED_UP
+			/*if(mBluetoothCheck.startOrStop(true)!=ResetCheck.RESETED_UP
 					&&
-					!mBluetoothCheck.isReseted(true)){
+					!mBluetoothCheck.isReseted(true)){*/
+			if(mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
 				//如果机器没有复位并且不是在关闭的状态
 				String blance_relax_performance = 
 						MyPreference.getInstance(getActivity()).readString(MyPreference.BLANCE_RELAX_PERFORMANCE);
@@ -196,18 +197,15 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			}
 			
 			//////////////////////////////////
-			//if(mBluetoothCheck.)
-			
-			
-			super.activityListener
-			.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
+		
+			//////////////////////////////////
 			
 			//初始按摩椅按摩时间
-			String mytime=MyPreference.getInstance(getActivity()).readString(MyPreference.TIME);
-			if(mytime==MyPreference.FIVE_MINUTES &&initTime==false){
-				super.activityListener.fragSendCommand(BluetoothCommand.TIME5_MACHINE_VALUES);
-				initTime=true;
-			}
+//			String mytime=MyPreference.getInstance(getActivity()).readString(MyPreference.TIME);
+//			if(mytime==MyPreference.FIVE_MINUTES &&initTime==false){
+//				super.activityListener.fragSendCommand(BluetoothCommand.TIME5_MACHINE_VALUES);
+//				initTime=true;
+//			}
 			break;
 		// 暂停
 		case R.id.main_animation_pause:

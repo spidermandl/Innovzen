@@ -23,15 +23,7 @@ public interface CheckInterface {
 	 * @return
 	 */
 	public boolean isReseted(boolean isLog) ;
-    /**
-     * 获取机器关闭开始按钮状态
-     * @param isLog
-     * @return 没有运行过
-     *         正在运行
-     *         运行结束
-     */
-	public int startOrStop(boolean isLog);
-	
+   
 	/**
 	 * 停止所有线程
 	 */
@@ -40,4 +32,5 @@ public interface CheckInterface {
 	 * 判断机器是否关闭
 	 */
 	public int  closeOrNot();
+	
 }

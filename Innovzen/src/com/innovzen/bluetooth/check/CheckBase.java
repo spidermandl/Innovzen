@@ -39,11 +39,6 @@ public class CheckBase implements CheckInterface{
 		
 	}
    
-	@Override
-	public int startOrStop(boolean isLog) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public void stopThreads() {
@@ -56,5 +51,8 @@ public class CheckBase implements CheckInterface{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+	
 
 }

@@ -37,8 +37,7 @@ public class FragMain extends FragBase implements OnClickListener{
 		case R.id.menu_balance:
 			//test
 			//super.activityListener.fragGoToSetting(true);
-			if(((ActivityMain)getActivity()).getResetCheck().isReseted(false)&&
-					((ActivityMain)getActivity()).getResetCheck().startOrStop(false)==ResetCheck.RESETED_UP){
+			if(((ActivityMain)getActivity()).getResetCheck().isReseted(false)){
 				Toast.makeText(getActivity(), "The machine is closing", 1000);
 				break;
 			}
@@ -49,8 +48,7 @@ public class FragMain extends FragBase implements OnClickListener{
 			
 			break;
 		case R.id.menu_relax:
-			if(((ActivityMain)getActivity()).getResetCheck().isReseted(false)&&
-					((ActivityMain)getActivity()).getResetCheck().startOrStop(false)==ResetCheck.RESETED_UP){
+			if(((ActivityMain)getActivity()).getResetCheck().isReseted(false)){
 				Toast.makeText(getActivity(), "The machine is closing", 1000);
 				break;
 			}
@@ -61,8 +59,7 @@ public class FragMain extends FragBase implements OnClickListener{
 			
 			break;
 		case R.id.menu_performance:
-			if(((ActivityMain)getActivity()).getResetCheck().isReseted(false)&&
-					((ActivityMain)getActivity()).getResetCheck().startOrStop(false)==ResetCheck.RESETED_UP){
+			if(((ActivityMain)getActivity()).getResetCheck().isReseted(false)){
 				Toast.makeText(getActivity(), "The machine is closing", 1000);
 				break;
 			}

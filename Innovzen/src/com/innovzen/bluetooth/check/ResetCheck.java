@@ -35,19 +35,12 @@ public class ResetCheck extends CheckBase {
 	/**
 	 * 当前结束状态
 	 */
-	private int closeStatus = RUNNING;
+	private int closeStatus = WAITTING;
 
-	public static final int INITIAL = 0;// 初始情况
-	public static final int RESETED_UP = 1;// 成功复位
-	public static final int RESETED_DOWN = 2;// 返回初始
 	/**
 	 * 当前机器复位状态
 	 */
 	private int resetStatus = INVALID;
-	/**
-	 * 当前机器移位状态
-	 */
-	private int dynStatus = INITIAL;
 	/**
 	 * 复位检测线程
 	 */
@@ -65,35 +58,32 @@ public class ResetCheck extends CheckBase {
 		public void run() {
 			BluetoothCommand mBC = BluetoothCommand.getInstance();
 			if (mBC != null) {
-				if (dynStatus == INITIAL) {
-					if (mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_INVALID) {
-						// 复位状态为0
-						resetStatus = RESETING;
-						resetHandler.postDelayed(resetRunnable,
-								BluetoothCommand.DELAY_TIME);
-						// Log.e("复位状态为0", System.currentTimeMillis() + "");
-					} else if (mBC
-							.getValue(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_VALID) {
-						// 复位状态为1
-						resetStatus = RESETED;
-						dynStatus = RESETED_UP;
-						resetHandler.sendEmptyMessage(0);
-						SparseIntArray map = new SparseIntArray();
-						map.put(BluetoothCommand.INIT_POSITION_STATUS,
-								mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS));
-						map.put(BluetoothCommand.DIRECTION_STATUS,
-								mBC.getValue(BluetoothCommand.DIRECTION_STATUS));
-						if (uiHandler != null
-								&& uiHandler
-										.getClass()
-										.getSimpleName()
-										.equalsIgnoreCase(
-												"FragAnimationTabletNew"))
-							uiHandler.sendMachineMessage(
-									BluetoothCommand.INIT_POSITION_STATUS, map);
-						// Log.e("复位状态为1", System.currentTimeMillis() + "");
-					}
+				if (mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_INVALID) {
+					// 复位状态为0
+					resetStatus = RESETING;
+					resetHandler.postDelayed(resetRunnable,
+							BluetoothCommand.DELAY_TIME);
+					// Log.e("复位状态为0", System.currentTimeMillis() + "");
+				} else if (mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_VALID) {
+					// 复位状态为1
+					resetStatus = RESETED;
+					resetHandler.sendEmptyMessage(0);
+					SparseIntArray map = new SparseIntArray();
+					map.put(BluetoothCommand.INIT_POSITION_STATUS,
+							mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS));
+					map.put(BluetoothCommand.DIRECTION_STATUS,
+							mBC.getValue(BluetoothCommand.DIRECTION_STATUS));
+					if (uiHandler != null
+							&& uiHandler
+									.getClass()
+									.getSimpleName()
+									.equalsIgnoreCase(
+											"FragAnimationTabletNew"))
+						uiHandler.sendMachineMessage(
+								BluetoothCommand.INIT_POSITION_STATUS, map);
+					// Log.e("复位状态为1", System.currentTimeMillis() + "");
 				}
+				
 
 				/*
 				 * else if(dynStatus==RESETED_UP){ Log.e("运行状态",
@@ -121,20 +111,24 @@ public class ResetCheck extends CheckBase {
 		public void run() {
 			BluetoothCommand mBC = BluetoothCommand.getInstance();
 			if (mBC != null) {
+				Log.e("closeStatus", mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS)+"");
 				if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_RUNNING) {
 					closeStatus = RUNNING;
 					closeHandler.postDelayed(closeRunnable,
 							BluetoothCommand.DELAY_TIME);
+					Log.e("Running", "-11111111111111");
 				} else if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT) {
 					closeStatus = COLLECTING;
 					closeHandler.postDelayed(closeRunnable,
 							BluetoothCommand.DELAY_TIME);
+					Log.e("Collecting", "-222222222222222");
 				} else if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_WAIT) {
 					closeStatus = WAITTING;
-				
+					Log.e("Waitting", "-3333333333333");
 					SparseIntArray map = new SparseIntArray();
 					map.put(BluetoothCommand.MACHINE_RUN_STATUS,
 							mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS));
+					closeHandler.sendEmptyMessage(0);
 
 				
 				}
@@ -148,11 +142,11 @@ public class ResetCheck extends CheckBase {
 	 * @return
 	 */
 	public boolean isReseted(boolean isLog) {
-		if (resetStatus == INVALID || dynStatus == RESETED_DOWN) {
-			if (!resetHandler.isWaiting()) {
+		if (resetStatus == INVALID) {
+			if (!resetHandler.isRunning()) {
 				resetHandler.postDelayed(resetRunnable,
 						BluetoothCommand.DELAY_TIME * 2);
-				resetHandler.setWaiting(true);
+				resetHandler.setRunning(true);
 			}
 			return false;
 		} else if (resetStatus == RESETING) {
@@ -169,70 +163,34 @@ public class ResetCheck extends CheckBase {
 
 	@Override
 	public void initlize() {
-		dynStatus = INITIAL;
+		closeStatus = WAITTING;
 		resetStatus = INVALID;
 		super.initlize();
 	}
-	/**
-	 * 判断机器是否关闭
-	 */
-	public boolean isClosed(){
-		if(closeStatus==RUNNING){
-			if(!closeHandler.isWaiting()){
-				closeHandler.postDelayed(closeRunnable,
-						BluetoothCommand.DELAY_TIME * 2);
-				closeHandler.setWaiting(true);
-			}
-			return false;
-		}else if(closeStatus==COLLECTING){
-			
-			return false;
-		}else if(closeStatus==WAITTING){
-			return true;
-		}
-		return false;
-	}
+	
 	// 判断是否关闭
 	@Override
 	public int  closeOrNot(){
-		switch (closeStatus) {
-		case RUNNING:
-			if(!closeHandler.isWaiting()){
-				closeHandler.postDelayed(closeRunnable,
-						BluetoothCommand.DELAY_TIME * 2);
-				closeHandler.setWaiting(true);
-			}
-			break;
-		case COLLECTING:
-			break;
-		case WAITTING:
-			break;
-		
+//		switch (closeStatus) {
+//		case RUNNING:
+//			if(!closeHandler.isRunning()){
+//				closeHandler.postDelayed(closeRunnable,
+//						BluetoothCommand.DELAY_TIME * 2);
+//				closeHandler.setRunning(true);
+//			}
+//			break;
+//		case COLLECTING:
+//			break;
+//		case WAITTING:
+//			break;
+//		
+//		}
+		if(!closeHandler.isRunning()){
+			closeHandler.postDelayed(closeRunnable,
+					BluetoothCommand.DELAY_TIME * 2);
+			closeHandler.setRunning(true);
 		}
-		return 0;
-	}
-	
-	@Override
-	public int startOrStop(boolean isLog) {
-		switch (dynStatus) {
-		case INITIAL:
-			break;
-		case RESETED_UP:
-			if (!resetHandler.isWaiting()) {
-				resetHandler.postDelayed(resetRunnable,
-						BluetoothCommand.DELAY_TIME * 2);
-				resetHandler.setWaiting(true);
-			}
-			if (isLog && uiHandler != null && resetStatus == RESETING)
-				Toast.makeText(
-						uiHandler.getActivity(),
-						"Please wait a moment until the machine finishes reseting",
-						1000).show();
-			break;
-		case RESETED_DOWN:
-			break;
-		}
-		return dynStatus;
+		return closeStatus;
 	}
 
 	@Override
@@ -255,11 +213,11 @@ public class ResetCheck extends CheckBase {
 			isRunning = false;
 		}
 
-		public boolean isWaiting() {
+		public boolean isRunning() {
 			return isRunning;
 		}
 
-		public void setWaiting(boolean isRunning) {
+		public void setRunning(boolean isRunning) {
 			this.isRunning = isRunning;
 		}
 	}
