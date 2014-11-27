@@ -239,5 +239,11 @@
     <string name="none_found">No devices found</string>
     <string name="title_paired_devices">Paired Devices</string>
     <string name="title_other_devices">Other Available Devices</string>
-
+    <!-- FRAG USER SESSION chy -->
+    <string name="breathe_in_time">Breathe in time</string>
+   
+    <string name="hold_time">Hold time</string>
+    <string name="breathe_out_time">Breathe out time</string>
+    <string name="full">FULL</string>
+    <string name="empty">EMPTY</string>
 </resources>

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.os.Message;
+import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +20,21 @@ import com.innovzen.o2chair.R;
 import com.innovzen.utils.MyPreference;
 
 public class FragSession extends FragBase implements OnClickListener {
+	/**
+	 * sessionΩÁ√Ê
+	 */
 
-
-	private ImageView back;
-	private ImageView setting;
-	private ImageView help;
+	private ImageView back, setting, help, beginner, intermadiate,
+			session_stop, session_start, session_pause, session_zero, pro,
+			customise;
 	private TextView min;
-	private ImageView zero;
+	private ImageView session_volume;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_mysession, container, false);
+		View view = inflater.inflate(R.layout.fragment_mysession, container,
+				false);
 		init(view);
 
 		return view;
@@ -41,6 +46,9 @@ public class FragSession extends FragBase implements OnClickListener {
 		case R.id.session_back:
 			getActivity().onBackPressed();
 			break;
+		case R.id.session_volume:
+			
+			break;
 		case R.id.session_setting:
 			super.activityListener.fragGoToSetting(true);
 			break;
@@ -48,7 +56,73 @@ public class FragSession extends FragBase implements OnClickListener {
 			super.activityListener.fragGoToHelpNew(true);
 			break;
 		case R.id.session_zero:
-			super.activityListener.fragSendCommand(BluetoothCommand.ZERO_GRAVITY_MACHINE_VALUES);
+			super.activityListener
+					.fragSendCommand(BluetoothCommand.ZERO_GRAVITY_MACHINE_VALUES);
+			break;
+		case R.id.session_stop:
+			super.activityListener
+					.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+			break;
+		case R.id.session_start:
+			String blance_relax_performance = MyPreference.getInstance(
+					getActivity()).readString(
+					MyPreference.BLANCE_RELAX_PERFORMANCE);
+			if (blance_relax_performance.equals(MyPreference.BLANCE)) {
+				super.activityListener
+						.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
+			} else if (blance_relax_performance.equals(MyPreference.RELAX)) {
+				super.activityListener
+						.fragSendCommand(BluetoothCommand.RELAX_MACHINE_VALUES);
+			} else if (blance_relax_performance
+					.equals(MyPreference.PERFORMANCE)) {
+				super.activityListener
+						.fragSendCommand(BluetoothCommand.PERFORMANCE_MACHINE_VALUES);
+			} else {
+				super.activityListener
+						.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
+			}
+			break;
+		case R.id.session_pause:
+			super.activityListener
+					.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
+			// super.pauseExercise();
+			break;
+		case R.id.beginner:
+			MyPreference.getInstance(getActivity()).writeString(
+					MyPreference.SESSION_MODE, MyPreference.BEGINNER);
+			beginner.setBackgroundResource(R.drawable.btn_my_session_left_beginner_activated);
+			intermadiate
+					.setBackgroundResource(R.drawable.selector_icon_intermadiate);
+			pro.setBackgroundResource(R.drawable.selector_icon_pro);
+			customise.setBackgroundResource(R.drawable.selector_icon_customise);
+			break;
+		case R.id.intermadiate:
+			MyPreference.getInstance(getActivity()).writeString(
+					MyPreference.SESSION_MODE, MyPreference.INTERMEDAITE);
+			beginner.setBackgroundResource(R.drawable.selector_icon_beginner);
+			intermadiate
+					.setBackgroundResource(R.drawable.btn_my_session_intermediate_activated);
+			pro.setBackgroundResource(R.drawable.selector_icon_pro);
+			customise.setBackgroundResource(R.drawable.selector_icon_customise);
+			break;
+		case R.id.pro:
+			MyPreference.getInstance(getActivity()).writeString(
+					MyPreference.SESSION_MODE, MyPreference.PRO);
+			beginner.setBackgroundResource(R.drawable.selector_icon_beginner);
+			intermadiate
+					.setBackgroundResource(R.drawable.selector_icon_intermadiate);
+			pro.setBackgroundResource(R.drawable.btn_my_session_pro_activated);
+			customise.setBackgroundResource(R.drawable.selector_icon_customise);
+			break;
+		case R.id.customise:
+			MyPreference.getInstance(getActivity()).writeString(
+					MyPreference.SESSION_MODE, MyPreference.CUSTOMISE);
+			beginner.setBackgroundResource(R.drawable.selector_icon_beginner);
+			intermadiate
+					.setBackgroundResource(R.drawable.selector_icon_intermadiate);
+			pro.setBackgroundResource(R.drawable.selector_icon_pro);
+			customise
+					.setBackgroundResource(R.drawable.btn_my_session_customise_activated);
 			break;
 		default:
 			break;
@@ -63,11 +137,65 @@ public class FragSession extends FragBase implements OnClickListener {
 		setting.setOnClickListener(this);
 		help = (ImageView) view.findViewById(R.id.session_help);
 		help.setOnClickListener(this);
-		zero = (ImageView) view.findViewById(R.id.session_zero);
-		zero.setOnClickListener(this);
 		min = (TextView) view.findViewById(R.id.session_min);
-		String myTime = MyPreference.getInstance(getActivity()).readString(MyPreference.TIME);
+		beginner = (ImageView) view.findViewById(R.id.beginner);
+		beginner.setOnClickListener(this);
+		intermadiate = (ImageView) view.findViewById(R.id.intermadiate);
+		intermadiate.setOnClickListener(this);
+		pro = (ImageView) view.findViewById(R.id.pro);
+		pro.setOnClickListener(this);
+		customise = (ImageView) view.findViewById(R.id.customise);
+		customise.setOnClickListener(this);
+		session_zero = (ImageView) view.findViewById(R.id.session_zero);
+		session_zero.setOnClickListener(this);
+		session_stop = (ImageView) view.findViewById(R.id.session_stop);
+		session_stop.setOnClickListener(this);
+		session_start = (ImageView) view.findViewById(R.id.session_start);
+		session_start.setOnClickListener(this);
+		session_pause = (ImageView) view.findViewById(R.id.session_pause);
+		session_pause.setOnClickListener(this);
+		session_volume = (ImageView) view.findViewById(R.id.session_volume);
+		session_volume.setOnClickListener(this);
+		String myTime = MyPreference.getInstance(getActivity()).readString(
+				MyPreference.TIME);
 		min.setText(myTime);
+		String mySession = MyPreference.getInstance(getActivity()).readString(
+				MyPreference.SESSION_MODE);
+		beginner.setBackgroundResource(R.drawable.btn_my_session_left_beginner_activated);
+		if (mySession.equals(MyPreference.BEGINNER) || mySession == null) {
+			beginner.setBackgroundResource(R.drawable.btn_my_session_left_beginner_activated);
+		} else if (mySession.equals(MyPreference.INTERMEDAITE)) {
+			beginner.setBackgroundResource(R.drawable.selector_icon_beginner);
+			intermadiate
+					.setBackgroundResource(R.drawable.btn_my_session_intermediate_activated);
+		} else if (mySession.equals(MyPreference.PRO)) {
+			beginner.setBackgroundResource(R.drawable.selector_icon_beginner);
+			pro.setBackgroundResource(R.drawable.btn_my_session_pro_activated);
+		} else if (mySession.equals(MyPreference.CUSTOMISE)) {
+			beginner.setBackgroundResource(R.drawable.selector_icon_beginner);
+			customise
+					.setBackgroundResource(R.drawable.btn_my_session_customise_activated);
+		}
 	}
 
+	@Override
+		protected void handlerMachineMessage(Message msg) {
+			SparseIntArray map = (SparseIntArray)msg.obj;
+			switch (msg.what) {
+			case BluetoothCommand.ZERO_STATUS:
+				if(map.get(BluetoothCommand.ZERO_STATUS)==BluetoothCommand.ZERO_STATUS_CLOSE){
+                       session_zero.setBackgroundResource(R.drawable.selector_btn_gravity);
+				 }else{
+					 session_zero.setBackgroundResource(R.drawable.btn_gravity_activated);
+				 }
+				break;
+			case BluetoothCommand.PAUSE_STATUS:
+				if(map.get(BluetoothCommand.PAUSE_STATUS)==BluetoothCommand.PAUSE_STATUS_ON){
+					session_pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
+				}else{
+					session_pause.setBackgroundResource(R.drawable.selector_btn_pause);
+				}
+				break;
+			}
+	    }
 }

@@ -108,9 +108,9 @@ public abstract class FragBase extends Fragment {
 		
 		if(lastVolumeValue==maxVolume/2||lastVolumeValue==0){
 			seekBar.setProgress(maxVolume/2);
-			}else{
-				seekBar.setProgress(lastVolumeValue);
-			}
+		}else{
+			seekBar.setProgress(lastVolumeValue);
+		}
 	//	seekBar.setProgressDrawable(d)
 		
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -122,6 +122,7 @@ public abstract class FragBase extends Fragment {
 					boolean fromUser) {
 				audiomanage.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
 				currentVolume = audiomanage.getStreamVolume(AudioManager.STREAM_MUSIC);
+				
                 seekBar.setProgress(currentVolume);
             
                 if(progress==0){
@@ -129,7 +130,7 @@ public abstract class FragBase extends Fragment {
                 }else{
                 	volum_less.setBackgroundResource(R.drawable.icon_volum_less);
                 }
-              
+              MyPreference.getInstance(getActivity()).writeString(MyPreference.LAST_VOLUME, currentVolume);
 				
 			}
 
@@ -141,7 +142,7 @@ public abstract class FragBase extends Fragment {
 
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				 MyPreference.getInstance(getActivity()).writeString(MyPreference.LAST_VOLUME, currentVolume);
+				
 				
 			}
 		});

@@ -208,6 +208,17 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 			        		((FragHelpNew)currentFragment).sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);
 		        	}
 		        }
+		        //FragSession
+		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragSession")) {
+		        	
+		        	if(IS_TABLET){
+		        		SparseIntArray map=new SparseIntArray();
+		        		  map.put(BluetoothCommand.ZERO_STATUS, mBluetoothCommand.getValue(BluetoothCommand.ZERO_STATUS));
+			        		((FragSession)currentFragment).sendMachineMessage(BluetoothCommand.ZERO_STATUS,map);
+			        	  map.put(BluetoothCommand.PAUSE_STATUS, mBluetoothCommand.getValue(BluetoothCommand.PAUSE_STATUS));
+			        	    ((FragSession)currentFragment).sendMachineMessage(BluetoothCommand.PAUSE_STATUS,map);
+		        	}
+		        }
 				break;
 			case MESSAGE_DEVICE_NAME:// 保存设备名称
 				// save the connected device's name
