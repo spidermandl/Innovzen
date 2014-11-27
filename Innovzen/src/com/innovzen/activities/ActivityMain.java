@@ -214,14 +214,24 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 		        	}
 		        }
+		        //FragHelpNew
 		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragHelpNew")) {
-		        	/**
-		        	 * 这里更新  FragSetting里功能按钮的状态	        	
-		        	 */
+		        	
 		        	if(IS_TABLET){
 		        		SparseIntArray map=new SparseIntArray();
 		        		  map.put(BluetoothCommand.INIT_POSITION_STATUS, mBluetoothCommand.getValue(BluetoothCommand.INIT_POSITION_STATUS));
 			        		((FragHelpNew)currentFragment).sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);
+		        	}
+		        }
+		        //FragSession
+		        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragSession")) {
+		        	
+		        	if(IS_TABLET){
+		        		SparseIntArray map=new SparseIntArray();
+		        		  map.put(BluetoothCommand.ZERO_STATUS, mBluetoothCommand.getValue(BluetoothCommand.ZERO_STATUS));
+			        		((FragSession)currentFragment).sendMachineMessage(BluetoothCommand.ZERO_STATUS,map);
+			        	  map.put(BluetoothCommand.PAUSE_STATUS, mBluetoothCommand.getValue(BluetoothCommand.PAUSE_STATUS));
+			        	    ((FragSession)currentFragment).sendMachineMessage(BluetoothCommand.PAUSE_STATUS,map);
 		        	}
 		        }
 				break;

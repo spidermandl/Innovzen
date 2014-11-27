@@ -48,6 +48,7 @@ public class BluetoothCheck<T extends CheckBase> implements CheckInterface {
 	@Override
 	public boolean isReseted(boolean isLog) {
 		return checker.isReseted(isLog);
+		
 	}
 
 	@Override
@@ -62,11 +63,6 @@ public class BluetoothCheck<T extends CheckBase> implements CheckInterface {
 		
 	}
 
-	@Override
-	public int startOrStop(boolean isLog) {
-		// TODO Auto-generated method stub
-		return checker.startOrStop(isLog);
-	}
 
 	@Override
 	public void stopThreads() {
@@ -78,6 +74,13 @@ public class BluetoothCheck<T extends CheckBase> implements CheckInterface {
 	public void setUiHandler(FragBase frag) {
 		checker.setUiHandler(frag);
 	}
+
+	@Override
+	public int closeOrNot() {
+		// TODO Auto-generated method stub
+		return checker.closeOrNot();
+	}
+
 
 
 

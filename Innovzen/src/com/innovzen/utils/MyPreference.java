@@ -16,9 +16,14 @@ public class MyPreference {
 	private static Context globleContext;//全局context
 	
 	private final static String INNOVZEN_PREFERENCE="INNOVZEN_PREFERENCE";
+	//记录用户的session模式
+	public final static String SESSION_MODE="session mod";
+	public final static String BEGINNER="Beginner";
+	public final static String INTERMEDAITE="Intermedaite";
+	public final static String PRO="Pro";
+	public final static String CUSTOMISE="Customise";
 	//记录声音上一次的大小
 	public final static String LAST_VOLUME="last volume";
-	//public final static int LAST_VOLUME_VALUE=
 	//记录Voice键状态
 	public final static String VOICE="voice";
 	public final static String MAN_VOICE="Man voice";
@@ -35,12 +40,12 @@ public class MyPreference {
 	public final static String GRAPHIC="graphic";
 	//记录Time键状态
 	public final static String TIME="time";
-	public final static String FIVE_MINUTES="5min";
-	public final static String TEN_MINUTES="10min";
-	public final static String FIFTEEN_MINUTES="15min";
-	public final static String TWENTY_MINUTES="20min";
-	public final static String TWENTY_FIVE_MINUTES="25min";
-	public final static String THIRTY_MINUTES="30min";
+	public final static String FIVE_MINUTES="5 min";
+	public final static String TEN_MINUTES="10 min";
+	public final static String FIFTEEN_MINUTES="15 min";
+	public final static String TWENTY_MINUTES="20 min";
+	public final static String TWENTY_FIVE_MINUTES="25 min";
+	public final static String THIRTY_MINUTES="30 min";
 	
 	public final static String RECEIVE_COMMAND="receive command";
 	//记录从哪个键位进入动画界面

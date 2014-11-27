@@ -63,44 +63,45 @@
         android:layout_alignLeft="@id/top_horizontal_1"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@id/top_horizontal_1"
-        android:background="@drawable/selector_btn_back" 
-        android:padding="@dimen/grid_half_gap"
-        />
-     <ImageView
+        android:background="@drawable/selector_btn_back"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:id="@+id/session_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/top_horizontal_2"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@id/top_horizontal_2"
-        android:background="@drawable/selector_btn_home" 
-        android:padding="@dimen/grid_half_gap"
-        />
-      <ImageView
+        android:background="@drawable/selector_btn_home"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:id="@+id/session_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/top_horizontal_3"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@id/top_horizontal_3"
         android:background="@drawable/selector_btn_play"
-        android:padding="@dimen/grid_half_gap"
-         />
-       <ImageView
-           android:id="@+id/top4"
+        android:padding="@dimen/grid_half_gap" />
+
+    <ImageView
+        android:id="@+id/session_pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/top_horizontal_4"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@id/top_horizontal_4"
-        android:background="@drawable/selector_btn_pause" 
-        android:padding="@dimen/grid_half_gap"
-        />
+        android:background="@drawable/selector_btn_pause"
+        android:padding="@dimen/grid_half_gap" />
 
- <ImageView
-     android:layout_width="wrap_content"
-     android:layout_height="match_parent"
- android:layout_alignParentBottom="true"
-     android:layout_toRightOf="@+id/top4"
-     android:background="@drawable/banner_my_session_right"
-     android:padding="@dimen/grid_half_gap" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/session_pause"
+        android:background="@drawable/banner_my_session_right"
+        android:padding="@dimen/grid_half_gap" />
 
 </RelativeLayout>

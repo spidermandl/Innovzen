@@ -88,7 +88,7 @@ public class FragSettings extends FragBase implements OnClickListener{
 			super.activityListener.fragGoToVoice(true);
 			break;
 		case R.id.set_history:
-			super.activityListener.fragGoToHistoryNew(true);
+			//super.activityListener.fragGoToHistoryNew(true);
 			break;
 		case R.id.set_oxygen:
 			super.activityListener.fragSendCommand(BluetoothCommand.OXYGEN_MACHINE_VALUES);

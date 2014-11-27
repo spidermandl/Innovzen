@@ -227,7 +227,7 @@
         android:layout_alignLeft="@id/up_mea_Horizontal_5"
         android:layout_alignRight="@id/up_mea_Horizontal_5"
         android:layout_alignTop="@id/left_mea_vertical_3"
-        android:background="@drawable/selector_icon_history"
+        android:background="@drawable/selector_btn_breathe"
         android:padding="@dimen/grid_half_gap" />
 
 </RelativeLayout>
