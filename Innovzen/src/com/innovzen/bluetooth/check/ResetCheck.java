@@ -1,5 +1,7 @@
 package com.innovzen.bluetooth.check;
 
+import java.lang.Character.UnicodeBlock;
+
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -58,7 +60,7 @@ public class ResetCheck extends CheckBase {
 						resetStatus = RESETING;
 						resetHandler.postDelayed(resetRunnable,
 								BluetoothCommand.DELAY_TIME);
-						Log.e("¸´Î»×´Ì¬Îª0", System.currentTimeMillis() + "");
+						//Log.e("¸´Î»×´Ì¬Îª0", System.currentTimeMillis() + "");
 					} else if (mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_VALID) {
 						// ¸´Î»×´Ì¬Îª1
 						resetStatus = RESETED;
@@ -71,25 +73,22 @@ public class ResetCheck extends CheckBase {
 								mBC.getValue(BluetoothCommand.DIRECTION_STATUS));
 						if(uiHandler!=null&&uiHandler.getClass().getSimpleName().equalsIgnoreCase("FragAnimationTabletNew"))
 							uiHandler.sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);
-						Log.e("¸´Î»×´Ì¬Îª1", System.currentTimeMillis() + "");
+						//Log.e("¸´Î»×´Ì¬Îª1", System.currentTimeMillis() + "");
 					}
 				}else if(dynStatus==RESETED_UP){
-					if (mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_INVALID) {
-						// ¸´Î»×´Ì¬Îª0
+					Log.e("ÔËÐÐ×´Ì¬", mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS)+"");
+					if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT) {
+						//ÔÚÊÕ²Ø×´Ì¬
 						resetStatus = RESETING;
 						resetHandler.postDelayed(resetRunnable,
 								BluetoothCommand.DELAY_TIME);
-					} else if (mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS) == BluetoothCommand.INIT_POSITION_STATUS_VALID) {
-						// ¸´Î»×´Ì¬Îª1
+						Log.e("ÊÕ²Ø×´Ì¬", System.currentTimeMillis() + "");
+					} else if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_WAIT) {
+						//´ý»ú×´Ì¬
 						resetStatus = INVALID;
 						dynStatus=RESETED_DOWN;
 						resetHandler.sendEmptyMessage(0);
-						SparseIntArray map = new SparseIntArray();
-						map.put(BluetoothCommand.INIT_POSITION_STATUS,
-								mBC.getValue(BluetoothCommand.INIT_POSITION_STATUS));
-						map.put(BluetoothCommand.DIRECTION_STATUS,
-								mBC.getValue(BluetoothCommand.DIRECTION_STATUS));
-						
+						Log.e("´ý»ú×´Ì¬", System.currentTimeMillis() + "");
 					}
 				}
 			}
@@ -102,13 +101,11 @@ public class ResetCheck extends CheckBase {
 	 * @return
 	 */
 	public boolean isReseted(boolean isLog) {
-		if (resetStatus == INVALID) {
+		if (resetStatus == INVALID||dynStatus==RESETED_DOWN) {
 			if (!resetHandler.isWaiting()) {
 				resetHandler.postDelayed(resetRunnable, BluetoothCommand.DELAY_TIME*2);
 				resetHandler.setWaiting(true);
 			}
-			if(isLog&&uiHandler!=null)
-				Toast.makeText(uiHandler.getActivity(), "The machine has not started,please press the rebooting botton", 1000).show();
 			return false;
 		}else if (resetStatus == RESETING){
 			if(isLog&&uiHandler!=null)
@@ -138,6 +135,8 @@ public class ResetCheck extends CheckBase {
 				resetHandler.postDelayed(resetRunnable, BluetoothCommand.DELAY_TIME*2);
 				resetHandler.setWaiting(true);
 			}
+			if(isLog&&uiHandler!=null&&resetStatus==RESETING)
+				Toast.makeText(uiHandler.getActivity(), "Please wait a moment until the machine finishes reseting", 1000).show();
 			break;
 		case RESETED_DOWN:
 			break;

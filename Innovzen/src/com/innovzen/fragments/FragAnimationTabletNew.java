@@ -158,6 +158,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		case R.id.main_animation_stop:
 			super.pauseExercise();
 			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+			mBluetoothCheck.startOrStop(false);
 //			/**
 //			 * 关闭程序
 //			 */	
@@ -168,7 +169,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				Toast.makeText(getActivity(), "please setup bluetooth panel through setting panel", 1000).show();
 				break;
 			}
-			if(mBluetoothCheck.startOrStop(false)!=ResetCheck.RESETED_UP
+			if(mBluetoothCheck.startOrStop(true)!=ResetCheck.RESETED_UP
 					&&
 					!mBluetoothCheck.isReseted(true)){
 				//如果机器没有复位并且不是在关闭的状态
