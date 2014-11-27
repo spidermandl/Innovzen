@@ -1,9 +1,5 @@
 package com.innovzen.activities;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
@@ -14,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.util.SparseIntArray;
 import android.widget.Toast;
 
@@ -23,6 +18,7 @@ import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.bluetooth.BluetoothService;
 import com.innovzen.bluetooth.check.BluetoothCheck;
 import com.innovzen.bluetooth.check.ResetCheck;
+import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.entities.SoundGroup;
 import com.innovzen.fragments.FragAnimationPhone;
 import com.innovzen.fragments.FragAnimationPicker;
@@ -49,7 +45,9 @@ import com.innovzen.fragments.FragTimerAdvance;
 import com.innovzen.fragments.FragVoice;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.handlers.ExerciseAnimationHandler;
+import com.innovzen.handlers.ExerciseManager;
 import com.innovzen.handlers.SoundHandler;
+import com.innovzen.handlers.SyncExerciseManager;
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.interfaces.FragmentOnBackPressInterface;
 import com.innovzen.utils.MyPreference;
@@ -101,6 +99,23 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	 * 复位状态线程
 	 */
 	private BluetoothCheck mResetCheck;
+	
+    /** The shared preferences keys for each of the 4 times in an animation */
+    public static final String PERSIST_TIME_INHALE = "time_inhale";
+    public static final String PERSIST_TIME_HOLD_INHALE = "time_hold_inhale";
+    public static final String PERSIST_TIME_EXHALE = "time_exhale";
+    public static final String PERSIST_TIME_HOLD_EXHALE = "time_hold_exhale";
+    /** The shared preferences key for the selected duration of the entire exercise */
+    public static final String PERSIST_TOTAL_SELECTED_EXERCISE_DURATION = "total_selected_exercise_duration";
+    /** The minimum time (in miliseconds) for the duration of an exercise */
+    public static final int MIN_TIME_EXERCISE_DURATION = 5 * 60 * 1000; // 5min
+	/**
+	 * 动画管理类
+	 */
+	private ExerciseManager mExerciseManager;
+	
+    /** Hold the inhale, hold_inhale, exhale, hold_exhale values for the animation. Values in miliseconds. */
+    protected ExerciseTimes mTimes = new ExerciseTimes();
 	
 	// The Handler that gets information back from the BluetoothChatService
 	private final Handler bluetoothHandler = new Handler() {
@@ -232,6 +247,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		loadSoundInfo();
 		initBluetooth();
 		initCheckThreads();
+		initExerciseManager();
 		// By default go to the main menu fragment
 		// <chy>
 		// super.navigateTo(FragMainMenu.class);
@@ -414,6 +430,39 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		mBluetoothService = new BluetoothService(this, bluetoothHandler);
 		mBluetoothCommand = new BluetoothCommand(this,mBluetoothService);
 	}
+	/**
+	 * 初始化动画manager
+	 */
+	private void initExerciseManager(){
+		// Get the times for the 4 steps of an exercise
+        mTimes.inhale = PersistentUtil.getInt(this, PERSIST_TIME_INHALE, 0);
+        mTimes.holdInhale = PersistentUtil.getInt(this, PERSIST_TIME_HOLD_INHALE, 0);
+        mTimes.exhale = PersistentUtil.getInt(this, PERSIST_TIME_EXHALE, 0);
+        mTimes.holdExhale = PersistentUtil.getInt(this, PERSIST_TIME_HOLD_EXHALE, 0);
+        // In case they're all 0, then set the default values for the BEGINNER times
+        if (mTimes.inhale == 0 && mTimes.holdInhale == 0 && mTimes.exhale == 0 && mTimes.holdExhale == 0) {
+            mTimes.inhale = FragTimerAdvance.DEFAULT_TIMER_INHALE;
+            mTimes.holdInhale = FragTimerAdvance.DEFAULT_TIMER_HOLD_INHALE;
+            mTimes.exhale = FragTimerAdvance.DEFAULT_TIMER_EXHALE;
+            mTimes.holdExhale = FragTimerAdvance.DEFAULT_TIMER_HOLD_EXHALE;
+        }
+
+        // Get the selected duration for the entire exercise
+        mTimes.exerciseDuration = PersistentUtil.getInt(this, PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
+
+        /*
+         * Get the exercise times and place them in an object
+         */
+        ExerciseTimes times = new ExerciseTimes(mTimes.inhale, mTimes.holdInhale, mTimes.exhale, mTimes.holdExhale, mTimes.exerciseDuration);
+
+        /*
+         * Init the exercise time handler
+         */
+        int voiceSoundId = PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_VOICE);
+        int ambianceSoundId = PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
+        mExerciseManager = new SyncExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
+        
+	}
 	
 	private void initCheckThreads(){
 		mResetCheck=new BluetoothCheck<ResetCheck>();
@@ -424,6 +473,10 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		return mResetCheck;
 	}
 
+	public ExerciseManager getExerciseManager() {
+		return mExerciseManager;
+	}
+	
 	/**
 	 * 向设备发送16指令
 	 */

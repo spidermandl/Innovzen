@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.innovzen.activities.ActivityMain;
 import com.innovzen.db.History;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.FragAnimationPicker;
@@ -303,7 +304,8 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
     public void onPause() {
         super.onPause();
 
-        pauseExercise();
+        mExerciseManager.setSoundOnly(true);
+        //pauseExercise();
     }
 
     @Override
@@ -352,44 +354,55 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
       //<Desmond>
 
         // Get the times for the 4 steps of an exercise
-        mTimes.inhale = PersistentUtil.getInt(getActivity(), PERSIST_TIME_INHALE, 0);
-        mTimes.holdInhale = PersistentUtil.getInt(getActivity(), PERSIST_TIME_HOLD_INHALE, 0);
-        mTimes.exhale = PersistentUtil.getInt(getActivity(), PERSIST_TIME_EXHALE, 0);
-        mTimes.holdExhale = PersistentUtil.getInt(getActivity(), PERSIST_TIME_HOLD_EXHALE, 0);
-        // In case they're all 0, then set the default values for the BEGINNER times
-        if (mTimes.inhale == 0 && mTimes.holdInhale == 0 && mTimes.exhale == 0 && mTimes.holdExhale == 0) {
-            mTimes.inhale = FragTimerAdvance.DEFAULT_TIMER_INHALE;
-            mTimes.holdInhale = FragTimerAdvance.DEFAULT_TIMER_HOLD_INHALE;
-            mTimes.exhale = FragTimerAdvance.DEFAULT_TIMER_EXHALE;
-            mTimes.holdExhale = FragTimerAdvance.DEFAULT_TIMER_HOLD_EXHALE;
-        }
-
-        // Get the selected duration for the entire exercise
-        mTimes.exerciseDuration = PersistentUtil.getInt(getActivity(), PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
-
-        /*
-         * Get the exercise times and place them in an object
-         */
-        ExerciseTimes times = new ExerciseTimes(mTimes.inhale, mTimes.holdInhale, mTimes.exhale, mTimes.holdExhale, mTimes.exerciseDuration);
-
-        /*
-         * Init the animation handler
-         */
-        // Instantiate an animation handler
-        animationHandler = new ExerciseAnimationHandler(getActivity(), animation_parent_container, mSelectedExerciseAnimationType);
-        animationHandler.configure(times);
-
-        /*
-         * Init the exercise time handler
-         */
-        int voiceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_VOICE);
-        int ambianceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
+//        mTimes.inhale = PersistentUtil.getInt(getActivity(), PERSIST_TIME_INHALE, 0);
+//        mTimes.holdInhale = PersistentUtil.getInt(getActivity(), PERSIST_TIME_HOLD_INHALE, 0);
+//        mTimes.exhale = PersistentUtil.getInt(getActivity(), PERSIST_TIME_EXHALE, 0);
+//        mTimes.holdExhale = PersistentUtil.getInt(getActivity(), PERSIST_TIME_HOLD_EXHALE, 0);
+//        // In case they're all 0, then set the default values for the BEGINNER times
+//        if (mTimes.inhale == 0 && mTimes.holdInhale == 0 && mTimes.exhale == 0 && mTimes.holdExhale == 0) {
+//            mTimes.inhale = FragTimerAdvance.DEFAULT_TIMER_INHALE;
+//            mTimes.holdInhale = FragTimerAdvance.DEFAULT_TIMER_HOLD_INHALE;
+//            mTimes.exhale = FragTimerAdvance.DEFAULT_TIMER_EXHALE;
+//            mTimes.holdExhale = FragTimerAdvance.DEFAULT_TIMER_HOLD_EXHALE;
+//        }
+//
+//        // Get the selected duration for the entire exercise
+//        mTimes.exerciseDuration = PersistentUtil.getInt(getActivity(), PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
+//
+//        /*
+//         * Get the exercise times and place them in an object
+//         */
+//        ExerciseTimes times = new ExerciseTimes(mTimes.inhale, mTimes.holdInhale, mTimes.exhale, mTimes.holdExhale, mTimes.exerciseDuration);
+//
+//        /*
+//         * Init the animation handler
+//         */
+//        // Instantiate an animation handler
+//        animationHandler = new ExerciseAnimationHandler(getActivity(), animation_parent_container, mSelectedExerciseAnimationType);
+//        animationHandler.configure(times);
+//
+//        /*
+//         * Init the exercise time handler
+//         */
+//        int voiceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_VOICE);
+//        int ambianceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
+        
         mExerciseManager = 
         		/**
         		 * Desmond
         		 */
         		//new ExerciseManager(this, animationHandler, super.activityListener, times, voiceSoundId, ambianceSoundId);
-        		new SyncExerciseManager(this, animationHandler, super.activityListener, times, voiceSoundId, ambianceSoundId);
+        		//new SyncExerciseManager(this, animationHandler, super.activityListener, times, voiceSoundId, ambianceSoundId);
+        		((ActivityMain)getActivity()).getExerciseManager();      
+        /*
+	      * Init the animation handler
+	      */
+	    // Instantiate an animation handler
+        animationHandler = new ExerciseAnimationHandler(getActivity(), animation_parent_container, mSelectedExerciseAnimationType);
+        mExerciseManager.reinitUI(this, animationHandler);
+        mTimes=mExerciseManager.getExerciseTimes();
+        mExerciseManager.setSoundOnly(false);
+        animationHandler.configure(mTimes);
         //</Desmond>
         /*
          * Based on the exercise type index, load the appropriate string in the "subtitle" section

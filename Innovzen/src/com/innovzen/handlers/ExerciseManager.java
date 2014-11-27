@@ -62,6 +62,11 @@ public class ExerciseManager {
      * It can be either 0.5f (meaning the ambiance sound will go just to half it's max sound) or 1f (ambiance sound will be maxed out)
      */
     protected float mAmbianceSoundFormulaPower = 1f;
+    
+	/**
+	 * 是否只播放声音
+	 */
+	protected boolean isSoundOnly=false;
 
     // Hold the inhale/exhale animation
     protected ValueAnimator.AnimatorUpdateListener mValueAnimatorListener = new ValueAnimator.AnimatorUpdateListener() {
@@ -103,6 +108,14 @@ public class ExerciseManager {
         mCurExercise = ExerciseManager.EXERCISE_INHALE;
     }
 
+    /**
+     * 重新初始化UI
+     * @param fragmentAnimation
+     * @param animationHandler
+     */
+    public void reinitUI(FragAnimationBase fragmentAnimation,ExerciseAnimationHandler animationHandler){
+
+    }
     /**
      * Calls the appropriate method to handle the current exercise step
      * 
@@ -172,7 +185,6 @@ public class ExerciseManager {
             switch (mCurExercise) {
                 case EXERCISE_INHALE:
                     // Play sounds for the inhale part
-                	
                     startValueAnimator(mTimes.inhale);
                     break;
                 case EXERCISE_HOLD_INHALE:
@@ -578,4 +590,11 @@ public class ExerciseManager {
     	return hasPreviouslyBeenPaused;
     }
 
+    public ExerciseTimes getExerciseTimes(){
+    	return mTimes;
+    }
+
+	public void setSoundOnly(boolean isSoundOnly) {
+		this.isSoundOnly = isSoundOnly;
+	}
 }

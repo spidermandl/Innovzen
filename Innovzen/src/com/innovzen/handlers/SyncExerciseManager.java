@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
+import com.innovzen.entities.SoundItem;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.interfaces.FragmentCommunicator;
 
@@ -61,10 +62,10 @@ public class SyncExerciseManager extends ExerciseManager{
 				subtime=BluetoothCommand.getInstance()==null?0:
 					(System.currentTimeMillis()-inhaleTimeEnd);
 	        	if(subtime!=0&&subtime<mTimes.inhale+DELTA_TIME){
-	        		//Log.e("inhale 等待成功", subtime+"");
+	        		Log.e("inhale 等待成功", subtime+"");
 	        		waitHandler.sendEmptyMessage(0);
 	        	}else{
-	        		//Log.e("inhale 没等到", subtime+"");
+	        		Log.e("inhale 没等到", subtime+"");
 	        		boolean shutOff=BluetoothCommand.getInstance()==null?false:
 	        			(BluetoothCommand.getInstance().getValue(BluetoothCommand.MACHINE_RUN_STATUS)==BluetoothCommand.MACHINE_RUN_STATUS_COLLECT?true:false);
 	        		
@@ -78,10 +79,10 @@ public class SyncExerciseManager extends ExerciseManager{
 				subtime=BluetoothCommand.getInstance()==null?0:
 					(System.currentTimeMillis()-exhaleTimeStart);
 	        	if(subtime!=0&&subtime<mTimes.holdInhale){
-	        		//Log.e("EXERCISE_HOLD_INHALE 等待成功", subtime+"");
+	        		Log.e("EXERCISE_HOLD_INHALE 等待成功", subtime+"");
 	        		waitHandler.sendEmptyMessage(0);
 	        	}else{
-	        		//Log.e("EXERCISE_HOLD_INHALE 没等到", subtime+"");
+	        		Log.e("EXERCISE_HOLD_INHALE 没等到", subtime+"");
 	        		boolean shutOff=BluetoothCommand.getInstance()==null?false:
 	        			(BluetoothCommand.getInstance().getValue(BluetoothCommand.MACHINE_RUN_STATUS)==BluetoothCommand.MACHINE_RUN_STATUS_COLLECT?true:false);
 	        		if(!shutOff)
@@ -94,10 +95,10 @@ public class SyncExerciseManager extends ExerciseManager{
 				subtime=BluetoothCommand.getInstance()==null?0:
 					(System.currentTimeMillis()-exhaleTimeEnd);
 	        	if(subtime!=0&&subtime<mTimes.exhale+DELTA_TIME){
-	        		//Log.e("exhale 等待成功", subtime+"");
+	        		Log.e("exhale 等待成功", subtime+"");
 	        		waitHandler.sendEmptyMessage(0);
 	        	}else{
-	        		//Log.e("exhale 没等到", subtime+"");
+	        		Log.e("exhale 没等到", subtime+"");
 	        		boolean shutOff=BluetoothCommand.getInstance()==null?false:
 	        			(BluetoothCommand.getInstance().getValue(BluetoothCommand.MACHINE_RUN_STATUS)==BluetoothCommand.MACHINE_RUN_STATUS_COLLECT?true:false);
 	        		if(!shutOff)
@@ -110,10 +111,10 @@ public class SyncExerciseManager extends ExerciseManager{
 				subtime=BluetoothCommand.getInstance()==null?0:
 					(System.currentTimeMillis()-inhaleTimeStart);
 	        	if(subtime!=0&&subtime<mTimes.holdExhale){
-	        		//Log.e("EXERCISE_HOLD_EXHALE 等待成功", subtime+"");
+	        		Log.e("EXERCISE_HOLD_EXHALE 等待成功", subtime+"");
 	        		waitHandler.sendEmptyMessage(0);
 	        	}else{
-	        		//Log.e("EXERCISE_HOLD_EXHALE 没等到", subtime+"");
+	        		Log.e("EXERCISE_HOLD_EXHALE 没等到", subtime+"");
 	        		boolean shutOff=BluetoothCommand.getInstance()==null?false:
 	        			(BluetoothCommand.getInstance().getValue(BluetoothCommand.MACHINE_RUN_STATUS)==BluetoothCommand.MACHINE_RUN_STATUS_COLLECT?true:false);
 	        		if(!shutOff)
@@ -129,7 +130,9 @@ public class SyncExerciseManager extends ExerciseManager{
 
 		}
 	};
-	
+	/********************************************************************************************
+	 * 一下为方法
+	 ********************************************************************************************/
 	/**
 	 * 构造函数
 	 * @param fragmentAnimation
@@ -148,6 +151,13 @@ public class SyncExerciseManager extends ExerciseManager{
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void reinitUI(FragAnimationBase fragmentAnimation,
+			ExerciseAnimationHandler animationHandler) {
+    	this.mFragAnimation=fragmentAnimation;
+    	this.mAnimationHandler=animationHandler;
+	}
+	
     /**
      * 矫正时间同步
      */
@@ -286,6 +296,130 @@ public class SyncExerciseManager extends ExerciseManager{
 		super.pause(showPlayBtnOverlay);
 	}
 	
+	@Override
+	protected void inhale(float fraction, float globalFraction) {
+		// Start appropriate sounds
+        playSounds(SoundItem.INSPIREZ, mTimes.inhale);
+
+        // Set the volume of the ambiance sound
+        setAmbianceVolume(fraction);
+
+        // Render animation frame
+        if(!isSoundOnly)
+        	mAnimationHandler.inhale(fraction, globalFraction);
+
+        // If step animation ended
+        if (fraction == 1f) {
+            // Set the flag to point to the next appropriate step
+            mCurExercise = EXERCISE_HOLD_INHALE;
+
+            // Restart the value animator
+            if (mTimes.holdInhale == 1000) {
+                startValueAnimator(2000); // HACK. FORCE IT TO BE AT LEAST 2 SEC
+            } else {
+                startValueAnimator(mTimes.holdInhale);
+            }
+
+            // Reset the flag that indicates if we've started the sounds for the new step
+            mPlayedSounds = false;
+
+        }
+	}
+	
+	@Override
+	protected void exhale(float fraction, float globalFraction) {
+		// Start appropriate sounds
+        playSounds(SoundItem.EXPIREZ, mTimes.exhale);
+
+        // Set the volume of the ambiance sound
+        setAmbianceVolume(fraction);
+
+        // Render animation frame
+        if(!isSoundOnly)
+        	mAnimationHandler.exhale(fraction, globalFraction);
+
+        // If step animation ended
+        if (fraction == 1f) {
+
+            // Check if the entire exercise is done. If so, then stop here
+            if (globalFraction == 1f) {
+
+                reset(true);
+
+                return;
+            }
+
+            // Set the flag to point to the next appropriate step
+            mCurExercise = EXERCISE_HOLD_EXHALE;
+
+            // Restart the value animator
+            if (mTimes.holdExhale == 1000) {
+                startValueAnimator(2000); // HACK. FORCE IT TO BE AT LEAST 2 SEC
+            } else {
+                startValueAnimator(mTimes.holdExhale);
+            }
+
+            // Reset the flag that indicates if we've started the sounds for the new step
+            mPlayedSounds = false;
+
+        }
+	}
+	
+	@Override
+	protected void holdInhale(float fraction, float globalFraction) {
+		if (mTimes.holdInhale > 0) {
+            // Start appropriate sounds
+            playSounds(SoundItem.RETENEZ, mTimes.holdInhale);
+
+            // Set the volume of the ambiance sound
+            setAmbianceVolume(fraction);
+        }
+
+        // Render animation frame
+		if(!isSoundOnly)
+			mAnimationHandler.holdInhale(fraction, globalFraction);
+
+        // If step animation ended
+        if (fraction == 1f) {
+            // Set the flag to point to the next appropriate step
+            mCurExercise = EXERCISE_EXHALE;
+
+            // Restart the value animator
+            startValueAnimator(mTimes.exhale);
+
+            // Reset the flag that indicates if we've started the sounds for the new step
+            mPlayedSounds = false;
+
+        }
+	}
+	
+	@Override
+	protected void holdExhale(float fraction, float globalFraction) {
+		if (mTimes.holdExhale > 0) {
+            // Start appropriate sounds
+            playSounds(SoundItem.RETENEZ, mTimes.holdExhale);
+
+            // Set the volume of the ambiance sound
+            setAmbianceVolume(fraction);
+        }
+
+        // Render animation frame
+		if(!isSoundOnly)
+			mAnimationHandler.holdExhale(fraction, globalFraction);
+
+        // If step animation ended
+        if (fraction == 1f) {
+            // Set the flag to point to the next appropriate step
+            mCurExercise = EXERCISE_INHALE;
+
+            // Restart the value animator
+            startValueAnimator(mTimes.inhale);
+
+            // Reset the flag that indicates if we've started the sounds for the new step
+            mPlayedSounds = false;
+
+        }
+	}
 	/**
 	 * 相位限等待逻辑
 	 * @author Desmond Duan
@@ -391,69 +525,7 @@ public class SyncExerciseManager extends ExerciseManager{
 			default:
 				break;
 			}
-			
 		}
-		
 	}
-	/**
-	 * 略过屏气动画
-	 */
-//	@Override
-//	protected void inhale(float fraction, float globalFraction) {
-//		// Start appropriate sounds
-//        playSounds(SoundItem.INSPIREZ, mTimes.inhale);
-//
-//        // Set the volume of the ambiance sound
-//        setAmbianceVolume(fraction);
-//
-//        // Render animation frame
-//        mAnimationHandler.inhale(fraction, globalFraction);
-//
-//        // If step animation ended
-//        if (fraction == 1f) {
-//            // Set the flag to point to the next appropriate step
-//            mCurExercise = EXERCISE_EXHALE;
-//
-//            // Restart the value animator
-//            startValueAnimator(mTimes.exhale);
-//
-//            // Reset the flag that indicates if we've started the sounds for the new step
-//            mPlayedSounds = false;
-//
-//        }
-//	}
-//	
-//	@Override
-//	protected void exhale(float fraction, float globalFraction) {
-//		// Start appropriate sounds
-//        playSounds(SoundItem.EXPIREZ, mTimes.exhale);
-//
-//        // Set the volume of the ambiance sound
-//        setAmbianceVolume(fraction);
-//
-//        // Render animation frame
-//        mAnimationHandler.exhale(fraction, globalFraction);
-//
-//        // If step animation ended
-//        if (fraction == 1f) {
-//
-//            // Check if the entire exercise is done. If so, then stop here
-//            if (globalFraction == 1f) {
-//
-//                reset(true);
-//
-//                return;
-//            }
-//
-//            // Set the flag to point to the next appropriate step
-//            mCurExercise = EXERCISE_INHALE;
-//
-//            // Restart the value animator
-//            startValueAnimator(mTimes.inhale);
-//
-//            // Reset the flag that indicates if we've started the sounds for the new step
-//            mPlayedSounds = false;
-//
-//        }
-//	}
+
 }
