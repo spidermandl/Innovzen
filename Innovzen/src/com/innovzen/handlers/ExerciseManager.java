@@ -3,6 +3,7 @@ package com.innovzen.handlers;
 
 import adapters.AdapterSound;
 import android.animation.ValueAnimator;
+import android.util.Log;
 
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.entities.SoundItem;
@@ -131,8 +132,8 @@ public class ExerciseManager {
         // Calculate the globalTimeFraction (how much time has passed for the exercise time)
         // (now - start) / (end - start) OR (now - start) / ((start + duration) - start)
         float globalFraction = (float) ((System.currentTimeMillis() - mFirstStartAnimationTimestamp));
+        //Log.e("globalFraction", "current time: "+System.currentTimeMillis()+" start time: "+mFirstStartAnimationTimestamp+" gap time:"+globalFraction);
         globalFraction /= (float) ((mFirstStartAnimationTimestamp + mTimes.exerciseDuration) - mFirstStartAnimationTimestamp);
-
         // In case the fraction is more than 1 (which means we've shot over the ending time of the entire exercise), just bring it back to (limit it to max) 100%
         globalFraction = (globalFraction > 1f) ? 1f : globalFraction;
 
@@ -258,7 +259,9 @@ public class ExerciseManager {
     }
 
     public void resetValues() {
-        mAnimationHandler.reset();
+    	if(mAnimationHandler!=null){
+    		mAnimationHandler.reset();
+    	}
 
         mSoundHandler.fragStopPlayers();
 
@@ -594,7 +597,4 @@ public class ExerciseManager {
     	return mTimes;
     }
 
-	public void setSoundOnly(boolean isSoundOnly) {
-		this.isSoundOnly = isSoundOnly;
-	}
 }

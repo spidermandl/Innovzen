@@ -158,10 +158,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// ½áÊø
 		case R.id.main_animation_stop:
-          if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){
-			super.pauseExercise();
-			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
-          }
+			if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){
+				super.pauseExercise();
+				super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+			}
 			/**
 		     * ¹Ø±Õ³ÌÐò
 			 */	

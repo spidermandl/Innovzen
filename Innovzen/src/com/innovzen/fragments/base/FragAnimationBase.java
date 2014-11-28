@@ -303,15 +303,14 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
     @Override
     public void onPause() {
         super.onPause();
-
-        mExerciseManager.setSoundOnly(true);
+        mExerciseManager.reinitUI(null, null);
         //pauseExercise();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mExerciseManager.release();
+        //mExerciseManager.release();
 
     }
 
@@ -386,7 +385,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
 //         */
 //        int voiceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_VOICE);
 //        int ambianceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
-        
+//        
         mExerciseManager = 
         		/**
         		 * Desmond
@@ -401,7 +400,6 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         animationHandler = new ExerciseAnimationHandler(getActivity(), animation_parent_container, mSelectedExerciseAnimationType);
         mExerciseManager.reinitUI(this, animationHandler);
         mTimes=mExerciseManager.getExerciseTimes();
-        mExerciseManager.setSoundOnly(false);
         animationHandler.configure(mTimes);
         //</Desmond>
         /*

@@ -110,7 +110,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
     /** The minimum time (in miliseconds) for the duration of an exercise */
     public static final int MIN_TIME_EXERCISE_DURATION = 5 * 60 * 1000; // 5min
 	/**
-	 * 动画管理类
+	 * 动画管理类 被所有fragment共享
 	 */
 	private ExerciseManager mExerciseManager;
 	
