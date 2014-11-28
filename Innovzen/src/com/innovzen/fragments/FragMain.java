@@ -37,8 +37,8 @@ public class FragMain extends FragBase implements OnClickListener{
 		case R.id.menu_balance:
 			//test
 			//super.activityListener.fragGoToSetting(true);
-			if(((ActivityMain)getActivity()).getResetCheck().isReseted(false)){
-				Toast.makeText(getActivity(), "The machine is closing", 1000);
+			if(((ActivityMain)getActivity()).getResetCheck().closeOrNot()!=ResetCheck.WAITTING){
+				Toast.makeText(getActivity(), "Please wait patiently till the chair comes back to the initial position", 1000).show();
 				break;
 			}
 			PersistentUtil.setInt(getActivity(), 5 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
@@ -48,8 +48,8 @@ public class FragMain extends FragBase implements OnClickListener{
 			
 			break;
 		case R.id.menu_relax:
-			if(((ActivityMain)getActivity()).getResetCheck().isReseted(false)){
-				Toast.makeText(getActivity(), "The machine is closing", 1000);
+			if(((ActivityMain)getActivity()).getResetCheck().closeOrNot()!=ResetCheck.WAITTING){
+				Toast.makeText(getActivity(), "Please wait patiently till the chair comes back to the initial position", 1000).show();
 				break;
 			}
 			PersistentUtil.setInt(getActivity(), 10 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
@@ -59,8 +59,8 @@ public class FragMain extends FragBase implements OnClickListener{
 			
 			break;
 		case R.id.menu_performance:
-			if(((ActivityMain)getActivity()).getResetCheck().isReseted(false)){
-				Toast.makeText(getActivity(), "The machine is closing", 1000);
+			if(((ActivityMain)getActivity()).getResetCheck().closeOrNot()!=ResetCheck.WAITTING){
+				Toast.makeText(getActivity(), "Please wait patiently till the chair comes back to the initial position", 1000).show();
 				break;
 			}
 			PersistentUtil.setInt(getActivity(), 15 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
@@ -95,6 +95,7 @@ public class FragMain extends FragBase implements OnClickListener{
 		view.findViewById(R.id.menu_performance).setOnClickListener(this);
 		view.findViewById(R.id.menu_relax).setOnClickListener(this);
 	    initLefter(view);
+	   // MyPreference.getInstance(getActivity()).writeString(MyPreference.LAST_VOLUME, 8);
 	    myMintues.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 		leftTop.setOnClickListener(this);
 		leftMid.setOnClickListener(this);

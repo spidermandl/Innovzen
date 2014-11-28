@@ -158,10 +158,11 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 结束
 		case R.id.main_animation_stop:
-			if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){
-				super.pauseExercise();
-				super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
-			}
+          if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){
+			super.pauseExercise();
+			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+			mBluetoothCheck.initlize();
+          }
 			/**
 		     * 关闭程序
 			 */	
@@ -195,11 +196,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			}else{
 				Toast.makeText(getActivity(), "The machine is initializing...", 1000);
 			}
-			
-			//////////////////////////////////
-		
-			//////////////////////////////////
-			
 			//初始按摩椅按摩时间
 //			String mytime=MyPreference.getInstance(getActivity()).readString(MyPreference.TIME);
 //			if(mytime==MyPreference.FIVE_MINUTES &&initTime==false){
@@ -213,18 +209,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
 
 			super.pauseExercise();
-
-			//如果机器处于暂停状态 countdown_tv就设置为隐藏   知道机器关机为止设置为可见
-			/*if(countDown==false){
-				countdown_tv.setVisibility(View.INVISIBLE);
-			}else{
-				countdown_tv.setVisibility(View.VISIBLE);
-			}*/
-			/*
-			 * }else{
-			 * 
-			 * }
-			 */
 			break;
 		case R.id.main_animation_breathe_up:
 			super.activityListener
@@ -239,9 +223,15 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					.fragSendCommand(BluetoothCommand.ZERO_GRAVITY_MACHINE_VALUES);
 			break;
 		case R.id.left_top:
-			super.pauseExercise();
-			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);						
-			getActivity().onBackPressed();
+			
+			 if(mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
+				 super.pauseExercise();
+				 getActivity().onBackPressed();
+			 }else if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){				
+				super.pauseExercise();
+				super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);						
+				getActivity().onBackPressed();
+			 }
 			break;
 		}
 	}
