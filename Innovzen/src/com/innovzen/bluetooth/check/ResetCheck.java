@@ -124,6 +124,7 @@ public class ResetCheck extends CheckBase {
 					Log.e("Collecting", "-222222222222222");
 				} else if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_WAIT) {
 					closeStatus = WAITTING;
+					resetStatus=INVALID;
 					Log.e("Waitting", "-3333333333333");
 					SparseIntArray map = new SparseIntArray();
 					map.put(BluetoothCommand.MACHINE_RUN_STATUS,

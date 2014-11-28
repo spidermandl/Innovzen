@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.innovzen.activities.ActivityMain;
+import com.innovzen.bluetooth.check.BluetoothCheck;
+import com.innovzen.bluetooth.check.ResetCheck;
 import com.innovzen.db.History;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.FragAnimationPicker;
@@ -47,8 +50,8 @@ import com.innovzen.utils.PersistentUtil;
 
 public class FragAnimationBase extends FragBase implements FragmentOnBackPressInterface {
 	//321 是否显示
-	//public static boolean countDown=true;
-	
+	public static boolean noCountDown=true;
+	private BluetoothCheck<ResetCheck> mRestCheck;
     /** The delay between each value of the countdown */ 
     private static final int COUNTDOWN_DELAY = 1000; // 1 sec
 
@@ -174,7 +177,9 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
 
             // Set the initial value of the countdown
             mCurCountdownSecond = 3;
-
+            //是否倒数321
+            
+            
             // Hide countdown in case it's visible
            
             countdown_tv.setVisibility(View.VISIBLE);
@@ -315,7 +320,9 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
 
     @Override
     public void init(View view) {
-
+    	mBluetoothCheck=((ActivityMain)getActivity()).getResetCheck();
+    	
+    	
         // Get references
     	//<Desmond>
         //DrawerLayout drawer = (DrawerLayout) view.findViewById(R.id.drawer_layout);
@@ -426,7 +433,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
 
         // Set the flag so we'll know in the animateCountdown to start animating
         mContinueCountdown = true;
-
+        
         // Set the initial value of the countdown
         mCurCountdownSecond = 3;
 
@@ -450,7 +457,16 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         	isAnimationRunning=true;
         	
             // Set the new value of the countdown
-        	countdown_tv.setVisibility(View.VISIBLE);
+        	//chy
+        	if(mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
+        		noCountDown=false;
+        	}
+        	if(noCountDown){
+        	   countdown_tv.setVisibility(View.INVISIBLE);
+        	}else{
+      		  countdown_tv.setVisibility(View.VISIBLE);
+
+        	}
             countdown_tv.setText(mCurCountdownSecond + "");
 
             // Start a delay of 1 second
@@ -467,6 +483,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
                     	 * Desmond
                     	 */
                         startExercise();
+                        noCountDown=true;
                     	//</Desmond>
 
                     } else {
@@ -490,7 +507,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
      * @author MAB
      */
     protected void pauseExercise() {
-
+        
     	isAnimationRunning=false;
     	
         // In case we're counting down, set this flag so the method animateCountdown will know to stop
