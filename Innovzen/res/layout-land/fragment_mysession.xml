@@ -67,7 +67,7 @@
  <include 
       android:layout_width="wrap_content"
          android:layout_height="match_parent"
-         android:layout_alignBottom="@id/left_vertical_3"
+         android:layout_alignBottom="@id/left_vertical_2"
          android:layout_alignTop="@id/left_vertical_3"
          android:layout_alignLeft="@id/horizontal_1"
          android:layout_alignRight="@id/horizontal_1"

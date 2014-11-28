@@ -4,6 +4,7 @@ package com.innovzen.handlers;
 import adapters.AdapterSound;
 import android.animation.ValueAnimator;
 
+import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.entities.SoundItem;
 import com.innovzen.fragments.base.FragAnimationBase;
@@ -426,9 +427,11 @@ public class ExerciseManager {
 
             // Check if the entire exercise is done. If so, then stop here
             if (globalFraction == 1f) {
-
+     
                 reset(true);
-
+                BluetoothCommand mBluetoothCommand =BluetoothCommand.getInstance();
+                if(mBluetoothCommand!=null)
+                           mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
                 return;
             }
 

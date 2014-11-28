@@ -384,6 +384,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
          */
         // Instantiate an animation handler
         animationHandler = new ExerciseAnimationHandler(getActivity(), animation_parent_container, mSelectedExerciseAnimationType);
+       //譜崔強鮫扮寂、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
         animationHandler.configure(times);
 
         /*

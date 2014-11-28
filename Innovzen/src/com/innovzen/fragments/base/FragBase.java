@@ -105,8 +105,10 @@ public abstract class FragBase extends Fragment {
 		voice_progressbar = (RelativeLayout) view.findViewById(R.id.voice_progressbar);
 		seekBar = (VerticalSeekBar) view.findViewById(R.id.mySeekBar);
 		seekBar.setMax(maxVolume);
-		seekBar.setProgress(maxVolume/2);
-		if(lastVolumeValue==maxVolume/2){
+		//seekBar.setProgress(maxVolume/2);
+		if(lastVolumeValue==-1){
+			seekBar.setProgress(maxVolume/2);
+		}else{
 			seekBar.setProgress(lastVolumeValue);
 		}
 		

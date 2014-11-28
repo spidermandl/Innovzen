@@ -95,7 +95,7 @@ public class FragMain extends FragBase implements OnClickListener{
 		view.findViewById(R.id.menu_performance).setOnClickListener(this);
 		view.findViewById(R.id.menu_relax).setOnClickListener(this);
 	    initLefter(view);
-	   // MyPreference.getInstance(getActivity()).writeString(MyPreference.LAST_VOLUME, 8);
+	   MyPreference.getInstance(getActivity()).writeString(MyPreference.LAST_VOLUME, -1);
 	    myMintues.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 		leftTop.setOnClickListener(this);
 		leftMid.setOnClickListener(this);

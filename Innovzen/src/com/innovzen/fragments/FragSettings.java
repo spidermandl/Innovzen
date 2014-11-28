@@ -7,7 +7,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -25,6 +27,7 @@ public class FragSettings extends FragBase implements OnClickListener{
 //FragBase  ¸ÄÎª¼Ì³ÐFragAnimationBase
 	private TextView myMinutes;
 	private ImageView oxygen,swing,led,heat,bluetooth,pulse;
+	private LinearLayout set_breathe;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -112,7 +115,14 @@ public class FragSettings extends FragBase implements OnClickListener{
 		}
 		
 	}
+   void breatheAddCommand(){
+		super.activityListener.fragSendCommand(BluetoothCommand.BREATHE_UP_MACHINE_VALUES);
+ 
+   }
+   void breatheSubCommand(){
+		super.activityListener.fragSendCommand(BluetoothCommand.BREATHE_DOWN_MACHINE_VALUES);
 
+  }
 	@Override
 	public void init(View view) {
 		initLefter(view);
@@ -123,7 +133,49 @@ public class FragSettings extends FragBase implements OnClickListener{
 		view.findViewById(R.id.set_time).setOnClickListener(this);
 		view.findViewById(R.id.set_graphic).setOnClickListener(this);
 		view.findViewById(R.id.set_voice).setOnClickListener(this);
-		view.findViewById(R.id.set_history).setOnClickListener(this);
+		set_breathe = (LinearLayout) view.findViewById(R.id.set_breathe);
+		//view.findViewById(R.id.set_history).setOnClickListener(this);
+		view.findViewById(R.id.set_breathe_add).setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch (event.getAction()) {
+				case MotionEvent.ACTION_DOWN:
+					set_breathe.setBackgroundResource(R.drawable.btn_breathe_activated);
+					System.out.println("add");
+					break;
+				case MotionEvent.ACTION_MOVE:
+					set_breathe.setBackgroundResource(R.drawable.btn_breathe_activated);
+					break;
+				case MotionEvent.ACTION_UP:
+					set_breathe.setBackgroundResource(R.drawable.selector_btn_breathe);
+					breatheAddCommand();
+					break;
+				}
+				return true;
+			}
+		});
+		view.findViewById(R.id.set_breathe_sub).setOnTouchListener(new OnTouchListener() {
+					
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				switch (event.getAction()) {
+				case MotionEvent.ACTION_DOWN:
+					System.out.println("sub");
+					set_breathe.setBackgroundResource(R.drawable.btn_breathe_activated);
+					break;
+				case MotionEvent.ACTION_MOVE:
+					set_breathe.setBackgroundResource(R.drawable.btn_breathe_activated);
+					break;
+				case MotionEvent.ACTION_UP:
+					set_breathe.setBackgroundResource(R.drawable.selector_btn_breathe);
+					breatheSubCommand();
+					break;
+				}
+				return true;
+			}
+		});
+		view.findViewById(R.id.set_breathe_sub).setOnClickListener(this);
 		oxygen = (ImageView) view.findViewById(R.id.set_oxygen);
 		oxygen.setOnClickListener(this);
 		swing = (ImageView) view.findViewById(R.id.set_swing);

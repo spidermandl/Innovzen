@@ -153,11 +153,6 @@ public class FragTime extends FragBase implements OnClickListener {
 			time_30min.setBackgroundResource(R.drawable.btn_30min_activated);
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
 		}
-		/*
-		 * myTime=
-		 * MyPreference.getInstance(this.getActivity()).readString(MyPreference
-		 * .TIME);
-		 */
 		myMinutes.setText(myTime);
 	}
 
