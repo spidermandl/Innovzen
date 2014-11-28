@@ -117,6 +117,16 @@ public class ExerciseManager {
     public void reinitUI(FragAnimationBase fragmentAnimation,ExerciseAnimationHandler animationHandler){
 
     }
+    
+    /**
+     * ÷ÿ–¬…Ë÷√…˘“Ù
+     * @param voiceSoundId
+     * @param ambianceSoundId
+     */
+    public void reinitSound(int voiceSoundId, int ambianceSoundId){
+        this.mVoiceSoundId = voiceSoundId;
+        this.mAmbianceSoundId = ambianceSoundId;
+    }
     /**
      * Calls the appropriate method to handle the current exercise step
      * 

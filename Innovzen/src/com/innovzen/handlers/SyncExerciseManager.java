@@ -8,8 +8,10 @@ import android.os.Message;
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.entities.SoundItem;
+import com.innovzen.fragments.FragSoundPicker;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.interfaces.FragmentCommunicator;
+import com.innovzen.utils.PersistentUtil;
 
 /**
  * 
@@ -170,6 +172,7 @@ public class SyncExerciseManager extends ExerciseManager{
 		}
     	this.mFragAnimation=fragmentAnimation;
     	this.mAnimationHandler=animationHandler;
+    	
 	}
 	
     /**

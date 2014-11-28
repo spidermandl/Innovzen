@@ -18,6 +18,7 @@ import com.innovzen.bluetooth.check.ResetCheck;
 import com.innovzen.db.History;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.FragAnimationPicker;
+import com.innovzen.fragments.FragSoundPicker;
 import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.handlers.ExerciseManager;
 import com.innovzen.handlers.FooterHandler;
@@ -397,7 +398,10 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         mExerciseManager.reinitUI(this, animationHandler);
         mTimes=mExerciseManager.getExerciseTimes();
         animationHandler.configure(mTimes);
-        //</Desmond>
+
+        int voiceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_VOICE);
+        int ambianceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
+        mExerciseManager.reinitSound(voiceSoundId, ambianceSoundId);
         /*
          * Based on the exercise type index, load the appropriate string in the "subtitle" section
          */
