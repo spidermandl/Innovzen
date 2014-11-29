@@ -162,6 +162,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			super.pauseExercise();
 			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 			mBluetoothCheck.initlize();
+			countDown=0;
           }
 			/**
 		     * ¹Ø±Õ³ÌÐò

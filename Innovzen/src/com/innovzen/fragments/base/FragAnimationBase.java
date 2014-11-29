@@ -49,8 +49,8 @@ import com.innovzen.utils.PersistentUtil;
  */
 
 public class FragAnimationBase extends FragBase implements FragmentOnBackPressInterface {
-	//321 是否显示
-	public static boolean noCountDown=true;
+	//控制倒计时是否显示	
+	public  int countDown=0;
 	private BluetoothCheck<ResetCheck> mRestCheck;
     /** The delay between each value of the countdown */ 
     private static final int COUNTDOWN_DELAY = 1000; // 1 sec
@@ -459,10 +459,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         	
             // Set the new value of the countdown
         	//chy
-        	if(mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
-        		noCountDown=false;
-        	}
-        	if(noCountDown){
+        	if(countDown>0){
         	   countdown_tv.setVisibility(View.INVISIBLE);
         	}else{
       		  countdown_tv.setVisibility(View.VISIBLE);
@@ -484,7 +481,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
                     	 * Desmond
                     	 */
                         startExercise();
-                        noCountDown=true;
+                        countDown++;
                     	//</Desmond>
 
                     } else {
