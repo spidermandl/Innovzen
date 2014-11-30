@@ -3,6 +3,7 @@ package com.innovzen.handlers;
 
 import adapters.AdapterSound;
 import android.animation.ValueAnimator;
+import android.util.Log;
 
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
@@ -63,6 +64,11 @@ public class ExerciseManager {
      * It can be either 0.5f (meaning the ambiance sound will go just to half it's max sound) or 1f (ambiance sound will be maxed out)
      */
     protected float mAmbianceSoundFormulaPower = 1f;
+    
+	/**
+	 * 是否只播放声音
+	 */
+	protected boolean isSoundOnly=false;
 
     // Hold the inhale/exhale animation
     protected ValueAnimator.AnimatorUpdateListener mValueAnimatorListener = new ValueAnimator.AnimatorUpdateListener() {
@@ -105,6 +111,24 @@ public class ExerciseManager {
     }
 
     /**
+     * 重新初始化UI
+     * @param fragmentAnimation
+     * @param animationHandler
+     */
+    public void reinitUI(FragAnimationBase fragmentAnimation,ExerciseAnimationHandler animationHandler){
+
+    }
+    
+    /**
+     * 重新设置声音
+     * @param voiceSoundId
+     * @param ambianceSoundId
+     */
+    public void reinitSound(int voiceSoundId, int ambianceSoundId){
+        this.mVoiceSoundId = voiceSoundId;
+        this.mAmbianceSoundId = ambianceSoundId;
+    }
+    /**
      * Calls the appropriate method to handle the current exercise step
      * 
      * @param fraction
@@ -119,8 +143,8 @@ public class ExerciseManager {
         // Calculate the globalTimeFraction (how much time has passed for the exercise time)
         // (now - start) / (end - start) OR (now - start) / ((start + duration) - start)
         float globalFraction = (float) ((System.currentTimeMillis() - mFirstStartAnimationTimestamp));
+        //Log.e("globalFraction", "current time: "+System.currentTimeMillis()+" start time: "+mFirstStartAnimationTimestamp+" gap time:"+globalFraction);
         globalFraction /= (float) ((mFirstStartAnimationTimestamp + mTimes.exerciseDuration) - mFirstStartAnimationTimestamp);
-
         // In case the fraction is more than 1 (which means we've shot over the ending time of the entire exercise), just bring it back to (limit it to max) 100%
         globalFraction = (globalFraction > 1f) ? 1f : globalFraction;
 
@@ -173,7 +197,6 @@ public class ExerciseManager {
             switch (mCurExercise) {
                 case EXERCISE_INHALE:
                     // Play sounds for the inhale part
-                	
                     startValueAnimator(mTimes.inhale);
                     break;
                 case EXERCISE_HOLD_INHALE:
@@ -247,7 +270,9 @@ public class ExerciseManager {
     }
 
     public void resetValues() {
-        mAnimationHandler.reset();
+    	if(mAnimationHandler!=null){
+    		mAnimationHandler.reset();
+    	}
 
         mSoundHandler.fragStopPlayers();
 
@@ -579,6 +604,10 @@ public class ExerciseManager {
     
     public boolean hasBeenPaused(){
     	return hasPreviouslyBeenPaused;
+    }
+
+    public ExerciseTimes getExerciseTimes(){
+    	return mTimes;
     }
 
 }

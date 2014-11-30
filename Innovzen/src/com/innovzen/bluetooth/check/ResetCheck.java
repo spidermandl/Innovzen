@@ -111,21 +111,21 @@ public class ResetCheck extends CheckBase {
 		public void run() {
 			BluetoothCommand mBC = BluetoothCommand.getInstance();
 			if (mBC != null) {
-				Log.e("closeStatus", mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS)+"");
+				//Log.e("closeStatus", mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS)+"");
 				if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_RUNNING) {
 					closeStatus = RUNNING;
 					closeHandler.postDelayed(closeRunnable,
 							BluetoothCommand.DELAY_TIME);
-					Log.e("Running", "-11111111111111");
+					//Log.e("Running", "-11111111111111");
 				} else if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT) {
 					closeStatus = COLLECTING;
 					closeHandler.postDelayed(closeRunnable,
 							BluetoothCommand.DELAY_TIME);
-					Log.e("Collecting", "-222222222222222");
+					//Log.e("Collecting", "-222222222222222");
 				} else if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_WAIT) {
 					closeStatus = WAITTING;
 					resetStatus=INVALID;
-					Log.e("Waitting", "-3333333333333");
+					//Log.e("Waitting", "-3333333333333");
 					SparseIntArray map = new SparseIntArray();
 					map.put(BluetoothCommand.MACHINE_RUN_STATUS,
 							mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS));
