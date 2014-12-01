@@ -176,6 +176,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				Toast.makeText(getActivity(), "please setup bluetooth panel through setting panel", 1000).show();
 				break;
 			}
+			overlayBtnPressed();
 			/*if(mBluetoothCheck.startOrStop(true)!=ResetCheck.RESETED_UP
 					&&
 					!mBluetoothCheck.isReseted(true)){*/
