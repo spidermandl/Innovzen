@@ -57,7 +57,7 @@ import com.innovzen.utils.PersistentUtil;
 public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
 	// Hold fragment tags
-	public static final String FRAG_TAG_ANIMATION = "fragment_animation_tag";
+	public static final String FRAG_TAG_ANIMATION = "fragme8nt_animation_tag";
 
 	/**
 	 * Key for the shared preferences used to keep the state whether this is the
@@ -113,6 +113,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	 * 动画管理类 被所有fragment共享
 	 */
 	private ExerciseManager mExerciseManager;
+	
 	
     /** Hold the inhale, hold_inhale, exhale, hold_exhale values for the animation. Values in miliseconds. */
     protected ExerciseTimes mTimes = new ExerciseTimes();
@@ -471,7 +472,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         int voiceSoundId = PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_VOICE);
         int ambianceSoundId = PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
         mExerciseManager = new SyncExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
-        
+       
 	}
 	
 	private void initCheckThreads(){
@@ -484,6 +485,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	}
 
 	public ExerciseManager getExerciseManager() {
+		
+		
 		return mExerciseManager;
 	}
 	

@@ -41,11 +41,11 @@ import com.innovzen.utils.PersistentUtil;
  */
 
 public class FragAnimationBase extends FragBase implements FragmentOnBackPressInterface {
-
-	public  int countDown=0;
+	
+	/*public  int countDown=0;
 
 	//321  «∑Òœ‘ æ
-	public static boolean noCountDown=true;
+	public static boolean noCountDown=true;*/
 
     /** The delay between each value of the countdown */ 
     private static final int COUNTDOWN_DELAY = 1000; // 1 sec
@@ -302,8 +302,10 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
     @Override
     public void onPause() {
         super.onPause();
+      
         mExerciseManager.reinitUI(null, null);
         //pauseExercise();
+        
     }
 
     @Override
@@ -528,7 +530,10 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         play_overlay_btn.setClickable(true);
 
         // Stop everything related to the exercise animation
+        
+       mExerciseManager.stopAllThreads();
         mExerciseManager.pause(true);
+        
     }
 
     /**

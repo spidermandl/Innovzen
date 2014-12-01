@@ -331,14 +331,15 @@ public class SyncExerciseManager extends ExerciseManager {
 	public void pause(boolean showPlayBtnOverlay) {
 		// log.e("--------------------------------¹Ø±Õ¶¯»­", "off");
 		super.pause(showPlayBtnOverlay);
-		stopAllThreads();
+		
 	}
-
+   @Override
 	public void stopAllThreads() {
 		inhaleExerciseHandler.setWaiting(false);
 		inhaleHoldHandler.setWaiting(false);
 		exhaleExerciseHandler.setWaiting(false);
 		exhaleHoldHandler.setWaiting(false);
+		
 	}
 
 	@Override

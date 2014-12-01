@@ -20,6 +20,7 @@ import com.innovzen.activities.ActivityMain;
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.bluetooth.check.BluetoothCheck;
 import com.innovzen.bluetooth.check.ResetCheck;
+import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.o2chair.R;
 import com.innovzen.utils.MyPreference;
@@ -158,6 +159,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 结束
 		case R.id.main_animation_stop:
+			//初始化  动画时间
+			ExerciseTimes mtimes =mExerciseManager.getExerciseTimes();
+			mtimes.initTime(getActivity());
           if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){
 			super.pauseExercise();
 			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
@@ -176,7 +180,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				Toast.makeText(getActivity(), "please setup bluetooth panel through setting panel", 1000).show();
 				break;
 			}
-			overlayBtnPressed();
+			
+			//overlayBtnPressed();
 			/*if(mBluetoothCheck.startOrStop(true)!=ResetCheck.RESETED_UP
 					&&
 					!mBluetoothCheck.isReseted(true)){*/

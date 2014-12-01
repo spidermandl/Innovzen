@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.innovzen.bluetooth.check.BluetoothCheck;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.o2chair.R;
@@ -95,6 +96,8 @@ public class FragGraphic extends FragBase implements OnClickListener{
 	@Override
 	public void init(View view) {
 		initLefter(view);
+		
+		
 		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
