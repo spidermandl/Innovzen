@@ -58,7 +58,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
 			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
 			PersistentUtil.setInt(getActivity(), 10 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 5*60*1000);
+			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 10*60*1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 			super.activityListener.fragSendCommand(BluetoothCommand.TIME10_MACHINE_VALUES);
 			break;
@@ -70,7 +70,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
 			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
 			PersistentUtil.setInt(getActivity(), 15 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 5*60*1000);
+			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 15*60*1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 			super.activityListener.fragSendCommand(BluetoothCommand.TIME15_MACHINE_VALUES);
 			break;
@@ -82,7 +82,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
 			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
 			PersistentUtil.setInt(getActivity(), 20 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 5*60*1000);
+			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 20*60*1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 			super.activityListener.fragSendCommand(BluetoothCommand.TIME20_MACHINE_VALUES);
 			break;
@@ -94,7 +94,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			time_25min.setBackgroundResource(R.drawable.btn_25min_activated);
 			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
 			PersistentUtil.setInt(getActivity(), 25 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 5*60*1000);
+			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 25*60*1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 			super.activityListener.fragSendCommand(BluetoothCommand.TIME25_MACHINE_VALUES);
 			break;
@@ -106,7 +106,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
 			time_30min.setBackgroundResource(R.drawable.btn_30min_activated);
 			PersistentUtil.setInt(getActivity(), 30 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 5*60*1000);
+			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 30*60*1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
 			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 			break;

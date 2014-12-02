@@ -164,4 +164,5 @@ public class MyPreference {
 	public int readInt(String key) {
 		return sp.getInt(key, 0);
 	}
+	
 }
