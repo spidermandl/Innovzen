@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.innovzen.activities.ActivityMain;
+import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.bluetooth.check.ResetCheck;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
@@ -54,6 +55,7 @@ public class FragMain extends FragBase implements OnClickListener {
 					MyPreference.TIME, MyPreference.FIVE_MINUTES);
 			MyPreference.getInstance(this.getActivity()).writeString(
 					MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.BLANCE);
+			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 			super.activityListener.fragGoToAnimation(true);
 
 			break;
@@ -71,6 +73,7 @@ public class FragMain extends FragBase implements OnClickListener {
 					MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.RELAX);
 			MyPreference.getInstance(this.getActivity()).writeString(
 					MyPreference.TIME, MyPreference.TEN_MINUTES);
+			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 			super.activityListener.fragGoToAnimation(true);
 
 			break;
@@ -89,6 +92,7 @@ public class FragMain extends FragBase implements OnClickListener {
 					MyPreference.PERFORMANCE);
 			MyPreference.getInstance(this.getActivity()).writeString(
 					MyPreference.TIME, MyPreference.FIFTEEN_MINUTES);
+			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 			super.activityListener.fragGoToAnimation(true);
 
 			break;

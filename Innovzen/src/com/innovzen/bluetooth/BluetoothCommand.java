@@ -14,6 +14,10 @@ import android.util.SparseIntArray;
  */
 public class BluetoothCommand {
 
+	
+	
+	
+	
 	/* BluetoothService */
 	public static BluetoothCommand instance;
     public static long SUBTIME=0;

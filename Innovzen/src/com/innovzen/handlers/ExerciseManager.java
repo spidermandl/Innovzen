@@ -452,11 +452,13 @@ public class ExerciseManager {
 
             // Check if the entire exercise is done. If so, then stop here
             if (globalFraction == 1f) {
-     
                 reset(true);
                 BluetoothCommand mBluetoothCommand =BluetoothCommand.getInstance();
-                if(mBluetoothCommand!=null)
+                if(mBluetoothCommand!=null){
                            mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
+                       //  mTimes.exerciseDuration=30*1000;
+                         Log.e("关机", "关机！！！！！！！！！！！！！！！！！！！！！！");
+                }
                 return;
             }
 

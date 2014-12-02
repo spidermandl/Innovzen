@@ -211,8 +211,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		        		map.put(BluetoothCommand.PULSE_STATUS, mBluetoothCommand.getValue(BluetoothCommand.PULSE_STATUS));
 		        		((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.PULSE_STATUS,map);
 		        	    map.put(BluetoothCommand.INIT_POSITION_STATUS, mBluetoothCommand.getValue(BluetoothCommand.INIT_POSITION_STATUS));
-		        		((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);
-
+		        		((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);			        		
 		        	}
 		        }
 		        //FragHelpNew
@@ -446,6 +445,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	 */
 	private void initExerciseManager(){
 		// Get the times for the 4 steps of an exercise
+		//mTimes.exerciseDuration=50*1000;
+		////
         mTimes.inhale = PersistentUtil.getInt(this, PERSIST_TIME_INHALE, 0);
         mTimes.holdInhale = PersistentUtil.getInt(this, PERSIST_TIME_HOLD_INHALE, 0);
         mTimes.exhale = PersistentUtil.getInt(this, PERSIST_TIME_EXHALE, 0);
@@ -459,8 +460,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         }
 
         // Get the selected duration for the entire exercise
-        mTimes.exerciseDuration = PersistentUtil.getInt(this, PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
-
+       mTimes.exerciseDuration = PersistentUtil.getInt(this, PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
+     ///////5min
         /*
          * Get the exercise times and place them in an object
          */

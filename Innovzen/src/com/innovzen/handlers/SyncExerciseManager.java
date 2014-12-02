@@ -2,6 +2,7 @@ package com.innovzen.handlers;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
@@ -393,6 +394,14 @@ public class SyncExerciseManager extends ExerciseManager {
 
 				reset(true);
 
+				 BluetoothCommand mBluetoothCommand =BluetoothCommand.getInstance();
+	                if(mBluetoothCommand!=null){
+	                           mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
+	                       //  mTimes.exerciseDuration=30*1000;
+	                           
+	                         Log.e("关机", "关机！！！！！！！！！！！！！！！！！！！！！！");
+	                }
+				
 				return;
 			}
 

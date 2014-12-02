@@ -62,6 +62,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private TextView countdown_tv;
 	
 	private BluetoothCheck<ResetCheck> mRestCheck;
+	private ExerciseTimes mtimes;
 
 	/**
 	 * 接受机器指令handler
@@ -106,6 +107,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			//机器运行状态
 			
 		    break;
+		
 		default:
 			break;
 		}
@@ -159,14 +161,28 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 结束
 		case R.id.main_animation_stop:
-			//初始化  动画时间
-			ExerciseTimes mtimes =mExerciseManager.getExerciseTimes();
-			mtimes.initTime(getActivity());
+		
           if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){
 			super.pauseExercise();
 			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 			mBluetoothCheck.initlize();
 			countDown=0;
+			//初始化  动画时间			只能在第一次点关闭按钮后更改 第二次没效果走上一次的时间 直到结束
+			String time = MyPreference.getInstance(getActivity()).readString(MyPreference.TIME);
+	    	if(time.equals(MyPreference.FIVE_MINUTES)){
+	    		mtimes.exerciseDuration=5*60*1000;
+	    	}else if(time.equals(MyPreference.TEN_MINUTES)){
+	    		mtimes.exerciseDuration=10*60*1000;
+	    	}else if(time.equals(MyPreference.FIFTEEN_MINUTES)){
+	    		mtimes.exerciseDuration=15*60*1000;
+	    	}else if(time.equals(MyPreference.TWENTY_MINUTES)){
+	    		mtimes.exerciseDuration=20*60*1000;
+	    	}else if(time.equals(MyPreference.TWENTY_FIVE_MINUTES)){
+	    		mtimes.exerciseDuration=25*60*1000;
+	    	}else if(time.equals(MyPreference.THIRTY_MINUTES)){
+	    		mtimes.exerciseDuration=30*60*1000;
+	    	}
+		
           }
 			/**
 		     * 关闭程序
@@ -185,8 +201,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			/*if(mBluetoothCheck.startOrStop(true)!=ResetCheck.RESETED_UP
 					&&
 					!mBluetoothCheck.isReseted(true)){*/
-			if(mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
-				//如果机器没有复位并且不是在关闭的状态
+			
+			if(mBluetoothCheck!=null&&mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
+				
+				//如果机器没有复位并且不是在关闭的状态				
 				String blance_relax_performance = 
 						MyPreference.getInstance(getActivity()).readString(MyPreference.BLANCE_RELAX_PERFORMANCE);
 				if (blance_relax_performance.equals(MyPreference.BLANCE)) {
@@ -249,6 +267,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * @author MAB
 	 */
 	private void initialize(View view) {
+		mtimes = mExerciseManager.getExerciseTimes();
 		mBluetoothCheck=((ActivityMain)getActivity()).getResetCheck();
 		mBluetoothCheck.setTrigger(false);
 		mBluetoothCheck.setUiHandler(this);
@@ -500,6 +519,14 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		msg.obj = bundle;
 		handlerMachineMessage(msg);
 	}
+
+	/*//屏蔽返回键
+	@Override
+	public boolean onBackPress() {
+		return true;
+		
+	}*/
+	
 //	/**
 //	 * 单例线程
 //	 * 
