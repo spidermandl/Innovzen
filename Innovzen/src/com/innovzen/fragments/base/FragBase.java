@@ -90,6 +90,9 @@ public abstract class FragBase extends Fragment {
 	 * @param view
 	 */
 	protected void initLefter(View view) {
+		
+		
+		
 		audiomanage = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);						
 		maxVolume = audiomanage.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 		lastVolumeValue = MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME);

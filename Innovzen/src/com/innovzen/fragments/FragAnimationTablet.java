@@ -143,6 +143,7 @@ public class FragAnimationTablet extends FragAnimationBase implements OnClickLis
         // Exercise duration
         mFooterTimerExerciseDurationHandler = new CircularSeekBarHandler(mView.findViewById(R.id.animation_footer_timer_exercise_duration), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, true);
         // Set the times
+        
         setTimesOnFooterTimers(mTimes);
 
         // If simple, default exercise selected, then don't display any timers

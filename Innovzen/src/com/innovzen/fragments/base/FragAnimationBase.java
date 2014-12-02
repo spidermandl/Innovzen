@@ -146,6 +146,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
     /** Hold the inhale, hold_inhale, exhale, hold_exhale values for the animation. Values in miliseconds. */
     protected ExerciseTimes mTimes = new ExerciseTimes();
     
+    
     /**¶¯»­view*/
     protected ExerciseAnimationHandler animationHandler;
 
