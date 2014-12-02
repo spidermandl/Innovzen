@@ -123,7 +123,10 @@ public class FragMain extends FragBase implements OnClickListener {
 		view.findViewById(R.id.menu_relax).setOnClickListener(this);
 		initLefter(view);
 	    
-		myMintues.setText("5min");
+		myMintues.setText((MyPreference.getInstance(this.getActivity())
+							.readInt(MyPreference.TIME)==0?5:
+								MyPreference.getInstance(this.getActivity())
+								.readInt(MyPreference.TIME))+"min");
 		leftTop.setOnClickListener(this);
 		leftMid.setOnClickListener(this);
 		leftBottom.setOnClickListener(this);
