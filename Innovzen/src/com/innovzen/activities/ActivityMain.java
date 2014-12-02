@@ -598,7 +598,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				FragAnimationPicker.PERSIST_SELECTED_EXERCISE_ANIMATION);
 
 		// // Refresh the backstack
-		super.clearFragFromBackstack(FRAG_TAG_ANIMATION);
+		//super.clearFragFromBackstack(FRAG_TAG_ANIMATION);
 
 		// Set the bundle
 		Bundle bundle = new Bundle();

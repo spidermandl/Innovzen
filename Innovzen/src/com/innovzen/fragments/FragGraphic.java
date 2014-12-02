@@ -28,7 +28,6 @@ public class FragGraphic extends FragBase implements OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_graphic, container, false);
         init(view);
-
         return view;
     }
 	@Override

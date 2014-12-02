@@ -252,7 +252,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			 if(mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
 				 super.pauseExercise();
 				 getActivity().onBackPressed();
-			 }else if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){				
+			 }
+			 if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){				
 				super.pauseExercise();
 				super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);						
 				getActivity().onBackPressed();
