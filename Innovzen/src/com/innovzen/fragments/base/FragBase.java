@@ -137,7 +137,7 @@ public abstract class FragBase extends Fragment {
                 }else{
                 	volum_less.setBackgroundResource(R.drawable.icon_volum_less);
                 }
-              MyPreference.getInstance(getActivity()).writeString(MyPreference.LAST_VOLUME, currentVolume);
+              MyPreference.getInstance(getActivity()).writeInt(MyPreference.LAST_VOLUME, currentVolume);
 				
 			}
 

@@ -156,9 +156,8 @@ public class FragSession extends FragBase implements OnClickListener {
 		session_pause.setOnClickListener(this);
 		session_volume = (ImageView) view.findViewById(R.id.session_volume);
 		session_volume.setOnClickListener(this);
-		String myTime = MyPreference.getInstance(getActivity()).readString(
-				MyPreference.TIME);
-		min.setText(myTime);
+		min.setText(MyPreference.getInstance(getActivity()).readInt(
+				MyPreference.TIME)+"");
 		String mySession = MyPreference.getInstance(getActivity()).readString(
 				MyPreference.SESSION_MODE);
 		beginner.setBackgroundResource(R.drawable.btn_my_session_left_beginner_activated);

@@ -141,7 +141,7 @@ public class FragVoice extends FragBase implements OnClickListener {
 		woman_voice.setOnClickListener(this);
 		silence_voice.setOnClickListener(this);
 		myMinutes.setText(MyPreference.getInstance(this.getActivity())
-				.readString(MyPreference.TIME));
+				.readInt(MyPreference.TIME)+"");
 		// Voice
 		int selectedVoiceSoundId = PersistentUtil.getInt(getActivity(),
 				PERSIST_SELECTED_VOICE);

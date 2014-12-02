@@ -61,8 +61,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 
 	private TextView countdown_tv;
 	
-	private BluetoothCheck<ResetCheck> mRestCheck;
-	private ExerciseTimes mtimes;
 
 	/**
 	 * 接受机器指令handler
@@ -168,20 +166,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			mBluetoothCheck.initlize();
 			countDown=0;
 			//初始化  动画时间			只能在第一次点关闭按钮后更改 第二次没效果走上一次的时间 直到结束
-			String time = MyPreference.getInstance(getActivity()).readString(MyPreference.TIME);
-	    	if(time.equals(MyPreference.FIVE_MINUTES)){
-	    		mtimes.exerciseDuration=5*60*1000;
-	    	}else if(time.equals(MyPreference.TEN_MINUTES)){
-	    		mtimes.exerciseDuration=10*60*1000;
-	    	}else if(time.equals(MyPreference.FIFTEEN_MINUTES)){
-	    		mtimes.exerciseDuration=15*60*1000;
-	    	}else if(time.equals(MyPreference.TWENTY_MINUTES)){
-	    		mtimes.exerciseDuration=20*60*1000;
-	    	}else if(time.equals(MyPreference.TWENTY_FIVE_MINUTES)){
-	    		mtimes.exerciseDuration=25*60*1000;
-	    	}else if(time.equals(MyPreference.THIRTY_MINUTES)){
-	    		mtimes.exerciseDuration=30*60*1000;
-	    	}
+			ExerciseTimes mtimes = mExerciseManager.getExerciseTimes();
+			mtimes.exerciseDuration = MyPreference.getInstance(getActivity()).readInt(MyPreference.TIME);
 		
           }
 			/**
@@ -267,7 +253,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * @author MAB
 	 */
 	private void initialize(View view) {
-		mtimes = mExerciseManager.getExerciseTimes();
 		mBluetoothCheck=((ActivityMain)getActivity()).getResetCheck();
 		mBluetoothCheck.setTrigger(false);
 		mBluetoothCheck.setUiHandler(this);
@@ -434,26 +419,36 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	protected void initLefter(View view) {
 		super.initLefter(view);
 		myMinutes.setText(MyPreference.getInstance(this.getActivity())
-				.readString(MyPreference.TIME));
+				.readInt(MyPreference.TIME)+"");
 		// 像机器发送时间命令
-		if (myMinutes.equals(MyPreference.FIVE_MINUTES)) {
+		switch (MyPreference.getInstance(this.getActivity())
+				.readInt(MyPreference.TIME)) {
+		case 5*60*1000:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME5_MACHINE_VALUES);
-		} else if (myMinutes.equals(MyPreference.TEN_MINUTES)) {
+			break;
+		case 10*60*1000:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME10_MACHINE_VALUES);
-		} else if (myMinutes.equals(MyPreference.FIFTEEN_MINUTES)) {
+			break;
+		case 15*60*1000:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME15_MACHINE_VALUES);
-		} else if (myMinutes.equals(MyPreference.TWENTY_MINUTES)) {
+			break;
+		case 20*60*1000:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME20_MACHINE_VALUES);
-		} else if (myMinutes.equals(MyPreference.TWENTY_FIVE_MINUTES)) {
+			break;
+		case 25*60*1000:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME25_MACHINE_VALUES);
-		} else if (myMinutes.equals(MyPreference.THIRTY_MINUTES)) {
+			break;
+		case 30*60*1000:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
+			break;
+		default:
+			break;
 		}
 
 		leftTop.setBackgroundResource(R.drawable.selector_btn_back);
