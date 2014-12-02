@@ -45,10 +45,14 @@ public class FragTime extends FragBase implements OnClickListener {
 			time_20min.setBackgroundResource(R.drawable.selector_time_20min);
 			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
 			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
-			PersistentUtil.setInt(getActivity(), 5 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 5*60*1000);
-			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
-			super.activityListener.fragSendCommand(BluetoothCommand.TIME5_MACHINE_VALUES);
+			PersistentUtil.setInt(getActivity(), 5 * 60000,
+					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
+			MyPreference.getInstance(this.getActivity()).writeInt(
+					MyPreference.TIME, 5 * 60 * 1000);
+			myMinutes.setText(MyPreference.getInstance(this.getActivity())
+					.readInt(MyPreference.TIME) + "");
+			super.activityListener
+					.fragSendCommand(BluetoothCommand.TIME5_MACHINE_VALUES);
 			break;
 		case R.id.time_10min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -57,10 +61,15 @@ public class FragTime extends FragBase implements OnClickListener {
 			time_20min.setBackgroundResource(R.drawable.selector_time_20min);
 			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
 			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
-			PersistentUtil.setInt(getActivity(), 10 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 10*60*1000);
-			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
-			super.activityListener.fragSendCommand(BluetoothCommand.TIME10_MACHINE_VALUES);
+			PersistentUtil.setInt(getActivity(), 10 * 60000,
+					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
+
+			MyPreference.getInstance(this.getActivity()).writeInt(
+					MyPreference.TIME, 10 * 60 * 1000);
+			myMinutes.setText(MyPreference.getInstance(this.getActivity())
+					.readInt(MyPreference.TIME) + "");
+			super.activityListener
+					.fragSendCommand(BluetoothCommand.TIME10_MACHINE_VALUES);
 			break;
 		case R.id.time_15min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -69,10 +78,15 @@ public class FragTime extends FragBase implements OnClickListener {
 			time_20min.setBackgroundResource(R.drawable.selector_time_20min);
 			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
 			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
-			PersistentUtil.setInt(getActivity(), 15 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 15*60*1000);
-			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
-			super.activityListener.fragSendCommand(BluetoothCommand.TIME15_MACHINE_VALUES);
+			PersistentUtil.setInt(getActivity(), 15 * 60000,
+					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
+
+			MyPreference.getInstance(this.getActivity()).writeInt(
+					MyPreference.TIME, 15 * 60 * 1000);
+			myMinutes.setText(MyPreference.getInstance(this.getActivity())
+					.readInt(MyPreference.TIME) + "");
+			super.activityListener
+					.fragSendCommand(BluetoothCommand.TIME15_MACHINE_VALUES);
 			break;
 		case R.id.time_20min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -81,10 +95,15 @@ public class FragTime extends FragBase implements OnClickListener {
 			time_20min.setBackgroundResource(R.drawable.btn_20min_activated);
 			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
 			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
-			PersistentUtil.setInt(getActivity(), 20 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 20*60*1000);
-			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
-			super.activityListener.fragSendCommand(BluetoothCommand.TIME20_MACHINE_VALUES);
+			PersistentUtil.setInt(getActivity(), 20 * 60000,
+					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
+
+			MyPreference.getInstance(this.getActivity()).writeInt(
+					MyPreference.TIME, 20 * 60 * 1000);
+			myMinutes.setText(MyPreference.getInstance(this.getActivity())
+					.readInt(MyPreference.TIME) + "");
+			super.activityListener
+					.fragSendCommand(BluetoothCommand.TIME20_MACHINE_VALUES);
 			break;
 		case R.id.time_25min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -93,10 +112,14 @@ public class FragTime extends FragBase implements OnClickListener {
 			time_20min.setBackgroundResource(R.drawable.selector_time_20min);
 			time_25min.setBackgroundResource(R.drawable.btn_25min_activated);
 			time_30min.setBackgroundResource(R.drawable.selector_time_30min);
-			PersistentUtil.setInt(getActivity(), 25 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 25*60*1000);
-			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
-			super.activityListener.fragSendCommand(BluetoothCommand.TIME25_MACHINE_VALUES);
+			PersistentUtil.setInt(getActivity(), 25 * 60000,
+					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
+			MyPreference.getInstance(this.getActivity()).writeInt(
+					MyPreference.TIME, 25 * 60 * 1000);
+			myMinutes.setText(MyPreference.getInstance(this.getActivity())
+					.readInt(MyPreference.TIME) + "");
+			super.activityListener
+					.fragSendCommand(BluetoothCommand.TIME25_MACHINE_VALUES);
 			break;
 		case R.id.time_30min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -105,10 +128,16 @@ public class FragTime extends FragBase implements OnClickListener {
 			time_20min.setBackgroundResource(R.drawable.selector_time_20min);
 			time_25min.setBackgroundResource(R.drawable.selector_time_25min);
 			time_30min.setBackgroundResource(R.drawable.btn_30min_activated);
-			PersistentUtil.setInt(getActivity(), 30 * 60000,FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			MyPreference.getInstance(this.getActivity()).writeInt(MyPreference.TIME, 30*60*1000);
-			myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
-			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
+			PersistentUtil.setInt(getActivity(), 30 * 60000,
+					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
+
+			MyPreference.getInstance(this.getActivity()).writeInt(
+					MyPreference.TIME, 30 * 60 * 1000);
+			myMinutes.setText(MyPreference.getInstance(this.getActivity())
+					.readInt(MyPreference.TIME) + "");
+
+			super.activityListener
+					.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 			break;
 		default:
 			break;
@@ -134,35 +163,36 @@ public class FragTime extends FragBase implements OnClickListener {
 		time_30min = (ImageView) view.findViewById(R.id.time_30min);
 		time_30min.setOnClickListener(this);
 		time_5min.setBackgroundResource(R.drawable.btn_5min_activated);
-		int myTime = MyPreference.getInstance(this.getActivity()).readInt(MyPreference.TIME);
+		int myTime = MyPreference.getInstance(this.getActivity()).readInt(
+				MyPreference.TIME);
 		switch (myTime) {
-		case 5*60*1000:
+		case 5 * 60 * 1000:
 			time_5min.setBackgroundResource(R.drawable.btn_5min_activated);
 			break;
-		case 10*60*1000:
+		case 10 * 60 * 1000:
 			time_10min.setBackgroundResource(R.drawable.btn_10min_activated);
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
 			break;
-		case 15*60*1000:
+		case 15 * 60 * 1000:
 			time_15min.setBackgroundResource(R.drawable.btn_15min_activated);
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
 			break;
-		case 20*60*1000:
+		case 20 * 60 * 1000:
 			time_20min.setBackgroundResource(R.drawable.btn_20min_activated);
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
 			break;
-		case 25*60*1000:
+		case 25 * 60 * 1000:
 			time_25min.setBackgroundResource(R.drawable.btn_25min_activated);
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
 			break;
-		case 30*60*1000:
+		case 30 * 60 * 1000:
 			time_30min.setBackgroundResource(R.drawable.btn_30min_activated);
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
 			break;
 		default:
 			break;
 		}
-		myMinutes.setText(myTime+"");
+		myMinutes.setText(myTime + "");
 	}
 
 }
