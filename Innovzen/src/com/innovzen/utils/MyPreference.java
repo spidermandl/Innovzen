@@ -40,12 +40,6 @@ public class MyPreference {
 	public final static String GRAPHIC = "graphic";
 	// 记录Time键状态
 	public final static String TIME = "time";
-	public final static String FIVE_MINUTES = "5 min";
-	public final static String TEN_MINUTES = "10 min";
-	public final static String FIFTEEN_MINUTES = "15 min";
-	public final static String TWENTY_MINUTES = "20 min";
-	public final static String TWENTY_FIVE_MINUTES = "25 min";
-	public final static String THIRTY_MINUTES = "30 min";
 
 	public final static String RECEIVE_COMMAND = "receive command";
 	// 记录从哪个键位进入动画界面
@@ -143,7 +137,7 @@ public class MyPreference {
 	 * 
 	 * @param text
 	 */
-	public void writeString(String key, int value) {
+	public void writeInt(String key, int value) {
 		// 获取编辑器对象
 		Editor editor = sp.edit();
 		// 写入数据

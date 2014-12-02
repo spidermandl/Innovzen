@@ -127,7 +127,7 @@ public class FragSettings extends FragBase implements OnClickListener{
 	public void init(View view) {
 		initLefter(view);
 		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
-		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
+		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readInt(MyPreference.TIME)+"");
 		view.findViewById(R.id.set_language).setOnClickListener(this);
 		view.findViewById(R.id.set_music).setOnClickListener(this);
 		view.findViewById(R.id.set_time).setOnClickListener(this);

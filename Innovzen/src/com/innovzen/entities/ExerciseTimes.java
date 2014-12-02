@@ -63,21 +63,9 @@ public class ExerciseTimes {
     public String toString() {
         return "ExerciseTimes [inhale=" + inhale + ", holdInhale=" + holdInhale + ", exhale=" + exhale + ", holdExhale=" + holdExhale + ", exerciseDuration=" + exerciseDuration + "]";
     }
+    
     public void initTime(Context context){
-    	String time = MyPreference.getInstance(context).readString(MyPreference.TIME);
-    	if(time.equals(MyPreference.FIVE_MINUTES)){
-    		exerciseDuration=5*60*1000;
-    	}else if(time.equals(MyPreference.TEN_MINUTES)){
-    		exerciseDuration=10*60*1000;
-    	}else if(time.equals(MyPreference.FIFTEEN_MINUTES)){
-    		exerciseDuration=15*60*1000;
-    	}else if(time.equals(MyPreference.TWENTY_MINUTES)){
-    		exerciseDuration=20*60*1000;
-    	}else if(time.equals(MyPreference.TWENTY_FIVE_MINUTES)){
-    		exerciseDuration=25*60*1000;
-    	}else if(time.equals(MyPreference.THIRTY_MINUTES)){
-    		exerciseDuration=30*60*1000;
-    	}
+    	exerciseDuration = MyPreference.getInstance(context).readInt(MyPreference.TIME);
     }
 
 }

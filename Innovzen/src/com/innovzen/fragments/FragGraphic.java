@@ -39,7 +39,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 			breath_graphic.setBackgroundResource(R.drawable.selector_btn_btn3);
 			summer_graphic.setBackgroundResource(R.drawable.selector_btn_btn4);
 			MyPreference.getInstance(this.getActivity()).
-				writeString(MyPreference.GRAPHIC, ExerciseAnimationHandler.ANIMATION_GRADIENT);
+				writeInt(MyPreference.GRAPHIC, ExerciseAnimationHandler.ANIMATION_GRADIENT);
 
 			break;
 		case R.id.relax_graphic:
@@ -48,7 +48,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 			breath_graphic.setBackgroundResource(R.drawable.selector_btn_btn3);
 			summer_graphic.setBackgroundResource(R.drawable.selector_btn_btn4);
 			MyPreference.getInstance(this.getActivity()).
-				writeString(MyPreference.GRAPHIC, ExerciseAnimationHandler.ANIMATION_PETALS);	
+				writeInt(MyPreference.GRAPHIC, ExerciseAnimationHandler.ANIMATION_PETALS);	
 			break;
 		case R.id.breath_graphic:
 			exercise_graphic.setBackgroundResource(R.drawable.selector_icon_btn1);
@@ -56,7 +56,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 			breath_graphic.setBackgroundResource(R.drawable.btn_3_activated);
 			summer_graphic.setBackgroundResource(R.drawable.selector_btn_btn4);
 			MyPreference.getInstance(this.getActivity()).
-				writeString(MyPreference.GRAPHIC, ExerciseAnimationHandler.ANIMATION_LUNGS);
+				writeInt(MyPreference.GRAPHIC, ExerciseAnimationHandler.ANIMATION_LUNGS);
 			break;
 		case R.id.summer_graphic:
 			exercise_graphic.setBackgroundResource(R.drawable.selector_icon_btn1);
@@ -64,7 +64,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 			breath_graphic.setBackgroundResource(R.drawable.selector_btn_btn3);
 			summer_graphic.setBackgroundResource(R.drawable.btn_4_activated);
 			MyPreference.getInstance(this.getActivity()).
-				writeString(MyPreference.GRAPHIC, ExerciseAnimationHandler.ANIMATION_BEACH);
+				writeInt(MyPreference.GRAPHIC, ExerciseAnimationHandler.ANIMATION_BEACH);
 			break;
 		case R.id.left_top:
 			switch (MyPreference.getInstance(this.getActivity()).readInt(MyPreference.GRAPHIC)) {
@@ -98,7 +98,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 		
 		
 		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
-		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readString(MyPreference.TIME));
+		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readInt(MyPreference.TIME)+"");
 		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
 		left_mid.setBackgroundResource(R.drawable.banner_graphic);
 		exercise_graphic = (ImageView) view.findViewById(R.id.exercise_graphic);

@@ -206,7 +206,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 		initLefter(view);
 		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		myMinutes.setText(MyPreference.getInstance(this.getActivity())
-				.readString(MyPreference.TIME));
+				.readInt(MyPreference.TIME)+"");
 		left_top = (ImageView) view.findViewById(R.id.left_top);
 		
 		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
