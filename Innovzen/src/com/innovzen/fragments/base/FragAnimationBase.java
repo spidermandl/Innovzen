@@ -18,12 +18,14 @@ import com.innovzen.bluetooth.check.ResetCheck;
 import com.innovzen.db.History;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.FragAnimationPicker;
+import com.innovzen.fragments.FragMusic;
 import com.innovzen.fragments.FragSoundPicker;
 import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.handlers.ExerciseManager;
 import com.innovzen.handlers.FooterHandler;
 import com.innovzen.interfaces.FragmentOnBackPressInterface;
 import com.innovzen.utils.LocalDbUtil;
+import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
 
 /**
@@ -42,10 +44,12 @@ import com.innovzen.utils.PersistentUtil;
 
 public class FragAnimationBase extends FragBase implements FragmentOnBackPressInterface {
 	
-	/*public  int countDown=0;
 
-	//321 是否显示
-	public static boolean noCountDown=true;*/
+	/**
+	 * Desmond
+	 * 播放次数累计,判断321 是否显示
+	 */
+	protected int countDown=0;
 
     /** The delay between each value of the countdown */ 
     private static final int COUNTDOWN_DELAY = 1000; // 1 sec
@@ -406,8 +410,10 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         mTimes=mExerciseManager.getExerciseTimes();
         animationHandler.configure(mTimes);
 
-        int voiceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_VOICE);
-        int ambianceSoundId = PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
+        int voiceSoundId = //PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_VOICE);
+        		MyPreference.getInstance(getActivity()).readInt(MyPreference.SELECTED_VOICE);
+        int ambianceSoundId = //PersistentUtil.getInt(getActivity(), FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
+        		MyPreference.getInstance(getActivity()).readInt(FragMusic.PERSIST_SELECTED_AMBIANCE);
         mExerciseManager.reinitSound(voiceSoundId, ambianceSoundId);
         /*
          * Based on the exercise type index, load the appropriate string in the "subtitle" section
@@ -532,11 +538,32 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
 
         // Stop everything related to the exercise animation
         
-       mExerciseManager.stopAllThreads();
         mExerciseManager.pause(true);
         
     }
 
+    /**
+     * Stops everything in its tracks and also displays the play btn overlay
+     * 
+     * @author MAB
+     */
+    protected void stopExercise() {
+        
+    	isAnimationRunning=false;
+    	
+        // In case we're counting down, set this flag so the method animateCountdown will know to stop
+        mContinueCountdown = false;
+
+        // Reset the second on which the counter is currently on
+        mCurCountdownSecond = 0;
+
+        // Hide countdown in case it's visible
+        countdown_tv.setVisibility(View.GONE);
+
+        // Stop everything related to the exercise animation
+        mExerciseManager.stopAllThreads();
+        mExerciseManager.reset(false);
+    }
     /**
      * Makes the play button overlay visible
      * 

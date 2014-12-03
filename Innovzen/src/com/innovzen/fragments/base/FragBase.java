@@ -32,11 +32,6 @@ import com.innovzen.utils.MyPreference;
  * 
  */
 public abstract class FragBase extends Fragment {
-   
-	public  int countDown=0;
-
-	//321  «∑Òœ‘ æ
-	public static boolean noCountDown=true;
 	
 	public static final String SHARED_MUSIC = "music";
 	public static final String SHARED_TIME = "time";

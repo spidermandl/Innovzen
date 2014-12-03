@@ -611,7 +611,8 @@ public class ExerciseManager {
     public ExerciseTimes getExerciseTimes(){
     	return mTimes;
     }
-    public  void stopAllThreads() {
+    
+    public void stopAllThreads() {
     	
     }
 

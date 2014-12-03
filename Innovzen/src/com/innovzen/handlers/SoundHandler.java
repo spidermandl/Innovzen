@@ -13,10 +13,12 @@ import com.innovzen.activities.ActivityMain;
 import com.innovzen.entities.AnimationSounds;
 import com.innovzen.entities.SoundGroup;
 import com.innovzen.entities.SoundItem;
+import com.innovzen.fragments.FragMusic;
 import com.innovzen.fragments.FragSoundPicker;
 import com.innovzen.interfaces.ConfigureInterface;
 import com.innovzen.ui.DialogFactory;
 import com.innovzen.utils.JsonUtil;
+import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
 
 public class SoundHandler implements ConfigureInterface {
@@ -86,7 +88,8 @@ public class SoundHandler implements ConfigureInterface {
         // In this is the first run of the app, then set the default ambiance sound as the Aquatic SunBeam (id = 1) AND the man as the default one
         if (PersistentUtil.getBoolean(mCtx, ActivityMain.PERSIST_FIRST_RUN, true)) {
             if (mSounds.ambiance.size() >= 1) {
-                PersistentUtil.setInt(mCtx, mSounds.ambiance.get(1).getId(), FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
+                //PersistentUtil.setInt(mCtx, mSounds.ambiance.get(1).getId(), FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
+                MyPreference.getInstance(mCtx).writeInt(FragMusic.PERSIST_SELECTED_AMBIANCE,mSounds.ambiance.get(1).getId());
             }
             if (mSounds.voices.size() >= 1) {
                 PersistentUtil.setInt(mCtx, mSounds.voices.get(0).getId(), FragSoundPicker.PERSIST_SELECTED_VOICE);

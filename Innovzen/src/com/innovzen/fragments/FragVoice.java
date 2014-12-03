@@ -60,6 +60,8 @@ public class FragVoice extends FragBase implements OnClickListener {
 					.setBackgroundResource(R.drawable.selector_voice_silence);
 			MyPreference.getInstance(getActivity()).writeString(
 					MyPreference.VOICE, MyPreference.MAN_VOICE);
+			MyPreference.getInstance(getActivity()).writeInt(
+					MyPreference.SELECTED_VOICE, mAdapterVoices.getSelectedSoundId());
 			PersistentUtil
 					.setInt(getActivity(), mAdapterVoices.getSelectedSoundId(),
 							PERSIST_SELECTED_VOICE);
@@ -89,6 +91,8 @@ public class FragVoice extends FragBase implements OnClickListener {
 					.setBackgroundResource(R.drawable.selector_voice_silence);
 			MyPreference.getInstance(getActivity()).writeString(
 					MyPreference.VOICE, MyPreference.WOMAN_VOICE);
+			MyPreference.getInstance(getActivity()).writeInt(
+					MyPreference.SELECTED_VOICE, mAdapterVoices.getSelectedSoundId());
 			PersistentUtil
 					.setInt(getActivity(), mAdapterVoices.getSelectedSoundId(),
 							PERSIST_SELECTED_VOICE);
@@ -116,6 +120,8 @@ public class FragVoice extends FragBase implements OnClickListener {
 					.setBackgroundResource(R.drawable.btn_silence_voice_activated);
 			MyPreference.getInstance(getActivity()).writeString(
 					MyPreference.VOICE, MyPreference.SILENCE);
+			MyPreference.getInstance(getActivity()).writeInt(
+					MyPreference.SELECTED_VOICE, mAdapterVoices.getSelectedSoundId());
 			PersistentUtil
 					.setInt(getActivity(), mAdapterVoices.getSelectedSoundId(),
 							PERSIST_SELECTED_VOICE);
@@ -141,14 +147,15 @@ public class FragVoice extends FragBase implements OnClickListener {
 		woman_voice.setOnClickListener(this);
 		silence_voice.setOnClickListener(this);
 		myMinutes.setText(MyPreference.getInstance(this.getActivity())
-				.readInt(MyPreference.TIME)+"");
+				.readInt(MyPreference.TIME)/60000+MyPreference.MINS);
 		// Voice
-		int selectedVoiceSoundId = PersistentUtil.getInt(getActivity(),
-				PERSIST_SELECTED_VOICE);
+		int selectedVoiceSoundId = //PersistentUtil.getInt(getActivity(),PERSIST_SELECTED_VOICE);
+		MyPreference.getInstance(getActivity()).readInt(MyPreference.SELECTED_VOICE);
 		if (selectedVoiceSoundId == -1) {
 			selectedVoiceSoundId = mAdapterVoices.getFirstSoundId();
-			PersistentUtil.setInt(getActivity(), selectedVoiceSoundId,
-					PERSIST_SELECTED_VOICE);
+			PersistentUtil.setInt(getActivity(), selectedVoiceSoundId,PERSIST_SELECTED_VOICE);
+			MyPreference.getInstance(getActivity()).writeInt(
+					MyPreference.SELECTED_VOICE, selectedVoiceSoundId);
 		}
 		mAdapterVoices = new AdapterSound(getActivity(),
 				super.activityListener.fragGetVoices(), selectedVoiceSoundId);

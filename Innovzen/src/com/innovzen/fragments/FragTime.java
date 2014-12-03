@@ -20,6 +20,12 @@ import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
 
 public class FragTime extends FragBase implements OnClickListener {
+    /** Constants used to represent the beginner times */
+    public static final int DEFAULT_TIMER_INHALE = 5000;
+    public static final int DEFAULT_TIMER_HOLD_INHALE = 1000;
+    public static final int DEFAULT_TIMER_EXHALE = 5000;
+    public static final int DEFAULT_TIMER_HOLD_EXHALE = 1000;
+    
 	private ImageView time_5min, time_10min, time_15min, time_20min,
 			time_25min, time_30min;
 	private LinearLayout left_mid;
@@ -50,7 +56,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			MyPreference.getInstance(this.getActivity()).writeInt(
 					MyPreference.TIME, 5 * 60 * 1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity())
-					.readInt(MyPreference.TIME) + "");
+					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME5_MACHINE_VALUES);
 			break;
@@ -67,7 +73,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			MyPreference.getInstance(this.getActivity()).writeInt(
 					MyPreference.TIME, 10 * 60 * 1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity())
-					.readInt(MyPreference.TIME) + "");
+					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME10_MACHINE_VALUES);
 			break;
@@ -84,7 +90,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			MyPreference.getInstance(this.getActivity()).writeInt(
 					MyPreference.TIME, 15 * 60 * 1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity())
-					.readInt(MyPreference.TIME) + "");
+					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME15_MACHINE_VALUES);
 			break;
@@ -101,7 +107,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			MyPreference.getInstance(this.getActivity()).writeInt(
 					MyPreference.TIME, 20 * 60 * 1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity())
-					.readInt(MyPreference.TIME) + "");
+					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME20_MACHINE_VALUES);
 			break;
@@ -117,7 +123,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			MyPreference.getInstance(this.getActivity()).writeInt(
 					MyPreference.TIME, 25 * 60 * 1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity())
-					.readInt(MyPreference.TIME) + "");
+					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME25_MACHINE_VALUES);
 			break;
@@ -134,7 +140,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			MyPreference.getInstance(this.getActivity()).writeInt(
 					MyPreference.TIME, 30 * 60 * 1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity())
-					.readInt(MyPreference.TIME) + "");
+					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
@@ -192,7 +198,7 @@ public class FragTime extends FragBase implements OnClickListener {
 		default:
 			break;
 		}
-		myMinutes.setText(myTime + "");
+		myMinutes.setText(myTime/60000 + MyPreference.MINS);
 	}
 
 }

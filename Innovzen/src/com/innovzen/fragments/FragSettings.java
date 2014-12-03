@@ -24,10 +24,9 @@ import com.innovzen.o2chair.R;
 import com.innovzen.utils.MyPreference;
 
 public class FragSettings extends FragBase implements OnClickListener{
-//FragBase  ¸ÄÎª¼Ì³ÐFragAnimationBase
 	private TextView myMinutes;
-	private ImageView oxygen,swing,led,heat,bluetooth,pulse;
-	private LinearLayout set_breathe;
+	private ImageView oxygen,swing,led,heat,bluetooth,pulse,breathe;
+	private boolean breathe_activited=false;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -110,6 +109,14 @@ public class FragSettings extends FragBase implements OnClickListener{
 			//super.activityListener.fragSendCommand(BluetoothCommand.BLUETOOTH_MACHINE_VALUES);
 			//super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 			break;
+		case R.id.set_breathe:
+			if(!breathe_activited)
+				super.activityListener
+					.fragSendCommand(BluetoothCommand.BREATHE_UP_MACHINE_VALUES);
+			else
+				super.activityListener
+					.fragSendCommand(BluetoothCommand.BREATHE_DOWN_MACHINE_VALUES);
+			break;
 		default:
 			break;
 		}
@@ -127,55 +134,14 @@ public class FragSettings extends FragBase implements OnClickListener{
 	public void init(View view) {
 		initLefter(view);
 		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
-		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readInt(MyPreference.TIME)+"");
+		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readInt(MyPreference.TIME)/60000+MyPreference.MINS);
 		view.findViewById(R.id.set_language).setOnClickListener(this);
 		view.findViewById(R.id.set_music).setOnClickListener(this);
 		view.findViewById(R.id.set_time).setOnClickListener(this);
 		view.findViewById(R.id.set_graphic).setOnClickListener(this);
 		view.findViewById(R.id.set_voice).setOnClickListener(this);
-		set_breathe = (LinearLayout) view.findViewById(R.id.set_breathe);
 		//view.findViewById(R.id.set_history).setOnClickListener(this);
-		view.findViewById(R.id.set_breathe_add).setOnTouchListener(new OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()) {
-				case MotionEvent.ACTION_DOWN:
-					set_breathe.setBackgroundResource(R.drawable.btn_breathe_activated);
-					System.out.println("add");
-					break;
-				case MotionEvent.ACTION_MOVE:
-					set_breathe.setBackgroundResource(R.drawable.btn_breathe_activated);
-					break;
-				case MotionEvent.ACTION_UP:
-					set_breathe.setBackgroundResource(R.drawable.selector_btn_breathe);
-					breatheAddCommand();
-					break;
-				}
-				return true;
-			}
-		});
-		view.findViewById(R.id.set_breathe_sub).setOnTouchListener(new OnTouchListener() {
-					
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				switch (event.getAction()) {
-				case MotionEvent.ACTION_DOWN:
-					System.out.println("sub");
-					set_breathe.setBackgroundResource(R.drawable.btn_breathe_activated);
-					break;
-				case MotionEvent.ACTION_MOVE:
-					set_breathe.setBackgroundResource(R.drawable.btn_breathe_activated);
-					break;
-				case MotionEvent.ACTION_UP:
-					set_breathe.setBackgroundResource(R.drawable.selector_btn_breathe);
-					breatheSubCommand();
-					break;
-				}
-				return true;
-			}
-		});
-		view.findViewById(R.id.set_breathe_sub).setOnClickListener(this);
+		
 		oxygen = (ImageView) view.findViewById(R.id.set_oxygen);
 		oxygen.setOnClickListener(this);
 		swing = (ImageView) view.findViewById(R.id.set_swing);
@@ -188,6 +154,8 @@ public class FragSettings extends FragBase implements OnClickListener{
 		bluetooth.setOnClickListener(this);
 		pulse = (ImageView) view.findViewById(R.id.set_pulse);
 		pulse.setOnClickListener(this);
+		breathe=(ImageView)view.findViewById(R.id.set_breathe);
+		breathe.setOnClickListener(this);
 	}
 	
 	@Override
@@ -242,6 +210,15 @@ public class FragSettings extends FragBase implements OnClickListener{
 				pulse.setBackgroundResource(R.drawable.selector_icon_pulse);
 			}else{
 				pulse.setBackgroundResource(R.drawable.btn_pulse_activated);
+			}	
+			break;
+		case BluetoothCommand.BREATHE_STATUS:
+			if(map.get(BluetoothCommand.BREATHE_STATUS)<BluetoothCommand.BREATHE_STATUS_VIGOR3){
+				breathe.setBackgroundResource(R.drawable.btn_breathe);
+				breathe_activited=false;
+			}else{
+				breathe.setBackgroundResource(R.drawable.btn_breathe_activated);
+				breathe_activited=true;
 			}	
 			break;
 		case BluetoothCommand.INIT_POSITION_STATUS:

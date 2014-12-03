@@ -52,6 +52,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private TextView myMinutes;
 	public static final int START_ANIMATION = 1;
 	public static final int END_ANIMATION = 2;
+	
 	/**
 	 * 半屏动画 布局 全屏动画 布局
 	 */
@@ -111,7 +112,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		}
 
 	};
-
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -131,6 +132,24 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		super.onResume();
 	}
 
+	@Override
+	public boolean onBackPress() {
+		if (mBluetoothCheck.closeOrNot() == ResetCheck.WAITTING) {
+			mBluetoothCheck.initlize();
+			countDown=0;
+			super.stopExercise();
+			return false;
+		}
+		if (mBluetoothCheck.isReseted(false) && isAnimationRunning) {
+			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+			mBluetoothCheck.initlize();
+			countDown=0;
+			super.stopExercise();
+			return false;
+		}
+		return true;
+	}
+	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -161,14 +180,13 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		case R.id.main_animation_stop:
 		
           if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){
-			super.pauseExercise();
-			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
-			mBluetoothCheck.initlize();
-			countDown=0;
-			//初始化  动画时间			只能在第一次点关闭按钮后更改 第二次没效果走上一次的时间 直到结束
-			ExerciseTimes mtimes = mExerciseManager.getExerciseTimes();
-			mtimes.exerciseDuration = MyPreference.getInstance(getActivity()).readInt(MyPreference.TIME);
-		
+        	  super.stopExercise();
+			  super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+			  mBluetoothCheck.initlize();
+			  countDown=0;
+			  //初始化  动画时间			只能在第一次点关闭按钮后更改 第二次没效果走上一次的时间 直到结束
+			  ExerciseTimes mtimes = mExerciseManager.getExerciseTimes();
+			  mtimes.exerciseDuration = MyPreference.getInstance(getActivity()).readInt(MyPreference.TIME);
           }
 			/**
 		     * 关闭程序
@@ -179,7 +197,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		case R.id.main_animation_start:
 
 			if(!((ActivityMain)getActivity()).isBlueToothConnected()){//如果蓝牙没有连接
-				Toast.makeText(getActivity(), "please setup bluetooth panel through setting panel", 1000).show();
+				Toast.makeText(getActivity(), "Please setup bluetooth connection through setting panel", 1000).show();
 				break;
 			}
 			
@@ -205,7 +223,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				}
 				 
 			}else{
-				Toast.makeText(getActivity(), "The machine is initializing...", 1000);
+				Toast.makeText(getActivity(), "The machine is initializing...", 1000).show();
 			}
 			//初始按摩椅按摩时间
 //			String mytime=MyPreference.getInstance(getActivity()).readString(MyPreference.TIME);
@@ -234,16 +252,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					.fragSendCommand(BluetoothCommand.ZERO_GRAVITY_MACHINE_VALUES);
 			break;
 		case R.id.left_top:
-			
-			 if(mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
-				 super.pauseExercise();
-				 getActivity().onBackPressed();
-			 }
-			 if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){				
-				super.pauseExercise();
-				super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);						
-				getActivity().onBackPressed();
-			 }
+			/**
+			 * 实现移入onBackPress()方法
+			 */
+			getActivity().onBackPressed();
 			break;
 		}
 	}
@@ -420,7 +432,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	protected void initLefter(View view) {
 		super.initLefter(view);
 		myMinutes.setText(MyPreference.getInstance(this.getActivity())
-				.readInt(MyPreference.TIME)+"");
+				.readInt(MyPreference.TIME)/60000+MyPreference.MINS);
 		// 像机器发送时间命令
 		switch (MyPreference.getInstance(this.getActivity())
 				.readInt(MyPreference.TIME)) {

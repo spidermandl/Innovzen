@@ -126,7 +126,7 @@ public class FragMain extends FragBase implements OnClickListener {
 		myMintues.setText((MyPreference.getInstance(this.getActivity())
 							.readInt(MyPreference.TIME)==0?5:
 								MyPreference.getInstance(this.getActivity())
-								.readInt(MyPreference.TIME))+"min");
+								.readInt(MyPreference.TIME))/60000+MyPreference.MINS);
 		leftTop.setOnClickListener(this);
 		leftMid.setOnClickListener(this);
 		leftBottom.setOnClickListener(this);

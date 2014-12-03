@@ -71,6 +71,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 			PersistentUtil.setInt(getActivity(),
 					mAdapterAmbiance.getSelectedSoundId(),
 					PERSIST_SELECTED_AMBIANCE);
+			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
 			// mediaPlay.play(getActivity(), MyMediaPlayer.AQUATIC);
 			break;
 		case R.id.music2:
@@ -100,7 +101,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 			PersistentUtil.setInt(getActivity(),
 					mAdapterAmbiance.getSelectedSoundId(),
 					PERSIST_SELECTED_AMBIANCE);
-			// mediaPlay.play(getActivity(), MyMediaPlayer.BONDIBREATH);
+			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
 			break;
 		case R.id.music3:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -128,7 +129,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 			PersistentUtil.setInt(getActivity(),
 					mAdapterAmbiance.getSelectedSoundId(),
 					PERSIST_SELECTED_AMBIANCE);
-			// mediaPlay.play(getActivity(), MyMediaPlayer.ANGELICORGAN);
+			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
 			break;
 		case R.id.music4:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -157,7 +158,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 					mAdapterAmbiance.getSelectedSoundId(),
 					PERSIST_SELECTED_AMBIANCE);
 
-			// mediaPlay.play(getActivity(), MyMediaPlayer.ITHACAVOX);
+			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
 			break;
 		case R.id.music5:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -185,8 +186,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 			PersistentUtil.setInt(getActivity(),
 					mAdapterAmbiance.getSelectedSoundId(),
 					PERSIST_SELECTED_AMBIANCE);
-			// mediaPlay.play(getActivity(), MyMediaPlayer.SILENCE);
-			// AdapterSound.
+			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
 			break;
 		case R.id.left_top:
 			// mediaPlay.play(getActivity(), MyMediaPlayer.SILENCE);
@@ -206,7 +206,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 		initLefter(view);
 		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		myMinutes.setText(MyPreference.getInstance(this.getActivity())
-				.readInt(MyPreference.TIME)+"");
+				.readInt(MyPreference.TIME)/60000+MyPreference.MINS);
 		left_top = (ImageView) view.findViewById(R.id.left_top);
 		
 		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
@@ -227,13 +227,15 @@ public class FragMusic extends FragBase implements OnClickListener {
 				super.activityListener.fragGetAmbiance());
 
 		// Ambiance
-		int selectedAmbianceSoundId = PersistentUtil.getInt(getActivity(),
-				PERSIST_SELECTED_AMBIANCE);
+		int selectedAmbianceSoundId = //PersistentUtil.getInt(getActivity(),PERSIST_SELECTED_AMBIANCE);
+		MyPreference.getInstance(getActivity()).readInt(PERSIST_SELECTED_AMBIANCE);
+		
 		if (selectedAmbianceSoundId == -1) {
 			// Default one is Aquatic SunBeam
 			selectedAmbianceSoundId = mAdapterAmbiance.getSecondSoundId();
 			PersistentUtil.setInt(getActivity(), selectedAmbianceSoundId,
 					PERSIST_SELECTED_AMBIANCE);
+			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, selectedAmbianceSoundId);
 		}
 
 		music1.setBackgroundResource(R.drawable.btn_aquatic_music_activated);

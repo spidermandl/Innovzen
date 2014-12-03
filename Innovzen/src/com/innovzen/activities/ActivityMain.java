@@ -1,5 +1,6 @@
 package com.innovzen.activities;
 
+import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.List;
 
 import android.app.Activity;
@@ -178,6 +179,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
                         //零重力
 	        			map.put(BluetoothCommand.ZERO_STATUS,mBluetoothCommand.getValue(BluetoothCommand.ZERO_STATUS));      			 
 	        			((FragAnimationTabletNew)currentFragment).sendMachineMessage(BluetoothCommand.ZERO_STATUS,map);
+
 	        			/**
 	        			 * 动画行位比例
 	        			 */
@@ -211,7 +213,10 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		        		map.put(BluetoothCommand.PULSE_STATUS, mBluetoothCommand.getValue(BluetoothCommand.PULSE_STATUS));
 		        		((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.PULSE_STATUS,map);
 		        	    map.put(BluetoothCommand.INIT_POSITION_STATUS, mBluetoothCommand.getValue(BluetoothCommand.INIT_POSITION_STATUS));
-		        		((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);			        		
+		        		((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.INIT_POSITION_STATUS,map);		
+	        			//breathe力
+	        			map.put(BluetoothCommand.BREATHE_STATUS,mBluetoothCommand.getValue(BluetoothCommand.BREATHE_STATUS));      			 
+	        			((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.BREATHE_STATUS,map);
 		        	}
 		        }
 		        //FragHelpNew
@@ -453,15 +458,16 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         mTimes.holdExhale = PersistentUtil.getInt(this, PERSIST_TIME_HOLD_EXHALE, 0);
         // In case they're all 0, then set the default values for the BEGINNER times
         if (mTimes.inhale == 0 && mTimes.holdInhale == 0 && mTimes.exhale == 0 && mTimes.holdExhale == 0) {
-            mTimes.inhale = FragTimerAdvance.DEFAULT_TIMER_INHALE;
-            mTimes.holdInhale = FragTimerAdvance.DEFAULT_TIMER_HOLD_INHALE;
-            mTimes.exhale = FragTimerAdvance.DEFAULT_TIMER_EXHALE;
-            mTimes.holdExhale = FragTimerAdvance.DEFAULT_TIMER_HOLD_EXHALE;
+            mTimes.inhale = FragTime.DEFAULT_TIMER_INHALE;
+            mTimes.holdInhale = FragTime.DEFAULT_TIMER_HOLD_INHALE;
+            mTimes.exhale = FragTime.DEFAULT_TIMER_EXHALE;
+            mTimes.holdExhale = FragTime.DEFAULT_TIMER_HOLD_EXHALE;
         }
 
         // Get the selected duration for the entire exercise
-       mTimes.exerciseDuration = PersistentUtil.getInt(this, PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
-     ///////5min
+       mTimes.exerciseDuration = //PersistentUtil.getInt(this, PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
+    		   MyPreference.getInstance(this).readInt(MyPreference.TIME);
+        
         /*
          * Get the exercise times and place them in an object
          */
@@ -470,8 +476,11 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         /*
          * Init the exercise time handler
          */
-        int voiceSoundId = PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_VOICE);
-        int ambianceSoundId = PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
+        int voiceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_VOICE);
+    			MyPreference.getInstance(this).readInt(
+    					MyPreference.SELECTED_VOICE);
+        	int ambianceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
+        MyPreference.getInstance(this).readInt(FragMusic.PERSIST_SELECTED_AMBIANCE);
         mExerciseManager = new SyncExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
        
 	}

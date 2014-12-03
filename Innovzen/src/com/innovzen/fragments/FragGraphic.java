@@ -98,7 +98,7 @@ public class FragGraphic extends FragBase implements OnClickListener{
 		
 		
 		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
-		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readInt(MyPreference.TIME)+"");
+		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readInt(MyPreference.TIME)/60000+MyPreference.MINS);
 		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
 		left_mid.setBackgroundResource(R.drawable.banner_graphic);
 		exercise_graphic = (ImageView) view.findViewById(R.id.exercise_graphic);

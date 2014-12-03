@@ -25,6 +25,7 @@ public class MyPreference {
 	// 记录声音上一次的大小
 	public final static String LAST_VOLUME = "last volume";
 	// 记录Voice键状态
+	public final static String SELECTED_VOICE="selected voice";
 	public final static String VOICE = "voice";
 	public final static String MAN_VOICE = "Man voice";
 	public final static String WOMAN_VOICE = "Woman voice";
@@ -85,6 +86,8 @@ public class MyPreference {
 	public final static int ZERO_CLOSE = 0;
 
 	public final static String FIRSTRUN = "firstrun";
+	
+	public final static String MINS= "mins";
 
 	// 提供私有的构造方法
 	private MyPreference() {
