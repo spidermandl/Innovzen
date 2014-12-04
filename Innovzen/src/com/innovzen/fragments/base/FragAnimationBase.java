@@ -247,7 +247,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         mExerciseManager.start();
 
         // Save the data in the databases
-        LocalDbUtil.getHistoryDao(getActivity()).insert(new History(null, System.currentTimeMillis(), mTimes.inhale / 1000, mTimes.holdInhale / 1000, mTimes.exhale / 1000, mTimes.holdExhale / 1000, (long) mTimes.exerciseDuration / 1000));
+        //LocalDbUtil.getHistoryDao(getActivity()).insert(new History(null, System.currentTimeMillis(), mTimes.inhale / 1000, mTimes.holdInhale / 1000, mTimes.exhale / 1000, mTimes.holdExhale / 1000, (long) mTimes.exerciseDuration / 1000));
     }
 
     /**
