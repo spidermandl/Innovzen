@@ -392,7 +392,7 @@ public class SyncExerciseManager extends ExerciseManager {
 	                if(mBluetoothCommand!=null){
 	                           mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
 	                       //  mTimes.exerciseDuration=30*1000;
-	                           
+	                           FragAnimationBase.countDown=0;
 	                         Log.e("关机", "关机！！！！！！！！！！！！！！！！！！！！！！");
 	                }
 				

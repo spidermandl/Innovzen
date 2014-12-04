@@ -1,5 +1,6 @@
 package com.innovzen.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -12,7 +13,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.innovzen.activities.ActivityMain;
 import com.innovzen.bluetooth.BluetoothCommand;
+import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
@@ -59,6 +62,7 @@ public class FragTime extends FragBase implements OnClickListener {
 					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME5_MACHINE_VALUES);
+		
 			break;
 		case R.id.time_10min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -76,6 +80,7 @@ public class FragTime extends FragBase implements OnClickListener {
 					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME10_MACHINE_VALUES);
+			
 			break;
 		case R.id.time_15min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -93,6 +98,7 @@ public class FragTime extends FragBase implements OnClickListener {
 					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME15_MACHINE_VALUES);
+			
 			break;
 		case R.id.time_20min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -110,6 +116,7 @@ public class FragTime extends FragBase implements OnClickListener {
 					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME20_MACHINE_VALUES);
+			
 			break;
 		case R.id.time_25min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -126,6 +133,7 @@ public class FragTime extends FragBase implements OnClickListener {
 					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME25_MACHINE_VALUES);
+			
 			break;
 		case R.id.time_30min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -141,7 +149,7 @@ public class FragTime extends FragBase implements OnClickListener {
 					MyPreference.TIME, 30 * 60 * 1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity())
 					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
-
+			 
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 			break;

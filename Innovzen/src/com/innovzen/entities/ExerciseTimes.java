@@ -56,6 +56,7 @@ public class ExerciseTimes {
         this.holdInhale = holdInhale;
         this.exhale = exhale;
         this.holdExhale = holdExhale;
+        
         this.exerciseDuration = exerciseDuration;
     }
 

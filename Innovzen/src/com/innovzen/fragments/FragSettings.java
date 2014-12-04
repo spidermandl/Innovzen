@@ -199,10 +199,11 @@ public class FragSettings extends FragBase implements OnClickListener{
 			}	
 			break;
 		case BluetoothCommand.BLUETOOTH_STATUS:
-			if(map.get(BluetoothCommand.BLUETOOTH_STATUS)==BluetoothCommand.BLUETOOTH_STATUS_OFF){
-				bluetooth.setBackgroundResource(R.drawable.selector_icon_bluetooth);
+			if(map.get(BluetoothCommand.BLUETOOTH_STATUS)==BluetoothCommand.BLUETOOTH_STATUS_ON){
+				bluetooth.setBackgroundResource(R.drawable.btn_bluetooth_activated);				
+				
 			}else{
-				bluetooth.setBackgroundResource(R.drawable.btn_bluetooth_activated);
+				bluetooth.setBackgroundResource(R.drawable.selector_icon_bluetooth);
 			}	
 			break;
 		case BluetoothCommand.PULSE_STATUS:

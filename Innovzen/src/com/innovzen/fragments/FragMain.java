@@ -53,9 +53,10 @@ public class FragMain extends FragBase implements OnClickListener {
 					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
 			MyPreference.getInstance(this.getActivity()).writeInt(
 					MyPreference.TIME, 5*60*1000);
+			//System.out.println(""+);
 			MyPreference.getInstance(this.getActivity()).writeString(
 					MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.BLANCE);
-			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
+			
 			super.activityListener.fragGoToAnimation(true);
 
 			break;
@@ -73,7 +74,8 @@ public class FragMain extends FragBase implements OnClickListener {
 					MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.RELAX);
 			MyPreference.getInstance(this.getActivity()).writeInt(
 					MyPreference.TIME, 10*60*1000);
-			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
+			
+		
 			super.activityListener.fragGoToAnimation(true);
 
 			break;
@@ -92,7 +94,8 @@ public class FragMain extends FragBase implements OnClickListener {
 					MyPreference.PERFORMANCE);
 			MyPreference.getInstance(this.getActivity()).writeInt(
 					MyPreference.TIME, 15*60*1000);
-			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
+			((ActivityMain)getActivity()).inittime();
+			
 			super.activityListener.fragGoToAnimation(true);
 
 			break;
