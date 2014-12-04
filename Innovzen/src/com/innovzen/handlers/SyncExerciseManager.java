@@ -7,10 +7,8 @@ import android.util.Log;
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.entities.SoundItem;
-import com.innovzen.fragments.FragSoundPicker;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.interfaces.FragmentCommunicator;
-import com.innovzen.utils.PersistentUtil;
 
 /**
  * 
@@ -35,8 +33,8 @@ public class SyncExerciseManager extends ExerciseManager {
 	/**
 	 * 校验相位和方向
 	 */
-	private PositionCheckRunnable exhaleHoldRunnable = new PositionCheckRunnable(
-			EXERCISE_HOLD_EXHALE),// 呼气屏住等待逻辑
+	private PositionCheckRunnable 
+			exhaleHoldRunnable = new PositionCheckRunnable(EXERCISE_HOLD_EXHALE),// 呼气屏住等待逻辑
 			inhaleExerciseRunnable = new PositionCheckRunnable(EXERCISE_INHALE),// 吸气等待逻辑
 			inhaleHoldRunnable = new PositionCheckRunnable(EXERCISE_HOLD_INHALE),// 吸气屏住等待逻辑
 			exhaleExerciseRunnable = new PositionCheckRunnable(EXERCISE_EXHALE);// 呼气等待逻辑

@@ -64,8 +64,8 @@ public class FragSettings extends FragBase implements OnClickListener{
 		}else{
 			heat.setBackgroundResource(R.drawable.selector_icon_heat);
 		}
-		int Bluetooth = MyPreference.getInstance(getActivity()).readInt(MyPreference.BLUETOOTH);
-		if(Bluetooth==MyPreference.BLUETOOTH_OPEN){
+		
+		if(((ActivityMain)getActivity()).isBlueToothSetup()){
 			bluetooth.setBackgroundResource(R.drawable.btn_bluetooth_activated);
 		}else{
 			bluetooth.setBackgroundResource(R.drawable.selector_icon_bluetooth);
