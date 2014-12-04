@@ -7,10 +7,8 @@ import android.util.Log;
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.entities.SoundItem;
-import com.innovzen.fragments.FragSoundPicker;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.interfaces.FragmentCommunicator;
-import com.innovzen.utils.PersistentUtil;
 
 /**
  * 
@@ -35,8 +33,8 @@ public class SyncExerciseManager extends ExerciseManager {
 	/**
 	 * 校验相位和方向
 	 */
-	private PositionCheckRunnable exhaleHoldRunnable = new PositionCheckRunnable(
-			EXERCISE_HOLD_EXHALE),// 呼气屏住等待逻辑
+	private PositionCheckRunnable 
+			exhaleHoldRunnable = new PositionCheckRunnable(EXERCISE_HOLD_EXHALE),// 呼气屏住等待逻辑
 			inhaleExerciseRunnable = new PositionCheckRunnable(EXERCISE_INHALE),// 吸气等待逻辑
 			inhaleHoldRunnable = new PositionCheckRunnable(EXERCISE_HOLD_INHALE),// 吸气屏住等待逻辑
 			exhaleExerciseRunnable = new PositionCheckRunnable(EXERCISE_EXHALE);// 呼气等待逻辑
@@ -57,28 +55,24 @@ public class SyncExerciseManager extends ExerciseManager {
 			long subtime;
 			switch (mCurExercise) {
 			case EXERCISE_INHALE:
-				subtime = BluetoothCommand.getInstance() == null ? 0 : (System
-						.currentTimeMillis() - inhaleTimeEnd);
+				subtime = BluetoothCommand.getInstance() == null ? 0 : (System.currentTimeMillis() - inhaleTimeEnd);
 				if (subtime != 0 && subtime < mTimes.inhale + DELTA_TIME) {
 					// log.e("inhale 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
 					// log.e("inhale 没等到", subtime+"");
-					boolean shutOff = BluetoothCommand.getInstance() == null ? false
-							: (BluetoothCommand.getInstance().getValue(
-									BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT ? true
-									: false);
+					boolean shutOff = 
+							BluetoothCommand.getInstance() == null ? false: 
+								(BluetoothCommand.getInstance().getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT ? true: false);
 
 					if (!shutOff)
-						waitHandler.postDelayed(waitRunnable,
-								BluetoothCommand.DELAY_TIME);
+						waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
 					else
 						waitHandler.setWaiting(false);
 				}
 				break;
 			case EXERCISE_HOLD_INHALE:
-				subtime = BluetoothCommand.getInstance() == null ? 0 : (System
-						.currentTimeMillis() - exhaleTimeStart);
+				subtime = BluetoothCommand.getInstance() == null ? 0 : (System.currentTimeMillis() - exhaleTimeStart);
 				if (subtime != 0 && subtime < mTimes.holdInhale) {
 					// log.e("EXERCISE_HOLD_INHALE 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
