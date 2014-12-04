@@ -595,5 +595,11 @@ public class SyncExerciseManager extends ExerciseManager {
 			}
 		}
 	}
+	
+	@Override
+	protected void playSounds(int soundType, int curStepDuration) {
+		mPlayedSounds=false;
+		super.playSounds(soundType, curStepDuration);
+	}
 
 }
