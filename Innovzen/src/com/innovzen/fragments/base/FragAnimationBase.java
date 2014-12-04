@@ -55,7 +55,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
     private static final int COUNTDOWN_DELAY = 1000; // 1 sec
 
     /** The minimum time (in miliseconds) for the duration of an exercise */
-    public static final int MIN_TIME_EXERCISE_DURATION = 5 * 60 * 1000; // 5min
+    public static final int MIN_TIME_EXERCISE_DURATION = 6 * 60 * 1000; // 5min
 
     /** Hold the types of possible text values displayed at the top of the screen */
     // beginning

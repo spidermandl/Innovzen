@@ -217,6 +217,14 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	        			//breathe力
 	        			map.put(BluetoothCommand.BREATHE_STATUS,mBluetoothCommand.getValue(BluetoothCommand.BREATHE_STATUS));      			 
 	        			((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.BREATHE_STATUS,map);
+		        	   if(isBlueToothConnected()){
+		        		   map.put(BluetoothCommand.BLUETOOTH_STATUS, BluetoothCommand.BLUETOOTH_STATUS_ON);
+		        		   ((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.BREATHE_STATUS,map);
+		        	   }else{
+		        		   map.put(BluetoothCommand.BLUETOOTH_STATUS, BluetoothCommand.BLUETOOTH_STATUS_OFF);
+		        		   ((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.BREATHE_STATUS,map);
+		        	   }
+		        	
 		        	}
 		        }
 		        //FragHelpNew
@@ -433,6 +441,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		if (mBluetoothService.getState() != BluetoothService.STATE_CONNECTED) {
 			return false;
 		}
+		
+		
 		return true;
 	}
 
@@ -448,7 +458,11 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	/**
 	 * 初始化动画manager
 	 */
-	private void initExerciseManager(){
+	public void inittime(){
+		mTimes.exerciseDuration = //PersistentUtil.getInt(this, PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
+	    		   MyPreference.getInstance(this).readInt(MyPreference.TIME);
+	}
+	public void initExerciseManager(){
 		// Get the times for the 4 steps of an exercise
 		//mTimes.exerciseDuration=50*1000;
 		////
@@ -467,7 +481,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         // Get the selected duration for the entire exercise
        mTimes.exerciseDuration = //PersistentUtil.getInt(this, PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
     		   MyPreference.getInstance(this).readInt(MyPreference.TIME);
-        
+       System.out.println(mTimes.exerciseDuration);
         /*
          * Get the exercise times and place them in an object
          */
