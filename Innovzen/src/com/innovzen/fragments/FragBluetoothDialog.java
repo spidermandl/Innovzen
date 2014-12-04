@@ -41,7 +41,6 @@ public class FragBluetoothDialog extends DialogFragment {
 	 * 设备信息
 	 */
 	private ArrayAdapter<String> mPairedDevicesArrayAdapter;
-	private ArrayAdapter<String> mNewDevicesArrayAdapter;
 
 	/* 【步骤1】：通过newInstance()创建实例并返回* */
 	public static FragBluetoothDialog newInstance(String title, String message) {

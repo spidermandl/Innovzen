@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.innovzen.bluetooth.BluetoothCommand;
-import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.interfaces.FragmentOnBackPressInterface;
 import com.innovzen.utils.CustomClickListener.OnCustomClickListener;
