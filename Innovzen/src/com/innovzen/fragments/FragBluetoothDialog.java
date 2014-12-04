@@ -56,10 +56,22 @@ public class FragBluetoothDialog extends DialogFragment {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+
 		super.onCreate(savedInstanceState);
 	}
 
+	@Override
+	public void onStart() {
+		// Register for broadcasts when a device is discovered
+		IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+		this.getActivity().registerReceiver(mReceiver, filter);
+
+		// Register for broadcasts when discovery has finished
+		filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+		this.getActivity().registerReceiver(mReceiver, filter);
+		super.onStart();
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -81,13 +93,6 @@ public class FragBluetoothDialog extends DialogFragment {
 		// newDevicesListView.setAdapter(mNewDevicesArrayAdapter);
 		// newDevicesListView.setOnItemClickListener(mDeviceClickListener);
 
-		// Register for broadcasts when a device is discovered
-		IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-		this.getActivity().registerReceiver(mReceiver, filter);
-
-		// Register for broadcasts when discovery has finished
-		filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
-		this.getActivity().registerReceiver(mReceiver, filter);
 
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		Set<BluetoothDevice> pairedDevices = mBluetoothAdapter
@@ -175,7 +180,11 @@ public class FragBluetoothDialog extends DialogFragment {
 
 	@Override
 	public void onStop() {
-		this.getActivity().unregisterReceiver(mReceiver);
+		try {
+			this.getActivity().unregisterReceiver(mReceiver);
+		} catch (IllegalArgumentException e) {
+			
+		}
 		super.onStop();
 	}
 
