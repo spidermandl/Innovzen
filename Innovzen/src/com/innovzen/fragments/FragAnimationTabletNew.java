@@ -195,11 +195,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		// 开始
 		case R.id.main_animation_start:
 			
-			//重置时间
-			//((ActivityMain)getActivity()).inittime();
-			
-			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
-			mTimes.exerciseDuration=MyPreference.getInstance(getActivity()).readInt(MyPreference.TIME);
 			if(!((ActivityMain)getActivity()).isBlueToothConnected()){//如果蓝牙没有连接
 				Toast.makeText(getActivity(), "Please setup bluetooth connection through setting panel", 1000).show();
 				break;
@@ -211,7 +206,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					!mBluetoothCheck.isReseted(true)){*/
 			
 			if(mBluetoothCheck!=null&&mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
-				((ActivityMain)getActivity()).initExerciseManager();
+				super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 				super.stopExercise();
 				//如果机器没有复位并且不是在关闭的状态				
 				String blance_relax_performance = 

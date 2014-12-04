@@ -5,6 +5,7 @@ import adapters.AdapterSound;
 import android.animation.ValueAnimator;
 import android.util.Log;
 
+import com.innovzen.application.InnovzenApplication;
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.entities.SoundItem;
@@ -295,6 +296,8 @@ public class ExerciseManager {
         mPlayedSounds = false;
         
         playCount = 0;
+        
+        mTimes.initTime(InnovzenApplication.getInstance());
     }
 
     /**
