@@ -49,7 +49,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
 	 * Desmond
 	 * 播放次数累计,判断321 是否显示
 	 */
-	protected int countDown=0;
+	public static int countDown=0;
 
     /** The delay between each value of the countdown */ 
     private static final int COUNTDOWN_DELAY = 1000; // 1 sec
@@ -563,6 +563,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         // Stop everything related to the exercise animation
         mExerciseManager.stopAllThreads();
         mExerciseManager.reset(false);
+        countDown=0;
     }
     /**
      * Makes the play button overlay visible

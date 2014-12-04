@@ -150,12 +150,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		return true;
 	}
 	
-	@Override
-	public void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-		((ActivityMain)getActivity()).inittime();
-	}
 
 	@Override
 	public void onClick(View v) {
@@ -190,7 +184,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
         	  super.stopExercise();
 			  super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 			  mBluetoothCheck.initlize();
-			  countDown=0;
+			  
 			  /*//初始化  动画时间			只能在第一次点关闭按钮后更改 第二次没效果走上一次的时间 直到结束
 			  ExerciseTimes mtimes = mExerciseManager.getExerciseTimes();
 			  mtimes.exerciseDuration = MyPreference.getInstance(getActivity()).readInt(MyPreference.TIME);*/
@@ -203,6 +197,11 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		// 开始
 		case R.id.main_animation_start:
 			
+			//重置时间
+			//((ActivityMain)getActivity()).inittime();
+			
+			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
+			mTimes.exerciseDuration=MyPreference.getInstance(getActivity()).readInt(MyPreference.TIME);
 			if(!((ActivityMain)getActivity()).isBlueToothConnected()){//如果蓝牙没有连接
 				Toast.makeText(getActivity(), "Please setup bluetooth connection through setting panel", 1000).show();
 				break;
@@ -214,8 +213,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					!mBluetoothCheck.isReseted(true)){*/
 			
 			if(mBluetoothCheck!=null&&mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
-				//重置时间
-				((ActivityMain)getActivity()).inittime();
+				((ActivityMain)getActivity()).initExerciseManager();
+				super.stopExercise();
 				//如果机器没有复位并且不是在关闭的状态				
 				String blance_relax_performance = 
 						MyPreference.getInstance(getActivity()).readString(MyPreference.BLANCE_RELAX_PERFORMANCE);
