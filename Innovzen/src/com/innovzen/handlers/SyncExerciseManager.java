@@ -346,7 +346,7 @@ public class SyncExerciseManager extends ExerciseManager {
 		setAmbianceVolume(fraction);
 
 		// Render animation frame
-		if (!isSoundOnly)
+		if (!isSoundOnly&&mAnimationHandler!=null)
 			mAnimationHandler.inhale(fraction, globalFraction);
 
 		// If step animation ended
@@ -377,7 +377,7 @@ public class SyncExerciseManager extends ExerciseManager {
 		setAmbianceVolume(fraction);
 
 		// Render animation frame
-		if (!isSoundOnly)
+		if (!isSoundOnly&&mAnimationHandler!=null)
 			mAnimationHandler.exhale(fraction, globalFraction);
 
 		// If step animation ended
@@ -388,13 +388,15 @@ public class SyncExerciseManager extends ExerciseManager {
 
 				reset(true);
 
-				 BluetoothCommand mBluetoothCommand =BluetoothCommand.getInstance();
-	                if(mBluetoothCommand!=null){
-	                           mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
-	                       //  mTimes.exerciseDuration=30*1000;
-	                           FragAnimationBase.countDown=0;
-	                         Log.e("关机", "关机！！！！！！！！！！！！！！！！！！！！！！");
-	                }
+				BluetoothCommand mBluetoothCommand =BluetoothCommand.getInstance();
+                if(mBluetoothCommand!=null){
+                         mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
+                       //  mTimes.exerciseDuration=30*1000;
+                         if(mFragAnimation!=null){
+                        	 mFragAnimation.stopExercise();
+                         }
+                         Log.e("关机", "关机！！！！！！！！！！！！！！！！！！！！！！");
+                }
 				
 				return;
 			}
@@ -427,7 +429,7 @@ public class SyncExerciseManager extends ExerciseManager {
 		}
 
 		// Render animation frame
-		if (!isSoundOnly)
+		if (!isSoundOnly&&mAnimationHandler!=null)
 			mAnimationHandler.holdInhale(fraction, globalFraction);
 
 		// If step animation ended
@@ -456,7 +458,7 @@ public class SyncExerciseManager extends ExerciseManager {
 		}
 
 		// Render animation frame
-		if (!isSoundOnly)
+		if (!isSoundOnly&&mAnimationHandler!=null)
 			mAnimationHandler.holdExhale(fraction, globalFraction);
 
 		// If step animation ended
@@ -474,6 +476,12 @@ public class SyncExerciseManager extends ExerciseManager {
 		}
 	}
 
+	@Override
+	protected void playSounds(int soundType, int curStepDuration) {
+		mPlayedSounds=false;
+		super.playSounds(soundType, curStepDuration);
+	}
+	
 	/**
 	 * 相位限等待逻辑
 	 * 
@@ -594,12 +602,6 @@ public class SyncExerciseManager extends ExerciseManager {
 				break;
 			}
 		}
-	}
-	
-	@Override
-	protected void playSounds(int soundType, int curStepDuration) {
-		mPlayedSounds=false;
-		super.playSounds(soundType, curStepDuration);
 	}
 
 }

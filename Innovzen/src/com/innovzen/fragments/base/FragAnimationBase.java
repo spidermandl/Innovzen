@@ -45,12 +45,6 @@ import com.innovzen.utils.PersistentUtil;
 public class FragAnimationBase extends FragBase implements FragmentOnBackPressInterface {
 	
 
-	/**
-	 * Desmond
-	 * 播放次数累计,判断321 是否显示
-	 */
-	public static int countDown=0;
-
     /** The delay between each value of the countdown */ 
     private static final int COUNTDOWN_DELAY = 1000; // 1 sec
 
@@ -475,7 +469,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         	
             // Set the new value of the countdown
         	//chy
-        	if(countDown>0){
+        	if(mExerciseManager.getPlayCount()>0){
         	   countdown_tv.setVisibility(View.INVISIBLE);
         	}else{
       		  countdown_tv.setVisibility(View.VISIBLE);
@@ -497,7 +491,6 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
                     	 * Desmond
                     	 */
                         startExercise();
-                        countDown++;
                     	//</Desmond>
 
                     } else {
@@ -547,7 +540,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
      * 
      * @author MAB
      */
-    protected void stopExercise() {
+    public void stopExercise() {
         
     	isAnimationRunning=false;
     	
@@ -563,7 +556,6 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         // Stop everything related to the exercise animation
         mExerciseManager.stopAllThreads();
         mExerciseManager.reset(false);
-        countDown=0;
     }
     /**
      * Makes the play button overlay visible
