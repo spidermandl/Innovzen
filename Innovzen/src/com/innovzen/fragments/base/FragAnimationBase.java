@@ -14,17 +14,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.innovzen.activities.ActivityMain;
-import com.innovzen.bluetooth.check.ResetCheck;
-import com.innovzen.db.History;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.FragAnimationPicker;
 import com.innovzen.fragments.FragMusic;
-import com.innovzen.fragments.FragSoundPicker;
 import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.handlers.ExerciseManager;
 import com.innovzen.handlers.FooterHandler;
 import com.innovzen.interfaces.FragmentOnBackPressInterface;
-import com.innovzen.utils.LocalDbUtil;
 import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
 

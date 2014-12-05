@@ -218,7 +218,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
 
-			super.pauseExercise();
+			//super.pauseExercise();
 			break;
 		case R.id.main_animation_breathe_up:
 			super.activityListener
