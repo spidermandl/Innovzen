@@ -359,5 +359,8 @@ public class AnimationPetals extends ExerciseAnimationBase {
 		params.setMargins(0, topMargin, 0, 0);
 		petals_container.setLayoutParams(params);
 	}
-
+	@Override
+	public CircularSeekBarHandler getTimeHandler() {
+		return mTimerHandler;
+	}
 }

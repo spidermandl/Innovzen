@@ -111,9 +111,10 @@ public abstract class FragBase extends Fragment {
 		//seekBar.setProgress(maxVolume/2);
 		if(lastVolumeValue==-1){
 			seekBar.setProgress(maxVolume/2);
-		}else{
-			seekBar.setProgress(lastVolumeValue);
 		}
+		/*else{
+			seekBar.setProgress(lastVolumeValue);
+		}*/
 		
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			
@@ -188,6 +189,9 @@ public abstract class FragBase extends Fragment {
 				
 			}
 		});
+		  
+		seekBar = (VerticalSeekBar) view.findViewById(R.id.mySeekBar);
+		seekBar.setProgress(MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME));
 	}
 
 	@Override

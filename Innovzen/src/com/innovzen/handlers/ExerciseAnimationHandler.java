@@ -34,7 +34,9 @@ public class ExerciseAnimationHandler {
 
     // Hold the state of the animation (if it's in fullscreen mode or not)
     private boolean mIsFullscreen = false;
-
+    public AnimationGradient getCurAnimation(){
+    	return (AnimationGradient) mCurAnimation;
+    }
     /**
      * 
      * @param animationContainer

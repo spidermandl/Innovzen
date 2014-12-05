@@ -13,6 +13,7 @@ import com.innovzen.bluetooth.check.ResetCheck;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
+import com.innovzen.ui.VerticalSeekBar;
 import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
 
@@ -114,6 +115,9 @@ public class FragMain extends FragBase implements OnClickListener {
 
 	@Override
 	public void init(View view) {
+		VerticalSeekBar  seekbar = (VerticalSeekBar) view.findViewById(R.id.mySeekBar);
+		seekbar.setProgress(MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME));
+		
 		myMintues = (TextView) view.findViewById(R.id.myMinutes);
 
 		view.findViewById(R.id.menu_balance).setOnClickListener(this);

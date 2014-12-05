@@ -20,6 +20,7 @@ import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.FragAnimationPicker;
 import com.innovzen.fragments.FragMusic;
 import com.innovzen.fragments.FragSoundPicker;
+import com.innovzen.fragments.FragTimer;
 import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.handlers.ExerciseManager;
 import com.innovzen.handlers.FooterHandler;
@@ -400,6 +401,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
 	      */
 	    // Instantiate an animation handler
         animationHandler = new ExerciseAnimationHandler(getActivity(), animation_parent_container, mSelectedExerciseAnimationType);
+        animationHandler.getCurAnimation().getTimeHandler().setProgressMillis(FragTimer.DEFAULT_TIMER_MIN, FragTimer.DEFAULT_TIMER_MAX, mTimes.exerciseDuration);
         mExerciseManager.reinitUI(this, animationHandler);
         mTimes=mExerciseManager.getExerciseTimes();
         animationHandler.configure(mTimes);

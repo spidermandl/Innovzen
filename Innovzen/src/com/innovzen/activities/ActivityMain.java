@@ -613,8 +613,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				FragAnimationPicker.PERSIST_SELECTED_EXERCISE_ANIMATION);
 
 		// // Refresh the backstack
+		////////////////////////////////////////////////
 		super.clearFragFromBackstack(FRAG_TAG_ANIMATION);
-
+		
+		
+       // mExerciseManager.playCountAdd();
+    
 		// Set the bundle
 		Bundle bundle = new Bundle();
 		bundle.putInt(FragAnimationBase.KEY_ANIMATION_TYPE, animationType);
@@ -881,6 +885,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragCloseBluetooth() {
 		mBluetoothService.stop();
+		
+	}
+
+	@Override
+	public void fragGoToMain(boolean addToBackstack) {
+		navigateTo(FragMain.class, null, addToBackstack);
 		
 	}
 

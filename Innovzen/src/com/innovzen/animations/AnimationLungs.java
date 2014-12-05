@@ -378,4 +378,8 @@ public class AnimationLungs extends ExerciseAnimationBase {
         params.height = (int) (params.width * 0.909090f);
         lungs_and_bubbles_container.setLayoutParams(params);
     }
+    @Override
+	public CircularSeekBarHandler getTimeHandler() {
+		return mTimerHandler;
+	}
 }

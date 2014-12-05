@@ -16,11 +16,17 @@ import android.widget.TextView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.innovzen.activities.ActivityBase;
 import com.innovzen.activities.ActivityMain;
+import com.innovzen.animations.AnimationGradient;
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.bluetooth.check.ResetCheck;
+import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
+import com.innovzen.handlers.CircularSeekBarHandler;
+import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.o2chair.R;
+import com.innovzen.ui.VerticalSeekBar;
 import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.Util;
 
@@ -33,9 +39,12 @@ import com.innovzen.utils.Util;
 public class FragAnimationTabletNew extends FragAnimationBase implements
 		OnClickListener {
 	
+    /** Hold the handler for the timer */
+    private CircularSeekBarHandler mTimerHandler;
+    protected ViewGroup layout;
 	// Hold view references
 	private View mView;
-
+    
 	/**
 	 * Hold this state so we'll know when we come back from fullscreen to either
 	 * set it to invisible or visibles
@@ -114,7 +123,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_animation_new,
 				container, false);
-
+ 
 		super.onView(view);
 		initialize(view);
 		initLefter(view);
@@ -236,7 +245,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			/**
 			 * 实现移入onBackPress()方法
 			 */
-			getActivity().onBackPressed();
+			super.activityListener.fragGoToMain(true);
+			((ActivityBase)getActivity()).clearFragFromBackstack(ActivityMain.FRAG_TAG_ANIMATION);
 			break;
 		}
 	}
@@ -246,7 +256,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * 
 	 * @author MAB
 	 */
-	private void initialize(View view) {
+	private void initialize(View view) {	 
+		
+		
 		mBluetoothCheck=((ActivityMain)getActivity()).getResetCheck();
 		mBluetoothCheck.setTrigger(false);
 		mBluetoothCheck.setUiHandler(this);
@@ -511,5 +523,8 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		return true;
 		
 	}*/
-
+	
+	  private void setTimesOnFooterTimers(ExerciseTimes times) {
+		  
+	  }
 }

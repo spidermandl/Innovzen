@@ -391,4 +391,10 @@ public class AnimationGradient extends ExerciseAnimationBase {
         params.setMargins(left, top, 0, 0);
         gradient.setLayoutParams(params);
     }
+
+	@Override
+	public CircularSeekBarHandler getTimeHandler() {
+		return mTimerHandler;
+	}
+    
 }

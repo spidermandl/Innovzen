@@ -7,7 +7,7 @@ import com.innovzen.entities.SoundGroup;
 
 public interface FragmentCommunicator {
   //<chy>fragGoToLanguage
-
+    public void fragGoToMain(boolean addToBackstack);
 	public void fragGoToSession(boolean addToBackstack);
 	public void fragGoToHelpNew(boolean addToBackstack);
 	public void fragGoToHistoryNew(boolean addToBackstack);
