@@ -21,8 +21,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         layout:orientation="true"
-        layout:rate_down="13"
-        layout:rate_up="3" />
+        layout:rate_down="156"
+        layout:rate_up="36" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/main_mea_vertical_2"
@@ -31,8 +31,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/main_mea_vertical_1"
         layout:orientation="true"
-        layout:rate_down="13"
-        layout:rate_up="8" />
+        layout:rate_down="156"
+        layout:rate_up="95" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/main_mea_vertical_3"
@@ -41,8 +41,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/main_mea_vertical_2"
         layout:orientation="true"
-        layout:rate_down="13"
-        layout:rate_up="2" />
+        layout:rate_down="156"
+        layout:rate_up="25" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/main_mea_horizontal_1"
@@ -85,7 +85,7 @@
         android:layout_alignRight="@id/main_mea_horizontal_1"
         android:layout_alignTop="@id/main_mea_vertical_1"
         android:background="#000000"
-        android:padding="@dimen/grid_half_gap" >
+        >
 
         <include
             android:layout_width="wrap_content"
@@ -103,15 +103,16 @@
         android:layout_alignRight="@id/main_mea_horizontal_2"
         android:layout_alignTop="@id/main_mea_vertical_1"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:weightSum="3" >
 
         <ImageView
             android:id="@+id/main_animation_stop"
             android:layout_width="0dip"
-            android:layout_height="match_parent"
+            android:layout_height="180dp"
             android:layout_weight="1"
             android:background="@drawable/selector_btn_home"
-            android:padding="@dimen/grid_half_gap" >
+            android:padding="20dp" >
         </ImageView>
 
         <ImageView
@@ -144,6 +145,7 @@
         android:layout_alignLeft="@id/main_mea_horizontal_2"
         android:layout_alignRight="@id/main_mea_horizontal_2"
         android:layout_alignTop="@id/main_mea_vertical_2"
+        android:padding="@dimen/grid_gap"
         layout="@layout/animation_core" />
 
     <!-- 中下框架 -->

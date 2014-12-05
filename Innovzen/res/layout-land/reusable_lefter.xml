@@ -16,8 +16,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         layout:orientation="true"
-        layout:rate_down="13"
-        layout:rate_up="3" />
+        layout:rate_down="156"
+        layout:rate_up="35" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/left_mea_vertical_2"
@@ -26,8 +26,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/left_mea_vertical_1"
         layout:orientation="true"
-        layout:rate_down="13"
-        layout:rate_up="8" />
+        layout:rate_down="156"
+        layout:rate_up="96" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/left_mea_vertical_3"
@@ -36,8 +36,8 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/left_mea_vertical_2"
         layout:orientation="true"
-        layout:rate_down="13"
-        layout:rate_up="2" />
+        layout:rate_down="156"
+        layout:rate_up="25" />
 
     <ImageView
         android:id="@+id/left_top"
@@ -58,7 +58,7 @@
         android:layout_alignTop="@id/left_mea_vertical_2"
         android:background="@drawable/banner_balance"
         android:gravity="center"
-        android:padding="@dimen/grid_half_gap" >
+         >
 
         <TextView
             android:id="@+id/myMinutes"
@@ -79,7 +79,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@id/left_mea_vertical_3"
         android:background="@drawable/selector_btn_volume"
-        android:padding="@dimen/grid_half_gap" />
+         />
 
     <RelativeLayout
         android:id="@+id/voice_progressbar"
