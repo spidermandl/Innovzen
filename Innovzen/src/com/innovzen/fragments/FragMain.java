@@ -9,7 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.innovzen.activities.ActivityMain;
-import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.bluetooth.check.ResetCheck;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
@@ -56,7 +55,6 @@ public class FragMain extends FragBase implements OnClickListener {
 			//System.out.println(""+);
 			MyPreference.getInstance(this.getActivity()).writeString(
 					MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.BLANCE);
-			
 			super.activityListener.fragGoToAnimation(true);
 
 			break;
@@ -75,7 +73,6 @@ public class FragMain extends FragBase implements OnClickListener {
 			MyPreference.getInstance(this.getActivity()).writeInt(
 					MyPreference.TIME, 10*60*1000);
 			
-		
 			super.activityListener.fragGoToAnimation(true);
 
 			break;
@@ -94,7 +91,6 @@ public class FragMain extends FragBase implements OnClickListener {
 					MyPreference.PERFORMANCE);
 			MyPreference.getInstance(this.getActivity()).writeInt(
 					MyPreference.TIME, 15*60*1000);
-			((ActivityMain)getActivity()).inittime();
 			
 			super.activityListener.fragGoToAnimation(true);
 

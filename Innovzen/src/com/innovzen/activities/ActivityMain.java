@@ -1,6 +1,5 @@
 package com.innovzen.activities;
 
-import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.List;
 
 import android.app.Activity;
@@ -39,7 +38,6 @@ import com.innovzen.fragments.FragMainMenu;
 import com.innovzen.fragments.FragMusic;
 import com.innovzen.fragments.FragSession;
 import com.innovzen.fragments.FragSettings;
-import com.innovzen.fragments.FragSoundPicker;
 import com.innovzen.fragments.FragTime;
 import com.innovzen.fragments.FragTimer;
 import com.innovzen.fragments.FragTimerAdvance;
@@ -118,9 +116,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	
     /** Hold the inhale, hold_inhale, exhale, hold_exhale values for the animation. Values in miliseconds. */
     protected ExerciseTimes mTimes = new ExerciseTimes();
-	public  ExerciseTimes getttime(){
-		return mTimes;
-	}
+
 	// The Handler that gets information back from the BluetoothChatService
 	private final Handler bluetoothHandler = new Handler() {
 		@Override
@@ -457,13 +453,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		mBluetoothService = new BluetoothService(this, bluetoothHandler);
 		mBluetoothCommand = new BluetoothCommand(this,mBluetoothService);
 	}
-	/**
-	 * ≥ı ºªØ∂Øª≠manager
-	 */
-	public void inittime(){
-		mTimes.exerciseDuration = //PersistentUtil.getInt(this, PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
-	    		   MyPreference.getInstance(this).readInt(MyPreference.TIME);
-	}
+
 	public void initExerciseManager(){
 		// Get the times for the 4 steps of an exercise
 		//mTimes.exerciseDuration=50*1000;
@@ -483,7 +473,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 
         // Get the selected duration for the entire exercise
       //PersistentUtil.getInt(this, PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
-        mTimes.exerciseDuration = MyPreference.getInstance(this).readInt(MyPreference.TIME);
+       mTimes.initTime(this);
        System.out.println(mTimes.exerciseDuration);
         /*
          * Get the exercise times and place them in an object

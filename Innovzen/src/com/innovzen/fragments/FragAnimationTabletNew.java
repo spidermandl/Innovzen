@@ -18,9 +18,7 @@ import android.widget.Toast;
 
 import com.innovzen.activities.ActivityMain;
 import com.innovzen.bluetooth.BluetoothCommand;
-import com.innovzen.bluetooth.check.BluetoothCheck;
 import com.innovzen.bluetooth.check.ResetCheck;
-import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.o2chair.R;
 import com.innovzen.utils.MyPreference;
@@ -37,7 +35,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	
 	// Hold view references
 	private View mView;
-    //private boolean initTime=false;
 
 	/**
 	 * Hold this state so we'll know when we come back from fullscreen to either
@@ -85,7 +82,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			{    
 				pause.setBackgroundResource(R.drawable.selector_btn_pause);
 			} else {
-				endAnimationPressed();
 				pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
 			}
 			break;
@@ -136,14 +132,12 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	public boolean onBackPress() {
 		if (mBluetoothCheck.closeOrNot() == ResetCheck.WAITTING) {
 			mBluetoothCheck.initlize();
-			countDown=0;
 			super.stopExercise();
 			return false;
 		}
 		if (mBluetoothCheck.isReseted(false) && isAnimationRunning) {
 			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 			mBluetoothCheck.initlize();
-			countDown=0;
 			super.stopExercise();
 			return false;
 		}
@@ -183,11 +177,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
           if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){
         	  super.stopExercise();
 			  super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
-			  mBluetoothCheck.initlize();
-			  
-			  /*//初始化  动画时间			只能在第一次点关闭按钮后更改 第二次没效果走上一次的时间 直到结束
-			  ExerciseTimes mtimes = mExerciseManager.getExerciseTimes();
-			  mtimes.exerciseDuration = MyPreference.getInstance(getActivity()).readInt(MyPreference.TIME);*/
+			  mBluetoothCheck.initlize(); 
           }
 			/**
 		     * 关闭程序
@@ -197,25 +187,15 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		// 开始
 		case R.id.main_animation_start:
 			
-			//重置时间
-			//((ActivityMain)getActivity()).inittime();
-			
-			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
-			mTimes.exerciseDuration=MyPreference.getInstance(getActivity()).readInt(MyPreference.TIME);
 			if(!((ActivityMain)getActivity()).isBlueToothConnected()){//如果蓝牙没有连接
 				Toast.makeText(getActivity(), "Please setup bluetooth connection through setting panel", 1000).show();
 				break;
 			}
 			
-			//overlayBtnPressed();
-			/*if(mBluetoothCheck.startOrStop(true)!=ResetCheck.RESETED_UP
-					&&
-					!mBluetoothCheck.isReseted(true)){*/
-			
 			if(mBluetoothCheck!=null&&mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
-				((ActivityMain)getActivity()).initExerciseManager();
-				super.stopExercise();
-				//如果机器没有复位并且不是在关闭的状态				
+				//如果机器没有复位并且不是在关闭的状态
+				super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
+				super.stopExercise();				
 				String blance_relax_performance = 
 						MyPreference.getInstance(getActivity()).readString(MyPreference.BLANCE_RELAX_PERFORMANCE);
 				if (blance_relax_performance.equals(MyPreference.BLANCE)) {
@@ -232,12 +212,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			}else{
 				Toast.makeText(getActivity(), "The machine is initializing...", 1000).show();
 			}
-			//初始按摩椅按摩时间
-//			String mytime=MyPreference.getInstance(getActivity()).readString(MyPreference.TIME);
-//			if(mytime==MyPreference.FIVE_MINUTES &&initTime==false){
-//				super.activityListener.fragSendCommand(BluetoothCommand.TIME5_MACHINE_VALUES);
-//				initTime=true;
-//			}
 			break;
 		// 暂停
 		case R.id.main_animation_pause:
@@ -522,10 +496,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		super.overlayBtnPressed();
 	}
 
-	// 停止动画
-	private void endAnimationPressed() {
-		super.pauseExercise();
-	}
 
 	@Override
 	public void sendMachineMessage(int command, SparseIntArray bundle) {
@@ -541,28 +511,5 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		return true;
 		
 	}*/
-	
-//	/**
-//	 * 单例线程
-//	 * 
-//	 * @author Desmond Duan
-//	 * 
-//	 */
-//	class SingletonHandler extends Handler {
-//		private boolean isWaiting = false;// 判断线程是否在执行
-//
-//		@Override
-//		public void handleMessage(Message msg) {
-//			isWaiting = false;
-//		}
-//
-//		public boolean isWaiting() {
-//			return isWaiting;
-//		}
-//
-//		public void setWaiting(boolean isWaiting) {
-//			this.isWaiting = isWaiting;
-//		}
-//	}
 
 }

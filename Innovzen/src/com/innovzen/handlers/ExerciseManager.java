@@ -5,6 +5,7 @@ import adapters.AdapterSound;
 import android.animation.ValueAnimator;
 import android.util.Log;
 
+import com.innovzen.application.InnovzenApplication;
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.entities.SoundItem;
@@ -70,6 +71,12 @@ public class ExerciseManager {
 	 */
 	protected boolean isSoundOnly=false;
 
+	/**
+	 * Desmond
+	 * 播放次数累计,判断321 是否显示
+	 */
+	protected int playCount=0;
+	
     // Hold the inhale/exhale animation
     protected ValueAnimator.AnimatorUpdateListener mValueAnimatorListener = new ValueAnimator.AnimatorUpdateListener() {
 
@@ -173,7 +180,7 @@ public class ExerciseManager {
      * @author MAB
      */
     public void start() {
-
+    	playCount++;
         // Reset the flag that indicates if we're started the sounds for the new step
         mPlayedSounds = false;
 
@@ -287,6 +294,10 @@ public class ExerciseManager {
         mPausedAnimationTimestamp = -1;
 
         mPlayedSounds = false;
+        
+        playCount = 0;
+        
+        mTimes.initTime(InnovzenApplication.getInstance());
     }
 
     /**
@@ -456,7 +467,6 @@ public class ExerciseManager {
                 BluetoothCommand mBluetoothCommand =BluetoothCommand.getInstance();
                 if(mBluetoothCommand!=null){
                            mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
-                       //  mTimes.exerciseDuration=30*1000;
                          Log.e("关机", "关机！！！！！！！！！！！！！！！！！！！！！！");
                 }
                 return;
@@ -614,6 +624,10 @@ public class ExerciseManager {
     
     public void stopAllThreads() {
     	
+    }
+    
+    public int getPlayCount(){
+    	return playCount;
     }
 
 }
