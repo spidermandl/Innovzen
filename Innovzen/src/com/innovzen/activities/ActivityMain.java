@@ -49,6 +49,7 @@ import com.innovzen.handlers.SoundHandler;
 import com.innovzen.handlers.SyncExerciseManager;
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.interfaces.FragmentOnBackPressInterface;
+import com.innovzen.ui.VerticalSeekBar;
 import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
 
@@ -263,7 +264,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
+         // findViewById(R.id.mySeekBar);
 		// Load the sound information
 		loadSoundInfo();
 		initBluetooth();
@@ -487,8 +488,9 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
     			MyPreference.getInstance(this).readInt(MyPreference.SELECTED_VOICE);
         int ambianceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
         MyPreference.getInstance(this).readInt(FragMusic.PERSIST_SELECTED_AMBIANCE);
-        mExerciseManager = new SyncExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
-       
+        //mExerciseManager = new SyncExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
+        mExerciseManager = new ExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
+
 	}
 	
 	private void initCheckThreads(){
@@ -613,7 +615,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 				FragAnimationPicker.PERSIST_SELECTED_EXERCISE_ANIMATION);
 
 		// // Refresh the backstack
-		////////////////////////////////////////////////
 		super.clearFragFromBackstack(FRAG_TAG_ANIMATION);
 		
 		
@@ -893,6 +894,29 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		navigateTo(FragMain.class, null, addToBackstack);
 		
 	}
-
 	
+	
+	
+	protected Handler machineHandler=new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
+			 VerticalSeekBar  seekbar = (VerticalSeekBar) findViewById(R.id.mySeekBar);
+			 SparseIntArray map = (SparseIntArray) msg.obj;
+			 seekbar.setProgress(map.get(MyPreference.LAST_VOLUME_INT));
+			 System.out.println(map.get(MyPreference.LAST_VOLUME_INT)+"............");
+		};
+	};
+	
+
+	/**
+	 * ∑¢ÀÕ√¸¡Ó
+	 * 
+	 * @param command
+	 */
+	public void sendVoiceMessage(int command, SparseIntArray bundle) {
+		Message msg = new Message();
+		msg.what = command;
+		msg.obj = bundle;
+		machineHandler.sendMessage(msg);
+	}
 }

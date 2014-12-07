@@ -23,6 +23,7 @@ public class MyPreference {
 	public final static String PRO = "Pro";
 	public final static String CUSTOMISE = "Customise";
 	// 记录声音上一次的大小
+	public final static int LAST_VOLUME_INT=-1;
 	public final static String LAST_VOLUME = "last volume";
 	// 记录Voice键状态
 	public final static String SELECTED_VOICE="selected voice";

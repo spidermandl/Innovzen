@@ -64,7 +64,11 @@ public class SyncExerciseManager extends ExerciseManager {
 					boolean shutOff = 
 							BluetoothCommand.getInstance() == null ? false: 
 								(BluetoothCommand.getInstance().getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT ? true: false);
-
+                    
+					boolean isPause=
+							BluetoothCommand.getInstance() == null ? false: 
+								(BluetoothCommand.getInstance().getValue(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_ON ? true: false);
+					Log.e("EXERCISE_INHALE pause", String.valueOf(isPause));
 					if (!shutOff)
 						waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
 					else
@@ -82,6 +86,10 @@ public class SyncExerciseManager extends ExerciseManager {
 							: (BluetoothCommand.getInstance().getValue(
 									BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT ? true
 									: false);
+					boolean isPause=
+							BluetoothCommand.getInstance() == null ? false: 
+								(BluetoothCommand.getInstance().getValue(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_ON ? true: false);
+					Log.e("EXERCISE_HOLD_INHALE pause", String.valueOf(isPause));
 					if (!shutOff)
 						waitHandler.postDelayed(waitRunnable,
 								BluetoothCommand.DELAY_TIME);
@@ -101,6 +109,10 @@ public class SyncExerciseManager extends ExerciseManager {
 							: (BluetoothCommand.getInstance().getValue(
 									BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT ? true
 									: false);
+					boolean isPause=
+							BluetoothCommand.getInstance() == null ? false: 
+								(BluetoothCommand.getInstance().getValue(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_ON ? true: false);
+					Log.e("EXERCISE_EXHALE pause", String.valueOf(isPause));
 					if (!shutOff)
 						waitHandler.postDelayed(waitRunnable,
 								BluetoothCommand.DELAY_TIME);
@@ -120,6 +132,10 @@ public class SyncExerciseManager extends ExerciseManager {
 							: (BluetoothCommand.getInstance().getValue(
 									BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT ? true
 									: false);
+					boolean isPause=
+							BluetoothCommand.getInstance() == null ? false: 
+								(BluetoothCommand.getInstance().getValue(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_ON ? true: false);
+					Log.e("EXERCISE_HOLD_EXHALE pause", String.valueOf(isPause));
 					if (!shutOff)
 						waitHandler.postDelayed(waitRunnable,
 								BluetoothCommand.DELAY_TIME);
@@ -478,7 +494,7 @@ public class SyncExerciseManager extends ExerciseManager {
 
 	@Override
 	protected void playSounds(int soundType, int curStepDuration) {
-		mPlayedSounds=false;
+		//mPlayedSounds=false;
 		super.playSounds(soundType, curStepDuration);
 	}
 	
