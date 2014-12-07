@@ -712,4 +712,6 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
     protected boolean isEntireExerciseCustomized() {
         return (mExerciseTypeStartIndex == EXERCISE_TYPE_START_CUSTOM && mExerciseTypeMiddleIndex != -1);
     }
+
+
 }

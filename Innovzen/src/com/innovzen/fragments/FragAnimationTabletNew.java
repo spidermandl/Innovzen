@@ -68,6 +68,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private ImageView backRestUp, backRestDown, footUp, footDown, zero, pause;
 
 	private TextView countdown_tv;
+	private VerticalSeekBar seekBar;
 	
 
 	/**
@@ -271,6 +272,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			}
 		
 			break;
+	
 		}
 	}
 
@@ -389,6 +391,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					FragAnimationTabletNew.super.activityListener
 							.fragSendCommand(BluetoothCommand.FOOT_UP_STOP_MACHINE_VALUES);
 					break;
+				
 				default:
 					break;
 				}
@@ -411,6 +414,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 							.fragSendCommand(BluetoothCommand.FOOT_DOWN_STOP_MACHINE_VALUES);
 					
 					break;
+				
 				default:
 					break;
 				}
@@ -445,6 +449,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	@Override
 	protected void initLefter(View view) {
 		super.initLefter(view);
+		
 		myMinutes.setText(MyPreference.getInstance(this.getActivity())
 				.readInt(MyPreference.TIME)/60000+MyPreference.MINS);
 		// 像机器发送时间命令
