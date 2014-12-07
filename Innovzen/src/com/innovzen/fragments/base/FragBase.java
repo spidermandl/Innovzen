@@ -44,7 +44,6 @@ public abstract class FragBase extends Fragment {
 	protected FragmentCommunicator activityListener;
 	private ImageView iv;
 	private int maxVolume;
-	private int lastVolumeValue;
     private int currentVolume;
 	/**
 	 * desmond ½çÃæ×ó²à¿ØÖÆÀ¸
@@ -89,7 +88,7 @@ public abstract class FragBase extends Fragment {
 		
 		audiomanage = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);						
 		maxVolume = audiomanage.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-		lastVolumeValue = MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME);
+		int lastVolumeValue = MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME);
 			
         volum_less = (ImageView) view.findViewById(R.id.volum_less);
         volum_less.setOnClickListener(new OnClickListener() {
