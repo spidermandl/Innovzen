@@ -55,7 +55,7 @@ import com.innovzen.utils.PersistentUtil;
 
 //主界面
 public class ActivityMain extends ActivityBase implements FragmentCommunicator {
-
+	private VerticalSeekBar seekbar;
 	// Hold fragment tags
 	public static final String FRAG_TAG_ANIMATION = "fragme8nt_animation_tag";
 
@@ -895,28 +895,5 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		
 	}
 	
-	
-	
-	protected Handler machineHandler=new Handler(){
-		@Override
-		public void handleMessage(Message msg) {
-			 VerticalSeekBar  seekbar = (VerticalSeekBar) findViewById(R.id.mySeekBar);
-			 SparseIntArray map = (SparseIntArray) msg.obj;
-			 seekbar.setProgress(map.get(MyPreference.LAST_VOLUME_INT));
-			 System.out.println(map.get(MyPreference.LAST_VOLUME_INT)+"............");
-		};
-	};
-	
 
-	/**
-	 * 发送命令
-	 * 
-	 * @param command
-	 */
-	public void sendVoiceMessage(int command, SparseIntArray bundle) {
-		Message msg = new Message();
-		msg.what = command;
-		msg.obj = bundle;
-		machineHandler.sendMessage(msg);
-	}
 }

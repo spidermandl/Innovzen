@@ -19,7 +19,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.innovzen.activities.ActivityMain;
 import com.innovzen.bluetooth.check.BluetoothCheck;
 import com.innovzen.interfaces.FragmentCommunicator;
 import com.innovzen.o2chair.R;
@@ -86,13 +85,12 @@ public abstract class FragBase extends Fragment {
 	 * @param view
 	 */
 	protected void initLefter(View view) {
-		
-		final SparseIntArray map=new SparseIntArray();
+	
 		
 		audiomanage = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);						
 		maxVolume = audiomanage.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-		//lastVolumeValue = MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME);
-		lastVolumeValue=map.get(MyPreference.LAST_VOLUME_INT);
+		lastVolumeValue = MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME);
+			
         volum_less = (ImageView) view.findViewById(R.id.volum_less);
         volum_less.setOnClickListener(new OnClickListener() {
 			
@@ -110,9 +108,11 @@ public abstract class FragBase extends Fragment {
 		seekBar = (VerticalSeekBar) view.findViewById(R.id.mySeekBar);
 		seekBar.setMax(maxVolume);
 		//seekBar.setProgress(maxVolume/2);
-	/*	if(lastVolumeValue==-1){
+		if(lastVolumeValue==-1){
 			seekBar.setProgress(8);
-		}*/
+		}else{
+			seekBar.setProgress(lastVolumeValue);
+		}
 		
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			
@@ -124,16 +124,14 @@ public abstract class FragBase extends Fragment {
 				audiomanage.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
 				currentVolume = audiomanage.getStreamVolume(AudioManager.STREAM_MUSIC);
 				
-                //seekBar.setProgress(currentVolume);
-                
-                map.put(MyPreference.LAST_VOLUME_INT, currentVolume);
-                ((ActivityMain)getActivity()).sendVoiceMessage(MyPreference.LAST_VOLUME_INT, map);
+                seekBar.setProgress(currentVolume);
+            
                 if(progress==0){
                 	volum_less.setBackgroundResource(R.drawable.icon_no_volum);
                 }else{
                 	volum_less.setBackgroundResource(R.drawable.icon_volum_less);
                 }
-             // MyPreference.getInstance(getActivity()).writeInt(MyPreference.LAST_VOLUME_INT, currentVolume);
+              MyPreference.getInstance(getActivity()).writeInt(MyPreference.LAST_VOLUME, progress);
 				
 			}
 
@@ -172,9 +170,11 @@ public abstract class FragBase extends Fragment {
 				leftMid.setVisibility(View.INVISIBLE);
 				leftBottom.setVisibility(View.INVISIBLE);
 				voice_progressbar.setVisibility(View.VISIBLE);
+				//点击事件，每次点击设置进度条大小
 				
+				//seekBar.setProgress(MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME));
 				
-				
+				System.out.println(MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME)+".........");
 			
 			}
 		});
