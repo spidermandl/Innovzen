@@ -128,21 +128,21 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		super.onResume();
 	}
 
-	@Override
-	public boolean onBackPress() {
-		if (mBluetoothCheck.closeOrNot() == ResetCheck.WAITTING) {
-			mBluetoothCheck.initlize();
-			super.stopExercise();
-			return false;
-		}
-		if (mBluetoothCheck.isReseted(false) && isAnimationRunning) {
-			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
-			mBluetoothCheck.initlize();
-			super.stopExercise();
-			return false;
-		}
-		return true;
-	}
+//	@Override
+//	public boolean onBackPress() {
+//		if (mBluetoothCheck.closeOrNot() == ResetCheck.WAITTING) {
+//			mBluetoothCheck.initlize();
+//			super.stopExercise();
+//			return false;
+//		}
+//		if (mBluetoothCheck.isReseted(false) && isAnimationRunning) {
+//			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+//			mBluetoothCheck.initlize();
+//			super.stopExercise();
+//			return false;
+//		}
+//		return true;
+//	}
 	
 
 	@Override
@@ -235,8 +235,18 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		case R.id.left_top:
 			/**
 			 * 实现移入onBackPress()方法
-			 */
+			 */			
+			if (mBluetoothCheck.closeOrNot() == ResetCheck.WAITTING) {
+					mBluetoothCheck.initlize();
+					super.stopExercise();
+				}
+				if (mBluetoothCheck.isReseted(false) && isAnimationRunning) {
+					super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+					mBluetoothCheck.initlize();
+					super.stopExercise();
+				}
 			getActivity().onBackPressed();
+
 			break;
 		}
 	}

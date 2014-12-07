@@ -169,7 +169,6 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
             mCurCountdownSecond = 3;
             //ÊÇ·ñµ¹Êý321
             
-            
             // Hide countdown in case it's visible
            
             countdown_tv.setVisibility(View.VISIBLE);
