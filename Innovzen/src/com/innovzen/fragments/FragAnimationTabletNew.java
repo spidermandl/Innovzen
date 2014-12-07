@@ -16,11 +16,17 @@ import android.widget.TextView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.innovzen.activities.ActivityBase;
 import com.innovzen.activities.ActivityMain;
+import com.innovzen.animations.AnimationGradient;
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.bluetooth.check.ResetCheck;
+import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
+import com.innovzen.handlers.CircularSeekBarHandler;
+import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.o2chair.R;
+import com.innovzen.ui.VerticalSeekBar;
 import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.Util;
 
@@ -32,10 +38,14 @@ import com.innovzen.utils.Util;
  */
 public class FragAnimationTabletNew extends FragAnimationBase implements
 		OnClickListener {
-	
+	//控制暂停状态下开始按钮点击继续动画
+	private boolean restartAnimation = false;
+    /** Hold the handler for the timer */
+    private CircularSeekBarHandler mTimerHandler;
+    protected ViewGroup layout;
 	// Hold view references
 	private View mView;
-
+    
 	/**
 	 * Hold this state so we'll know when we come back from fullscreen to either
 	 * set it to invisible or visibles
@@ -81,8 +91,10 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			if (map.get(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_OFF)// 这个地方的1要和BluetoothCommand里的一个常量对应
 			{    
 				pause.setBackgroundResource(R.drawable.selector_btn_pause);
+				restartAnimation=false;
 			} else {
 				pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
+				restartAnimation=true;
 			}
 			break;
 		case BluetoothCommand.ZERO_STATUS:// 控制Zero按键状态
@@ -114,7 +126,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_animation_new,
 				container, false);
-
+ 
 		super.onView(view);
 		initialize(view);
 		initLefter(view);
@@ -186,13 +198,19 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 开始
 		case R.id.main_animation_start:
-			
+			overlayBtnPressed();
+			if(restartAnimation){
+				super.activityListener
+				.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
+			}
 			if(!((ActivityMain)getActivity()).isBlueToothConnected()){//如果蓝牙没有连接
 				Toast.makeText(getActivity(), "Please setup bluetooth connection through setting panel", 1000).show();
 				break;
 			}
-			
-			if(mBluetoothCheck!=null&&mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
+			if(mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
+				super.stopExercise();
+			}
+			if(mBluetoothCheck!=null&&mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING&&!isAnimationRunning){
 				//如果机器没有复位并且不是在关闭的状态
 				super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 				super.stopExercise();				
@@ -233,20 +251,23 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					.fragSendCommand(BluetoothCommand.ZERO_GRAVITY_MACHINE_VALUES);
 			break;
 		case R.id.left_top:
-			/**
-			 * 实现移入onBackPress()方法
-			 */			
 			if (mBluetoothCheck.closeOrNot() == ResetCheck.WAITTING) {
-					mBluetoothCheck.initlize();
-					super.stopExercise();
-				}
-				if (mBluetoothCheck.isReseted(false) && isAnimationRunning) {
-					super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
-					mBluetoothCheck.initlize();
-					super.stopExercise();
-				}
-			getActivity().onBackPressed();
-
+				mBluetoothCheck.initlize();
+				super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+				super.stopExercise();
+				super.activityListener.fragGoToMain(true);
+				((ActivityBase)getActivity()).clearFragFromBackstack(ActivityMain.FRAG_TAG_ANIMATION);
+				
+			}
+			if (mBluetoothCheck.isReseted(false) && isAnimationRunning) {
+				super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+				mBluetoothCheck.initlize();
+				super.stopExercise();
+				super.activityListener.fragGoToMain(true);
+				((ActivityBase)getActivity()).clearFragFromBackstack(ActivityMain.FRAG_TAG_ANIMATION);
+				
+			}
+		
 			break;
 		}
 	}
@@ -256,7 +277,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * 
 	 * @author MAB
 	 */
-	private void initialize(View view) {
+	private void initialize(View view) {	 
+		
+		
 		mBluetoothCheck=((ActivityMain)getActivity()).getResetCheck();
 		mBluetoothCheck.setTrigger(false);
 		mBluetoothCheck.setUiHandler(this);
@@ -358,13 +381,11 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					footUp.setBackgroundResource(R.drawable.btn_foot_adjust_up_activated);
 					FragAnimationTabletNew.super.activityListener
 							.fragSendCommand(BluetoothCommand.FOOT_UP_MACHINE_VALUES);
-					System.out.println("foot up");
 					break;
 				case MotionEvent.ACTION_UP:
 					footUp.setBackgroundResource(R.drawable.btn_foot_adjust_up);
 					FragAnimationTabletNew.super.activityListener
 							.fragSendCommand(BluetoothCommand.FOOT_UP_STOP_MACHINE_VALUES);
-					System.out.println("foot up stop");
 					break;
 				default:
 					break;
@@ -380,13 +401,13 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					footDown.setBackgroundResource(R.drawable.btn_foot_adjust_down_activated);
 					FragAnimationTabletNew.super.activityListener
 							.fragSendCommand(BluetoothCommand.FOOT_DOWN_MACHINE_VALUES);
-					System.out.println("foot down");
+				
 					break;
 				case MotionEvent.ACTION_UP:
 					footDown.setBackgroundResource(R.drawable.btn_foot_adjust_down);
 					FragAnimationTabletNew.super.activityListener
 							.fragSendCommand(BluetoothCommand.FOOT_DOWN_STOP_MACHINE_VALUES);
-					System.out.println("foot down stop");
+					
 					break;
 				default:
 					break;
@@ -521,5 +542,5 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		return true;
 		
 	}*/
-
+	
 }

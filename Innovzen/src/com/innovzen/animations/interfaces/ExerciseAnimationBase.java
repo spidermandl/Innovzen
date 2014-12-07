@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.innovzen.entities.ExerciseTimes;
+import com.innovzen.handlers.CircularSeekBarHandler;
 
 /**
  * Every exercise animation should implement these methods<br/>
@@ -130,4 +131,10 @@ public abstract class ExerciseAnimationBase {
     public View getLayout() {
         return layout;
     }
+    /**
+     * 
+     */
+    public CircularSeekBarHandler  getTimeHandler() {
+		return null;
+	}
 }

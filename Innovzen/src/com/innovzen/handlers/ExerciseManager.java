@@ -223,7 +223,9 @@ public class ExerciseManager {
         }
 
     }
-
+    public void playCountAdd(){
+    	playCount++;
+    }
     public void start(float fraction){
     	start();
     }

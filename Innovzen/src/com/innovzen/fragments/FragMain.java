@@ -13,6 +13,7 @@ import com.innovzen.bluetooth.check.ResetCheck;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
+import com.innovzen.ui.VerticalSeekBar;
 import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
 
@@ -50,8 +51,7 @@ public class FragMain extends FragBase implements OnClickListener {
 			}
 			PersistentUtil.setInt(getActivity(), 5 * 60000,
 					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			MyPreference.getInstance(this.getActivity()).writeInt(
-					MyPreference.TIME, 5*60*1000);
+			
 			//System.out.println(""+);
 			MyPreference.getInstance(this.getActivity()).writeString(
 					MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.BLANCE);
@@ -70,8 +70,7 @@ public class FragMain extends FragBase implements OnClickListener {
 					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
 			MyPreference.getInstance(this.getActivity()).writeString(
 					MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.RELAX);
-			MyPreference.getInstance(this.getActivity()).writeInt(
-					MyPreference.TIME, 10*60*1000);
+			
 			
 			super.activityListener.fragGoToAnimation(true);
 
@@ -89,8 +88,7 @@ public class FragMain extends FragBase implements OnClickListener {
 			MyPreference.getInstance(this.getActivity()).writeString(
 					MyPreference.BLANCE_RELAX_PERFORMANCE,
 					MyPreference.PERFORMANCE);
-			MyPreference.getInstance(this.getActivity()).writeInt(
-					MyPreference.TIME, 15*60*1000);
+			
 			
 			super.activityListener.fragGoToAnimation(true);
 
@@ -114,6 +112,14 @@ public class FragMain extends FragBase implements OnClickListener {
 
 	@Override
 	public void init(View view) {
+		//初始化时间为5分钟
+	
+			MyPreference.getInstance(this.getActivity()).writeInt(
+					MyPreference.TIME, 5*60*1000);
+		
+		
+		//初始声音大小
+		MyPreference.getInstance(getActivity()).writeInt(MyPreference.LAST_VOLUME, -1);
 		myMintues = (TextView) view.findViewById(R.id.myMinutes);
 
 		view.findViewById(R.id.menu_balance).setOnClickListener(this);

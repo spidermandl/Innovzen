@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.innovzen.entities.SoundItem;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
+import com.innovzen.ui.VerticalSeekBar;
 import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
 
@@ -204,6 +205,8 @@ public class FragMusic extends FragBase implements OnClickListener {
 	@Override
 	public void init(View view) {
 		initLefter(view);
+		
+		
 		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		myMinutes.setText(MyPreference.getInstance(this.getActivity())
 				.readInt(MyPreference.TIME)/60000+MyPreference.MINS);
