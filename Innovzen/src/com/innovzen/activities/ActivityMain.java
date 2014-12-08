@@ -454,7 +454,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		mBluetoothService = new BluetoothService(this, bluetoothHandler);
 		mBluetoothCommand = new BluetoothCommand(this,mBluetoothService);
 	}
-
+//balance
 	public void initExerciseManager(){
 		// Get the times for the 4 steps of an exercise
 		//mTimes.exerciseDuration=50*1000;
@@ -492,6 +492,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
       //  mExerciseManager = new ExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
 
 	}
+	//relax
 	public void initExerciseManagerRelax(){
 		// Get the times for the 4 steps of an exercise
 		//mTimes.exerciseDuration=50*1000;
@@ -529,6 +530,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
       //  mExerciseManager = new ExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
 
 	}
+	//performance
 	public void initExerciseManagerPerformance(){
 		// Get the times for the 4 steps of an exercise
 		//mTimes.exerciseDuration=50*1000;
@@ -566,6 +568,15 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
       //  mExerciseManager = new ExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
 
 	}
+	/*public void changeMusic(){
+	
+		int voiceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_VOICE);
+    			MyPreference.getInstance(this).readInt(MyPreference.SELECTED_VOICE);
+        int ambianceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
+        MyPreference.getInstance(this).readInt(FragMusic.PERSIST_SELECTED_AMBIANCE);
+        
+	mExerciseManager.reinitSound(voiceSoundId, ambianceSoundId);
+	}*/
 	private void initCheckThreads(){
 		mResetCheck=new BluetoothCheck<ResetCheck>();
 		mResetCheck.setCheck(new ResetCheck());
