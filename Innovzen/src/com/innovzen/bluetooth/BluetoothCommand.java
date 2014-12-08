@@ -188,6 +188,11 @@ public class BluetoothCommand {
 	public static final int BUZZER_STATUS = 0xFFEF;
 	// Breathe状态
 	public static final int BREATHE_STATUS = 0xFFEE;
+	//Breathe+-状态
+	public static final int BREATHE_STOP_STATUS=0XFFED;
+	//Breathe+-对应状态
+	public static final int BREATHE_STOP_STATUS_ON=1;
+	public static final int BREATHE_STOP_STATUS_OFF=0;
 	// 按摩椅运行 对应状态
 	public static final int MACHINE_RUN_STATUS_WAIT = 0;
 	public static final int MACHINE_RUN_STATUS_COLLECT = 1;
@@ -290,7 +295,7 @@ public class BluetoothCommand {
 	// Pause初始化状态
 	public static final int PAUSE_STATUS_OFF = 0;
 	public static final int PAUSE_STATUS_ON = 1;
-
+    
 	private BluetoothService mBluetoothService = null;
 	private Context context = null;
 
@@ -324,8 +329,8 @@ public class BluetoothCommand {
 			put(HEAT_STATUS, HEAT_STATUS_OFF);
 			put(LED_STATUS, LED_STATUS_OFF);
 			put(BLUETOOTH_STATUS, BLUETOOTH_STATUS_OFF);
-			put(ZERO_STATUS, ZERO_STATUS_CLOSE);
-
+			put(ZERO_STATUS, ZERO_STATUS_CLOSE);			
+			put(BREATHE_STOP_STATUS, BREATHE_STOP_STATUS_OFF);
 		}
 	};
 
@@ -434,6 +439,8 @@ public class BluetoothCommand {
 		machine_status.put(MACHINE_RUN_STATUS, (b1 & 0x70) >> 4);
 		// 取第3 2 1位的状态
 		machine_status.put(MACHINE_MASSAGE_STATUS, (b1 & 0x0e) >> 1);
+		//取第0位状态
+		machine_status.put(BREATHE_STOP_STATUS, (b1 & 0x01)>>0);
 		/**
 		 * 字节2
 		 */
@@ -444,6 +451,7 @@ public class BluetoothCommand {
 		machine_status.put(WALKING_POSITION_STATUS, (b2 & 0x3c) >> 2);
 		// 取第1 0位的状态
 		machine_status.put(DIRECTION_STATUS, (b2 & 0x03) >> 0);
+		
 		/**
 		 * 字节3
 		 */
@@ -495,7 +503,7 @@ public class BluetoothCommand {
 
 		// Log.e("第8字节",
 		// printHX(b7)+"-------第3字节--------"+printHX(b2)+"  "+System.currentTimeMillis());
-		// Log.e("第二个字节", printHX(b1));
+		// Log.e("第2个字节", printHX(b1));
 		return true;
 	}
 

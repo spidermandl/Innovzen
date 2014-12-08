@@ -236,7 +236,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		case R.id.main_animation_pause:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
-
+			mBluetoothCheck.closeOrNot();
 			//super.pauseExercise();
 			break;
 		case R.id.main_animation_breathe_up:
@@ -258,7 +258,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 				super.stopExercise();
 				super.activityListener.fragGoToMain(true);
-				//((ActivityBase)getActivity()).clearFragFromBackstack(ActivityMain.FRAG_TAG_ANIMATION);
+				((ActivityBase)getActivity()).clearFragFromBackstack(ActivityMain.FRAG_TAG_ANIMATION);
 				
 			}
 			if (mBluetoothCheck.isReseted(false) && isAnimationRunning) {
@@ -266,7 +266,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				mBluetoothCheck.initlize();
 				super.stopExercise();
 				super.activityListener.fragGoToMain(true);
-				//((ActivityBase)getActivity()).clearFragFromBackstack(ActivityMain.FRAG_TAG_ANIMATION);
+				((ActivityBase)getActivity()).clearFragFromBackstack(ActivityMain.FRAG_TAG_ANIMATION);
 				
 			}
 			

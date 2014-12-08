@@ -223,6 +223,9 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		        		   map.put(BluetoothCommand.BLUETOOTH_STATUS, BluetoothCommand.BLUETOOTH_STATUS_OFF);
 		        		   ((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.BREATHE_STATUS,map);
 		        	   }
+		        	   //breathe+-
+		        	   map.put(BluetoothCommand.BREATHE_STOP_STATUS,mBluetoothCommand.getValue(BluetoothCommand.BREATHE_STOP_STATUS));      			 
+	        			((FragSettings)currentFragment).sendMachineMessage(BluetoothCommand.BREATHE_STOP_STATUS,map);
 		        	
 		        	}
 		        }

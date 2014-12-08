@@ -638,6 +638,7 @@ public class ExerciseManager {
     }
 
     public ExerciseTimes getExerciseTimes(){
+    
     	return mTimes;
     }
     
