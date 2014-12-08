@@ -199,7 +199,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 开始
 		case R.id.main_animation_start:
-			overlayBtnPressed();
+			//如果机器处于暂停状态
 			if(restartAnimation){
 				super.activityListener
 				.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
@@ -280,8 +280,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * @author MAB
 	 */
 	private void initialize(View view) {	 
-		
-		
+	
 		mBluetoothCheck=((ActivityMain)getActivity()).getResetCheck();
 		mBluetoothCheck.setTrigger(false);
 		mBluetoothCheck.setUiHandler(this);

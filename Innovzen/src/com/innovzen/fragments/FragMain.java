@@ -42,6 +42,7 @@ public class FragMain extends FragBase implements OnClickListener {
 		case R.id.menu_balance:
 			// test
 			// super.activityListener.fragGoToSetting(true);
+			((ActivityMain)getActivity()).initExerciseManager();
 			if (((ActivityMain) getActivity()).getResetCheck().closeOrNot() != ResetCheck.WAITTING) {
 				Toast.makeText(
 						getActivity(),
@@ -59,6 +60,7 @@ public class FragMain extends FragBase implements OnClickListener {
 
 			break;
 		case R.id.menu_relax:
+			((ActivityMain)getActivity()).initExerciseManagerRelax();
 			if (((ActivityMain) getActivity()).getResetCheck().closeOrNot() != ResetCheck.WAITTING) {
 				Toast.makeText(
 						getActivity(),
@@ -76,6 +78,7 @@ public class FragMain extends FragBase implements OnClickListener {
 
 			break;
 		case R.id.menu_performance:
+			((ActivityMain)getActivity()).initExerciseManagerPerformance();
 			if (((ActivityMain) getActivity()).getResetCheck().closeOrNot() != ResetCheck.WAITTING) {
 				Toast.makeText(
 						getActivity(),
