@@ -46,7 +46,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			PersistentUtil.setInt(getActivity(), 5 * 60000,
 					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
 			MyPreference.getInstance(this.getActivity()).writeInt(
-					MyPreference.TIME, 1 * 60 * 1000);
+					MyPreference.TIME, 5 * 60 * 1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity())
 					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 			super.activityListener
