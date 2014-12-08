@@ -111,12 +111,7 @@ public class FragSettings extends FragBase implements OnClickListener{
 			//super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 			break;
 		case R.id.set_breathe:
-			if(!breathe_activited)
-				super.activityListener
-					.fragSendCommand(BluetoothCommand.BREATHE_UP_MACHINE_VALUES);
-			else
-				super.activityListener
-					.fragSendCommand(BluetoothCommand.BREATHE_DOWN_MACHINE_VALUES);
+			super.activityListener.fragSendCommand(BluetoothCommand.BREATHE_STOP_MACHINE_VALUES);
 			break;
 		default:
 			break;
