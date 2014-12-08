@@ -57,10 +57,10 @@ public class SyncExerciseManager extends ExerciseManager {
 			case EXERCISE_INHALE:
 				subtime = BluetoothCommand.getInstance() == null ? 0 : (System.currentTimeMillis() - inhaleTimeEnd);
 				if (subtime != 0 && subtime < mTimes.inhale + DELTA_TIME) {
-					// log.e("inhale 等待成功", subtime+"");
+					// Log.e("inhale 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
-					// log.e("inhale 没等到", subtime+"");
+					//Log.e("inhale 没等到", subtime+"");
 					boolean shutOff = 
 							BluetoothCommand.getInstance() == null ? false: 
 								(BluetoothCommand.getInstance().getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT ? true: false);
@@ -68,7 +68,7 @@ public class SyncExerciseManager extends ExerciseManager {
 					boolean isPause=
 							BluetoothCommand.getInstance() == null ? false: 
 								(BluetoothCommand.getInstance().getValue(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_ON ? true: false);
-					Log.e("EXERCISE_INHALE pause", String.valueOf(isPause));
+					//Log.e("EXERCISE_INHALE pause", String.valueOf(isPause));
 					if (!shutOff)
 						waitHandler.postDelayed(waitRunnable,BluetoothCommand.DELAY_TIME);
 					else
@@ -78,10 +78,10 @@ public class SyncExerciseManager extends ExerciseManager {
 			case EXERCISE_HOLD_INHALE:
 				subtime = BluetoothCommand.getInstance() == null ? 0 : (System.currentTimeMillis() - exhaleTimeStart);
 				if (subtime != 0 && subtime < mTimes.holdInhale) {
-					// log.e("EXERCISE_HOLD_INHALE 等待成功", subtime+"");
+					//Log.e("EXERCISE_HOLD_INHALE 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
-					// log.e("EXERCISE_HOLD_INHALE 没等到", subtime+"");
+					//Log.e("EXERCISE_HOLD_INHALE 没等到", subtime+"");
 					boolean shutOff = BluetoothCommand.getInstance() == null ? false
 							: (BluetoothCommand.getInstance().getValue(
 									BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT ? true
@@ -89,7 +89,7 @@ public class SyncExerciseManager extends ExerciseManager {
 					boolean isPause=
 							BluetoothCommand.getInstance() == null ? false: 
 								(BluetoothCommand.getInstance().getValue(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_ON ? true: false);
-					Log.e("EXERCISE_HOLD_INHALE pause", String.valueOf(isPause));
+					//Log.e("EXERCISE_HOLD_INHALE pause", String.valueOf(isPause));
 					if (!shutOff)
 						waitHandler.postDelayed(waitRunnable,
 								BluetoothCommand.DELAY_TIME);
@@ -101,10 +101,10 @@ public class SyncExerciseManager extends ExerciseManager {
 				subtime = BluetoothCommand.getInstance() == null ? 0 : (System
 						.currentTimeMillis() - exhaleTimeEnd);
 				if (subtime != 0 && subtime < mTimes.exhale + DELTA_TIME) {
-					// log.e("exhale 等待成功", subtime+"");
+					//Log.e("exhale 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
-					// log.e("exhale 没等到", subtime+"");
+					//Log.e("exhale 没等到", subtime+"");
 					boolean shutOff = BluetoothCommand.getInstance() == null ? false
 							: (BluetoothCommand.getInstance().getValue(
 									BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT ? true
@@ -112,7 +112,7 @@ public class SyncExerciseManager extends ExerciseManager {
 					boolean isPause=
 							BluetoothCommand.getInstance() == null ? false: 
 								(BluetoothCommand.getInstance().getValue(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_ON ? true: false);
-					Log.e("EXERCISE_EXHALE pause", String.valueOf(isPause));
+					//Log.e("EXERCISE_EXHALE pause", String.valueOf(isPause));
 					if (!shutOff)
 						waitHandler.postDelayed(waitRunnable,
 								BluetoothCommand.DELAY_TIME);
@@ -124,10 +124,10 @@ public class SyncExerciseManager extends ExerciseManager {
 				subtime = BluetoothCommand.getInstance() == null ? 0 : (System
 						.currentTimeMillis() - inhaleTimeStart);
 				if (subtime != 0 && subtime < mTimes.holdExhale) {
-					// log.e("EXERCISE_HOLD_EXHALE 等待成功", subtime+"");
+					//Log.e("EXERCISE_HOLD_EXHALE 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
-					// log.e("EXERCISE_HOLD_EXHALE 没等到", subtime+"");
+					//Log.e("EXERCISE_HOLD_EXHALE 没等到", subtime+"");
 					boolean shutOff = BluetoothCommand.getInstance() == null ? false
 							: (BluetoothCommand.getInstance().getValue(
 									BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT ? true
@@ -135,7 +135,7 @@ public class SyncExerciseManager extends ExerciseManager {
 					boolean isPause=
 							BluetoothCommand.getInstance() == null ? false: 
 								(BluetoothCommand.getInstance().getValue(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_ON ? true: false);
-					Log.e("EXERCISE_HOLD_EXHALE pause", String.valueOf(isPause));
+					//Log.e("EXERCISE_HOLD_EXHALE pause", String.valueOf(isPause));
 					if (!shutOff)
 						waitHandler.postDelayed(waitRunnable,
 								BluetoothCommand.DELAY_TIME);

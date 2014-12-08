@@ -221,6 +221,13 @@ public class FragSettings extends FragBase implements OnClickListener{
 			break;
 		case BluetoothCommand.INIT_POSITION_STATUS:
 			break;
+		case BluetoothCommand.BREATHE_STOP_STATUS:
+			if(map.get(BluetoothCommand.BREATHE_STOP_STATUS)==BluetoothCommand.BREATHE_STOP_STATUS_ON){
+				breathe.setBackgroundResource(R.drawable.btn_breathe_activated);
+			}else{
+				breathe.setBackgroundResource(R.drawable.selector_btn_breathe);
+			}	
+			break;
 			
 		}
 	}

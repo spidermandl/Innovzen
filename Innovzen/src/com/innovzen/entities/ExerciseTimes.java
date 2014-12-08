@@ -131,7 +131,8 @@ public class ExerciseTimes {
      * @param context
      */
     public void initTime(Context context){
-    	exerciseDuration = MyPreference.getInstance(context).readInt(MyPreference.TIME);
+    	//exerciseDuration = MyPreference.getInstance(context).readInt(MyPreference.TIME);
+    	exerciseDuration=20*1000;
     }
 
 }
