@@ -269,7 +269,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		loadSoundInfo();
 		initBluetooth();
 		initCheckThreads();
-		initExerciseManager();
+		initExerciseManager(ExerciseTimes.DEFAULT_EXERCISE_TIME);
 		// By default go to the main menu fragment
 		// <chy>
 		// super.navigateTo(FragMainMenu.class);
@@ -455,32 +455,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		mBluetoothCommand = new BluetoothCommand(this,mBluetoothService);
 	}
 
-	public void initExerciseManager(){
-		// Get the times for the 4 steps of an exercise
-		//mTimes.exerciseDuration=50*1000;
-		////
-		
-        mTimes.inhale = PersistentUtil.getInt(this, PERSIST_TIME_INHALE, 0);
-        mTimes.holdInhale = PersistentUtil.getInt(this, PERSIST_TIME_HOLD_INHALE, 0);
-        mTimes.exhale = PersistentUtil.getInt(this, PERSIST_TIME_EXHALE, 0);
-        mTimes.holdExhale = PersistentUtil.getInt(this, PERSIST_TIME_HOLD_EXHALE, 0);
-        // In case they're all 0, then set the default values for the BEGINNER times
-        if (mTimes.inhale == 0 && mTimes.holdInhale == 0 && mTimes.exhale == 0 && mTimes.holdExhale == 0) {
-            mTimes.inhale = FragTime.DEFAULT_TIMER_INHALE;
-            mTimes.holdInhale = FragTime.DEFAULT_TIMER_HOLD_INHALE;
-            mTimes.exhale = FragTime.DEFAULT_TIMER_EXHALE;
-            mTimes.holdExhale = FragTime.DEFAULT_TIMER_HOLD_EXHALE;
-        }
+	public void initExerciseManager(int type){
 
-        // Get the selected duration for the entire exercise
-      //PersistentUtil.getInt(this, PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
-       mTimes.initTime(this);
-       System.out.println(mTimes.exerciseDuration);
-        /*
-         * Get the exercise times and place them in an object
-         */
-        ExerciseTimes times = new ExerciseTimes(mTimes.inhale, mTimes.holdInhale, mTimes.exhale, mTimes.holdExhale, mTimes.exerciseDuration);
-
+        mTimes.setTimeType(type);
+        mTimes.initTime(this);
+        System.out.println(mTimes.exerciseDuration);
+        
         /*
          * Init the exercise time handler
          */
@@ -488,84 +468,11 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
     			MyPreference.getInstance(this).readInt(MyPreference.SELECTED_VOICE);
         int ambianceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
         MyPreference.getInstance(this).readInt(FragMusic.PERSIST_SELECTED_AMBIANCE);
-        mExerciseManager = new SyncExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
+        mExerciseManager = new SyncExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId);
       //  mExerciseManager = new ExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
 
 	}
-	public void initExerciseManagerRelax(){
-		// Get the times for the 4 steps of an exercise
-		//mTimes.exerciseDuration=50*1000;
-		////
-		
-        mTimes.inhale = PersistentUtil.getInt(this, PERSIST_TIME_INHALE, 0);
-        mTimes.holdInhale = PersistentUtil.getInt(this, PERSIST_TIME_HOLD_INHALE, 0);
-        mTimes.exhale = PersistentUtil.getInt(this, PERSIST_TIME_EXHALE, 0);
-        mTimes.holdExhale = PersistentUtil.getInt(this, PERSIST_TIME_HOLD_EXHALE, 0);
-        // In case they're all 0, then set the default values for the BEGINNER times
-        if (mTimes.inhale == 0 && mTimes.holdInhale == 0 && mTimes.exhale == 0 && mTimes.holdExhale == 0) {
-            mTimes.inhale = FragTime.RELAX_TIMER_INHALE;
-            mTimes.holdInhale = FragTime.DEFAULT_TIMER_HOLD_INHALE;
-            mTimes.exhale = FragTime.RELAX_TIMER_EXHALE;
-            mTimes.holdExhale = FragTime.DEFAULT_TIMER_HOLD_EXHALE;
-        }
 
-        // Get the selected duration for the entire exercise
-      //PersistentUtil.getInt(this, PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
-       mTimes.initTime(this);
-       System.out.println(mTimes.exerciseDuration);
-        /*
-         * Get the exercise times and place them in an object
-         */
-        ExerciseTimes times = new ExerciseTimes(mTimes.inhale, mTimes.holdInhale, mTimes.exhale, mTimes.holdExhale, mTimes.exerciseDuration);
-
-        /*
-         * Init the exercise time handler
-         */
-        int voiceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_VOICE);
-    			MyPreference.getInstance(this).readInt(MyPreference.SELECTED_VOICE);
-        int ambianceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
-        MyPreference.getInstance(this).readInt(FragMusic.PERSIST_SELECTED_AMBIANCE);
-        mExerciseManager = new SyncExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
-      //  mExerciseManager = new ExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
-
-	}
-	public void initExerciseManagerPerformance(){
-		// Get the times for the 4 steps of an exercise
-		//mTimes.exerciseDuration=50*1000;
-		////
-		
-        mTimes.inhale = PersistentUtil.getInt(this, PERSIST_TIME_INHALE, 0);
-        mTimes.holdInhale = PersistentUtil.getInt(this, PERSIST_TIME_HOLD_INHALE, 0);
-        mTimes.exhale = PersistentUtil.getInt(this, PERSIST_TIME_EXHALE, 0);
-        mTimes.holdExhale = PersistentUtil.getInt(this, PERSIST_TIME_HOLD_EXHALE, 0);
-        // In case they're all 0, then set the default values for the BEGINNER times
-        if (mTimes.inhale == 0 && mTimes.holdInhale == 0 && mTimes.exhale == 0 && mTimes.holdExhale == 0) {
-            mTimes.inhale = FragTime.PERFORMANCE_TIMER_INHALE;
-            mTimes.holdInhale = FragTime.PERFORMANCE_TIMER_HOLD_INHALE;
-            mTimes.exhale = FragTime.PERFORMANCE_TIMER_EXHALE;
-            mTimes.holdExhale = FragTime.PERFORMANCE_TIMER_HOLD_EXHALE;
-        }
-
-        // Get the selected duration for the entire exercise
-      //PersistentUtil.getInt(this, PERSIST_TOTAL_SELECTED_EXERCISE_DURATION, MIN_TIME_EXERCISE_DURATION);
-       mTimes.initTime(this);
-       System.out.println(mTimes.exerciseDuration);
-        /*
-         * Get the exercise times and place them in an object
-         */
-        ExerciseTimes times = new ExerciseTimes(mTimes.inhale, mTimes.holdInhale, mTimes.exhale, mTimes.holdExhale, mTimes.exerciseDuration);
-
-        /*
-         * Init the exercise time handler
-         */
-        int voiceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_VOICE);
-    			MyPreference.getInstance(this).readInt(MyPreference.SELECTED_VOICE);
-        int ambianceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
-        MyPreference.getInstance(this).readInt(FragMusic.PERSIST_SELECTED_AMBIANCE);
-        mExerciseManager = new SyncExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
-      //  mExerciseManager = new ExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
-
-	}
 	private void initCheckThreads(){
 		mResetCheck=new BluetoothCheck<ResetCheck>();
 		mResetCheck.setCheck(new ResetCheck());

@@ -176,24 +176,7 @@ public class SyncExerciseManager extends ExerciseManager {
 	@Override
 	public void reinitUI(FragAnimationBase fragmentAnimation,
 			ExerciseAnimationHandler animationHandler) {
-		if (animationHandler == null) {
-			isSoundOnly = true;
-			if (mAnimationHandler != null) {
-				mAnimationHandler.release();
-				mAnimationHandler = null;
-			}
-		} else {
-			new Handler().postDelayed(new Runnable() {
-
-				@Override
-				public void run() {
-					isSoundOnly = false;
-				}
-			}, BluetoothCommand.DELAY_TIME);
-		}
-		this.mFragAnimation = fragmentAnimation;
-		this.mAnimationHandler = animationHandler;
-
+		super.reinitUI(fragmentAnimation, animationHandler);
 	}
 
 	/**

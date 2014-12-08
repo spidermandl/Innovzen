@@ -3,6 +3,7 @@ package com.innovzen.handlers;
 
 import adapters.AdapterSound;
 import android.animation.ValueAnimator;
+import android.os.Handler;
 import android.util.Log;
 
 import com.innovzen.application.InnovzenApplication;
@@ -123,7 +124,23 @@ public class ExerciseManager {
      * @param animationHandler
      */
     public void reinitUI(FragAnimationBase fragmentAnimation,ExerciseAnimationHandler animationHandler){
+		if (animationHandler == null) {
+			isSoundOnly = true;
+			if (mAnimationHandler != null) {
+				mAnimationHandler.release();
+				mAnimationHandler = null;
+			}
+		} else {
+			new Handler().postDelayed(new Runnable() {
 
+				@Override
+				public void run() {
+					isSoundOnly = false;
+				}
+			}, BluetoothCommand.DELAY_TIME);
+		}
+		this.mFragAnimation = fragmentAnimation;
+		this.mAnimationHandler = animationHandler;
     }
     
     /**
