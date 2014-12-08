@@ -1,9 +1,5 @@
 package com.innovzen.fragments;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.innovzen.activities.ActivityMain;
 import com.innovzen.bluetooth.BluetoothCommand;
-import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
@@ -23,21 +17,7 @@ import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
 
 public class FragTime extends FragBase implements OnClickListener {
-    /** Constants used to represent the beginner times */
-    public static final int DEFAULT_TIMER_INHALE = 5000;
-    public static final int DEFAULT_TIMER_HOLD_INHALE = 1000;
-    public static final int DEFAULT_TIMER_EXHALE = 5000;
-    public static final int DEFAULT_TIMER_HOLD_EXHALE = 1000;
-    //relax
-    public static final int RELAX_TIMER_INHALE = 4000;
-    public static final int RELAX_TIMER_HOLD_INHALE = 1000;
-    public static final int RELAX_TIMER_EXHALE = 6000;
-    public static final int RELAX_TIMER_HOLD_EXHALE = 1000;
-    //performance
-    public static final int PERFORMANCE_TIMER_INHALE = 6000;
-    public static final int PERFORMANCE_TIMER_HOLD_INHALE = 1000;
-    public static final int PERFORMANCE_TIMER_EXHALE = 4000;
-    public static final int PERFORMANCE_TIMER_HOLD_EXHALE = 1000;
+    
 	private ImageView time_5min, time_10min, time_15min, time_20min,
 			time_25min, time_30min;
 	private LinearLayout left_mid;

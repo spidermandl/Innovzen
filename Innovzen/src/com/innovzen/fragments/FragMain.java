@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.innovzen.activities.ActivityMain;
 import com.innovzen.bluetooth.check.ResetCheck;
+import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
@@ -42,7 +43,7 @@ public class FragMain extends FragBase implements OnClickListener {
 		case R.id.menu_balance:
 			// test
 			// super.activityListener.fragGoToSetting(true);
-			((ActivityMain)getActivity()).initExerciseManager();
+			((ActivityMain)getActivity()).initExerciseManager(ExerciseTimes.DEFAULT_EXERCISE_TIME);
 			if (((ActivityMain) getActivity()).getResetCheck().closeOrNot() != ResetCheck.WAITTING) {
 				Toast.makeText(
 						getActivity(),
@@ -60,7 +61,7 @@ public class FragMain extends FragBase implements OnClickListener {
 
 			break;
 		case R.id.menu_relax:
-			((ActivityMain)getActivity()).initExerciseManagerRelax();
+			((ActivityMain)getActivity()).initExerciseManager(ExerciseTimes.RELAX_EXERCISE_TIME);
 			if (((ActivityMain) getActivity()).getResetCheck().closeOrNot() != ResetCheck.WAITTING) {
 				Toast.makeText(
 						getActivity(),
@@ -78,7 +79,7 @@ public class FragMain extends FragBase implements OnClickListener {
 
 			break;
 		case R.id.menu_performance:
-			((ActivityMain)getActivity()).initExerciseManagerPerformance();
+			((ActivityMain)getActivity()).initExerciseManager(ExerciseTimes.PERFORMANCE_EXERCISE_TIME);
 			if (((ActivityMain) getActivity()).getResetCheck().closeOrNot() != ResetCheck.WAITTING) {
 				Toast.makeText(
 						getActivity(),

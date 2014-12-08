@@ -18,8 +18,6 @@ import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.FragAnimationPicker;
 import com.innovzen.fragments.FragMusic;
 
-import com.innovzen.fragments.FragSoundPicker;
-import com.innovzen.fragments.FragTimer;
 
 import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.handlers.ExerciseManager;
