@@ -454,7 +454,10 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		mBluetoothService = new BluetoothService(this, bluetoothHandler);
 		mBluetoothCommand = new BluetoothCommand(this,mBluetoothService);
 	}
-
+	/**
+	 * 初始动画时间
+	 * @param type
+	 */
 	public void initExerciseManager(int type){
 
         mTimes.setTimeType(type);
@@ -472,7 +475,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
       //  mExerciseManager = new ExerciseManager(null, null, this, times, voiceSoundId, ambianceSoundId);
 
 	}
-
 	private void initCheckThreads(){
 		mResetCheck=new BluetoothCheck<ResetCheck>();
 		mResetCheck.setCheck(new ResetCheck());

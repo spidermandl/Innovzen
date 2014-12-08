@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.innovzen.activities.ActivityMain;
 import com.innovzen.entities.SoundItem;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
@@ -131,6 +132,8 @@ public class FragMusic extends FragBase implements OnClickListener {
 					mAdapterAmbiance.getSelectedSoundId(),
 					PERSIST_SELECTED_AMBIANCE);
 			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
+			
+			//((ActivityMain)getActivity()).changemusic();
 			break;
 		case R.id.music4:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -160,6 +163,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 					PERSIST_SELECTED_AMBIANCE);
 
 			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
+			//((ActivityMain)getActivity()).changemusic();
 			break;
 		case R.id.music5:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -188,6 +192,8 @@ public class FragMusic extends FragBase implements OnClickListener {
 					mAdapterAmbiance.getSelectedSoundId(),
 					PERSIST_SELECTED_AMBIANCE);
 			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
+			
+			//((ActivityMain)getActivity()).changemusic();
 			break;
 		case R.id.left_top:
 			// mediaPlay.play(getActivity(), MyMediaPlayer.SILENCE);

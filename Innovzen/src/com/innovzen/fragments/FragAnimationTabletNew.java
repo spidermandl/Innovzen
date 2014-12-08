@@ -540,11 +540,11 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		handlerMachineMessage(msg);
 	}
 
-	/*//ÆÁ±Î·µ»Ø¼ü
+	//ÆÁ±Î·µ»Ø¼ü
 	@Override
 	public boolean onBackPress() {
 		return true;
 		
-	}*/
+	}
 	
 }
