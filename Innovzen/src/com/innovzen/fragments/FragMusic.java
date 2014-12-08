@@ -1,7 +1,6 @@
 package com.innovzen.fragments;
 
 import adapters.AdapterSound;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,9 +20,8 @@ import com.innovzen.utils.PersistentUtil;
 
 public class FragMusic extends FragBase implements OnClickListener {
 
-	private ImageView left_top, left_bottom;
+	private ImageView left_top;
 	LinearLayout left_mid;
-	private SharedPreferences sp = null;
 	private ImageView music1;
 	private ImageView music2;
 	private ImageView music3;
@@ -74,7 +72,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 					mAdapterAmbiance.getSelectedSoundId(),
 					PERSIST_SELECTED_AMBIANCE);
 			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
-			// mediaPlay.play(getActivity(), MyMediaPlayer.AQUATIC);
+			((ActivityMain)getActivity()).getExerciseManager().reinitAmbiance(soundId);
 			break;
 		case R.id.music2:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -104,6 +102,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 					mAdapterAmbiance.getSelectedSoundId(),
 					PERSIST_SELECTED_AMBIANCE);
 			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
+			((ActivityMain)getActivity()).getExerciseManager().reinitAmbiance(soundId1);
 			break;
 		case R.id.music3:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -132,8 +131,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 					mAdapterAmbiance.getSelectedSoundId(),
 					PERSIST_SELECTED_AMBIANCE);
 			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
-			
-			//((ActivityMain)getActivity()).changemusic();
+			((ActivityMain)getActivity()).getExerciseManager().reinitAmbiance(soundId2);
 			break;
 		case R.id.music4:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -163,7 +161,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 					PERSIST_SELECTED_AMBIANCE);
 
 			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
-			//((ActivityMain)getActivity()).changemusic();
+			((ActivityMain)getActivity()).getExerciseManager().reinitAmbiance(soundId3);
 			break;
 		case R.id.music5:
 			music1.setBackgroundResource(R.drawable.selector_music_aquatic);
@@ -193,7 +191,7 @@ public class FragMusic extends FragBase implements OnClickListener {
 					PERSIST_SELECTED_AMBIANCE);
 			MyPreference.getInstance(getActivity()).writeInt(PERSIST_SELECTED_AMBIANCE, mAdapterAmbiance.getSelectedSoundId());
 			
-			//((ActivityMain)getActivity()).changemusic();
+			((ActivityMain)getActivity()).getExerciseManager().reinitAmbiance(soundId4);
 			break;
 		case R.id.left_top:
 			// mediaPlay.play(getActivity(), MyMediaPlayer.SILENCE);

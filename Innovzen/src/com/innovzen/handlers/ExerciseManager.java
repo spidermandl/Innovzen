@@ -152,6 +152,14 @@ public class ExerciseManager {
         this.mVoiceSoundId = voiceSoundId;
         this.mAmbianceSoundId = ambianceSoundId;
     }
+    
+    public void reinitVoice(int voiceSoundId){
+    	this.mVoiceSoundId=voiceSoundId;
+    }
+    
+    public void reinitAmbiance(int ambianceSoundId){
+    	this.mAmbianceSoundId=ambianceSoundId;
+    }
     /**
      * Calls the appropriate method to handle the current exercise step
      * 

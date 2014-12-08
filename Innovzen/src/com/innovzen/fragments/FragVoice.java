@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.innovzen.activities.ActivityMain;
 import com.innovzen.entities.SoundItem;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
@@ -62,10 +63,10 @@ public class FragVoice extends FragBase implements OnClickListener {
 					MyPreference.VOICE, MyPreference.MAN_VOICE);
 			MyPreference.getInstance(getActivity()).writeInt(
 					MyPreference.SELECTED_VOICE, mAdapterVoices.getSelectedSoundId());
-			PersistentUtil
-					.setInt(getActivity(), mAdapterVoices.getSelectedSoundId(),
-							PERSIST_SELECTED_VOICE);
-
+//			PersistentUtil
+//					.setInt(getActivity(), mAdapterVoices.getSelectedSoundId(),
+//							PERSIST_SELECTED_VOICE);
+			((ActivityMain)getActivity()).getExerciseManager().reinitVoice(soundId);
 			break;
 		case R.id.woman_voice:
 
@@ -93,9 +94,10 @@ public class FragVoice extends FragBase implements OnClickListener {
 					MyPreference.VOICE, MyPreference.WOMAN_VOICE);
 			MyPreference.getInstance(getActivity()).writeInt(
 					MyPreference.SELECTED_VOICE, mAdapterVoices.getSelectedSoundId());
-			PersistentUtil
-					.setInt(getActivity(), mAdapterVoices.getSelectedSoundId(),
-							PERSIST_SELECTED_VOICE);
+//			PersistentUtil
+//					.setInt(getActivity(), mAdapterVoices.getSelectedSoundId(),
+//							PERSIST_SELECTED_VOICE);
+			((ActivityMain)getActivity()).getExerciseManager().reinitVoice(soundId1);
 			break;
 
 		case R.id.silence_voice:
@@ -122,9 +124,10 @@ public class FragVoice extends FragBase implements OnClickListener {
 					MyPreference.VOICE, MyPreference.SILENCE);
 			MyPreference.getInstance(getActivity()).writeInt(
 					MyPreference.SELECTED_VOICE, mAdapterVoices.getSelectedSoundId());
-			PersistentUtil
-					.setInt(getActivity(), mAdapterVoices.getSelectedSoundId(),
-							PERSIST_SELECTED_VOICE);
+//			PersistentUtil
+//					.setInt(getActivity(), mAdapterVoices.getSelectedSoundId(),
+//							PERSIST_SELECTED_VOICE);
+			((ActivityMain)getActivity()).getExerciseManager().reinitVoice(soundId2);
 			break;
 
 		default:
