@@ -126,6 +126,10 @@ public class ExerciseTimes {
 			break;
 		}
     }
+    /**
+     * 
+     * @param context
+     */
     public void initTime(Context context){
     	exerciseDuration = MyPreference.getInstance(context).readInt(MyPreference.TIME);
     }

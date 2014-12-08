@@ -400,7 +400,8 @@ public class ExerciseManager {
         setAmbianceVolume(fraction);
 
         // Render animation frame
-        mAnimationHandler.inhale(fraction, globalFraction);
+        if(mAnimationHandler!=null)
+        	mAnimationHandler.inhale(fraction, globalFraction);
 
         // If step animation ended
         if (fraction == 1f) {
@@ -441,7 +442,8 @@ public class ExerciseManager {
         }
 
         // Render animation frame
-        mAnimationHandler.holdInhale(fraction, globalFraction);
+        if(mAnimationHandler!=null)
+        	mAnimationHandler.holdInhale(fraction, globalFraction);
 
         // If step animation ended
         if (fraction == 1f) {
@@ -475,7 +477,8 @@ public class ExerciseManager {
         setAmbianceVolume(fraction);
 
         // Render animation frame
-        mAnimationHandler.exhale(fraction, globalFraction);
+        if(mAnimationHandler!=null)
+        	mAnimationHandler.exhale(fraction, globalFraction);
 
         // If step animation ended
         if (fraction == 1f) {
@@ -528,7 +531,8 @@ public class ExerciseManager {
         }
 
         // Render animation frame
-        mAnimationHandler.holdExhale(fraction, globalFraction);
+        if(mAnimationHandler!=null)
+        	mAnimationHandler.holdExhale(fraction, globalFraction);
 
         // If step animation ended
         if (fraction == 1f) {

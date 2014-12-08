@@ -51,9 +51,6 @@ public class FragMain extends FragBase implements OnClickListener {
 						1000).show();
 				break;
 			}
-			PersistentUtil.setInt(getActivity(), 5 * 60000,
-					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
-			
 			//System.out.println(""+);
 			MyPreference.getInstance(this.getActivity()).writeString(
 					MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.BLANCE);
@@ -69,8 +66,6 @@ public class FragMain extends FragBase implements OnClickListener {
 						1000).show();
 				break;
 			}
-			PersistentUtil.setInt(getActivity(), 10 * 60000,
-					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
 			MyPreference.getInstance(this.getActivity()).writeString(
 					MyPreference.BLANCE_RELAX_PERFORMANCE, MyPreference.RELAX);
 			
@@ -87,8 +82,6 @@ public class FragMain extends FragBase implements OnClickListener {
 						1000).show();
 				break;
 			}
-			PersistentUtil.setInt(getActivity(), 15 * 60000,
-					FragAnimationBase.PERSIST_TOTAL_SELECTED_EXERCISE_DURATION);
 			MyPreference.getInstance(this.getActivity()).writeString(
 					MyPreference.BLANCE_RELAX_PERFORMANCE,
 					MyPreference.PERFORMANCE);

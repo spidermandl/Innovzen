@@ -199,6 +199,13 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 开始
 		case R.id.main_animation_start:
+			if(Util.ISEMULATOR){
+				/**
+				 * 如果是模拟器
+				 */
+				overlayBtnPressed();
+				break;
+			}
 			//如果机器处于暂停状态
 			if(restartAnimation){
 				super.activityListener
