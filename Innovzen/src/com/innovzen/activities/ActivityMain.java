@@ -478,10 +478,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
        // mExerciseManager = new ExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId);
 
 	}
-	public void inittime(){
-		mTimes.initTime(this);
-		
-	}
+
 	private void initCheckThreads(){
 		mResetCheck=new BluetoothCheck<ResetCheck>();
 		mResetCheck.setCheck(new ResetCheck());
