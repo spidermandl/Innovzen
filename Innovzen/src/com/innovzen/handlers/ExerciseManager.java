@@ -76,7 +76,7 @@ public class ExerciseManager {
 	 * Desmond
 	 * 播放次数累计,判断321 是否显示
 	 */
-	protected int playCount=0;
+	public static int playCount=0;
 	
     // Hold the inhale/exhale animation
     protected ValueAnimator.AnimatorUpdateListener mValueAnimatorListener = new ValueAnimator.AnimatorUpdateListener() {

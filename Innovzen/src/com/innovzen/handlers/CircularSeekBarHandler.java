@@ -92,8 +92,8 @@ public class CircularSeekBarHandler {
         }
 
         // Send progress reference to the thumb
+        //thumb.setBottomCircularBar(progress);
         thumb.setBottomCircularBar(progress);
-
         // Enable stuff of circular seek bars
         progress.setShowCircle(true);
         thumb.setShowThumb(true);

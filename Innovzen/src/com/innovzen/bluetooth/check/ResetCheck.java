@@ -116,28 +116,38 @@ public class ResetCheck extends CheckBase {
 			if (mBC != null) {
 				//Log.e("closeStatus", mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS)+"");
 				if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_RUNNING) {
-					Log.e("close thread", "running");
+				//	Log.e("close thread", "running");
 					closeStatus = RUNNING;
 					map.put(BluetoothCommand.MACHINE_RUN_STATUS,mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS));
 
 					closeHandler.postDelayed(closeRunnable,BluetoothCommand.DELAY_TIME);
 					
 				} else if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT) {
-					Log.e("close thread", "collecting");
+				//	Log.e("close thread", "collecting");
 					closeStatus = COLLECTING;
 					map.put(BluetoothCommand.MACHINE_RUN_STATUS,mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS));
 
 					closeHandler.postDelayed(closeRunnable,BluetoothCommand.DELAY_TIME);
 					
 				} else if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_WAIT) {
-					Log.e("close thread", "waiting");
+					//Log.e("close thread", "waiting");
 					closeStatus = WAITTING;
 					resetStatus=INVALID;
 					
 					
 					map.put(BluetoothCommand.MACHINE_RUN_STATUS,mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS));
 					closeHandler.sendEmptyMessage(0);
-
+					closeHandler.postDelayed(closeRunnable,BluetoothCommand.DELAY_TIME);
+				
+				}else if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_PAUSE) {
+					//Log.e("close thread", "pausing");
+					closeStatus = RUNNING;
+					//resetStatus=INVALID;
+					
+					
+					map.put(BluetoothCommand.MACHINE_RUN_STATUS,mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS));
+					closeHandler.sendEmptyMessage(0);
+					closeHandler.postDelayed(closeRunnable,BluetoothCommand.DELAY_TIME);
 				
 				}
 			}

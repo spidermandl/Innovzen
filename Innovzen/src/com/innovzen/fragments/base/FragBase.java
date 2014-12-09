@@ -128,9 +128,6 @@ public abstract class FragBase extends Fragment {
 					volum_less
 							.setBackgroundResource(R.drawable.icon_volum_less);
 				}
-				Log.e("onProgressChanged", progress+"");
-				
-	
 			}
 
 			@Override

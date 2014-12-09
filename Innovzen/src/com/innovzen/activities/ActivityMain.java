@@ -474,9 +474,13 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
     			MyPreference.getInstance(this).readInt(MyPreference.SELECTED_VOICE);
         int ambianceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
         		MyPreference.getInstance(this).readInt(FragMusic.PERSIST_SELECTED_AMBIANCE);
-        //mExerciseManager = new SyncExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId);
-        mExerciseManager = new ExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId);
+        mExerciseManager = new SyncExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId);
+       // mExerciseManager = new ExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId);
 
+	}
+	public void inittime(){
+		mTimes.initTime(this);
+		
 	}
 	private void initCheckThreads(){
 		mResetCheck=new BluetoothCheck<ResetCheck>();
