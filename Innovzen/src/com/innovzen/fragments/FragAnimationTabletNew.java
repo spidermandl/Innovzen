@@ -25,6 +25,7 @@ import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.handlers.CircularSeekBarHandler;
 import com.innovzen.handlers.ExerciseAnimationHandler;
+import com.innovzen.handlers.ExerciseManager;
 import com.innovzen.o2chair.R;
 import com.innovzen.ui.VerticalSeekBar;
 import com.innovzen.utils.MyPreference;
@@ -457,7 +458,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	@Override
 	protected void initLefter(View view) {
 		super.initLefter(view);
-		
 		myMinutes.setText(MyPreference.getInstance(this.getActivity())
 				.readInt(MyPreference.TIME)/60000+MyPreference.MINS);
 		// 像机器发送时间命令

@@ -47,6 +47,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -1012,6 +1013,7 @@ public class CircularSeekBar extends View {
 
     public void setTextTime(boolean value) {
         // System.out.println("================================ values" + value);
+    
         this.showTime = value;
     }
 
@@ -1041,6 +1043,7 @@ public class CircularSeekBar extends View {
 
             this.minValue = min;
             this.maxValue = max;
+         
         } else {
             
             minAngle = 0;
