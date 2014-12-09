@@ -70,7 +70,7 @@ public class ActivityBase extends FragmentActivity {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
         String curr_fragment_TAG = "";
         if (currentFragment != null) {
-        	                             //////
+        	                            
             curr_fragment_TAG = currentFragment.getClass().getSimpleName();
         }
 
