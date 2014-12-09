@@ -18,16 +18,11 @@ import android.widget.Toast;
 
 import com.innovzen.activities.ActivityBase;
 import com.innovzen.activities.ActivityMain;
-import com.innovzen.animations.AnimationGradient;
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.bluetooth.check.ResetCheck;
-import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.handlers.CircularSeekBarHandler;
-import com.innovzen.handlers.ExerciseAnimationHandler;
-import com.innovzen.handlers.ExerciseManager;
 import com.innovzen.o2chair.R;
-import com.innovzen.ui.VerticalSeekBar;
 import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.Util;
 

@@ -20,6 +20,9 @@ import com.innovzen.utils.MyPreference;
  *
  */
 public class FragGraphic extends FragBase implements OnClickListener{
+    // Hold the default exercise animation in case one has not yet been selected
+    public static final int DEFAULT_EXERCISE_ANIMATION = ExerciseAnimationHandler.ANIMATION_GRADIENT;
+    
 	private ImageView exercise_graphic,relax_graphic,breath_graphic,summer_graphic;
 	private LinearLayout left_mid;
 	private TextView myMinutes;
@@ -65,25 +68,25 @@ public class FragGraphic extends FragBase implements OnClickListener{
 			MyPreference.getInstance(this.getActivity()).
 				writeInt(MyPreference.GRAPHIC, ExerciseAnimationHandler.ANIMATION_BEACH);
 			break;
-		case R.id.left_top:
-			switch (MyPreference.getInstance(this.getActivity()).readInt(MyPreference.GRAPHIC)) {
-			case ExerciseAnimationHandler.ANIMATION_GRADIENT:
-				super.activityListener.fragGradientAnimationPicked();
-				break;
-			case ExerciseAnimationHandler.ANIMATION_PETALS:
-				super.activityListener.fragPetalsAnimationPicked();
-				break;
-			case ExerciseAnimationHandler.ANIMATION_LUNGS:
-				super.activityListener.fragLungsAnimationPicked();
-				break;
-			case ExerciseAnimationHandler.ANIMATION_BEACH:
-				super.activityListener.fragBeachAnimationPicked();
-				break;
-
-			default:
-				super.activityListener.fragGradientAnimationPicked();
-				break;
-			}
+//		case R.id.left_top:
+//			switch (MyPreference.getInstance(this.getActivity()).readInt(MyPreference.GRAPHIC)) {
+//			case ExerciseAnimationHandler.ANIMATION_GRADIENT:
+//				super.activityListener.fragGradientAnimationPicked();
+//				break;
+//			case ExerciseAnimationHandler.ANIMATION_PETALS:
+//				super.activityListener.fragPetalsAnimationPicked();
+//				break;
+//			case ExerciseAnimationHandler.ANIMATION_LUNGS:
+//				super.activityListener.fragLungsAnimationPicked();
+//				break;
+//			case ExerciseAnimationHandler.ANIMATION_BEACH:
+//				super.activityListener.fragBeachAnimationPicked();
+//				break;
+//
+//			default:
+//				super.activityListener.fragGradientAnimationPicked();
+//				break;
+//			}
 			
 		default:
 			break;
@@ -108,7 +111,6 @@ public class FragGraphic extends FragBase implements OnClickListener{
 		breath_graphic.setOnClickListener(this);
 		summer_graphic =(ImageView) view.findViewById(R.id.summer_graphic);
 		summer_graphic.setOnClickListener(this);
-		leftTop.setOnClickListener(this);
 		
 		
 		switch (MyPreference.getInstance(this.getActivity()).readInt(MyPreference.GRAPHIC)) {

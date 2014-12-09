@@ -2,6 +2,8 @@
 package com.innovzen.handlers;
 
 import com.innovzen.o2chair.R;
+
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
@@ -188,7 +190,7 @@ public class CircularSeekBarHandler {
             mClockwise = !mClockwise;
 
         }
-
+        //Log.e("progress_mill", min+","+max+","+startingValue+","+totalDuration+","+remainingDuration);
         if (mClockwise) {
             setProgress(min / 1000, max / 1000, (max - startingValue) / 1000, (int) totalDuration / 1000, (1f - remainingDuration) * totalDuration / 1000);
         } else {
