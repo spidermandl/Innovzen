@@ -1,6 +1,5 @@
 package com.innovzen.activities;
 
-import java.lang.Character.UnicodeBlock;
 import java.util.List;
 
 import android.app.Activity;

@@ -1,27 +1,19 @@
 package com.innovzen.fragments;
 
-import java.util.HashMap;
-
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.innovzen.activities.ActivityMain;
 import com.innovzen.bluetooth.BluetoothCommand;
-import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
-import com.innovzen.ui.VerticalSeekBar;
 import com.innovzen.utils.MyPreference;
 
 public class FragSettings extends FragBase implements OnClickListener{
