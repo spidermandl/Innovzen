@@ -478,7 +478,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
        // mExerciseManager = new ExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId);
 
 	}
-	public void inittime(){
+	//调用此方法重置时间
+	public void changeTime(){
 		mTimes.initTime(this);
 		
 	}
