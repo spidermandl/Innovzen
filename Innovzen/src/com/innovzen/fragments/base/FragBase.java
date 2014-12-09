@@ -123,15 +123,16 @@ public abstract class FragBase extends Fragment {
 				audiomanage.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
 				currentVolume = audiomanage.getStreamVolume(AudioManager.STREAM_MUSIC);
 				
-                seekBar.setProgress(currentVolume);
+               seekBar.setProgress(currentVolume);
+                System.out.println(currentVolume);
             
                 if(progress==0){
                 	volum_less.setBackgroundResource(R.drawable.icon_no_volum);
                 }else{
                 	volum_less.setBackgroundResource(R.drawable.icon_volum_less);
                 }
-              MyPreference.getInstance(getActivity()).writeInt(MyPreference.LAST_VOLUME, progress);
-				
+              MyPreference.getInstance(getActivity()).writeInt(MyPreference.LAST_VOLUME, currentVolume);
+              seekBar.setProgress(MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME));
 			}
 
 			@Override

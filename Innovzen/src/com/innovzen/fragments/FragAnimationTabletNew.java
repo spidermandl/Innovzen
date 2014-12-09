@@ -93,9 +93,11 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			{    
 				pause.setBackgroundResource(R.drawable.selector_btn_pause);
 				restartAnimation=false;
+				
 			} else {
 				pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
 				restartAnimation=true;
+				
 			}
 			break;
 		case BluetoothCommand.ZERO_STATUS:// ¿ØÖÆZero°´¼ü×´Ì¬
@@ -243,7 +245,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		case R.id.main_animation_pause:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
-			mBluetoothCheck.closeOrNot();
+			//mBluetoothCheck.closeOrNot();
 			//super.pauseExercise();
 			break;
 		case R.id.main_animation_breathe_up:
@@ -339,6 +341,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			public boolean onTouch(View v, MotionEvent event) {
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
+					mBluetoothCheck.closeOrNot();
 					backRestUp
 							.setBackgroundResource(R.drawable.btn_backrest_adjust_up_activated);
 					FragAnimationTabletNew.super.activityListener

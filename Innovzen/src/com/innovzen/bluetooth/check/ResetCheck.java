@@ -114,7 +114,7 @@ public class ResetCheck extends CheckBase {
 			BluetoothCommand mBC = BluetoothCommand.getInstance();
 			
 			if (mBC != null) {
-				//Log.e("closeStatus", mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS)+"");
+				Log.e("closeStatus", mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS)+"");
 				if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_RUNNING) {
 					Log.e("close thread", "running");
 					closeStatus = RUNNING;
@@ -137,7 +137,17 @@ public class ResetCheck extends CheckBase {
 					
 					map.put(BluetoothCommand.MACHINE_RUN_STATUS,mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS));
 					closeHandler.sendEmptyMessage(0);
-
+					closeHandler.postDelayed(closeRunnable,BluetoothCommand.DELAY_TIME);
+				
+				}else if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_PAUSE) {
+					Log.e("close thread", "pausing");
+					closeStatus = RUNNING;
+					//resetStatus=INVALID;
+					
+					
+					map.put(BluetoothCommand.MACHINE_RUN_STATUS,mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS));
+					closeHandler.sendEmptyMessage(0);
+					closeHandler.postDelayed(closeRunnable,BluetoothCommand.DELAY_TIME);
 				
 				}
 			}
