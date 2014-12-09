@@ -166,7 +166,7 @@ public class MyPreference {
 	 * @return
 	 */
 	public int readInt(String key) {
-		return sp.getInt(key, 0);
+		return sp.getInt(key, -1);
 	}
 	
 }
