@@ -8,6 +8,7 @@ import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,8 +44,6 @@ public abstract class FragBase extends Fragment {
 	// fragments
 	protected FragmentCommunicator activityListener;
 	private ImageView iv;
-	private int maxVolume;
-    private int currentVolume;
 	/**
 	 * desmond 界面左侧控制栏
 	 */
@@ -87,9 +86,10 @@ public abstract class FragBase extends Fragment {
 	
 		
 		audiomanage = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);						
-		maxVolume = audiomanage.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+		int maxVolume = audiomanage.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 		int lastVolumeValue = MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME);
-			
+		Log.e("lastVolumeValue", lastVolumeValue+"");
+		
         volum_less = (ImageView) view.findViewById(R.id.volum_less);
         volum_less.setOnClickListener(new OnClickListener() {
 			
@@ -97,7 +97,7 @@ public abstract class FragBase extends Fragment {
 			public void onClick(View v) {
 				
 				seekBar.setProgress(0);
-				
+				MyPreference.getInstance(FragBase.this.getActivity()).writeInt(MyPreference.LAST_VOLUME, 0);
 			}
 		});
 		leftTop = (ImageView) view.findViewById(R.id.left_top);
@@ -107,32 +107,27 @@ public abstract class FragBase extends Fragment {
 		seekBar = (VerticalSeekBar) view.findViewById(R.id.mySeekBar);
 		seekBar.setMax(maxVolume);
 		//seekBar.setProgress(maxVolume/2);
-		if(lastVolumeValue==-1){
-			seekBar.setProgress(8);
+		if(lastVolumeValue==MyPreference.LAST_VOLUME_INT){
+			seekBar.setProgress(maxVolume/2);
+			MyPreference.getInstance(FragBase.this.getActivity()).writeInt(MyPreference.LAST_VOLUME, maxVolume/2);
 		}else{
 			seekBar.setProgress(lastVolumeValue);
 		}
 		
 		seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			
-     
-
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
-				audiomanage.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
-				currentVolume = audiomanage.getStreamVolume(AudioManager.STREAM_MUSIC);
-				
-               seekBar.setProgress(currentVolume);
-                System.out.println(currentVolume);
-            
-                if(progress==0){
-                	volum_less.setBackgroundResource(R.drawable.icon_no_volum);
-                }else{
-                	volum_less.setBackgroundResource(R.drawable.icon_volum_less);
-                }
-              MyPreference.getInstance(getActivity()).writeInt(MyPreference.LAST_VOLUME, currentVolume);
-              seekBar.setProgress(MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME));
+				audiomanage.setStreamVolume(AudioManager.STREAM_MUSIC,progress, 0);
+
+				MyPreference.getInstance(FragBase.this.getActivity()).writeInt(MyPreference.LAST_VOLUME,progress);
+				if (progress == 0) {
+					volum_less.setBackgroundResource(R.drawable.icon_no_volum);
+				} else {
+					volum_less
+							.setBackgroundResource(R.drawable.icon_volum_less);
+				}
 			}
 
 			@Override
@@ -170,12 +165,7 @@ public abstract class FragBase extends Fragment {
 				leftMid.setVisibility(View.INVISIBLE);
 				leftBottom.setVisibility(View.INVISIBLE);
 				voice_progressbar.setVisibility(View.VISIBLE);
-				//点击事件，每次点击设置进度条大小
 				
-				//seekBar.setProgress(MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME));
-				
-				System.out.println(MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME)+".........");
-			
 			}
 		});
 		

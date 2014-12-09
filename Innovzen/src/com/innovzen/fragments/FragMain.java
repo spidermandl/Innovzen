@@ -114,9 +114,6 @@ public class FragMain extends FragBase implements OnClickListener {
 			MyPreference.getInstance(this.getActivity()).writeInt(
 					MyPreference.TIME, 5*60*1000);
 		
-		
-		//≥ı º…˘“Ù¥Û–°
-		MyPreference.getInstance(getActivity()).writeInt(MyPreference.LAST_VOLUME, -1);
 		myMintues = (TextView) view.findViewById(R.id.myMinutes);
 
 		view.findViewById(R.id.menu_balance).setOnClickListener(this);

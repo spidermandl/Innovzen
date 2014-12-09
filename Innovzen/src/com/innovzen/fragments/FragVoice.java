@@ -153,15 +153,17 @@ public class FragVoice extends FragBase implements OnClickListener {
 				.readInt(MyPreference.TIME)/60000+MyPreference.MINS);
 		// Voice
 		int selectedVoiceSoundId = //PersistentUtil.getInt(getActivity(),PERSIST_SELECTED_VOICE);
-		MyPreference.getInstance(getActivity()).readInt(MyPreference.SELECTED_VOICE);
+				MyPreference.getInstance(getActivity()).readInt(MyPreference.SELECTED_VOICE);
+
+		mAdapterVoices = new AdapterSound(getActivity(),
+				super.activityListener.fragGetVoices(), selectedVoiceSoundId);
+		
 		if (selectedVoiceSoundId == -1) {
 			selectedVoiceSoundId = mAdapterVoices.getFirstSoundId();
-			PersistentUtil.setInt(getActivity(), selectedVoiceSoundId,PERSIST_SELECTED_VOICE);
+			//PersistentUtil.setInt(getActivity(), selectedVoiceSoundId,PERSIST_SELECTED_VOICE);
 			MyPreference.getInstance(getActivity()).writeInt(
 					MyPreference.SELECTED_VOICE, selectedVoiceSoundId);
 		}
-		mAdapterVoices = new AdapterSound(getActivity(),
-				super.activityListener.fragGetVoices(), selectedVoiceSoundId);
 
 		String myVoice = MyPreference.getInstance(getActivity()).readString(
 				MyPreference.VOICE);

@@ -69,8 +69,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private ImageView backRestUp, backRestDown, footUp, footDown, zero, pause;
 
 	private TextView countdown_tv;
-	private VerticalSeekBar seekBar;
-	
 
 	/**
 	 * 接受机器指令handler
