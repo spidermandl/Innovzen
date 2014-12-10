@@ -2,6 +2,7 @@ package com.innovzen.bluetooth.check;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.util.SparseIntArray;
 import android.widget.Toast;
 
@@ -140,12 +141,12 @@ public class ResetCheck extends CheckBase {
 					//Log.e("close thread", "pausing");
 					closeStatus = RUNNING;
 					//resetStatus=INVALID;
-					
-					
 					map.put(BluetoothCommand.MACHINE_RUN_STATUS,mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS));
 					closeHandler.sendEmptyMessage(0);
 					closeHandler.postDelayed(closeRunnable,BluetoothCommand.DELAY_TIME);
 				
+				}else{
+					Log.e("", "closing tread stops");
 				}
 			}
 		}
