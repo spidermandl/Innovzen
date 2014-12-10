@@ -28,7 +28,6 @@
 package com.innovzen.customviews;
 
 import com.innovzen.o2chair.R;
-import com.innovzen.utils.MyPreference;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -437,39 +436,6 @@ public class CircularSeekBar extends View {
      */
     private void calculateProgressDegrees() {
         mProgressDegrees = mPointerPosition - mStartAngle; // Verified
-      /*  switch (MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)) {
-		case 5*60*1000:
-			mProgressDegrees=30;
-			break;
-		case 10*60*1000:
-			mProgressDegrees=60;
-			break;
-		case 15*60*1000:
-			mProgressDegrees=90;
-			break;
-		case 20*60*1000:
-			mProgressDegrees=120;
-			break;
-		case 25*60*1000:
-			mProgressDegrees=150;
-			break;
-		case 30*60*1000:
-			mProgressDegrees=180;
-			break;
-        }*/
-        if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==5*60*1000){
-            mProgressDegrees=30;
-        }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==10*60*1000){
-        	mProgressDegrees=60;
-        }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==15*60*1000){
-        	mProgressDegrees=90;
-        }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==20*60*1000){
-        	mProgressDegrees=120;
-        }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==25*60*1000){
-        	mProgressDegrees=150;
-        }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==30*60*1000){
-        	mProgressDegrees=180;
-        }
         mProgressDegrees = (mProgressDegrees < 0 ? 360f + mProgressDegrees : mProgressDegrees); // Verified
 
         if (bottomCircularSeekBar != null) {
@@ -486,30 +452,7 @@ public class CircularSeekBar extends View {
      * Calculate the pointer position (and the end of the progress arc) in degrees. Sets mPointerPosition to that value.
      */
     private void calculatePointerAngle() {
-    	//mProgress=60;
         mPointerPosition = (((float) mProgress / (float) mMax) * mTotalCircleDegrees) + mStartAngle;
-      
-
-    /*	switch (MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)) {
-		case 5*60*1000:
-			mPointerPosition=30;
-			break;
-		case 10*60*1000:
-			mPointerPosition=60;
-			break;
-		case 15*60*1000:
-			mPointerPosition=90;
-			break;
-		case 20*60*1000:
-			mProgress=120;
-			break;
-		case 25*60*1000:
-			mProgress=150;
-			break;
-		case 30*60*1000:
-			mProgress=180;
-			break;
-		}*/
         mPointerPosition = mPointerPosition % 360f;
     }
 
@@ -562,8 +505,6 @@ public class CircularSeekBar extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int roundedDegrees = Math.round(mProgressDegrees);
-      //  int roundedDegrees = Math.round(20f);
-    //    Log.e("mProgressDegrees~", ""+mProgressDegrees);
         if (mProgressDegrees < minAngle) {
             roundedDegrees = minAngle;
             mProgressDegrees = minAngle;

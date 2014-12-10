@@ -476,8 +476,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         int ambianceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
         		MyPreference.getInstance(this).readInt(FragMusic.PERSIST_SELECTED_AMBIANCE);
         mExerciseManager = 
-        		//Util.ISEMULATOR?
-        	//	new ExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId):
+        		Util.ISEMULATOR?
+        		new ExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId):
         		new SyncExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId);
         
 
