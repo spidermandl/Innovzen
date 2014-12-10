@@ -536,21 +536,23 @@ public class CircularSeekBar extends View {
 
                 // Calculate the seconds
                 seconds = (int) (totalSeconds % 60);
-                if (roundLastDigit) {
-                    seconds = ((int) (seconds / 10)) * 10;
-                    totalSeconds = ((int) totalSeconds / 10) * 10;
-                    if (seconds < 10) {
-                        secondString = "00";
-                    } else {
-                        secondString = seconds + "";
-                    }
-                } else {
+                //Desmond
+//                if (roundLastDigit) {
+//                    seconds = ((int) (seconds / 10)) * 10;
+//                    totalSeconds = ((int) totalSeconds / 10) * 10;
+//                    if (seconds < 10) {
+//                        secondString = "00";
+//                    } else {
+//                        secondString = seconds + "";
+//                    }
+//                } else {
+                //Desmond end
                     if (seconds < 10) {
                         secondString = "0" + seconds;
                     } else {
                         secondString = seconds + "";
                     }
-                }
+//                }
 
                 String timeValue = minuteString + ":" + secondString;
                 paint.setTextSize(chosenTextSize * (getWidth() / 928f));

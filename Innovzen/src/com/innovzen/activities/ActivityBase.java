@@ -1,6 +1,5 @@
 package com.innovzen.activities;
 
-import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +8,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Window;
 
-import com.innovzen.fragments.FragAnimationTabletNew;
 import com.innovzen.o2chair.R;
 import com.innovzen.utils.Util;
 

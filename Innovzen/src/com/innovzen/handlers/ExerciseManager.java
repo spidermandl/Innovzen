@@ -175,7 +175,8 @@ public class ExerciseManager {
         // Calculate the globalTimeFraction (how much time has passed for the exercise time)
         // (now - start) / (end - start) OR (now - start) / ((start + duration) - start)
         float globalFraction = (float) ((System.currentTimeMillis() - mFirstStartAnimationTimestamp));
-        //Log.e("globalFraction", "current time: "+System.currentTimeMillis()+" start time: "+mFirstStartAnimationTimestamp+" gap time:"+globalFraction);
+        Log.e("start time", mFirstStartAnimationTimestamp+"");
+        //Log.e("anim progress", fraction+", "+globalFraction);
         globalFraction /= (float) ((mFirstStartAnimationTimestamp + mTimes.exerciseDuration) - mFirstStartAnimationTimestamp);
         // In case the fraction is more than 1 (which means we've shot over the ending time of the entire exercise), just bring it back to (limit it to max) 100%
         globalFraction = (globalFraction > 1f) ? 1f : globalFraction;

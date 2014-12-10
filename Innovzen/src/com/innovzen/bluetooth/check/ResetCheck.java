@@ -1,10 +1,7 @@
 package com.innovzen.bluetooth.check;
 
-import java.lang.Character.UnicodeBlock;
-
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.util.SparseIntArray;
 import android.widget.Toast;
 

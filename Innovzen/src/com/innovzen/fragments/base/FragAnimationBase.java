@@ -2,6 +2,7 @@
 package com.innovzen.fragments.base;
 
 import com.innovzen.o2chair.R;
+
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.innovzen.activities.ActivityMain;
 import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.FragAnimationPicker;
+import com.innovzen.fragments.FragGraphic;
 import com.innovzen.fragments.FragMusic;
 
 
@@ -252,12 +254,13 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
         /*
          * Get the animation type from the bundle (if available)
          */
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            if (bundle.containsKey(KEY_ANIMATION_TYPE)) {
-                mSelectedExerciseAnimationType = bundle.getInt(KEY_ANIMATION_TYPE);
-            }
-        }
+//        Bundle bundle = getArguments();
+//        if (bundle != null) {
+//            if (bundle.containsKey(KEY_ANIMATION_TYPE)) {
+//                mSelectedExerciseAnimationType = bundle.getInt(KEY_ANIMATION_TYPE);
+//            }
+//        }
+        mSelectedExerciseAnimationType=MyPreference.getInstance(this.getActivity()).readInt(MyPreference.GRAPHIC);
         // If it's still -1 at this point ...
         if (mSelectedExerciseAnimationType == -1) {
             // Get the one stored in the shared preferences
@@ -265,7 +268,7 @@ public class FragAnimationBase extends FragBase implements FragmentOnBackPressIn
 
             // If this one is -1 as well, then just load the dafault one
             if (mSelectedExerciseAnimationType == -1) {
-                mSelectedExerciseAnimationType = FragAnimationPicker.DEFAULT_EXERCISE_ANIMATION;
+                mSelectedExerciseAnimationType = FragGraphic.DEFAULT_EXERCISE_ANIMATION;
             } else {
             }
         }

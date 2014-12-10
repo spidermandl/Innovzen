@@ -114,7 +114,10 @@ public class AnimationLungs extends ExerciseAnimationBase {
                 // Set up the timer
                 if (ActivityBase.IS_TABLET) {
                     int timerDim = (int) (layout.getHeight() * 0.32f);
-                    mTimerHandler = new CircularSeekBarHandler(layout.findViewById(R.id.reusable_circular_seekbar_container), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, false);
+                    //Desmond
+                    mTimerHandler = //new CircularSeekBarHandler(layout.findViewById(R.id.reusable_circular_seekbar_container), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, false);
+                                      new CircularSeekBarHandler(layout.findViewById(R.id.reusable_circular_seekbar_container), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, true);
+                    //Desmond end
                     mTimerHandler.showThumb(false);
 
                     setupLungs();
@@ -360,7 +363,8 @@ public class AnimationLungs extends ExerciseAnimationBase {
 
             // Set up the timer
             int timerDim = (int) (Util.getScreenDimensions(mCtx)[0] * 0.22031f);
-            mTimerHandler = new CircularSeekBarHandler(super.layout.findViewById(R.id.reusable_circular_seekbar_container), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, false);
+            mTimerHandler = //new CircularSeekBarHandler(super.layout.findViewById(R.id.reusable_circular_seekbar_container), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, false);
+            				new CircularSeekBarHandler(layout.findViewById(R.id.reusable_circular_seekbar_container), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, true);
             mTimerHandler.showThumb(false);
         }
 
