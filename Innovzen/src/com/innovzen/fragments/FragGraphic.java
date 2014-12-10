@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.innovzen.activities.ActivityMain;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.o2chair.R;

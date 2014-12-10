@@ -476,8 +476,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         int ambianceSoundId = //PersistentUtil.getInt(this, FragSoundPicker.PERSIST_SELECTED_AMBIANCE);
         		MyPreference.getInstance(this).readInt(FragMusic.PERSIST_SELECTED_AMBIANCE);
         mExerciseManager = 
-        		Util.ISEMULATOR?
-        		new ExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId):
+        		//Util.ISEMULATOR?
+        	//	new ExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId):
         		new SyncExerciseManager(null, null, this, mTimes, voiceSoundId, ambianceSoundId);
         
 
@@ -622,8 +622,10 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 			 * navigateTo(FragAnimationTablet.class, bundle, true,
 			 * ActivityMain.FRAG_TAG_ANIMATION);
 			 */
+			
 			navigateTo(FragAnimationTabletNew.class, bundle, true,
 					ActivityMain.FRAG_TAG_ANIMATION);
+			
 			// chy
 		} else {
 			navigateTo(FragAnimationPhone.class, bundle, true,
@@ -706,6 +708,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragGradientAnimationPicked() {
 		gotoAnimationScreen(ExerciseAnimationHandler.ANIMATION_GRADIENT);
+		
 	}
 
 	@Override

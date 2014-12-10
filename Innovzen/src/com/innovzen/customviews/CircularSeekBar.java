@@ -28,6 +28,8 @@
 package com.innovzen.customviews;
 
 import com.innovzen.o2chair.R;
+import com.innovzen.utils.MyPreference;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -435,6 +437,39 @@ public class CircularSeekBar extends View {
      */
     private void calculateProgressDegrees() {
         mProgressDegrees = mPointerPosition - mStartAngle; // Verified
+      /*  switch (MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)) {
+		case 5*60*1000:
+			mProgressDegrees=30;
+			break;
+		case 10*60*1000:
+			mProgressDegrees=60;
+			break;
+		case 15*60*1000:
+			mProgressDegrees=90;
+			break;
+		case 20*60*1000:
+			mProgressDegrees=120;
+			break;
+		case 25*60*1000:
+			mProgressDegrees=150;
+			break;
+		case 30*60*1000:
+			mProgressDegrees=180;
+			break;
+        }*/
+        if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==5*60*1000){
+            mProgressDegrees=30;
+        }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==10*60*1000){
+        	mProgressDegrees=60;
+        }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==15*60*1000){
+        	mProgressDegrees=90;
+        }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==20*60*1000){
+        	mProgressDegrees=120;
+        }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==25*60*1000){
+        	mProgressDegrees=150;
+        }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==30*60*1000){
+        	mProgressDegrees=180;
+        }
         mProgressDegrees = (mProgressDegrees < 0 ? 360f + mProgressDegrees : mProgressDegrees); // Verified
 
         if (bottomCircularSeekBar != null) {
@@ -451,7 +486,30 @@ public class CircularSeekBar extends View {
      * Calculate the pointer position (and the end of the progress arc) in degrees. Sets mPointerPosition to that value.
      */
     private void calculatePointerAngle() {
+    	//mProgress=60;
         mPointerPosition = (((float) mProgress / (float) mMax) * mTotalCircleDegrees) + mStartAngle;
+      
+
+    /*	switch (MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)) {
+		case 5*60*1000:
+			mPointerPosition=30;
+			break;
+		case 10*60*1000:
+			mPointerPosition=60;
+			break;
+		case 15*60*1000:
+			mPointerPosition=90;
+			break;
+		case 20*60*1000:
+			mProgress=120;
+			break;
+		case 25*60*1000:
+			mProgress=150;
+			break;
+		case 30*60*1000:
+			mProgress=180;
+			break;
+		}*/
         mPointerPosition = mPointerPosition % 360f;
     }
 
@@ -503,8 +561,9 @@ public class CircularSeekBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         int roundedDegrees = Math.round(mProgressDegrees);
+      //  int roundedDegrees = Math.round(20f);
+    //    Log.e("mProgressDegrees~", ""+mProgressDegrees);
         if (mProgressDegrees < minAngle) {
             roundedDegrees = minAngle;
             mProgressDegrees = minAngle;
@@ -513,7 +572,7 @@ public class CircularSeekBar extends View {
         if (showCircle) {
             canvas.drawArc(mOval, -90, roundedDegrees, true, progressPaint);
         }
-
+       
         if (showTime) {
 
             if (largeDigitalDouble || smallDigitalDouble) {
@@ -525,11 +584,12 @@ public class CircularSeekBar extends View {
                 } else {
                     totalSeconds = mProgressDegrees * (maxValue / (float) mMax);
                 }
-
+              //  Log.e("totalSeconds~", totalSeconds+"");
                 // Calculate the minutes
                 minutes = (int) (totalSeconds / 60);
                 if (minutes < 10) {
                     minuteString = "0" + minutes;
+               //     Log.e("time~", minuteString);
                 } else {
                     minuteString = minutes + "";
                 }
@@ -943,6 +1003,7 @@ public class CircularSeekBar extends View {
 
         mMax = savedState.getInt("MAX");
         mProgress = savedState.getInt("PROGRESS");
+        //mProgress=120;
         mCircleColor = savedState.getInt("mCircleColor");
         mCircleProgressColor = savedState.getInt("mCircleProgressColor");
         mPointerColor = savedState.getInt("mPointerColor");
