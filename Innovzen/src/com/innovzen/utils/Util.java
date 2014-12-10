@@ -20,7 +20,7 @@ public class Util {
 	 * 模拟器设置 true为模拟器
 	 * false为真机
 	 */
-	public static final boolean ISEMULATOR=true;
+	public static final boolean ISEMULATOR=false;
 	
     /**
      * Check to see if the current device is a tablet or not
