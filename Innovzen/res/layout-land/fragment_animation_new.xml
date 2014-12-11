@@ -109,9 +109,9 @@
         <ImageView
             android:id="@+id/main_animation_stop"
             android:layout_width="0dip"
-            android:layout_height="180dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/selector_btn_home"
+            android:background="@drawable/selector_btn_home_new"
             android:padding="20dp" >
         </ImageView>
 
