@@ -108,10 +108,7 @@ public class AnimationPetals extends ExerciseAnimationBase {
 
 			// Set up the timer
 			int timerDim = (int) (Util.getScreenDimensions(mCtx)[0] * 0.22031f);
-			//Desmond
-			mTimerHandler = //new CircularSeekBarHandler(super.layout.findViewById(R.id.reusable_circular_seekbar_container), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, false);
-							new CircularSeekBarHandler(super.layout.findViewById(R.id.reusable_circular_seekbar_container), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, true);
-			//Desmond end
+			mTimerHandler = new CircularSeekBarHandler(super.layout.findViewById(R.id.reusable_circular_seekbar_container), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, false);
 			mTimerHandler.showThumb(false);
 
 			// Set the initial position of the gradient (make sure it's top = 0)

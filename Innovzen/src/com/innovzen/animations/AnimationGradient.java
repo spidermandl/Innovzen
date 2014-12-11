@@ -230,10 +230,7 @@ public class AnimationGradient extends ExerciseAnimationBase {
                 // Set up the timer
                 if (ActivityBase.IS_TABLET) {
                     int timerDim = (int) (layout.getHeight() * 0.32f);
-                    //Desmond
-                    mTimerHandler = //new CircularSeekBarHandler(layout.findViewById(R.id.reusable_circular_seekbar_container), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, false);
-                    				new CircularSeekBarHandler(layout.findViewById(R.id.reusable_circular_seekbar_container), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, true);
-                    //Desmond end
+                    mTimerHandler = new CircularSeekBarHandler(layout.findViewById(R.id.reusable_circular_seekbar_container), true, CircularSeekBarHandler.TIME_TYPE_SMALL_DIGITAL_DOUBLE, CircularSeekBarHandler.PROGRESS_TYPE_MIXED, timerDim, false);
                     mTimerHandler.showThumb(false);
                 }
 
