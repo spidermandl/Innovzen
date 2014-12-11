@@ -113,7 +113,8 @@
 
             android:layout_weight="1"
             android:background="@drawable/selector_btn_home_new"
-            android:padding="@dimen/grid_half_gap" />
+            android:padding="@dimen/grid_half_gap" >
+        </ImageView>
 
         <ImageView
             android:id="@+id/main_animation_start"
