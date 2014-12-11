@@ -503,7 +503,7 @@ public class BluetoothCommand {
 
 		// Log.e("第8字节",
 		// printHX(b7)+"-------第3字节--------"+printHX(b2)+"  "+System.currentTimeMillis());
-		// Log.e("第2个字节", printHX(b1));
+		 Log.e("第2个字节", printHX(b1));
 		return true;
 	}
 

@@ -110,14 +110,7 @@ public class FragSettings extends FragBase implements OnClickListener{
 		}
 		
 	}
-   void breatheAddCommand(){
-		super.activityListener.fragSendCommand(BluetoothCommand.BREATHE_UP_MACHINE_VALUES);
- 
-   }
-   void breatheSubCommand(){
-		super.activityListener.fragSendCommand(BluetoothCommand.BREATHE_DOWN_MACHINE_VALUES);
 
-  }
 	@Override
 	public void init(View view) {
 		initLefter(view);
@@ -196,13 +189,13 @@ public class FragSettings extends FragBase implements OnClickListener{
 			}	
 			break;
 		case BluetoothCommand.PULSE_STATUS:
-			if(map.get(BluetoothCommand.PULSE_STATUS)==BluetoothCommand.PULSE_STATUS_OFF){
+			/*if(map.get(BluetoothCommand.PULSE_STATUS)==BluetoothCommand.PULSE_STATUS_OFF){
 				pulse.setBackgroundResource(R.drawable.selector_icon_pulse);
 			}else{
 				pulse.setBackgroundResource(R.drawable.btn_pulse_activated);
-			}	
+			}*/	
 			break;
-		case BluetoothCommand.BREATHE_STATUS:
+		/*case BluetoothCommand.BREATHE_STATUS:
 			if(map.get(BluetoothCommand.BREATHE_STATUS)<BluetoothCommand.BREATHE_STATUS_VIGOR3){
 				breathe.setBackgroundResource(R.drawable.btn_breathe);
 				breathe_activited=false;
@@ -210,13 +203,13 @@ public class FragSettings extends FragBase implements OnClickListener{
 				breathe.setBackgroundResource(R.drawable.btn_breathe_activated);
 				breathe_activited=true;
 			}	
-			break;
+			break;*/
 		case BluetoothCommand.INIT_POSITION_STATUS:
 			break;
 		case BluetoothCommand.BREATHE_STOP_STATUS:
 			if(map.get(BluetoothCommand.BREATHE_STOP_STATUS)==BluetoothCommand.BREATHE_STOP_STATUS_ON){
 				breathe.setBackgroundResource(R.drawable.btn_breathe_activated);
-			}else{
+			}else if(map.get(BluetoothCommand.BREATHE_STOP_STATUS)==BluetoothCommand.BREATHE_STOP_STATUS_OFF){
 				breathe.setBackgroundResource(R.drawable.selector_btn_breathe);
 			}	
 			break;
