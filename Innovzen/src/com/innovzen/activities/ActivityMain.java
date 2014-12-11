@@ -622,10 +622,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 			 * navigateTo(FragAnimationTablet.class, bundle, true,
 			 * ActivityMain.FRAG_TAG_ANIMATION);
 			 */
-			
 			navigateTo(FragAnimationTabletNew.class, bundle, true,
 					ActivityMain.FRAG_TAG_ANIMATION);
-			
 			// chy
 		} else {
 			navigateTo(FragAnimationPhone.class, bundle, true,
@@ -708,7 +706,6 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragGradientAnimationPicked() {
 		gotoAnimationScreen(ExerciseAnimationHandler.ANIMATION_GRADIENT);
-		
 	}
 
 	@Override

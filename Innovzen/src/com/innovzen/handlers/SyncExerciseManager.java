@@ -53,9 +53,7 @@ public class SyncExerciseManager extends ExerciseManager {
 	private Runnable waitRunnable = new Runnable() {
 		public void run() {
 			long subtime;
-		//	Log.e("~~~~~~~~", mCurExercise+"");
 			switch (mCurExercise) {
-			
 			case EXERCISE_INHALE:
 				subtime = BluetoothCommand.getInstance() == null ? 0 : (System.currentTimeMillis() - inhaleTimeEnd);
 				if (subtime != 0 && subtime < mTimes.inhale + DELTA_TIME) {
@@ -222,13 +220,11 @@ public class SyncExerciseManager extends ExerciseManager {
 			subtime = BluetoothCommand.getInstance() == null ? 0 : (System
 					.currentTimeMillis() - exhaleTimeStart);
 			if (subtime != 0 && subtime < mTimes.holdInhale) {// 机器运动超前
-
 				// //Log.e("INHALE HOLE 超前", subtime+"");
 				fraction = 1f;
 				break;
 			} else if (subtime > mTimes.holdInhale && fraction == 1f) {// 机器运动滞后
 				// //Log.e("INHALE HOLE 滞后", subtime+"");
-
 				if (!waitHandler.isWaiting()) {
 					waitHandler.setWaiting(true);
 					waitHandler.postDelayed(waitRunnable,
@@ -236,22 +232,18 @@ public class SyncExerciseManager extends ExerciseManager {
 				}
 				isContinue = false;
 			} else {// 正常运作状态
-
 					// //Log.e("INHALE HOLE 正常运作状态", subtime+"");
-
 			}
 			break;
 		case EXERCISE_EXHALE:
 			subtime = BluetoothCommand.getInstance() == null ? 0 : (System
 					.currentTimeMillis() - exhaleTimeEnd);
 			if (subtime != 0 && subtime < mTimes.exhale + DELTA_TIME) {// 机器运动超前
-
 				// //Log.e("EXHALE 超前", subtime+"");
 				fraction = 1f;
 				break;
 			} else if (subtime > mTimes.exhale + DELTA_TIME && fraction == 1f) {// 机器运动滞后
 				// //Log.e("EXHALE 滞后", subtime+"");
-
 				if (!waitHandler.isWaiting()) {
 					waitHandler.setWaiting(true);
 					waitHandler.postDelayed(waitRunnable,
@@ -260,9 +252,7 @@ public class SyncExerciseManager extends ExerciseManager {
 				isContinue = false;
 
 			} else {// 正常运作状态
-
 					// //Log.e("EXHALE 正常运作状态", subtime+"");
-
 			}
 
 			break;
@@ -270,13 +260,11 @@ public class SyncExerciseManager extends ExerciseManager {
 			subtime = BluetoothCommand.getInstance() == null ? 0 : (System
 					.currentTimeMillis() - inhaleTimeStart);
 			if (subtime != 0 && subtime < mTimes.holdExhale) {// 机器运动超前
-
 				// //Log.e("EXHALE HOLD 超前", subtime+"");
 				fraction = 1f;
 				break;
 			} else if (subtime > mTimes.holdExhale && fraction == 1f) {// 机器运动滞后
 				// //Log.e("EXHALE HOLD 滞后", subtime+"");
-
 				if (!waitHandler.isWaiting()) {
 					waitHandler.setWaiting(true);
 					waitHandler.postDelayed(waitRunnable,
@@ -285,9 +273,7 @@ public class SyncExerciseManager extends ExerciseManager {
 				isContinue = false;
 
 			} else {// 正常运作状态
-
 					// //Log.e("EXHALE HOLD 正常运作状态", subtime+"");
-
 			}
 
 			break;
@@ -406,7 +392,7 @@ public class SyncExerciseManager extends ExerciseManager {
                          mBluetoothCommand.sendCommand(BluetoothCommand.START_MACHINE_VALUES);
                        //  mTimes.exerciseDuration=30*1000;
                          if(mFragAnimation!=null){
-                        //	 mFragAnimation.stopExercise();
+                        	 mFragAnimation.stopExercise();
                          }
                          //Log.e("关机", "关机！！！！！！！！！！！！！！！！！！！！！！");
                 }

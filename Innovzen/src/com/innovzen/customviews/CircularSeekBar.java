@@ -28,7 +28,6 @@
 package com.innovzen.customviews;
 
 import com.innovzen.o2chair.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -504,6 +503,7 @@ public class CircularSeekBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         int roundedDegrees = Math.round(mProgressDegrees);
         if (mProgressDegrees < minAngle) {
             roundedDegrees = minAngle;
@@ -513,7 +513,7 @@ public class CircularSeekBar extends View {
         if (showCircle) {
             canvas.drawArc(mOval, -90, roundedDegrees, true, progressPaint);
         }
-       
+
         if (showTime) {
 
             if (largeDigitalDouble || smallDigitalDouble) {
@@ -525,12 +525,11 @@ public class CircularSeekBar extends View {
                 } else {
                     totalSeconds = mProgressDegrees * (maxValue / (float) mMax);
                 }
-              //  Log.e("totalSeconds~", totalSeconds+"");
+
                 // Calculate the minutes
                 minutes = (int) (totalSeconds / 60);
                 if (minutes < 10) {
                     minuteString = "0" + minutes;
-               //     Log.e("time~", minuteString);
                 } else {
                     minuteString = minutes + "";
                 }
@@ -944,7 +943,6 @@ public class CircularSeekBar extends View {
 
         mMax = savedState.getInt("MAX");
         mProgress = savedState.getInt("PROGRESS");
-        //mProgress=120;
         mCircleColor = savedState.getInt("mCircleColor");
         mCircleProgressColor = savedState.getInt("mCircleProgressColor");
         mPointerColor = savedState.getInt("mPointerColor");
