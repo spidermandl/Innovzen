@@ -112,7 +112,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/selector_btn_home_new"
-            android:padding="20dp" >
+            android:padding="@dimen/grid_half_gap" >
         </ImageView>
 
         <ImageView

@@ -534,6 +534,7 @@ public class CircularSeekBar extends View {
                     minuteString = minutes + "";
                 }
 
+                Log.e("total seconds", totalSeconds+"");
                 // Calculate the seconds
                 seconds = (int) (totalSeconds % 60);
                 //Desmond
