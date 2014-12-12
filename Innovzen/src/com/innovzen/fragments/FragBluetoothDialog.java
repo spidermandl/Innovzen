@@ -131,10 +131,10 @@ public class FragBluetoothDialog extends DialogFragment {
 			((ActivityMain) FragBluetoothDialog.this.getActivity())
 					.getBluetoothService().connect(device);
 			
-			mBluetoothAdapter.getProfileProxy(
-					FragBluetoothDialog.this.getActivity(), 
-					proxyListener, 
-					BluetoothProfile.A2DP);
+//			mBluetoothAdapter.getProfileProxy(
+//					FragBluetoothDialog.this.getActivity(), 
+//					proxyListener, 
+//					BluetoothProfile.A2DP);
 		    FragBluetoothDialog.this.dismiss();
 		}
 	};
