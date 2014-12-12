@@ -6,7 +6,8 @@ import java.util.List;
 import com.innovzen.entities.SoundGroup;
 
 public interface FragmentCommunicator {
-  //<chy>fragGoToLanguage
+  //<chy>
+	 public void fragGoToFragAnimationTableNew(boolean addToBackstack);
     public void fragGoToMain(boolean addToBackstack);
 	public void fragGoToSession(boolean addToBackstack);
 	public void fragGoToHelpNew(boolean addToBackstack);

@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import com.innovzen.activities.ActivityMain;
 import com.innovzen.bluetooth.BluetoothCommand;
+import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragAnimationBase;
 import com.innovzen.fragments.base.FragBase;
+import com.innovzen.handlers.ExerciseAnimationHandler;
 import com.innovzen.o2chair.R;
 import com.innovzen.utils.MyPreference;
 import com.innovzen.utils.PersistentUtil;
@@ -53,6 +55,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 			((ActivityMain)getActivity()).getExerciseManager().getExerciseTimes().initTime(this.getActivity());
+			((ActivityMain)getActivity()).qwe();
 			break;
 		case R.id.time_10min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -70,7 +73,12 @@ public class FragTime extends FragBase implements OnClickListener {
 					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
 			super.activityListener
 			.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
-			((ActivityMain)getActivity()).getExerciseManager().getExerciseTimes().initTime(this.getActivity());
+		((ActivityMain)getActivity()).getExerciseManager().getExerciseTimes().initTime(this.getActivity());
+		/*((ActivityMain)getActivity()).initExerciseManager(ExerciseTimes.DEFAULT_EXERCISE_TIME);
+		//((ActivityMain)getActivity()).clearBackstack();
+		((ActivityMain)getActivity()).fragGoToFragAnimationTableNew(false);*/
+		((ActivityMain)getActivity()).getExerciseManager().getExerciseTimes().exerciseDuration=10*60*1000;
+		//((ActivityMain)getActivity()).getExerciseManager().playCount++;
 			break;
 		case R.id.time_15min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -143,6 +151,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 			((ActivityMain)getActivity()).getExerciseManager().getExerciseTimes().initTime(this.getActivity());
+			//((ActivityMain)getActivity()).navigateTo(FragAnimationTabletNew.class);
 			break;
 		default:
 			break;
@@ -152,6 +161,7 @@ public class FragTime extends FragBase implements OnClickListener {
 	@Override
 	public void init(View view) {
 		initLefter(view);
+		
 		myMinutes = (TextView) view.findViewById(R.id.myMinutes);
 		left_mid = (LinearLayout) view.findViewById(R.id.left_mid);
 		left_mid.setBackgroundResource(R.drawable.banner_time);

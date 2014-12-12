@@ -482,7 +482,9 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         
 
 	}
-
+    public void qwe(){
+    	mTimes.exerciseDuration=10*60*1000;
+    }
 	private void initCheckThreads(){
 		mResetCheck=new BluetoothCheck<ResetCheck>();
 		mResetCheck.setCheck(new ResetCheck());
@@ -882,6 +884,12 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	@Override
 	public void fragGoToMain(boolean addToBackstack) {
 		navigateTo(FragMain.class, null, addToBackstack);
+		
+	}
+
+	@Override
+	public void fragGoToFragAnimationTableNew(boolean addToBackstack) {
+		navigateTo(FragAnimationTabletNew.class, null, addToBackstack);
 		
 	}
 	
