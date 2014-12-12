@@ -34,8 +34,6 @@ import com.innovzen.utils.Util;
  */
 public class FragAnimationTabletNew extends FragAnimationBase implements
 		OnClickListener {
-	//控制暂停状态下开始按钮点击继续动画
-	private boolean restartAnimation = false;
     /** Hold the handler for the timer */
     private CircularSeekBarHandler mTimerHandler;
     protected ViewGroup layout;
@@ -86,11 +84,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			if (map.get(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_OFF)// 这个地方的1要和BluetoothCommand里的一个常量对应
 			{    
 				pause.setBackgroundResource(R.drawable.selector_btn_pause);
-				restartAnimation=false;
 				
 			} else {
 				pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
-				restartAnimation=true;
 				
 			}
 			break;
@@ -203,10 +199,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 				break;
 			}
 			//如果机器处于暂停状态
-			if(restartAnimation){
-				super.activityListener
-				.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
-			}
 			if(!((ActivityMain)getActivity()).isBlueToothConnected()){//如果蓝牙没有连接
 				Toast.makeText(getActivity(), "Please setup bluetooth connection through setting panel", 1000).show();
 				break;
@@ -231,7 +223,13 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 							.fragSendCommand(BluetoothCommand.PERFORMANCE_MACHINE_VALUES);
 				}
 				 
-			}else{
+			}else if(mBluetoothCheck!=null&&mBluetoothCheck.closeOrNot()==ResetCheck.PAUSE&&!isAnimationRunning){
+				/**
+				 * 检测是否暂停
+				 */
+				super.activityListener.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
+			}
+			else{
 				Toast.makeText(getActivity(), "The machine is initializing...", 1000).show();
 			}
 			break;

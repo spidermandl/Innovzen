@@ -68,8 +68,7 @@ public class FragTime extends FragBase implements OnClickListener {
 					MyPreference.TIME, 10 * 60 * 1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity())
 					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
-			super.activityListener
-			.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
+			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 			((ActivityMain)getActivity()).getExerciseManager().getExerciseTimes().initTime(this.getActivity());
 			break;
 		case R.id.time_15min:
