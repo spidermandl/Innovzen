@@ -28,6 +28,8 @@
 package com.innovzen.customviews;
 
 import com.innovzen.o2chair.R;
+import com.innovzen.utils.MyPreference;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -377,7 +379,26 @@ public class CircularSeekBar extends View {
 
         initPaints();
     }
-
+     /**
+      * @author chy
+      *       初始化时间的Progress
+      *       mProgress
+      */
+    private void initTimeProgress(){
+         if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==5*60*1000){
+        	 mProgress=30.1f;
+         }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==10*60*1000){
+        	 mProgress=60.1f;
+         }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==15*60*1000){
+        	 mProgress=90.1f;
+         }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==20*60*1000){
+        	 mProgress=120.1f;
+         }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==25*60*1000){
+        	 mProgress=150.1f;
+         }else if(MyPreference.getInstance(getContext()).readInt(MyPreference.TIME)==30*60*1000){
+        	 mProgress=180.1f;
+         }
+    }
     /**
      * Initialize the CircularSeekBar with the attributes from the XML style. Uses the defaults defined at the top of this file when an attribute is not specified by the user.
      * 
@@ -392,6 +413,8 @@ public class CircularSeekBar extends View {
 
         mMax = attrArray.getInt(R.styleable.CircularSeekBar_max, DEFAULT_MAX);
         mProgress = attrArray.getInt(R.styleable.CircularSeekBar_progress, DEFAULT_PROGRESS);
+       //mProgress=150.1f;
+       initTimeProgress();
         mMaintainEqualCircle = attrArray.getBoolean(R.styleable.CircularSeekBar_maintain_equal_circle, DEFAULT_MAINTAIN_EQUAL_CIRCLE);
 
         // Modulo 360 right now to avoid constant conversion
@@ -435,6 +458,7 @@ public class CircularSeekBar extends View {
      */
     private void calculateProgressDegrees() {
         mProgressDegrees = mPointerPosition - mStartAngle; // Verified
+     
         mProgressDegrees = (mProgressDegrees < 0 ? 360f + mProgressDegrees : mProgressDegrees); // Verified
 
         if (bottomCircularSeekBar != null) {
@@ -451,7 +475,10 @@ public class CircularSeekBar extends View {
      * Calculate the pointer position (and the end of the progress arc) in degrees. Sets mPointerPosition to that value.
      */
     private void calculatePointerAngle() {
+    	//mProgress=60.0f;
+    	
         mPointerPosition = (((float) mProgress / (float) mMax) * mTotalCircleDegrees) + mStartAngle;
+     //   System.out.println(mProgress+"458");
         mPointerPosition = mPointerPosition % 360f;
     }
 
@@ -534,7 +561,7 @@ public class CircularSeekBar extends View {
                     minuteString = minutes + "";
                 }
 
-                Log.e("total seconds", totalSeconds+"");
+              //  Log.e("total seconds", totalSeconds+"");
                 // Calculate the seconds
                 seconds = (int) (totalSeconds % 60);
                 //Desmond
@@ -649,8 +676,11 @@ public class CircularSeekBar extends View {
      *            The progress to set the CircularSeekBar to.
      */
     public void setProgress(float progress) {
+    	
         if (mProgress != progress) {
             mProgress = progress;
+           // Log.e("657", mProgress+"");
+           // Log.e("~~~~~~", "~~~~~~~");
             if (mOnCircularSeekBarChangeListener != null) {
                 mOnCircularSeekBarChangeListener.onProgressChanged(this, progress, false);
             }
@@ -664,6 +694,7 @@ public class CircularSeekBar extends View {
         mPointerPosition = angle;
         calculateProgressDegrees();
         mProgress = Math.round((float) mMax * mProgressDegrees / mTotalCircleDegrees);
+        Log.e("675", mProgress+"");
     }
 
     private void recalculateAll() {
@@ -866,6 +897,7 @@ public class CircularSeekBar extends View {
                             }
                         } else if (lockAtEnd) {
                             mProgress = mMax;
+                            Log.e("878", mProgress+"");
                             recalculateAll();
                             invalidate();
                             if (mOnCircularSeekBarChangeListener != null) {
@@ -923,7 +955,10 @@ public class CircularSeekBar extends View {
         Bundle state = new Bundle();
         state.putParcelable("PARENT", superState);
         state.putInt("MAX", mMax);
+                              //chy
+      // mProgress=60.1f;
         state.putFloat("PROGRESS", mProgress);
+      
         state.putInt("mCircleColor", mCircleColor);
         state.putInt("mCircleProgressColor", mCircleProgressColor);
         state.putInt("mPointerColor", mPointerColor);
@@ -944,6 +979,7 @@ public class CircularSeekBar extends View {
 
         mMax = savedState.getInt("MAX");
         mProgress = savedState.getInt("PROGRESS");
+        Log.e("957", mProgress+"");
         mCircleColor = savedState.getInt("mCircleColor");
         mCircleProgressColor = savedState.getInt("mCircleProgressColor");
         mPointerColor = savedState.getInt("mPointerColor");
@@ -1011,6 +1047,7 @@ public class CircularSeekBar extends View {
 
     public void setProgressDegrees(float value) {
         this.mProgressDegrees = value;
+       
         invalidate();
     }
 
@@ -1043,7 +1080,7 @@ public class CircularSeekBar extends View {
         if (max != 0) {
             this.minAngle = (min * 360) / max;
             this.mProgress = (startingValue * 360) / max;
-
+            Log.e("1058", mProgress+"");
             this.minValue = min;
             this.maxValue = max;
          
@@ -1113,12 +1150,13 @@ public class CircularSeekBar extends View {
     }
 
     public float getProgressValue() {
+    	Log.e("1128", mProgress+"");
         return mProgress;
     }
 
     public void setCurrentProgress(int seconds) {
         this.mProgress = (seconds * 360) / this.maxValue;
-
+        Log.e("1134", mProgress+"");
         invalidate();
     }
 

@@ -272,6 +272,7 @@ public class CircularSeekBarHandler {
         setTimeType();
 
         // Set the progress to there the thumb is
+       // progress.setProgress(thumb.getProgressValue());
         progress.setProgress(thumb.getProgressValue());
     }
 
