@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.SparseIntArray;
+import android.view.KeyEvent;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.innovzen.o2chair.R;
@@ -263,7 +265,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 	public BluetoothService getBluetoothService() {
 		return mBluetoothService;
 	}
-
+	public static final int FLAG_HOMEKEY_DISPATCHED = 0x80000000;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -388,6 +390,26 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 			}
 		}
 	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (KeyEvent.KEYCODE_HOME == keyCode){
+			Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+	        if (currentFragment != null&&currentFragment.getClass().getSimpleName().equalsIgnoreCase("FragAnimationTabletNew")) {
+	        	/**
+	        	 * 屏蔽FragAnimationTabletNew的home键
+	        	 */
+	        	return true;
+	        }
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+//	@Override
+//	public void onAttachedToWindow() {
+//		this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD);
+//		super.onAttachedToWindow();
+//	}
 
 	/**
 	 * 启动对话框

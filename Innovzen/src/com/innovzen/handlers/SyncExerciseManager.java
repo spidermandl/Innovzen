@@ -208,7 +208,7 @@ public class SyncExerciseManager extends ExerciseManager {
 				if (!waitHandler.isWaiting()) {
 					waitHandler.setWaiting(true);
 					waitHandler.postDelayed(waitRunnable,
-							BluetoothCommand.DELAY_TIME); // 1 ms
+							BluetoothCommand.DELAY_TIME); // 100 ms
 				}
 				isContinue = false;
 			} else {// 正常运作状态
@@ -546,7 +546,7 @@ public class SyncExerciseManager extends ExerciseManager {
 						lastPositison = currentPos;
 						lastDirection = currentDir;
 					}
-					inhaleExerciseHandler.postDelayed(inhaleHoldRunnable,
+					inhaleHoldHandler.postDelayed(inhaleHoldRunnable,
 							BluetoothCommand.DELAY_TIME / 2);
 				}
 				break;
@@ -571,7 +571,7 @@ public class SyncExerciseManager extends ExerciseManager {
 						lastPositison = currentPos;
 						lastDirection = currentDir;
 					}
-					inhaleExerciseHandler.postDelayed(exhaleExerciseRunnable,
+					exhaleExerciseHandler.postDelayed(exhaleExerciseRunnable,
 							BluetoothCommand.DELAY_TIME / 2);
 				}
 				break;
