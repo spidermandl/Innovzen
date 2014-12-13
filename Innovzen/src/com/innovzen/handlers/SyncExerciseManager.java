@@ -60,7 +60,7 @@ public class SyncExerciseManager extends ExerciseManager {
 			switch (mCurExercise) {
 			case EXERCISE_INHALE:
 				subtime = BluetoothCommand.getInstance() == null ? 0 : (System.currentTimeMillis() - inhaleTimeEnd);
-				if (subtime != 0 && subtime < (mTimes.inhale + DELTA_TIME)/ERROR_SCALE) {
+				if (subtime != 0 && subtime < ((mTimes.inhale + DELTA_TIME)/ERROR_SCALE)) {
 					 //Log.e("inhale 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
@@ -81,7 +81,7 @@ public class SyncExerciseManager extends ExerciseManager {
 				break;
 			case EXERCISE_HOLD_INHALE:
 				subtime = BluetoothCommand.getInstance() == null ? 0 : (System.currentTimeMillis() - exhaleTimeStart);
-				if (subtime != 0 && subtime < mTimes.holdInhale/ERROR_SCALE) {
+				if (subtime != 0 && subtime < (mTimes.holdInhale/ERROR_SCALE)) {
 					//Log.e("EXERCISE_HOLD_INHALE 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
@@ -104,7 +104,7 @@ public class SyncExerciseManager extends ExerciseManager {
 			case EXERCISE_EXHALE:
 				subtime = BluetoothCommand.getInstance() == null ? 
 						0 : (System.currentTimeMillis() - exhaleTimeEnd);
-				if (subtime != 0 && subtime < (mTimes.exhale + DELTA_TIME)/ERROR_SCALE) {
+				if (subtime != 0 && subtime < ((mTimes.exhale + DELTA_TIME)/ERROR_SCALE)) {
 					//Log.e("exhale 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
@@ -127,7 +127,7 @@ public class SyncExerciseManager extends ExerciseManager {
 			case EXERCISE_HOLD_EXHALE:
 				subtime = BluetoothCommand.getInstance() == null ? 0 : (System
 						.currentTimeMillis() - inhaleTimeStart);
-				if (subtime != 0 && subtime < mTimes.holdExhale/ERROR_SCALE) {
+				if (subtime != 0 && subtime < (mTimes.holdExhale/ERROR_SCALE)) {
 					//Log.e("EXERCISE_HOLD_EXHALE 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
