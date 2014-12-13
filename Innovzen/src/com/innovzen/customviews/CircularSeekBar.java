@@ -413,8 +413,8 @@ public class CircularSeekBar extends View {
 
         mMax = attrArray.getInt(R.styleable.CircularSeekBar_max, DEFAULT_MAX);
         mProgress = attrArray.getInt(R.styleable.CircularSeekBar_progress, DEFAULT_PROGRESS);
-       //mProgress=150.1f;
-       initTimeProgress();
+        //mProgress=150.1f;
+        initTimeProgress();
         mMaintainEqualCircle = attrArray.getBoolean(R.styleable.CircularSeekBar_maintain_equal_circle, DEFAULT_MAINTAIN_EQUAL_CIRCLE);
 
         // Modulo 360 right now to avoid constant conversion
