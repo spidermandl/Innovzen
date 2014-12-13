@@ -25,10 +25,11 @@ public class ResetCheck extends CheckBase {
 	/**
 	 * 复位移位状态 初始情况 : 0 成功复位0->1: 1 返回初始1->0: 2
 	 */
-	// 正在运行 正在收藏 正在待机
+	// 正在运行 正在收藏 正在待机 正在暂停
 	public static final int RUNNING = -1;
 	public static final int COLLECTING = -2;
 	public static final int WAITTING = -3;
+	public static final int PAUSE=-4;
 	/**
 	 * 当前结束状态
 	 */
@@ -138,7 +139,7 @@ public class ResetCheck extends CheckBase {
 				
 				}else if (mBC.getValue(BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_PAUSE) {
 					//Log.e("close thread", "pausing");
-					closeStatus = RUNNING;
+					closeStatus = PAUSE;
 					//resetStatus=INVALID;
 					
 					

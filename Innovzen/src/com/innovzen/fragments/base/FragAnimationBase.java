@@ -45,7 +45,9 @@ import com.innovzen.utils.PersistentUtil;
 public class FragAnimationBase extends FragBase implements FragmentOnBackPressInterface {
 	
 
-    /** The delay between each value of the countdown */ 
+   
+
+	/** The delay between each value of the countdown */ 
     private static final int COUNTDOWN_DELAY = 1000; // 1 sec
 
     /** The minimum time (in miliseconds) for the duration of an exercise */

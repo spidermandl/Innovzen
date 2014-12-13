@@ -482,9 +482,7 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
         
 
 	}
-    public void qwe(){
-    	mTimes.exerciseDuration=10*60*1000;
-    }
+   
 	private void initCheckThreads(){
 		mResetCheck=new BluetoothCheck<ResetCheck>();
 		mResetCheck.setCheck(new ResetCheck());

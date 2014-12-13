@@ -34,14 +34,12 @@ import com.innovzen.utils.Util;
  */
 public class FragAnimationTabletNew extends FragAnimationBase implements
 		OnClickListener {
-	//控制暂停状态下开始按钮点击继续动画
-	private boolean restartAnimation = false;
-    /** Hold the handler for the timer */
-    private CircularSeekBarHandler mTimerHandler;
-    protected ViewGroup layout;
+	/** Hold the handler for the timer */
+	private CircularSeekBarHandler mTimerHandler;
+	protected ViewGroup layout;
 	// Hold view references
 	private View mView;
-    
+
 	/**
 	 * Hold this state so we'll know when we come back from fullscreen to either
 	 * set it to invisible or visibles
@@ -55,7 +53,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private TextView myMinutes;
 	public static final int START_ANIMATION = 1;
 	public static final int END_ANIMATION = 2;
-	
+
 	/**
 	 * 半屏动画 布局 全屏动画 布局
 	 */
@@ -80,18 +78,16 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 						System.currentTimeMillis() + "");
 				overlayBtnPressed();
 			}
-			
+
 			break;
 		case BluetoothCommand.PAUSE_STATUS:
 			if (map.get(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_OFF)// 这个地方的1要和BluetoothCommand里的一个常量对应
-			{    
+			{
 				pause.setBackgroundResource(R.drawable.selector_btn_pause);
-				restartAnimation=false;
-				
+
 			} else {
 				pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
-				restartAnimation=true;
-				
+
 			}
 			break;
 		case BluetoothCommand.ZERO_STATUS:// 控制Zero按键状态
@@ -108,22 +104,29 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			// 行位控制信号
 			break;
 		case BluetoothCommand.MACHINE_RUN_STATUS:
-			//机器运行状态
-			
-		    break;
-		
+			// 机器运行状态
+
+			break;
+
 		default:
 			break;
 		}
 
 	};
-	
+
+	// home键 chy
+	///public static final int FLAG_HOMEKEY_DISPATCHED = 0x80000000;
+
+	// chy
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_animation_new,
 				container, false);
- 
+		// chy
+		//getActivity().getWindow().setFlags(FLAG_HOMEKEY_DISPATCHED,
+				//FLAG_HOMEKEY_DISPATCHED);
+		// chy
 		super.onView(view);
 		initialize(view);
 		initLefter(view);
@@ -137,22 +140,21 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		super.onResume();
 	}
 
-//	@Override
-//	public boolean onBackPress() {
-//		if (mBluetoothCheck.closeOrNot() == ResetCheck.WAITTING) {
-//			mBluetoothCheck.initlize();
-//			super.stopExercise();
-//			return false;
-//		}
-//		if (mBluetoothCheck.isReseted(false) && isAnimationRunning) {
-//			super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
-//			mBluetoothCheck.initlize();
-//			super.stopExercise();
-//			return false;
-//		}
-//		return true;
-//	}
-	
+	// @Override
+	// public boolean onBackPress() {
+	// if (mBluetoothCheck.closeOrNot() == ResetCheck.WAITTING) {
+	// mBluetoothCheck.initlize();
+	// super.stopExercise();
+	// return false;
+	// }
+	// if (mBluetoothCheck.isReseted(false) && isAnimationRunning) {
+	// super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+	// mBluetoothCheck.initlize();
+	// super.stopExercise();
+	// return false;
+	// }
+	// return true;
+	// }
 
 	@Override
 	public void onClick(View v) {
@@ -182,65 +184,78 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 			break;
 		// 结束
 		case R.id.main_animation_stop:
-		
-          if(mBluetoothCheck.isReseted(false)&&isAnimationRunning){
-        	  super.stopExercise();
-			  super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
-			  mBluetoothCheck.initlize(); 
-          }
+
+			if (mBluetoothCheck.isReseted(false) && isAnimationRunning) {
+				super.stopExercise();
+				super.activityListener
+						.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+				mBluetoothCheck.initlize();
+			}
 			/**
-		     * 关闭程序
-			 */	
+			 * 关闭程序
+			 */
 
 			break;
 		// 开始
 		case R.id.main_animation_start:
-			if(Util.ISEMULATOR){
+			if (Util.ISEMULATOR) {
 				/**
 				 * 如果是模拟器
 				 */
 				overlayBtnPressed();
 				break;
 			}
-			//如果机器处于暂停状态
-			if(restartAnimation){
-				super.activityListener
-				.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
-			}
-			if(!((ActivityMain)getActivity()).isBlueToothConnected()){//如果蓝牙没有连接
-				Toast.makeText(getActivity(), "Please setup bluetooth connection through setting panel", 1000).show();
+			// 如果机器处于暂停状态
+			if (!((ActivityMain) getActivity()).isBlueToothConnected()) {// 如果蓝牙没有连接
+				Toast.makeText(
+						getActivity(),
+						"Please setup bluetooth connection through setting panel",
+						1000).show();
 				break;
 			}
-			if(mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING){
+			if (mBluetoothCheck.closeOrNot() == ResetCheck.WAITTING) {
 				super.stopExercise();
 			}
-			if(mBluetoothCheck!=null&&mBluetoothCheck.closeOrNot()==ResetCheck.WAITTING&&!isAnimationRunning){
-				//如果机器没有复位并且不是在关闭的状态
-				super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
-				super.stopExercise();				
-				String blance_relax_performance = 
-						MyPreference.getInstance(getActivity()).readString(MyPreference.BLANCE_RELAX_PERFORMANCE);
+			if (mBluetoothCheck != null
+					&& mBluetoothCheck.closeOrNot() == ResetCheck.WAITTING
+					&& !isAnimationRunning) {
+				// 如果机器没有复位并且不是在关闭的状态
+				super.activityListener
+						.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
+				super.stopExercise();
+				String blance_relax_performance = MyPreference.getInstance(
+						getActivity()).readString(
+						MyPreference.BLANCE_RELAX_PERFORMANCE);
 				if (blance_relax_performance.equals(MyPreference.BLANCE)) {
 					super.activityListener
 							.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
 				} else if (blance_relax_performance.equals(MyPreference.RELAX)) {
 					super.activityListener
 							.fragSendCommand(BluetoothCommand.RELAX_MACHINE_VALUES);
-				} else if (blance_relax_performance.equals(MyPreference.PERFORMANCE)) {
+				} else if (blance_relax_performance
+						.equals(MyPreference.PERFORMANCE)) {
 					super.activityListener
 							.fragSendCommand(BluetoothCommand.PERFORMANCE_MACHINE_VALUES);
 				}
-				 
-			}else{
-				Toast.makeText(getActivity(), "The machine is initializing...", 1000).show();
+
+			} else if (mBluetoothCheck != null
+					&& mBluetoothCheck.closeOrNot() == ResetCheck.PAUSE) {
+				/**
+				 * 检测是否暂停
+				 */
+				super.activityListener
+						.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
+			} else {
+				Toast.makeText(getActivity(), "The machine is initializing...",
+						1000).show();
 			}
 			break;
 		// 暂停
 		case R.id.main_animation_pause:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.PAUSE_MACHINE_VALUES);
-			//mBluetoothCheck.closeOrNot();
-			//super.pauseExercise();
+			// mBluetoothCheck.closeOrNot();
+			// super.pauseExercise();
 			break;
 		case R.id.main_animation_breathe_up:
 			super.activityListener
@@ -255,26 +270,30 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					.fragSendCommand(BluetoothCommand.ZERO_GRAVITY_MACHINE_VALUES);
 			break;
 		case R.id.left_top:
-			
+
 			if (mBluetoothCheck.closeOrNot() == ResetCheck.WAITTING) {
 				mBluetoothCheck.initlize();
-				super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+				super.activityListener
+						.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 				super.stopExercise();
 				super.activityListener.fragGoToMain(true);
-				((ActivityBase)getActivity()).clearFragFromBackstack(ActivityMain.FRAG_TAG_ANIMATION);
-				
+				((ActivityBase) getActivity())
+						.clearFragFromBackstack(ActivityMain.FRAG_TAG_ANIMATION);
+
 			}
 			if (mBluetoothCheck.isReseted(false) && isAnimationRunning) {
-				super.activityListener.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+				super.activityListener
+						.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 				mBluetoothCheck.initlize();
 				super.stopExercise();
 				super.activityListener.fragGoToMain(true);
-				((ActivityBase)getActivity()).clearFragFromBackstack(ActivityMain.FRAG_TAG_ANIMATION);
-				
+				((ActivityBase) getActivity())
+						.clearFragFromBackstack(ActivityMain.FRAG_TAG_ANIMATION);
+
 			}
-			
+
 			break;
-	
+
 		}
 	}
 
@@ -283,14 +302,14 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	 * 
 	 * @author MAB
 	 */
-	private void initialize(View view) {	 
-	
-		mBluetoothCheck=((ActivityMain)getActivity()).getResetCheck();
+	private void initialize(View view) {
+
+		mBluetoothCheck = ((ActivityMain) getActivity()).getResetCheck();
 		mBluetoothCheck.setTrigger(false);
 		mBluetoothCheck.setUiHandler(this);
-		
+
 		countdown_tv = (TextView) view.findViewById(R.id.animation_countdown);
-		
+
 		view.findViewById(R.id.main_animation_breathe_up).setOnClickListener(
 				this);
 		view.findViewById(R.id.main_animation_breathe_down).setOnClickListener(
@@ -393,7 +412,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					FragAnimationTabletNew.super.activityListener
 							.fragSendCommand(BluetoothCommand.FOOT_UP_STOP_MACHINE_VALUES);
 					break;
-				
+
 				default:
 					break;
 				}
@@ -408,15 +427,15 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 					footDown.setBackgroundResource(R.drawable.btn_foot_adjust_down_activated);
 					FragAnimationTabletNew.super.activityListener
 							.fragSendCommand(BluetoothCommand.FOOT_DOWN_MACHINE_VALUES);
-				
+
 					break;
 				case MotionEvent.ACTION_UP:
 					footDown.setBackgroundResource(R.drawable.btn_foot_adjust_down);
 					FragAnimationTabletNew.super.activityListener
 							.fragSendCommand(BluetoothCommand.FOOT_DOWN_STOP_MACHINE_VALUES);
-					
+
 					break;
-				
+
 				default:
 					break;
 				}
@@ -451,32 +470,33 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	@Override
 	protected void initLefter(View view) {
 		super.initLefter(view);
-		myMinutes.setText(MyPreference.getInstance(this.getActivity())
-				.readInt(MyPreference.TIME)/60000+MyPreference.MINS);
+		myMinutes.setText(MyPreference.getInstance(this.getActivity()).readInt(
+				MyPreference.TIME)
+				/ 60000 + MyPreference.MINS);
 		// 像机器发送时间命令
-		switch (MyPreference.getInstance(this.getActivity())
-				.readInt(MyPreference.TIME)) {
-		case 5*60*1000:
+		switch (MyPreference.getInstance(this.getActivity()).readInt(
+				MyPreference.TIME)) {
+		case 5 * 60 * 1000:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME5_MACHINE_VALUES);
 			break;
-		case 10*60*1000:
+		case 10 * 60 * 1000:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME10_MACHINE_VALUES);
 			break;
-		case 15*60*1000:
+		case 15 * 60 * 1000:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME15_MACHINE_VALUES);
 			break;
-		case 20*60*1000:
+		case 20 * 60 * 1000:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME20_MACHINE_VALUES);
 			break;
-		case 25*60*1000:
+		case 25 * 60 * 1000:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME25_MACHINE_VALUES);
 			break;
-		case 30*60*1000:
+		case 30 * 60 * 1000:
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 			break;
@@ -535,7 +555,6 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		super.overlayBtnPressed();
 	}
 
-
 	@Override
 	public void sendMachineMessage(int command, SparseIntArray bundle) {
 		Message msg = new Message();
@@ -544,11 +563,16 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		handlerMachineMessage(msg);
 	}
 
-	//屏蔽返回键
+	// 屏蔽返回键
 	@Override
 	public boolean onBackPress() {
 		return true;
-		
+
 	}
+	// 屏蔽Home键
+
 	
+	
+
+	 
 }

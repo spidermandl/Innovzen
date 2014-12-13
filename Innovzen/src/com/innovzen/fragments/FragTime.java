@@ -55,7 +55,7 @@ public class FragTime extends FragBase implements OnClickListener {
 			super.activityListener
 					.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
 			((ActivityMain)getActivity()).getExerciseManager().getExerciseTimes().initTime(this.getActivity());
-			((ActivityMain)getActivity()).qwe();
+			
 			break;
 		case R.id.time_10min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
@@ -71,14 +71,10 @@ public class FragTime extends FragBase implements OnClickListener {
 					MyPreference.TIME, 10 * 60 * 1000);
 			myMinutes.setText(MyPreference.getInstance(this.getActivity())
 					.readInt(MyPreference.TIME)/60000 + MyPreference.MINS);
-			super.activityListener
-			.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
-		((ActivityMain)getActivity()).getExerciseManager().getExerciseTimes().initTime(this.getActivity());
-		/*((ActivityMain)getActivity()).initExerciseManager(ExerciseTimes.DEFAULT_EXERCISE_TIME);
-		//((ActivityMain)getActivity()).clearBackstack();
-		((ActivityMain)getActivity()).fragGoToFragAnimationTableNew(false);*/
-		((ActivityMain)getActivity()).getExerciseManager().getExerciseTimes().exerciseDuration=10*60*1000;
-		//((ActivityMain)getActivity()).getExerciseManager().playCount++;
+
+			super.activityListener.fragSendCommand(BluetoothCommand.TIME30_MACHINE_VALUES);
+			((ActivityMain)getActivity()).getExerciseManager().getExerciseTimes().initTime(this.getActivity());
+
 			break;
 		case R.id.time_15min:
 			time_5min.setBackgroundResource(R.drawable.selector_time_5min);
