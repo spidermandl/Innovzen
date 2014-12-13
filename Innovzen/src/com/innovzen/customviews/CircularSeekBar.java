@@ -1080,7 +1080,7 @@ public class CircularSeekBar extends View {
         if (max != 0) {
             this.minAngle = (min * 360) / max;
             this.mProgress = (startingValue * 360) / max;
-            Log.e("1058", mProgress+"");
+           // Log.e("1058", mProgress+"");
             this.minValue = min;
             this.maxValue = max;
          
