@@ -201,13 +201,13 @@ public class SyncExerciseManager extends ExerciseManager {
 
 			subtime = BluetoothCommand.getInstance() == null ? 0 : (System
 					.currentTimeMillis() - inhaleTimeEnd);
-			if (subtime != 0 && subtime < mTimes.inhale + DELTA_TIME) {// 机器运动超前
+			if (subtime != 0 && subtime < ((mTimes.inhale + DELTA_TIME)/ERROR_SCALE)) {// 机器运动超前
 
 				// long a = mTimes.inhale;
 				// //Log.e("INHALE 超前", subtime+"");
 				fraction = 1f;
 				break;
-			} else if (subtime > mTimes.inhale + DELTA_TIME && fraction == 1f) {// 机器运动滞后
+			} else if (subtime >= ((mTimes.inhale + DELTA_TIME)/ERROR_SCALE) && fraction == 1f) {// 机器运动滞后
 				// //Log.e("INHALE 滞后", subtime+"");
 				if (!waitHandler.isWaiting()) {
 					waitHandler.setWaiting(true);
@@ -223,11 +223,11 @@ public class SyncExerciseManager extends ExerciseManager {
 		case EXERCISE_HOLD_INHALE:
 			subtime = BluetoothCommand.getInstance() == null ? 0 : (System
 					.currentTimeMillis() - exhaleTimeStart);
-			if (subtime != 0 && subtime < mTimes.holdInhale) {// 机器运动超前
+			if (subtime != 0 && subtime < (mTimes.holdInhale/ERROR_SCALE)) {// 机器运动超前
 				// //Log.e("INHALE HOLE 超前", subtime+"");
 				fraction = 1f;
 				break;
-			} else if (subtime > mTimes.holdInhale && fraction == 1f) {// 机器运动滞后
+			} else if (subtime >= (mTimes.holdInhale/ERROR_SCALE) && fraction == 1f) {// 机器运动滞后
 				// //Log.e("INHALE HOLE 滞后", subtime+"");
 				if (!waitHandler.isWaiting()) {
 					waitHandler.setWaiting(true);
@@ -242,11 +242,11 @@ public class SyncExerciseManager extends ExerciseManager {
 		case EXERCISE_EXHALE:
 			subtime = BluetoothCommand.getInstance() == null ? 0 : (System
 					.currentTimeMillis() - exhaleTimeEnd);
-			if (subtime != 0 && subtime < mTimes.exhale + DELTA_TIME) {// 机器运动超前
+			if (subtime != 0 && subtime < ((mTimes.exhale + DELTA_TIME)/ERROR_SCALE)) {// 机器运动超前
 				// //Log.e("EXHALE 超前", subtime+"");
 				fraction = 1f;
 				break;
-			} else if (subtime > mTimes.exhale + DELTA_TIME && fraction == 1f) {// 机器运动滞后
+			} else if (subtime >= ((mTimes.exhale + DELTA_TIME)/ERROR_SCALE) && fraction == 1f) {// 机器运动滞后
 				// //Log.e("EXHALE 滞后", subtime+"");
 				if (!waitHandler.isWaiting()) {
 					waitHandler.setWaiting(true);
@@ -263,11 +263,11 @@ public class SyncExerciseManager extends ExerciseManager {
 		case EXERCISE_HOLD_EXHALE:
 			subtime = BluetoothCommand.getInstance() == null ? 0 : (System
 					.currentTimeMillis() - inhaleTimeStart);
-			if (subtime != 0 && subtime < mTimes.holdExhale) {// 机器运动超前
+			if (subtime != 0 && subtime < (mTimes.holdExhale/ERROR_SCALE)) {// 机器运动超前
 				// //Log.e("EXHALE HOLD 超前", subtime+"");
 				fraction = 1f;
 				break;
-			} else if (subtime > mTimes.holdExhale && fraction == 1f) {// 机器运动滞后
+			} else if (subtime > (mTimes.holdExhale/ERROR_SCALE) && fraction == 1f) {// 机器运动滞后
 				// //Log.e("EXHALE HOLD 滞后", subtime+"");
 				if (!waitHandler.isWaiting()) {
 					waitHandler.setWaiting(true);
