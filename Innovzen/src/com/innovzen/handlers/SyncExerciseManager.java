@@ -20,6 +20,10 @@ public class SyncExerciseManager extends ExerciseManager {
 	 * 通讯时间补偿
 	 */
 	static final int DELTA_TIME = 0;
+	/**
+	 * 误差区间
+	 */
+	static final int ERROR_SCALE = 2;
 
 	/**
 	 * 等待机器传送最后位行指令 waitHandler的实例只能有一份，当isRunning为true时，此时正在进行等待状态
@@ -56,7 +60,7 @@ public class SyncExerciseManager extends ExerciseManager {
 			switch (mCurExercise) {
 			case EXERCISE_INHALE:
 				subtime = BluetoothCommand.getInstance() == null ? 0 : (System.currentTimeMillis() - inhaleTimeEnd);
-				if (subtime != 0 && subtime < mTimes.inhale + DELTA_TIME) {
+				if (subtime != 0 && subtime < (mTimes.inhale + DELTA_TIME)/ERROR_SCALE) {
 					 //Log.e("inhale 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
@@ -77,7 +81,7 @@ public class SyncExerciseManager extends ExerciseManager {
 				break;
 			case EXERCISE_HOLD_INHALE:
 				subtime = BluetoothCommand.getInstance() == null ? 0 : (System.currentTimeMillis() - exhaleTimeStart);
-				if (subtime != 0 && subtime < mTimes.holdInhale) {
+				if (subtime != 0 && subtime < mTimes.holdInhale/ERROR_SCALE) {
 					//Log.e("EXERCISE_HOLD_INHALE 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
@@ -100,7 +104,7 @@ public class SyncExerciseManager extends ExerciseManager {
 			case EXERCISE_EXHALE:
 				subtime = BluetoothCommand.getInstance() == null ? 
 						0 : (System.currentTimeMillis() - exhaleTimeEnd);
-				if (subtime != 0 && subtime < mTimes.exhale + DELTA_TIME) {
+				if (subtime != 0 && subtime < (mTimes.exhale + DELTA_TIME)/ERROR_SCALE) {
 					//Log.e("exhale 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
@@ -123,7 +127,7 @@ public class SyncExerciseManager extends ExerciseManager {
 			case EXERCISE_HOLD_EXHALE:
 				subtime = BluetoothCommand.getInstance() == null ? 0 : (System
 						.currentTimeMillis() - inhaleTimeStart);
-				if (subtime != 0 && subtime < mTimes.holdExhale) {
+				if (subtime != 0 && subtime < mTimes.holdExhale/ERROR_SCALE) {
 					//Log.e("EXERCISE_HOLD_EXHALE 等待成功", subtime+"");
 					waitHandler.sendEmptyMessage(0);
 				} else {
