@@ -134,7 +134,7 @@
         android:layout_alignRight="@id/top_horizontal_5"
         android:background="@drawable/selector_btn_gravity"
         android:padding="@dimen/grid_half_gap" />
-  <RelativeLayout
+ <!--  <RelativeLayout
         android:id="@+id/voice_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -173,5 +173,5 @@
             android:layout_above="@id/volum_less"
             android:progressDrawable="@drawable/seekbar_define_style"  />
 
-    </RelativeLayout>
+    </RelativeLayout> -->
 </RelativeLayout>

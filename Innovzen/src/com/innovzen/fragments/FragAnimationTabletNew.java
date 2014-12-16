@@ -62,6 +62,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 	private ImageView backRestUp, backRestDown, footUp, footDown, zero, pause;
 
 	private TextView countdown_tv;
+	private TextView heartBeatRate;
 
 	/**
 	 * 接受机器指令handler
@@ -106,6 +107,9 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		case BluetoothCommand.MACHINE_RUN_STATUS:
 			// 机器运行状态
 
+			break;
+		//心跳次数
+		case BluetoothCommand.PULSE_STATUS:
 			break;
 
 		default:
@@ -307,7 +311,7 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 		mBluetoothCheck = ((ActivityMain) getActivity()).getResetCheck();
 		mBluetoothCheck.setTrigger(false);
 		mBluetoothCheck.setUiHandler(this);
-
+        heartBeatRate = (TextView) view.findViewById(R.id.heartBeatRate);
 		countdown_tv = (TextView) view.findViewById(R.id.animation_countdown);
 
 		view.findViewById(R.id.main_animation_breathe_up).setOnClickListener(

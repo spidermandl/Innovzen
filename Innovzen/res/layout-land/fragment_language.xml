@@ -67,7 +67,7 @@
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
-        android:id="@+id/menu_balance"
+        android:id="@+id/language_American"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_vertical_1"
@@ -78,7 +78,7 @@
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
-        android:id="@+id/menu_performance"
+        android:id="@+id/language_German"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_vertical_2"
@@ -89,6 +89,7 @@
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
+        android:id="@+id/language_French"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_vertical_1"
@@ -99,6 +100,7 @@
         android:padding="@dimen/grid_half_gap" />
 
     <ImageView
+        android:id="@+id/language_Spanish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/left_vertical_2"

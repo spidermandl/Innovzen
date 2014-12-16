@@ -3,6 +3,7 @@ package com.innovzen.fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.SparseIntArray;
@@ -12,11 +13,15 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
 import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
+import com.innovzen.ui.VerticalSeekBar;
 import com.innovzen.utils.MyPreference;
 
 public class FragSession extends FragBase implements OnClickListener {
@@ -29,6 +34,13 @@ public class FragSession extends FragBase implements OnClickListener {
 			customise;
 	private TextView min;
 	private ImageView session_volume;
+	private ImageView image_beginner;
+	private ImageView image_intermediate;
+	private ImageView image_pro;
+	private RelativeLayout voice_progressbar2;
+	private ImageView volum_less2;
+	private ImageView volum_max2;
+	private VerticalSeekBar mySeekBar2;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,7 +59,7 @@ public class FragSession extends FragBase implements OnClickListener {
 			getActivity().onBackPressed();
 			break;
 		case R.id.session_volume:
-			
+			voice_progressbar2.setVisibility(View.VISIBLE);
 			break;
 		case R.id.session_setting:
 			super.activityListener.fragGoToSetting(true);
@@ -95,6 +107,9 @@ public class FragSession extends FragBase implements OnClickListener {
 					.setBackgroundResource(R.drawable.selector_icon_intermadiate);
 			pro.setBackgroundResource(R.drawable.selector_icon_pro);
 			customise.setBackgroundResource(R.drawable.selector_icon_customise);
+			image_beginner.setVisibility(View.VISIBLE);
+			image_intermediate.setVisibility(View.GONE);
+			image_pro.setVisibility(View.GONE);
 			break;
 		case R.id.intermadiate:
 			MyPreference.getInstance(getActivity()).writeString(
@@ -104,6 +119,9 @@ public class FragSession extends FragBase implements OnClickListener {
 					.setBackgroundResource(R.drawable.btn_my_session_intermediate_activated);
 			pro.setBackgroundResource(R.drawable.selector_icon_pro);
 			customise.setBackgroundResource(R.drawable.selector_icon_customise);
+			image_beginner.setVisibility(View.GONE);
+			image_intermediate.setVisibility(View.VISIBLE);
+			image_pro.setVisibility(View.GONE);
 			break;
 		case R.id.pro:
 			MyPreference.getInstance(getActivity()).writeString(
@@ -113,6 +131,9 @@ public class FragSession extends FragBase implements OnClickListener {
 					.setBackgroundResource(R.drawable.selector_icon_intermadiate);
 			pro.setBackgroundResource(R.drawable.btn_my_session_pro_activated);
 			customise.setBackgroundResource(R.drawable.selector_icon_customise);
+			image_beginner.setVisibility(View.GONE);
+			image_intermediate.setVisibility(View.GONE);
+			image_pro.setVisibility(View.VISIBLE);
 			break;
 		case R.id.customise:
 			MyPreference.getInstance(getActivity()).writeString(
@@ -124,6 +145,16 @@ public class FragSession extends FragBase implements OnClickListener {
 			customise
 					.setBackgroundResource(R.drawable.btn_my_session_customise_activated);
 			break;
+		case R.id.voice_progressbar2:
+			voice_progressbar2.setVisibility(View.GONE);
+			break;
+		case R.id.volum_less2:
+
+			mySeekBar2.setProgress(0);
+			MyPreference.getInstance(FragSession.this.getActivity()).writeInt(MyPreference.LAST_VOLUME, 0);
+			break;
+		case R.id.volumn_max2:
+			break;
 		default:
 			break;
 		}
@@ -131,6 +162,14 @@ public class FragSession extends FragBase implements OnClickListener {
 
 	@Override
 	public void init(View view) {
+		
+		volum_less2 = (ImageView) view.findViewById(R.id.volum_less2);
+		volum_less2.setOnClickListener(this);
+		volum_max2 = (ImageView) view.findViewById(R.id.volumn_max2);
+		mySeekBar2 = (VerticalSeekBar) view.findViewById(R.id.mySeekBar2);
+		volum_max2.setOnClickListener(this);
+		voice_progressbar2 = (RelativeLayout) view.findViewById(R.id.voice_progressbar2);
+		voice_progressbar2.setOnClickListener(this);
 		back = (ImageView) view.findViewById(R.id.session_back);
 		back.setOnClickListener(this);
 		setting = (ImageView) view.findViewById(R.id.session_setting);
@@ -156,6 +195,12 @@ public class FragSession extends FragBase implements OnClickListener {
 		session_pause.setOnClickListener(this);
 		session_volume = (ImageView) view.findViewById(R.id.session_volume);
 		session_volume.setOnClickListener(this);
+		image_beginner = (ImageView) view.findViewById(R.id.image_beginner);
+		
+		image_intermediate = (ImageView) view.findViewById(R.id.image_intermediate);
+		
+		image_pro = (ImageView) view.findViewById(R.id.image_pro);
+		
 		min.setText(MyPreference.getInstance(getActivity()).readInt(
 				MyPreference.TIME)+"");
 		String mySession = MyPreference.getInstance(getActivity()).readString(
@@ -175,6 +220,38 @@ public class FragSession extends FragBase implements OnClickListener {
 			customise
 					.setBackgroundResource(R.drawable.btn_my_session_customise_activated);
 		}
+		
+mySeekBar2.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+			
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress,
+					boolean fromUser) {
+				//audiomanage.setStreamVolume(AudioManager.STREAM_MUSIC,progress, 0);
+
+				MyPreference.getInstance(FragSession.this.getActivity()).writeInt(MyPreference.LAST_VOLUME,progress);
+				if (progress == 0) {
+					volum_less2.setBackgroundResource(R.drawable.icon_no_volum);
+				} else {
+					volum_less2
+							.setBackgroundResource(R.drawable.icon_volum_less);
+				}
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				
+				
+			}
+		});
+		
+		//int lastVolumeValue = MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME);
+    
 	}
 
 	@Override

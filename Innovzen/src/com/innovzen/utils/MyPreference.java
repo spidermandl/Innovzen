@@ -16,6 +16,12 @@ public class MyPreference {
 	private static Context globleContext;// 全局context
 
 	private final static String INNOVZEN_PREFERENCE = "INNOVZEN_PREFERENCE";
+	//记录用户语言
+	public final static String LANGUAGE = "language";
+	public final static String ENGLISH = "English";
+	public final static String FRENCH = "French";
+	public final static String GERMAN = "German";
+	public final static String SPANISH = "Spanish";
 	// 记录用户的session模式
 	public final static String SESSION_MODE = "session mod";
 	public final static String BEGINNER = "Beginner";
