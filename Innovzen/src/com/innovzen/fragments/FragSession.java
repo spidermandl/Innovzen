@@ -48,6 +48,7 @@ public class FragSession extends FragBase implements OnClickListener {
 		View view = inflater.inflate(R.layout.fragment_mysession, container,
 				false);
 		init(view);
+		
 
 		return view;
 	}

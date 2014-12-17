@@ -363,14 +363,14 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 							.setBackgroundResource(R.drawable.btn_backrest_adjust_up_activated);
 					FragAnimationTabletNew.super.activityListener
 							.fragSendCommand(BluetoothCommand.BACK_REST_UP_MACHINE_VALUES);
-					System.out.println("back up");
+				//	System.out.println("back up");
 					break;
 				case MotionEvent.ACTION_UP:
 					backRestUp
 							.setBackgroundResource(R.drawable.btn_backrest_adjust_up);
 					FragAnimationTabletNew.super.activityListener
 							.fragSendCommand(BluetoothCommand.BACK_REST_UP_STOP_MACHINE_VALUES);
-					System.out.println("back up stop");
+					//System.out.println("back up stop");
 					break;
 				default:
 					break;
@@ -387,14 +387,14 @@ public class FragAnimationTabletNew extends FragAnimationBase implements
 							.setBackgroundResource(R.drawable.btn_backrest_adjust_down_activated);
 					FragAnimationTabletNew.super.activityListener
 							.fragSendCommand(BluetoothCommand.BACK_REST_DOWN_MACHINE_VALUES);
-					System.out.println("back down");
+					//System.out.println("back down");
 					break;
 				case MotionEvent.ACTION_UP:
 					backRestDown
 							.setBackgroundResource(R.drawable.btn_backrest_adjust_down);
 					FragAnimationTabletNew.super.activityListener
 							.fragSendCommand(BluetoothCommand.BACK_REST_DOWN_STOP_MACHINE_VALUES);
-					System.out.println("back down stop");
+					//System.out.println("back down stop");
 					break;
 				default:
 					break;

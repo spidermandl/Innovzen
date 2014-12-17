@@ -91,7 +91,7 @@ public class SyncExerciseManager extends ExerciseManager {
 
 					waitHandler.sendEmptyMessage(0);
 				} else {
-					Log.e("EXERCISE_HOLD_INHALE 没等到", subtime+"");
+					//Log.e("EXERCISE_HOLD_INHALE 没等到", subtime+"");
 					boolean shutOff = BluetoothCommand.getInstance() == null ? false
 							: (BluetoothCommand.getInstance().getValue(
 									BluetoothCommand.MACHINE_RUN_STATUS) == BluetoothCommand.MACHINE_RUN_STATUS_COLLECT ? true
@@ -212,7 +212,7 @@ public class SyncExerciseManager extends ExerciseManager {
 			if (subtime != 0 && subtime < ((mTimes.inhale + DELTA_TIME)/ERROR_SCALE)) {// 机器运动超前
 
 				// long a = mTimes.inhale;
-				Log.e("INHALE 超前"+inhaleTimeEnd, subtime+"");
+			//	Log.e("INHALE 超前"+inhaleTimeEnd, subtime+"");
 				fraction = 1f;
 				break;
 
@@ -248,7 +248,7 @@ public class SyncExerciseManager extends ExerciseManager {
 				}
 				isContinue = false;
 			} else {// 正常运作状态
-					Log.e("INHALE HOLE 正常运作状态"+exhaleTimeStart, subtime+"");
+					//Log.e("INHALE HOLE 正常运作状态"+exhaleTimeStart, subtime+"");
 			}
 			break;
 		case EXERCISE_EXHALE:
@@ -270,7 +270,7 @@ public class SyncExerciseManager extends ExerciseManager {
 				isContinue = false;
 
 			} else {// 正常运作状态
-					Log.e("EXHALE 正常运作状态"+exhaleTimeEnd, subtime+"");
+					//Log.e("EXHALE 正常运作状态"+exhaleTimeEnd, subtime+"");
 			}
 
 			break;
@@ -293,7 +293,7 @@ public class SyncExerciseManager extends ExerciseManager {
 				isContinue = false;
 
 			} else {// 正常运作状态
-					Log.e("EXHALE HOLD 正常运作状态"+inhaleTimeStart, subtime+"");
+					//Log.e("EXHALE HOLD 正常运作状态"+inhaleTimeStart, subtime+"");
 			}
 
 			break;
@@ -539,7 +539,7 @@ public class SyncExerciseManager extends ExerciseManager {
 							 * 相位由11跳12 或方向位由上限跳为停止
 							 */
 							inhaleTimeEnd = System.currentTimeMillis();
-							Log.e("inhaleTimeEnd", inhaleTimeEnd+"");
+							//Log.e("inhaleTimeEnd", inhaleTimeEnd+"");
 						}
 						lastPositison = currentPos;
 						lastDirection = currentDir;
@@ -563,7 +563,7 @@ public class SyncExerciseManager extends ExerciseManager {
 							 * 相位由12跳11 或方向位由停止跳为下限
 							 */
 							exhaleTimeStart = System.currentTimeMillis();
-							Log.e("exhaleTimeStart", exhaleTimeStart+"");
+							//Log.e("exhaleTimeStart", exhaleTimeStart+"");
 						}
 						lastPositison = currentPos;
 						lastDirection = currentDir;
@@ -589,7 +589,7 @@ public class SyncExerciseManager extends ExerciseManager {
 							 * 相位由2跳1 或方向位由下限跳为停止
 							 */
 							exhaleTimeEnd = System.currentTimeMillis();
-							Log.e("exhaleTimeEnd", exhaleTimeEnd+"");
+							//Log.e("exhaleTimeEnd", exhaleTimeEnd+"");
 						}
 						lastPositison = currentPos;
 						lastDirection = currentDir;
@@ -613,7 +613,7 @@ public class SyncExerciseManager extends ExerciseManager {
 							 * 相位由1跳2 或方向位由停止跳为上限
 							 */
 							inhaleTimeStart = System.currentTimeMillis();
-							Log.e("inhaleTimeStart", inhaleTimeStart+"");
+						//	Log.e("inhaleTimeStart", inhaleTimeStart+"");
 						}
 						lastPositison = currentPos;
 						lastDirection = currentDir;

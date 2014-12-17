@@ -76,4 +76,5 @@
      <color name="main_bg">#77BBC9</color>
       <color name="main_bg2">#ffffff</color>
     <!-- chy -->
+     <color name="thumb_color">#B2C852</color>
 </resources>

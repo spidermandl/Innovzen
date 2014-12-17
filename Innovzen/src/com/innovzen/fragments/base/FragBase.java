@@ -88,7 +88,7 @@ public abstract class FragBase extends Fragment {
 		audiomanage = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);						
 		int maxVolume = audiomanage.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 		int lastVolumeValue = MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME);
-		Log.e("lastVolumeValue", lastVolumeValue+"");
+		//Log.e("lastVolumeValue", lastVolumeValue+"");
 		
         volum_less = (ImageView) view.findViewById(R.id.volum_less);
         volum_less.setOnClickListener(new OnClickListener() {

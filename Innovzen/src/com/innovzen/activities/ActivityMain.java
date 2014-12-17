@@ -280,6 +280,8 @@ public class ActivityMain extends ActivityBase implements FragmentCommunicator {
 		// <chy>
 		// super.navigateTo(FragMainMenu.class);
 		super.navigateTo(FragMain.class);
+		
+		
 		// </chy>
 	}
 
