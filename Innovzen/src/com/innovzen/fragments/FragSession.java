@@ -48,7 +48,6 @@ public class FragSession extends FragBase implements OnClickListener {
 		View view = inflater.inflate(R.layout.fragment_mysession, container,
 				false);
 		init(view);
-		
 
 		return view;
 	}
@@ -152,7 +151,8 @@ public class FragSession extends FragBase implements OnClickListener {
 		case R.id.volum_less2:
 
 			mySeekBar2.setProgress(0);
-			MyPreference.getInstance(FragSession.this.getActivity()).writeInt(MyPreference.LAST_VOLUME, 0);
+			MyPreference.getInstance(FragSession.this.getActivity()).writeInt(
+					MyPreference.LAST_VOLUME, 0);
 			break;
 		case R.id.volumn_max2:
 			break;
@@ -163,13 +163,17 @@ public class FragSession extends FragBase implements OnClickListener {
 
 	@Override
 	public void init(View view) {
-		
+            String mode = MyPreference.getInstance(getActivity()).readString(MyPreference.SESSION_MODE);
+           /* if(mode.equals(MyPreference.BEGINNER)||mode.equals("")){
+            	beginner.setBackgroundResource(R.drawable.btn_my_session_left_beginner_activated);
+            }*/
 		volum_less2 = (ImageView) view.findViewById(R.id.volum_less2);
 		volum_less2.setOnClickListener(this);
 		volum_max2 = (ImageView) view.findViewById(R.id.volumn_max2);
 		mySeekBar2 = (VerticalSeekBar) view.findViewById(R.id.mySeekBar2);
 		volum_max2.setOnClickListener(this);
-		voice_progressbar2 = (RelativeLayout) view.findViewById(R.id.voice_progressbar2);
+		voice_progressbar2 = (RelativeLayout) view
+				.findViewById(R.id.voice_progressbar2);
 		voice_progressbar2.setOnClickListener(this);
 		back = (ImageView) view.findViewById(R.id.session_back);
 		back.setOnClickListener(this);
@@ -197,13 +201,15 @@ public class FragSession extends FragBase implements OnClickListener {
 		session_volume = (ImageView) view.findViewById(R.id.session_volume);
 		session_volume.setOnClickListener(this);
 		image_beginner = (ImageView) view.findViewById(R.id.image_beginner);
-		
-		image_intermediate = (ImageView) view.findViewById(R.id.image_intermediate);
-		
+
+		image_intermediate = (ImageView) view
+				.findViewById(R.id.image_intermediate);
+
 		image_pro = (ImageView) view.findViewById(R.id.image_pro);
-		
+
 		min.setText(MyPreference.getInstance(getActivity()).readInt(
-				MyPreference.TIME)+"");
+				MyPreference.TIME)
+				+ "");
 		String mySession = MyPreference.getInstance(getActivity()).readString(
 				MyPreference.SESSION_MODE);
 		beginner.setBackgroundResource(R.drawable.btn_my_session_left_beginner_activated);
@@ -221,15 +227,17 @@ public class FragSession extends FragBase implements OnClickListener {
 			customise
 					.setBackgroundResource(R.drawable.btn_my_session_customise_activated);
 		}
-		
-mySeekBar2.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-			
+
+		mySeekBar2.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
-				//audiomanage.setStreamVolume(AudioManager.STREAM_MUSIC,progress, 0);
+				// audiomanage.setStreamVolume(AudioManager.STREAM_MUSIC,progress,
+				// 0);
 
-				MyPreference.getInstance(FragSession.this.getActivity()).writeInt(MyPreference.LAST_VOLUME,progress);
+				MyPreference.getInstance(FragSession.this.getActivity())
+						.writeInt(MyPreference.LAST_VOLUME, progress);
 				if (progress == 0) {
 					volum_less2.setBackgroundResource(R.drawable.icon_no_volum);
 				} else {
@@ -241,38 +249,42 @@ mySeekBar2.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				
-				
+
 			}
 		});
-		
-		//int lastVolumeValue = MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME);
-    
+
+		// int lastVolumeValue =
+		// MyPreference.getInstance(getActivity()).readInt(MyPreference.LAST_VOLUME);
+
 	}
 
 	@Override
-		protected void handlerMachineMessage(Message msg) {
-			SparseIntArray map = (SparseIntArray)msg.obj;
-			switch (msg.what) {
-			case BluetoothCommand.ZERO_STATUS:
-				if(map.get(BluetoothCommand.ZERO_STATUS)==BluetoothCommand.ZERO_STATUS_CLOSE){
-                       session_zero.setBackgroundResource(R.drawable.selector_btn_gravity);
-				 }else{
-					 session_zero.setBackgroundResource(R.drawable.btn_gravity_activated);
-				 }
-				break;
-			case BluetoothCommand.PAUSE_STATUS:
-				if(map.get(BluetoothCommand.PAUSE_STATUS)==BluetoothCommand.PAUSE_STATUS_ON){
-					session_pause.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
-				}else{
-					session_pause.setBackgroundResource(R.drawable.selector_btn_pause);
-				}
-				break;
+	protected void handlerMachineMessage(Message msg) {
+		SparseIntArray map = (SparseIntArray) msg.obj;
+		switch (msg.what) {
+		case BluetoothCommand.ZERO_STATUS:
+			if (map.get(BluetoothCommand.ZERO_STATUS) == BluetoothCommand.ZERO_STATUS_CLOSE) {
+				session_zero
+						.setBackgroundResource(R.drawable.selector_btn_gravity);
+			} else {
+				session_zero
+						.setBackgroundResource(R.drawable.btn_gravity_activated);
 			}
-	    }
+			break;
+		case BluetoothCommand.PAUSE_STATUS:
+			if (map.get(BluetoothCommand.PAUSE_STATUS) == BluetoothCommand.PAUSE_STATUS_ON) {
+				session_pause
+						.setBackgroundResource(R.drawable.btn_exercise_pause_activated);
+			} else {
+				session_pause
+						.setBackgroundResource(R.drawable.selector_btn_pause);
+			}
+			break;
+		}
+	}
 }

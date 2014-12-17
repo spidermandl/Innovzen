@@ -308,13 +308,21 @@
         android:layout_alignRight="@id/mid_top_horizontal_3"
         android:layout_alignTop="@id/mid_left_vertical_4"
         android:layout_centerInParent="true"
-        android:background="@drawable/circular_seekbar_bg"
+        
         android:thumb="@drawable/volume_cursor" />
-    <!--
+    
          <TextView 
-        android:background="@drawable/"
+             android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/circular_seekbar_core"
+        android:layout_alignBottom="@id/mid_left_vertical_4"
+        android:layout_alignLeft="@id/mid_top_horizontal_3"
+        android:layout_alignRight="@id/mid_top_horizontal_3"
+        android:layout_alignTop="@id/mid_left_vertical_4"
         />
-    -->
+    
 
     <TextView
         android:layout_width="wrap_content"
