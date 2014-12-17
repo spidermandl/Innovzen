@@ -53,7 +53,7 @@ public class ZJBCircleSeekBar extends View {
     /** 
      * 圆环的宽度 
      */  
-    private final int mColorWheelStrokeWidth = 100;  
+    private final int mColorWheelStrokeWidth = 80;  
   
     /** 
      * 游标所在圆环半径 
@@ -162,7 +162,7 @@ public class ZJBCircleSeekBar extends View {
   
         // 设置游标滑过的背景属性  
         mArcColor = new Paint(Paint.ANTI_ALIAS_FLAG);  
-        mArcColor.setColor(Color.GREEN);  
+        mArcColor.setColor(Color.GRAY);  
         mArcColor.setStyle(Paint.Style.STROKE);  
         mArcColor.setStrokeWidth(mColorWheelStrokeWidth);  
   

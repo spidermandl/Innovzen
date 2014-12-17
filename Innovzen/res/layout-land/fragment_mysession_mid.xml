@@ -266,14 +266,14 @@
 
     <ImageView
         android:id="@+id/image_beginner"
-      android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_4"
         android:layout_alignLeft="@id/mid_top_horizontal_2"
         android:layout_alignRight="@id/mid_top_horizontal_9"
         android:layout_alignTop="@id/mid_left_vertical_4"
-        android:background="@drawable/time_beginner" />
+        android:background="@drawable/time_beginner"
+        android:visibility="gone" />
 
     <ImageView
         android:id="@+id/image_intermediate"
@@ -296,21 +296,25 @@
         android:layout_alignTop="@id/mid_left_vertical_4"
         android:background="@drawable/time_pro"
         android:visibility="gone" />
-    
- <!-- 自定义 -->
-      <com.innovzen.ui.ZJBCircleSeekBar  
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+
+    <!-- 自定义 -->
+
+    <com.innovzen.ui.ZJBCircleSeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_alignBottom="@id/mid_left_vertical_4"
-        android:layout_alignLeft="@id/mid_top_horizontal_1"
-        android:layout_alignRight="@id/mid_top_horizontal_6"
-        android:layout_alignTop="@id/mid_left_vertical_1"
-        android:layout_centerInParent="true" 
-        android:thumb="@drawable/volume_cursor"
-       
-        /> 
-    
-    
+        android:layout_alignLeft="@id/mid_top_horizontal_3"
+        android:layout_alignRight="@id/mid_top_horizontal_3"
+        android:layout_alignTop="@id/mid_left_vertical_4"
+        android:layout_centerInParent="true"
+        android:background="@drawable/circular_seekbar_bg"
+        android:thumb="@drawable/volume_cursor" />
+    <!--
+         <TextView 
+        android:background="@drawable/"
+        />
+    -->
 
     <TextView
         android:layout_width="wrap_content"
@@ -411,18 +415,17 @@
         android:gravity="center_horizontal"
         android:text="@string/full"
         android:textColor="#35A9BB" />
-       <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignBottom="@id/mid_left_vertical_6"
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_6"
         android:layout_alignLeft="@id/mid_top_horizontal_9"
         android:layout_alignRight="@id/mid_top_horizontal_9"
         android:layout_alignTop="@id/mid_left_vertical_6"
-            android:gravity="center_horizontal"
-            android:text="@string/empty"
-            android:textColor="#35A9BB" />
-
-    
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:text="@string/empty"
+        android:textColor="#35A9BB" />
 
 </RelativeLayout>
