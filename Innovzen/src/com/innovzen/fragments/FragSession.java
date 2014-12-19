@@ -22,6 +22,7 @@ import com.innovzen.bluetooth.BluetoothCommand;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
 import com.innovzen.ui.VerticalSeekBar;
+import com.innovzen.ui.ZJBCircleSeekBar;
 import com.innovzen.utils.MyPreference;
 
 public class FragSession extends FragBase implements OnClickListener {
@@ -41,6 +42,8 @@ public class FragSession extends FragBase implements OnClickListener {
 	private ImageView volum_less2;
 	private ImageView volum_max2;
 	private VerticalSeekBar mySeekBar2;
+	private ZJBCircleSeekBar breathe_in;
+	private TextView breathe_in_number;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -110,6 +113,8 @@ public class FragSession extends FragBase implements OnClickListener {
 			image_beginner.setVisibility(View.VISIBLE);
 			image_intermediate.setVisibility(View.GONE);
 			image_pro.setVisibility(View.GONE);
+			breathe_in.setVisibility(View.GONE);
+			breathe_in_number.setVisibility(View.GONE);
 			break;
 		case R.id.intermadiate:
 			MyPreference.getInstance(getActivity()).writeString(
@@ -122,6 +127,8 @@ public class FragSession extends FragBase implements OnClickListener {
 			image_beginner.setVisibility(View.GONE);
 			image_intermediate.setVisibility(View.VISIBLE);
 			image_pro.setVisibility(View.GONE);
+			breathe_in.setVisibility(View.GONE);
+			breathe_in_number.setVisibility(View.GONE);
 			break;
 		case R.id.pro:
 			MyPreference.getInstance(getActivity()).writeString(
@@ -134,6 +141,8 @@ public class FragSession extends FragBase implements OnClickListener {
 			image_beginner.setVisibility(View.GONE);
 			image_intermediate.setVisibility(View.GONE);
 			image_pro.setVisibility(View.VISIBLE);
+			breathe_in.setVisibility(View.GONE);
+			breathe_in_number.setVisibility(View.GONE);
 			break;
 		case R.id.customise:
 			MyPreference.getInstance(getActivity()).writeString(
@@ -144,6 +153,11 @@ public class FragSession extends FragBase implements OnClickListener {
 			pro.setBackgroundResource(R.drawable.selector_icon_pro);
 			customise
 					.setBackgroundResource(R.drawable.btn_my_session_customise_activated);
+			image_beginner.setVisibility(View.GONE);
+			image_intermediate.setVisibility(View.GONE);
+			image_pro.setVisibility(View.GONE);
+			breathe_in.setVisibility(View.VISIBLE);
+			breathe_in_number.setVisibility(View.VISIBLE);
 			break;
 		case R.id.voice_progressbar2:
 			voice_progressbar2.setVisibility(View.GONE);
@@ -163,10 +177,12 @@ public class FragSession extends FragBase implements OnClickListener {
 
 	@Override
 	public void init(View view) {
-            String mode = MyPreference.getInstance(getActivity()).readString(MyPreference.SESSION_MODE);
-           /* if(mode.equals(MyPreference.BEGINNER)||mode.equals("")){
-            	beginner.setBackgroundResource(R.drawable.btn_my_session_left_beginner_activated);
-            }*/
+		String mode = MyPreference.getInstance(getActivity()).readString(
+				MyPreference.SESSION_MODE);
+		breathe_in = (ZJBCircleSeekBar) view
+				.findViewById(R.id.customise_breathe_in);
+		breathe_in_number = (TextView) view
+				.findViewById(R.id.customise_breathe_in_number);
 		volum_less2 = (ImageView) view.findViewById(R.id.volum_less2);
 		volum_less2.setOnClickListener(this);
 		volum_max2 = (ImageView) view.findViewById(R.id.volumn_max2);

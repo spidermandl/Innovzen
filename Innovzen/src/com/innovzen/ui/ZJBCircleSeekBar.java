@@ -53,7 +53,7 @@ public class ZJBCircleSeekBar extends View {
     /** 
      * 圆环的宽度 
      */  
-    private final int mColorWheelStrokeWidth = 100;  
+    private final int mColorWheelStrokeWidth = 90;  
   
     /** 
      * 游标所在圆环半径 
