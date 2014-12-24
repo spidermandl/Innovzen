@@ -144,7 +144,7 @@
         android:layout_toRightOf="@id/mid_top_horizontal_6"
         layout:orientation="false"
         layout:rate_down="220"
-        layout:rate_up="49" />
+        layout:rate_up="3" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_8"
@@ -154,7 +154,7 @@
         android:layout_toRightOf="@id/mid_top_horizontal_7"
         layout:orientation="false"
         layout:rate_down="220"
-        layout:rate_up="2" />
+        layout:rate_up="41" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_9"
@@ -164,7 +164,7 @@
         android:layout_toRightOf="@id/mid_top_horizontal_8"
         layout:orientation="false"
         layout:rate_down="220"
-        layout:rate_up="49" />
+        layout:rate_up="5" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_10"
@@ -174,7 +174,7 @@
         android:layout_toRightOf="@id/mid_top_horizontal_9"
         layout:orientation="false"
         layout:rate_down="220"
-        layout:rate_up="3" />
+        layout:rate_up="2" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_11"
@@ -184,7 +184,7 @@
         android:layout_toRightOf="@id/mid_top_horizontal_10"
         layout:orientation="false"
         layout:rate_down="220"
-        layout:rate_up="49" />
+        layout:rate_up="5" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_12"
@@ -194,7 +194,7 @@
         android:layout_toRightOf="@id/mid_top_horizontal_11"
         layout:orientation="false"
         layout:rate_down="220"
-        layout:rate_up="3" />
+        layout:rate_up="39" />
 
     <com.innovzen.ui.MeasureView
         android:id="@+id/mid_top_horizontal_13"
@@ -202,6 +202,66 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/mid_top_horizontal_12"
+        layout:orientation="false"
+        layout:rate_down="220"
+        layout:rate_up="5" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_13"
+        layout:orientation="false"
+        layout:rate_down="220"
+        layout:rate_up="3" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_14"
+        layout:orientation="false"
+        layout:rate_down="220"
+        layout:rate_up="5" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_15"
+        layout:orientation="false"
+        layout:rate_down="220"
+        layout:rate_up="39" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_16"
+        layout:orientation="false"
+        layout:rate_down="220"
+        layout:rate_up="5" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_17"
+        layout:orientation="false"
+        layout:rate_down="220"
+        layout:rate_up="3" />
+
+    <com.innovzen.ui.MeasureView
+        android:id="@+id/mid_top_horizontal_19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/mid_top_horizontal_18"
         layout:orientation="false"
         layout:rate_down="220"
         layout:rate_up="5" />
@@ -221,8 +281,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_2"
-        android:layout_alignLeft="@id/mid_top_horizontal_7"
-        android:layout_alignRight="@id/mid_top_horizontal_8"
+        android:layout_alignLeft="@id/mid_top_horizontal_6"
+        android:layout_alignRight="@id/mid_top_horizontal_10"
         android:layout_alignTop="@id/mid_left_vertical_2"
         android:background="@drawable/selector_icon_intermadiate" />
 
@@ -231,8 +291,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_2"
-        android:layout_alignLeft="@id/mid_top_horizontal_9"
-        android:layout_alignRight="@id/mid_top_horizontal_10"
+        android:layout_alignLeft="@id/mid_top_horizontal_10"
+        android:layout_alignRight="@id/mid_top_horizontal_13"
         android:layout_alignTop="@id/mid_left_vertical_2"
         android:background="@drawable/selector_icon_pro" />
 
@@ -241,8 +301,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_2"
-        android:layout_alignLeft="@id/mid_top_horizontal_11"
-        android:layout_alignRight="@id/mid_top_horizontal_12"
+        android:layout_alignLeft="@id/mid_top_horizontal_14"
+        android:layout_alignRight="@id/mid_top_horizontal_18"
         android:layout_alignTop="@id/mid_left_vertical_2"
         android:background="@drawable/selector_icon_customise" />
 
@@ -263,7 +323,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_3"
         android:layout_alignLeft="@id/mid_top_horizontal_7"
-        android:layout_alignRight="@id/mid_top_horizontal_7"
+        android:layout_alignRight="@id/mid_top_horizontal_10"
         android:layout_alignTop="@id/mid_left_vertical_3"
         android:gravity="center"
         android:text="MAX 30 sec"
@@ -274,8 +334,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_3"
-        android:layout_alignLeft="@id/mid_top_horizontal_9"
-        android:layout_alignRight="@id/mid_top_horizontal_9"
+        android:layout_alignLeft="@id/mid_top_horizontal_15"
+        android:layout_alignRight="@id/mid_top_horizontal_16"
         android:layout_alignTop="@id/mid_left_vertical_3"
         android:gravity="center"
         android:text="MAX 30 sec"
@@ -286,8 +346,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_3"
-        android:layout_alignLeft="@id/mid_top_horizontal_11"
-        android:layout_alignRight="@id/mid_top_horizontal_11"
+        android:layout_alignLeft="@id/mid_top_horizontal_12"
+        android:layout_alignRight="@id/mid_top_horizontal_13"
         android:layout_alignTop="@id/mid_left_vertical_3"
         android:gravity="center"
         android:text="MAX 30 sec"
@@ -300,7 +360,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_5"
         android:layout_alignLeft="@id/mid_top_horizontal_2"
-        android:layout_alignRight="@id/mid_top_horizontal_12"
+        android:layout_alignRight="@id/mid_top_horizontal_18"
         android:layout_alignTop="@id/mid_left_vertical_4"
         android:background="@drawable/time_beginner"
         android:visibility="gone" />
@@ -311,7 +371,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_5"
         android:layout_alignLeft="@id/mid_top_horizontal_2"
-        android:layout_alignRight="@id/mid_top_horizontal_12"
+        android:layout_alignRight="@id/mid_top_horizontal_18"
         android:layout_alignTop="@id/mid_left_vertical_4"
         android:background="@drawable/time_intermediate"
         android:visibility="gone" />
@@ -322,12 +382,12 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_5"
         android:layout_alignLeft="@id/mid_top_horizontal_2"
-        android:layout_alignRight="@id/mid_top_horizontal_12"
+        android:layout_alignRight="@id/mid_top_horizontal_18"
         android:layout_alignTop="@id/mid_left_vertical_4"
         android:background="@drawable/time_pro"
         android:visibility="gone" />
 
-    <!-- 自定义 -->
+    <!-- 自定义 1 -->
 
     <com.innovzen.ui.ZJBCircleSeekBar
         android:id="@+id/customise_breathe_in"
@@ -338,7 +398,6 @@
         android:layout_alignRight="@id/mid_top_horizontal_6"
         android:layout_alignTop="@id/mid_left_vertical_4"
         android:layout_centerInParent="true"
-       
         android:thumb="@drawable/volume_cursor" />
 
     <TextView
@@ -349,12 +408,90 @@
         android:layout_alignLeft="@id/mid_top_horizontal_3"
         android:layout_alignRight="@id/mid_top_horizontal_4"
         android:layout_alignTop="@id/mid_left_vertical_4"
-        android:background="@drawable/circular_seekbar_core" 
-        android:text="04"
-        android:textSize="80sp"
+        android:background="@drawable/circular_seekbar_core"
         android:gravity="center"
+        android:text="04"
         android:textColor="#2495AB"
-        />
+        android:textSize="80sp" />
+    <!-- 自定义 2 -->
+
+    <com.innovzen.ui.ZJBCircleSeekBar
+        android:id="@+id/customise_hold1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_5"
+        android:layout_alignLeft="@id/mid_top_horizontal_7"
+        android:layout_alignRight="@id/mid_top_horizontal_10"
+        android:layout_alignTop="@id/mid_left_vertical_4"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/customise_hold_in_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_5"
+        android:layout_alignLeft="@id/mid_top_horizontal_7"
+        android:layout_alignRight="@id/mid_top_horizontal_8"
+        android:layout_alignTop="@id/mid_left_vertical_4"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/circular_seekbar_core"
+        android:gravity="center"
+        android:text="04"
+        android:textColor="#2495AB"
+        android:textSize="80sp" />
+    <!-- 自定义 3 -->
+
+    <com.innovzen.ui.ZJBCircleSeekBar
+        android:id="@+id/customise_breathe_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_5"
+        android:layout_alignLeft="@id/mid_top_horizontal_11"
+        android:layout_alignRight="@id/mid_top_horizontal_14"
+        android:layout_alignTop="@id/mid_left_vertical_4"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/customise_breathe_out_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_5"
+        android:layout_alignLeft="@id/mid_top_horizontal_11"
+        android:layout_alignRight="@id/mid_top_horizontal_12"
+        android:layout_alignTop="@id/mid_left_vertical_4"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/circular_seekbar_core"
+        android:gravity="center"
+        android:text="04"
+        android:textColor="#2495AB"
+        android:textSize="80sp" />
+
+    <!-- 自定义 4 -->
+
+    <com.innovzen.ui.ZJBCircleSeekBar
+        android:id="@+id/customise_hold2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_5"
+        android:layout_alignLeft="@id/mid_top_horizontal_15"
+        android:layout_alignRight="@id/mid_top_horizontal_18"
+        android:layout_alignTop="@id/mid_left_vertical_4"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/customise_hold_out_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/mid_left_vertical_5"
+        android:layout_alignLeft="@id/mid_top_horizontal_15"
+        android:layout_alignRight="@id/mid_top_horizontal_16"
+        android:layout_alignTop="@id/mid_left_vertical_4"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/circular_seekbar_core"
+        android:gravity="center"
+        android:text="04"
+        android:textColor="#2495AB"
+        android:textSize="80sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -372,7 +509,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_6"
         android:layout_alignLeft="@id/mid_top_horizontal_7"
-        android:layout_alignRight="@id/mid_top_horizontal_7"
+        android:layout_alignRight="@id/mid_top_horizontal_10"
         android:layout_alignTop="@id/mid_left_vertical_6"
         android:gravity="center_horizontal"
         android:text="Hold time 3/4"
@@ -382,8 +519,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_6"
-        android:layout_alignLeft="@id/mid_top_horizontal_9"
-        android:layout_alignRight="@id/mid_top_horizontal_9"
+        android:layout_alignLeft="@id/mid_top_horizontal_11"
+        android:layout_alignRight="@id/mid_top_horizontal_12"
         android:layout_alignTop="@id/mid_left_vertical_6"
         android:gravity="center_horizontal"
         android:text="Breathe out time"
@@ -393,8 +530,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_6"
-        android:layout_alignLeft="@id/mid_top_horizontal_11"
-        android:layout_alignRight="@id/mid_top_horizontal_11"
+        android:layout_alignLeft="@id/mid_top_horizontal_15"
+        android:layout_alignRight="@id/mid_top_horizontal_16"
         android:layout_alignTop="@id/mid_left_vertical_6"
         android:gravity="center_horizontal"
         android:text="Hold time"
@@ -448,8 +585,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_7"
-        android:layout_alignLeft="@id/mid_top_horizontal_5"
-        android:layout_alignRight="@id/mid_top_horizontal_5"
+        android:layout_alignLeft="@id/mid_top_horizontal_7"
+        android:layout_alignRight="@id/mid_top_horizontal_8"
         android:layout_alignTop="@id/mid_left_vertical_7"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
@@ -460,8 +597,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/mid_left_vertical_7"
-        android:layout_alignLeft="@id/mid_top_horizontal_9"
-        android:layout_alignRight="@id/mid_top_horizontal_9"
+        android:layout_alignLeft="@id/mid_top_horizontal_15"
+        android:layout_alignRight="@id/mid_top_horizontal_16"
         android:layout_alignTop="@id/mid_left_vertical_7"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"

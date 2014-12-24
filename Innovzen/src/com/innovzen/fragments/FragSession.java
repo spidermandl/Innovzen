@@ -44,6 +44,14 @@ public class FragSession extends FragBase implements OnClickListener {
 	private VerticalSeekBar mySeekBar2;
 	private ZJBCircleSeekBar breathe_in;
 	private TextView breathe_in_number;
+	private ZJBCircleSeekBar customise_breathe_in;
+	private TextView customise_breathe_in_number;
+	private ZJBCircleSeekBar customise_breathe_out;
+	private TextView customise_breathe_out_number;
+	private ZJBCircleSeekBar customise_hold1;
+	private TextView customise_hold_in_number;
+	private ZJBCircleSeekBar customise_hold2;
+	private TextView customise_hold_out_number;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -115,6 +123,12 @@ public class FragSession extends FragBase implements OnClickListener {
 			image_pro.setVisibility(View.GONE);
 			breathe_in.setVisibility(View.GONE);
 			breathe_in_number.setVisibility(View.GONE);
+			customise_breathe_out.setVisibility(View.GONE);
+			customise_breathe_out_number.setVisibility(View.GONE);
+			customise_hold1.setVisibility(View.GONE);
+			customise_hold_in_number.setVisibility(View.GONE);
+			customise_hold2.setVisibility(View.GONE);
+			customise_hold_out_number.setVisibility(View.GONE);
 			break;
 		case R.id.intermadiate:
 			MyPreference.getInstance(getActivity()).writeString(
@@ -129,6 +143,12 @@ public class FragSession extends FragBase implements OnClickListener {
 			image_pro.setVisibility(View.GONE);
 			breathe_in.setVisibility(View.GONE);
 			breathe_in_number.setVisibility(View.GONE);
+			customise_breathe_out.setVisibility(View.GONE);
+			customise_breathe_out_number.setVisibility(View.GONE);
+			customise_hold1.setVisibility(View.GONE);
+			customise_hold_in_number.setVisibility(View.GONE);
+			customise_hold2.setVisibility(View.GONE);
+			customise_hold_out_number.setVisibility(View.GONE);
 			break;
 		case R.id.pro:
 			MyPreference.getInstance(getActivity()).writeString(
@@ -143,7 +163,14 @@ public class FragSession extends FragBase implements OnClickListener {
 			image_pro.setVisibility(View.VISIBLE);
 			breathe_in.setVisibility(View.GONE);
 			breathe_in_number.setVisibility(View.GONE);
+			customise_breathe_out.setVisibility(View.GONE);
+			customise_breathe_out_number.setVisibility(View.GONE);
+			customise_hold1.setVisibility(View.GONE);
+			customise_hold_in_number.setVisibility(View.GONE);
+			customise_hold2.setVisibility(View.GONE);
+			customise_hold_out_number.setVisibility(View.GONE);
 			break;
+			
 		case R.id.customise:
 			MyPreference.getInstance(getActivity()).writeString(
 					MyPreference.SESSION_MODE, MyPreference.CUSTOMISE);
@@ -158,6 +185,12 @@ public class FragSession extends FragBase implements OnClickListener {
 			image_pro.setVisibility(View.GONE);
 			breathe_in.setVisibility(View.VISIBLE);
 			breathe_in_number.setVisibility(View.VISIBLE);
+			customise_breathe_out.setVisibility(View.VISIBLE);
+			customise_breathe_out_number.setVisibility(View.VISIBLE);
+			customise_hold1.setVisibility(View.VISIBLE);
+			customise_hold_in_number.setVisibility(View.VISIBLE);
+			customise_hold2.setVisibility(View.VISIBLE);
+			customise_hold_out_number.setVisibility(View.VISIBLE);
 			break;
 		case R.id.voice_progressbar2:
 			voice_progressbar2.setVisibility(View.GONE);
@@ -179,6 +212,12 @@ public class FragSession extends FragBase implements OnClickListener {
 	public void init(View view) {
 		String mode = MyPreference.getInstance(getActivity()).readString(
 				MyPreference.SESSION_MODE);
+		customise_breathe_out = (ZJBCircleSeekBar) view.findViewById(R.id.customise_breathe_out);
+		customise_breathe_out_number = (TextView) view.findViewById(R.id.customise_breathe_out_number);
+		customise_hold1 = (ZJBCircleSeekBar) view.findViewById(R.id.customise_hold1);
+		customise_hold_in_number = (TextView) view.findViewById(R.id.customise_hold_in_number);
+		customise_hold2 = (ZJBCircleSeekBar) view.findViewById(R.id.customise_hold2);
+		customise_hold_out_number = (TextView) view.findViewById(R.id.customise_hold_out_number);
 		breathe_in = (ZJBCircleSeekBar) view
 				.findViewById(R.id.customise_breathe_in);
 		breathe_in_number = (TextView) view
@@ -224,8 +263,8 @@ public class FragSession extends FragBase implements OnClickListener {
 		image_pro = (ImageView) view.findViewById(R.id.image_pro);
 
 		min.setText(MyPreference.getInstance(getActivity()).readInt(
-				MyPreference.TIME)
-				+ "");
+				MyPreference.TIME)/60000
+				+ "min");
 		String mySession = MyPreference.getInstance(getActivity()).readString(
 				MyPreference.SESSION_MODE);
 		beginner.setBackgroundResource(R.drawable.btn_my_session_left_beginner_activated);
