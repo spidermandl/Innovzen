@@ -18,7 +18,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
+import com.innovzen.activities.ActivityMain;
 import com.innovzen.bluetooth.BluetoothCommand;
+import com.innovzen.entities.ExerciseTimes;
 import com.innovzen.fragments.base.FragBase;
 import com.innovzen.o2chair.R;
 import com.innovzen.ui.VerticalSeekBar;
@@ -87,22 +89,20 @@ public class FragSession extends FragBase implements OnClickListener {
 					.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 			break;
 		case R.id.session_start:
-			String blance_relax_performance = MyPreference.getInstance(
-					getActivity()).readString(
-					MyPreference.BLANCE_RELAX_PERFORMANCE);
-			if (blance_relax_performance.equals(MyPreference.BLANCE)) {
+			String mode = MyPreference.getInstance(getActivity()).readString(
+					MyPreference.SESSION_MODE);
+			if(mode.equals(MyPreference.BEGINNER)||mode==null||mode.equals("")){
+				((ActivityMain)getActivity()).initExerciseManager(ExerciseTimes.BEGINNER_TIME);
 				super.activityListener
-						.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
-			} else if (blance_relax_performance.equals(MyPreference.RELAX)) {
+				.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+			}else if(mode.equals(MyPreference.INTERMEDAITE)){
+				((ActivityMain)getActivity()).initExerciseManager(ExerciseTimes.INTERMEDIATE_TIME);
 				super.activityListener
-						.fragSendCommand(BluetoothCommand.RELAX_MACHINE_VALUES);
-			} else if (blance_relax_performance
-					.equals(MyPreference.PERFORMANCE)) {
+				.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
+			}else if(mode.equals(MyPreference.PRO)){
+				((ActivityMain)getActivity()).initExerciseManager(ExerciseTimes.PRO_TIME);
 				super.activityListener
-						.fragSendCommand(BluetoothCommand.PERFORMANCE_MACHINE_VALUES);
-			} else {
-				super.activityListener
-						.fragSendCommand(BluetoothCommand.BLANCE_MACHINE_VALUES);
+				.fragSendCommand(BluetoothCommand.START_MACHINE_VALUES);
 			}
 			break;
 		case R.id.session_pause:
@@ -213,6 +213,8 @@ public class FragSession extends FragBase implements OnClickListener {
 		String mode = MyPreference.getInstance(getActivity()).readString(
 				MyPreference.SESSION_MODE);
 		customise_breathe_out = (ZJBCircleSeekBar) view.findViewById(R.id.customise_breathe_out);
+		
+		
 		customise_breathe_out_number = (TextView) view.findViewById(R.id.customise_breathe_out_number);
 		customise_hold1 = (ZJBCircleSeekBar) view.findViewById(R.id.customise_hold1);
 		customise_hold_in_number = (TextView) view.findViewById(R.id.customise_hold_in_number);
